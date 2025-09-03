@@ -17,14 +17,19 @@ export default function Header() {
       </div>
 
       {/* Right Side - Nav Buttons */}
-<nav className="flex-1 flex justify-center gap-6 text-gray-800 text-base font-normal pr-20" style={{ fontFamily: 'Lato, sans-serif' }}>
-  <button className="hover:text-blue-600 cursor-pointer">Home</button>
-  <button className="hover:text-blue-600 cursor-pointer">About Us</button>
-  <button className="hover:text-blue-600 cursor-pointer">Programs</button>
-  <button className="hover:text-blue-600 cursor-pointer">Resources</button>
-  <button className="hover:text-blue-600 cursor-pointer">Register Now</button>
-</nav>
-
+      <nav
+        className="flex-1 flex justify-center gap-12 text-gray-800 text-base font-normal pr-20"
+        style={{ fontFamily: 'Lato, sans-serif' }}
+      >
+        {['Home', 'About Us', 'Programs', 'Resources', 'Register Now'].map((item) => (
+          <button
+            key={item}
+            className="relative cursor-pointer after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-0 after:bg-black after:transition-all after:duration-300 hover:after:w-full"
+          >
+            {item}
+          </button>
+        ))}
+      </nav>
     </header>
   );
 }
