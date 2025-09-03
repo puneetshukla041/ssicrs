@@ -31,41 +31,39 @@ export default function Header({ className = "" }: HeaderProps) {
       } ${className}`}
     >
       {/* Left Side - Logo */}
-      <div className="flex-shrink-0 ml-50">
-        <Image
-          src="/logos/ssicrs.png"
-          alt="SSI Studios Logo"
-          width={40}
-          height={40}
-          className="object-contain"
-        />
-      </div>
-
-      {/* Hamburger Menu Button (visible on mobile) */}
-      <button
-        onClick={() => setMobileNavOpen(!mobileNavOpen)}
-        className="md:hidden text-gray-800 p-2 z-50 mr-4"
-        aria-label="Toggle Mobile Menu"
-      >
-        <svg
-          className="w-6 h-6"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2}
-            d={
-              mobileNavOpen
-                ? "M6 18L18 6M6 6l12 12"
-                : "M4 6h16M4 12h16M4 18h16"
-            }
-          ></path>
-        </svg>
-      </button>
+ 
+  <div className="flex-shrink-0">
+    <img
+      src="/logos/ssicrs.png"
+      alt="SSI Studios Logo"
+      className="h-10 w-auto"
+    />
+  </div>
+{/* Hamburger Menu Button (visible on mobile) */}
+<button
+  onClick={() => setMobileNavOpen(!mobileNavOpen)}
+  className={`md:hidden p-2 z-50 mr-4`}
+  aria-label="Toggle Mobile Menu"
+>
+  <svg
+    className="w-6 h-6"
+    fill="none"
+    stroke={scrolled ? "gray" : "white"} // ✅ color changes on scroll
+    viewBox="0 0 24 24"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth={2}
+      d={
+        mobileNavOpen
+          ? "M6 18L18 6M6 6l12 12" // X icon when open
+          : "M4 6h16M4 12h16M4 18h16" // Hamburger icon when closed
+      }
+    ></path>
+  </svg>
+</button>
 
       {/* Desktop & Laptop Nav Buttons */}
       <nav
