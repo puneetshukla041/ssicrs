@@ -1,43 +1,24 @@
+// app/layout.tsx (Server Component)
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Lato } from "next/font/google"; // Add Lato import
+import { Geist, Geist_Mono, Lato } from "next/font/google";
 import "./globals.css";
+import SplashWrapper from "@/components/SplashLayoutClient"; // client component
 
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
-
-const lato = Lato({
-  variable: "--font-lato",
-  subsets: ["latin"],
-  weight: "400", // "400" corresponds to "Regular"
-});
+const geistSans = Geist({ variable: "--font-geist-sans", subsets: ["latin"] });
+const geistMono = Geist_Mono({ variable: "--font-geist-mono", subsets: ["latin"] });
+const lato = Lato({ variable: "--font-lato", subsets: ["latin"], weight: "400" });
 
 export const metadata: Metadata = {
-  title: "SSI Studios",
+  title: "SSICRS",
   description: "Professional web & mobile app",
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${geistSans.variable} ${geistMono.variable} ${lato.variable}`}>
-      <body
-        className={`antialiased font-lato`} // Apply the new Lato font globally
-      >
-
-
-        {/* ✅ Page Content */}
-        <main className="min-h-screen">{children}</main>
+    <html className={`${geistSans.variable} ${geistMono.variable} ${lato.variable}`} lang="en">
+      <body className="antialiased font-lato">
+        {/* ✅ Splash + Children */}
+        <SplashWrapper>{children}</SplashWrapper>
       </body>
     </html>
   );

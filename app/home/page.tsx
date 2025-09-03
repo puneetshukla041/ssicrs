@@ -2,32 +2,58 @@
 
 import Header from "@/components/Header";
 import SecondSection from "@/components/home/secondsection";
+import { motion } from "framer-motion";
 
 export default function HomePage() {
   return (
-    <div className="relative min-h-screen bg-black">
+    <div className="relative bg-black min-h-screen">
       {/* ✅ Fixed Header at the top */}
       <Header className="fixed top-0 left-0 w-full z-50" />
 
-      {/* Background Image */}
-      <img
-        src="/images/image1.webp"
-        alt="SSI Studios"
-        className="w-full h-screen object-cover"
-      />
+      {/* Hero Section */}
+      <section className="relative w-full h-screen">
+        {/* Background Image */}
+        <img
+          src="/images/image1.webp"
+          alt="SSI Studios"
+          className="w-full h-full object-cover"
+        />
 
-      {/* Centered Multi-line Text */}
-      <h1
-        className="absolute inset-0 flex items-center justify-center text-white text-center"
-        style={{
-          fontFamily: 'DM Serif Text, serif',
-          fontWeight: 400,
-          fontSize: '64px',
-          lineHeight: '1.2',
-        }}
-      >
-        Shaping the Future of <br /> Robotic Surgery Training
-      </h1>
+        {/* Centered Text with scroll-triggered animation */}
+        <motion.div
+          className="absolute inset-0 flex flex-col items-center justify-center text-center px-4"
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: false, amount: 0.5 }} // triggers every time 50% visible
+          transition={{ duration: 1, ease: "easeOut" }}
+        >
+          <h1
+            style={{
+              fontFamily: "DM Serif Text, serif",
+              fontWeight: 400,
+              fontSize: "64px",
+              lineHeight: "1.2",
+            }}
+            className="text-white"
+          >
+            Shaping the Future of <br /> Robotic Surgery Training
+          </h1>
+
+<p
+  style={{
+    fontFamily: "Lato, sans-serif",
+    fontWeight: 400,
+    fontSize: "20px",
+    lineHeight: "1.5",
+    marginTop: "20px",
+  }}
+  className="text-white text-center px-6"
+>
+  Empowering healthcare professionals worldwide to master the SSI Mantra system and deliver safer, smarter care.
+</p>
+
+        </motion.div>
+      </section>
 
       {/* ✅ White Section Below Hero */}
       <SecondSection />

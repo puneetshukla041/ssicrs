@@ -16,8 +16,8 @@ export default function Header({ className = "" }: HeaderProps) {
         <Image
           src="/logos/ssicrs.png"
           alt="SSI Studios Logo"
-          width={50}
-          height={50}
+          width={40}
+          height={40}
           className="object-contain"
         />
       </div>
