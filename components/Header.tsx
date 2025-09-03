@@ -4,14 +4,14 @@ import Image from "next/image";
 
 export default function Header() {
   return (
-    <header className="w-full bg-white shadow-md px-4 py-2 flex items-center justify-between">
+    <header className="w-full bg-white shadow-md p-[18px] flex items-center justify-between">
       {/* Left Side - Logo */}
       <div className="flex-shrink-0">
         <Image
           src="/logos/ssicrs.png"
           alt="SSI Studios Logo"
-          width={100}   // smaller width
-          height={35}   // smaller height
+          width={57}   // smaller width
+          height={57}   // smaller height
           className="object-contain"
         />
       </div>
