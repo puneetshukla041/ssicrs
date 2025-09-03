@@ -31,41 +31,47 @@ export default function Header({ className = "" }: HeaderProps) {
       } ${className}`}
     >
       {/* Left Side - Logo */}
- 
-  <div className="flex-shrink-0">
-    <img
-      src="/logos/ssicrs.png"
-      alt="SSI Studios Logo"
-      className="h-10 w-auto"
-    />
-  </div>
-{/* Hamburger Menu Button (visible on mobile) */}
-<button
-  onClick={() => setMobileNavOpen(!mobileNavOpen)}
-  className={`md:hidden p-2 z-50 mr-4`}
-  aria-label="Toggle Mobile Menu"
->
-  <svg
-    className="w-6 h-6"
-    fill="none"
-    stroke={scrolled ? "gray" : "white"} // ✅ color changes on scroll
-    viewBox="0 0 24 24"
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    <path
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      strokeWidth={2}
-      d={
-        mobileNavOpen
-          ? "M6 18L18 6M6 6l12 12" // X icon when open
-          : "M4 6h16M4 12h16M4 18h16" // Hamburger icon when closed
-      }
-    ></path>
-  </svg>
-</button>
+      <div className="flex-shrink-0">
+        <img
+          src="/logos/ssicrs.png"
+          alt="SSI Studios Logo"
+          className="h-10 w-auto"
+        />
+      </div>
 
-      {/* Desktop & Laptop Nav Buttons */}
+      {/* Hamburger Menu Button (visible on mobile) */}
+      <button
+        onClick={() => setMobileNavOpen(!mobileNavOpen)}
+        className="md:hidden p-2 z-50 mr-2"
+        aria-label="Toggle Mobile Menu"
+      >
+        <svg
+          className="w-6 h-6"
+          fill="none"
+          stroke={
+            mobileNavOpen
+              ? "gray" // ✅ Gray when menu is open
+              : scrolled
+              ? "gray" // ✅ Gray on scroll
+              : "white" // ✅ White on top section
+          }
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d={
+              mobileNavOpen
+                ? "M6 18L18 6M6 6l12 12" // X icon
+                : "M4 6h16M4 12h16M4 18h16" // Hamburger icon
+            }
+          />
+        </svg>
+      </button>
+
+      {/* Desktop Nav */}
       <nav
         className="hidden md:flex gap-10 text-gray-800 text-base font-normal mr-60"
         style={{ fontFamily: "Lato, sans-serif" }}
@@ -93,7 +99,7 @@ export default function Header({ className = "" }: HeaderProps) {
         </button>
       </nav>
 
-      {/* Mobile Nav Menu (hidden by default) */}
+      {/* Mobile Nav */}
       <div
         className={`fixed top-0 right-0 h-full w-64 bg-white shadow-xl transform transition-transform duration-300 ease-in-out z-40 md:hidden ${
           mobileNavOpen ? "translate-x-0" : "translate-x-full"
