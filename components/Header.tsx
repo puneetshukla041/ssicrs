@@ -1,15 +1,33 @@
 "use client";
 
 import Image from "next/image";
+import { useState, useEffect } from "react";
 
 interface HeaderProps {
   className?: string;
 }
 
 export default function Header({ className = "" }: HeaderProps) {
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 50) {
+        setScrolled(true);
+      } else {
+        setScrolled(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
     <header
-      className={`w-full bg-white shadow-md p-[12px] flex items-center justify-between ${className}`}
+      className={`w-full shadow-md p-[12px] flex items-center justify-between fixed top-0 left-0 z-50 transition-colors duration-500 ${
+        scrolled ? "bg-white" : "bg-transparent"
+      } ${className}`}
     >
       {/* Left Side - Logo */}
       <div className="flex-shrink-0 ml-50">
@@ -30,7 +48,9 @@ export default function Header({ className = "" }: HeaderProps) {
         {['Home', 'About Us', 'Programs', 'Resources'].map((item) => (
           <button
             key={item}
-            className="hover-underline text-gray-800 inline-block relative overflow-visible"
+            className={`hover-underline inline-block relative overflow-visible ${
+              scrolled ? "text-gray-800" : "text-white"
+            }`}
           >
             {item}
           </button>
@@ -38,8 +58,8 @@ export default function Header({ className = "" }: HeaderProps) {
 
         {/* Register Now Button */}
         <button
-          className="cursor-pointer text-white px-4 py-1 rounded"
-          style={{ backgroundColor: '#A67950' }}
+          className="cursor-pointer px-4 py-1 rounded transition-colors duration-500"
+          style={{ backgroundColor: scrolled ? "#A67950" : "rgba(255,255,255,0.8)", color: scrolled ? "#fff" : "#000" }}
         >
           Register Now
         </button>
