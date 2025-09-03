@@ -77,33 +77,42 @@ export default function SecondSection() {
         alt="Decorative"
         className="absolute top-32 right-[80px] w-[513px] h-[280px] object-cover rounded-[8px]"
       />
+{/* Section heading for the whole container (doesn't move the logos) */}
+<div
+  className="absolute w-full pointer-events-none"
+  style={{
+    // logos are at bottom-40 => 160px. Put this ~52px above them.
+    bottom: "250px",
+    paddingLeft: "71px",
+    paddingRight: "417px",
+  }}
+>
+  <h3
+    style={{
+      fontFamily: "DM Serif Text, serif",
+      fontWeight: 400,
+      fontSize: "28px",
+      lineHeight: "1.4",
+      color: "#A67950",
+      margin: 0,
+    }}
+  >
+    At SSICRS, you will:
+  </h3>
+</div>
+
 {/* Bottom Logos inside padded container */}
 <div
-  className="absolute w-full flex justify-between items-start"
+  className="absolute w-full flex justify-between items-center"
   style={{
-    bottom: "100px",        // adjust if needed
-    paddingLeft: "201px",
-    paddingRight: "417px",
+    bottom: "80px",       // pushed further down
+    paddingLeft: "201px",  // global left padding
+    paddingRight: "417px", // global right padding
     gap: "90px",
   }}
 >
-  {/* Left Section with Heading + Logo 1 */}
+  {/* Logo 1 + Text */}
   <div className="flex flex-col items-center text-center min-w-[220px]">
-    {/* Heading */}
-    <h3
-      style={{
-        fontFamily: "DM Serif Text, serif",
-        fontWeight: 400,
-        fontSize: "24px",
-        lineHeight: "1.4",
-        color: "#A67950",
-        marginBottom: "20px", // space between heading and logo
-      }}
-    >
-      At SSICRS, you will:
-    </h3>
-
-    {/* Logo 1 + Text */}
     <img src="/logos/bottomlogo1.png" alt="Logo 1" width={36} height={37.5} />
     <p
       style={{
@@ -113,6 +122,7 @@ export default function SecondSection() {
         lineHeight: "1.6",
         color: "#401323",
         marginTop: "10px",
+        whiteSpace: "normal",   // allow natural wrapping
       }}
     >
       Learn from visionary surgeons <br /> and clinical leaders.
@@ -130,6 +140,7 @@ export default function SecondSection() {
         lineHeight: "1.6",
         color: "#401323",
         marginTop: "10px",
+        whiteSpace: "normal",
       }}
     >
       Access world-class training <br /> resources, and research.
@@ -147,6 +158,7 @@ export default function SecondSection() {
         lineHeight: "1.6",
         color: "#401323",
         marginTop: "10px",
+        whiteSpace: "normal",
       }}
     >
       Join a global initiative shaping the <br /> future of robotic surgery.
@@ -164,13 +176,13 @@ export default function SecondSection() {
         lineHeight: "1.6",
         color: "#401323",
         marginTop: "10px",
+        whiteSpace: "normal",
       }}
     >
       Lead the effort to make surgical <br /> excellence accessible to all.
     </p>
   </div>
 </div>
-
 
     </section>
   );
