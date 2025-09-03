@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Lato } from "next/font/google"; // Add Lato import
 import "./globals.css";
-import Header from "@/components/Header";
+
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -34,8 +34,7 @@ export default function RootLayout({
       <body
         className={`antialiased font-lato`} // Apply the new Lato font globally
       >
-        {/* ✅ Header will now be visible on all pages */}
-        <Header />
+ 
 
         {/* ✅ Page Content */}
         <main className="min-h-screen">{children}</main>

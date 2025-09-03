@@ -18,10 +18,10 @@ export default function Header() {
 
       {/* Right Side - Nav Buttons */}
       <nav
-        className="flex-1 flex justify-center gap-12 text-gray-800 text-base font-normal pr-20"
+        className="flex gap-10 text-gray-800 text-base font-normal mr-60"
         style={{ fontFamily: 'Lato, sans-serif' }}
       >
-        {['Home', 'About Us', 'Programs', 'Resources', 'Register Now'].map((item) => (
+        {['Home', 'About Us', 'Programs', 'Resources'].map((item) => (
           <button
             key={item}
             className="relative cursor-pointer after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-0 after:bg-black after:transition-all after:duration-300 hover:after:w-full"
@@ -29,6 +29,14 @@ export default function Header() {
             {item}
           </button>
         ))}
+
+        {/* Register Now Button with background color */}
+        <button
+          className="relative cursor-pointer text-white px-4 py-1 rounded"
+          style={{ backgroundColor: '#A67950' }}
+        >
+          Register Now
+        </button>
       </nav>
     </header>
   );
