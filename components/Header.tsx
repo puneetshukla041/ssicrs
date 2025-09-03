@@ -9,6 +9,7 @@ interface HeaderProps {
 
 export default function Header({ className = "" }: HeaderProps) {
   const [scrolled, setScrolled] = useState(false);
+  const [mobileNavOpen, setMobileNavOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -40,12 +41,38 @@ export default function Header({ className = "" }: HeaderProps) {
         />
       </div>
 
-      {/* Right Side - Nav Buttons */}
-      <nav
-        className="flex gap-10 text-gray-800 text-base font-normal mr-60"
-        style={{ fontFamily: 'Lato, sans-serif' }}
+      {/* Hamburger Menu Button (visible on mobile) */}
+      <button
+        onClick={() => setMobileNavOpen(!mobileNavOpen)}
+        className="md:hidden text-gray-800 p-2 z-50 mr-4"
+        aria-label="Toggle Mobile Menu"
       >
-        {['Home', 'About Us', 'Programs', 'Resources'].map((item) => (
+        <svg
+          className="w-6 h-6"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d={
+              mobileNavOpen
+                ? "M6 18L18 6M6 6l12 12"
+                : "M4 6h16M4 12h16M4 18h16"
+            }
+          ></path>
+        </svg>
+      </button>
+
+      {/* Desktop & Laptop Nav Buttons */}
+      <nav
+        className="hidden md:flex gap-10 text-gray-800 text-base font-normal mr-60"
+        style={{ fontFamily: "Lato, sans-serif" }}
+      >
+        {["Home", "About Us", "Programs", "Resources"].map((item) => (
           <button
             key={item}
             className={`hover-underline inline-block relative overflow-visible ${
@@ -59,11 +86,38 @@ export default function Header({ className = "" }: HeaderProps) {
         {/* Register Now Button */}
         <button
           className="cursor-pointer px-4 py-1 rounded transition-colors duration-500"
-          style={{ backgroundColor: scrolled ? "#A67950" : "rgba(255,255,255,0.8)", color: scrolled ? "#fff" : "#000" }}
+          style={{
+            backgroundColor: scrolled ? "#A67950" : "rgba(255,255,255,0.8)",
+            color: scrolled ? "#fff" : "#000",
+          }}
         >
           Register Now
         </button>
       </nav>
+
+      {/* Mobile Nav Menu (hidden by default) */}
+      <div
+        className={`fixed top-0 right-0 h-full w-64 bg-white shadow-xl transform transition-transform duration-300 ease-in-out z-40 md:hidden ${
+          mobileNavOpen ? "translate-x-0" : "translate-x-full"
+        }`}
+      >
+        <div className="p-5 mt-20 flex flex-col items-start gap-5">
+          {["Home", "About Us", "Programs", "Resources"].map((item) => (
+            <button
+              key={item}
+              className="text-gray-800 text-lg hover:text-gray-600 transition-colors"
+            >
+              {item}
+            </button>
+          ))}
+          <button
+            className="mt-4 w-full px-4 py-2 rounded transition-colors"
+            style={{ backgroundColor: "#A67950", color: "#fff" }}
+          >
+            Register Now
+          </button>
+        </div>
+      </div>
     </header>
   );
 }
