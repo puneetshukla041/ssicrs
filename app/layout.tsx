@@ -34,7 +34,7 @@ export default function RootLayout({
       <body
         className={`antialiased font-lato`} // Apply the new Lato font globally
       >
- 
+
 
         {/* ✅ Page Content */}
         <main className="min-h-screen">{children}</main>

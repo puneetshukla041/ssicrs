@@ -2,16 +2,22 @@
 
 import Image from "next/image";
 
-export default function Header() {
+interface HeaderProps {
+  className?: string;
+}
+
+export default function Header({ className = "" }: HeaderProps) {
   return (
-    <header className="w-full bg-white shadow-md p-[12px] flex items-center justify-between">
+    <header
+      className={`w-full bg-white shadow-md p-[12px] flex items-center justify-between ${className}`}
+    >
       {/* Left Side - Logo */}
       <div className="flex-shrink-0 ml-50">
         <Image
           src="/logos/ssicrs.png"
           alt="SSI Studios Logo"
-          width={50}   // smaller width
-          height={50}  // smaller height
+          width={50}
+          height={50}
           className="object-contain"
         />
       </div>
@@ -24,15 +30,15 @@ export default function Header() {
         {['Home', 'About Us', 'Programs', 'Resources'].map((item) => (
           <button
             key={item}
-            className="relative cursor-pointer after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-0 after:bg-black after:transition-all after:duration-300 hover:after:w-full"
+            className="hover-underline text-gray-800 inline-block relative overflow-visible"
           >
             {item}
           </button>
         ))}
 
-        {/* Register Now Button with background color */}
+        {/* Register Now Button */}
         <button
-          className="relative cursor-pointer text-white px-4 py-1 rounded"
+          className="cursor-pointer text-white px-4 py-1 rounded"
           style={{ backgroundColor: '#A67950' }}
         >
           Register Now
