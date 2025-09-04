@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 
 interface HeaderProps {
   className?: string;
@@ -10,19 +11,21 @@ interface HeaderProps {
 export default function Header({ className = "" }: HeaderProps) {
   const [scrolled, setScrolled] = useState(false);
   const [mobileNavOpen, setMobileNavOpen] = useState(false);
+  const router = useRouter(); // <-- Add router
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 50) {
-        setScrolled(true);
-      } else {
-        setScrolled(false);
-      }
+      setScrolled(window.scrollY > 50);
     };
-
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  // Navigate to /register
+  const goToRegister = () => {
+    router.push("/register");
+    setMobileNavOpen(false); // close mobile nav if open
+  };
 
   return (
     <header
@@ -35,13 +38,13 @@ export default function Header({ className = "" }: HeaderProps) {
         <Image
           src="/logos/ssicrs.png"
           alt="SSI Studios Logo"
-          width={120} // adjust logo width
-          height={40} // adjust logo height
+          width={120}
+          height={40}
           className="h-10 w-auto"
         />
       </div>
 
-      {/* Hamburger Menu Button (visible on mobile) */}
+      {/* Hamburger Menu Button (mobile) */}
       <button
         onClick={() => setMobileNavOpen(!mobileNavOpen)}
         className="md:hidden p-2 z-50 mr-2"
@@ -51,11 +54,7 @@ export default function Header({ className = "" }: HeaderProps) {
           className="w-6 h-6"
           fill="none"
           stroke={
-            mobileNavOpen
-              ? "gray" // ✅ Gray when menu is open
-              : scrolled
-              ? "gray" // ✅ Gray on scroll
-              : "white" // ✅ White on top section
+            mobileNavOpen ? "gray" : scrolled ? "gray" : "white"
           }
           viewBox="0 0 24 24"
           xmlns="http://www.w3.org/2000/svg"
@@ -66,8 +65,8 @@ export default function Header({ className = "" }: HeaderProps) {
             strokeWidth={2}
             d={
               mobileNavOpen
-                ? "M6 18L18 6M6 6l12 12" // X icon
-                : "M4 6h16M4 12h16M4 18h16" // Hamburger icon
+                ? "M6 18L18 6M6 6l12 12"
+                : "M4 6h16M4 12h16M4 18h16"
             }
           />
         </svg>
@@ -91,6 +90,7 @@ export default function Header({ className = "" }: HeaderProps) {
 
         {/* Register Now Button */}
         <button
+          onClick={goToRegister} // <-- redirect
           className="cursor-pointer px-4 py-1 rounded transition-colors duration-500"
           style={{
             backgroundColor: scrolled ? "#A67950" : "rgba(255,255,255,0.8)",
@@ -116,7 +116,10 @@ export default function Header({ className = "" }: HeaderProps) {
               {item}
             </button>
           ))}
+
+          {/* Mobile Register Button */}
           <button
+            onClick={goToRegister} // <-- redirect
             className="mt-4 w-full px-4 py-2 rounded transition-colors"
             style={{ backgroundColor: "#A67950", color: "#fff" }}
           >

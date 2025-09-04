@@ -34,7 +34,7 @@ export default function FifthSection() {
 
 {/* Mobile View */}
 <div
-  className="flex md:hidden relative w-full justify-center items-center rounded-lg"
+  className="flex md:hidden relative w-full justify-center items-center"
   style={{
     height: "300px", // fixed height for mobile background
     backgroundImage: "url('/images/fifthsection/image1.png')",
@@ -43,7 +43,7 @@ export default function FifthSection() {
   }}
 >
   {/* Overlay for better text readability */}
-  <div className="absolute inset-0 bg-black opacity-40 rounded-lg"></div>
+  <div className="absolute inset-0 bg-black opacity-40"></div>
 
   {/* Centered Text */}
   <div className="relative z-10 flex flex-col justify-center items-center text-center px-4">
