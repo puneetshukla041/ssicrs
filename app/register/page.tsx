@@ -1,8 +1,56 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useState } from "react";
 
 export default function RegisterPage() {
+  const [formData, setFormData] = useState<any>({});
+  const [loading, setLoading] = useState(false);
+
+  const handleChange = (e: any) => {
+    const { id, value, type, checked } = e.target;
+
+    if (type === "checkbox") {
+      if (formData[id]?.includes(value)) {
+        setFormData({
+          ...formData,
+          [id]: formData[id].filter((v: string) => v !== value),
+        });
+      } else {
+        setFormData({
+          ...formData,
+          [id]: [...(formData[id] || []), value],
+        });
+      }
+    } else {
+      setFormData({ ...formData, [id]: value });
+    }
+  };
+
+  const handleSubmit = async () => {
+    setLoading(true);
+    try {
+      const res = await fetch("/api/register", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await res.json();
+      if (data.success) {
+        alert("✅ Registration Successful!");
+        setFormData({});
+      } else {
+        alert("❌ Error: " + data.error);
+      }
+    } catch (err) {
+      console.error(err);
+      alert("❌ Failed to register.");
+    } finally {
+      setLoading(false);
+    }
+  };
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -86,6 +134,7 @@ export default function RegisterPage() {
                 type="text"
                 placeholder="Enter your full name"
                 className="w-full px-4 py-3 border border-gray-300 rounded-lg text-sm md:text-base text-gray-900 focus:ring-2 focus:ring-[#A67950] focus:border-transparent"
+                onChange={handleChange}
                 whileHover={inputHover}
                 whileFocus={inputFocus}
               />
@@ -99,6 +148,7 @@ export default function RegisterPage() {
                 type="email"
                 placeholder="Enter your email"
                 className="w-full px-4 py-3 border border-gray-300 rounded-lg text-sm md:text-base text-gray-900 focus:ring-2 focus:ring-[#A67950] focus:border-transparent"
+                onChange={handleChange}
                 whileHover={inputHover}
                 whileFocus={inputFocus}
               />
@@ -112,6 +162,7 @@ export default function RegisterPage() {
                 type="tel"
                 placeholder="Enter Your Contact Number, with Country Code"
                 className="w-full px-4 py-3 border border-gray-300 rounded-lg text-sm md:text-base text-gray-900 focus:ring-2 focus:ring-[#A67950] focus:border-transparent"
+                onChange={handleChange}
                 whileHover={inputHover}
                 whileFocus={inputFocus}
               />
@@ -124,6 +175,7 @@ export default function RegisterPage() {
                 id="dob"
                 type="date"
                 className="w-full px-4 py-3 border border-gray-300 rounded-lg text-sm md:text-base text-gray-900 focus:ring-2 focus:ring-[#A67950] focus:border-transparent"
+                onChange={handleChange}
                 whileHover={inputHover}
                 whileFocus={inputFocus}
               />
@@ -137,6 +189,7 @@ export default function RegisterPage() {
                 type="number"
                 placeholder="Enter the Number of Years in Practice"
                 className="w-full px-4 py-3 border border-gray-300 rounded-lg text-sm md:text-base text-gray-900 focus:ring-2 focus:ring-[#A67950] focus:border-transparent"
+                onChange={handleChange}
                 whileHover={inputHover}
                 whileFocus={inputFocus}
               />
@@ -150,6 +203,7 @@ export default function RegisterPage() {
                 type="text"
                 placeholder="Enter Your Current Place of Work"
                 className="w-full px-4 py-3 border border-gray-300 rounded-lg text-sm md:text-base text-gray-900 focus:ring-2 focus:ring-[#A67950] focus:border-transparent"
+                onChange={handleChange}
                 whileHover={inputHover}
                 whileFocus={inputFocus}
               />
@@ -162,6 +216,7 @@ export default function RegisterPage() {
                 id="callDateTime"
                 type="datetime-local"
                 className="w-full px-4 py-3 border border-gray-300 rounded-lg text-sm md:text-base text-gray-900 focus:ring-2 focus:ring-[#A67950] focus:border-transparent"
+                onChange={handleChange}
                 whileHover={inputHover}
                 whileFocus={inputFocus}
               />
@@ -175,6 +230,7 @@ export default function RegisterPage() {
                 type="text"
                 placeholder="e.g., Conference, Social Media, Colleague"
                 className="w-full px-4 py-3 border border-gray-300 rounded-lg text-sm md:text-base text-gray-900 focus:ring-2 focus:ring-[#A67950] focus:border-transparent"
+                onChange={handleChange}
                 whileHover={inputHover}
                 whileFocus={inputFocus}
               />
@@ -188,6 +244,7 @@ export default function RegisterPage() {
                 type="text"
                 placeholder="Enter Your Current Profession"
                 className="w-full px-4 py-3 border border-gray-300 rounded-lg text-sm md:text-base text-gray-900 focus:ring-2 focus:ring-[#A67950] focus:border-transparent"
+                onChange={handleChange}
                 whileHover={inputHover}
                 whileFocus={inputFocus}
               />
@@ -201,6 +258,7 @@ export default function RegisterPage() {
                 type="text"
                 placeholder="Enter Your Specialization"
                 className="w-full px-4 py-3 border border-gray-300 rounded-lg text-sm md:text-base text-gray-900 focus:ring-2 focus:ring-[#A67950] focus:border-transparent"
+                onChange={handleChange}
                 whileHover={inputHover}
                 whileFocus={inputFocus}
               />
@@ -214,6 +272,7 @@ export default function RegisterPage() {
                 rows={3}
                 placeholder="Enter Any Specific Learning Goals or Comments"
                 className="w-full px-4 py-3 border border-gray-300 rounded-lg text-sm md:text-base text-gray-900 focus:ring-2 focus:ring-[#A67950] focus:border-transparent"
+                onChange={handleChange}
                 whileHover={inputHover}
                 whileFocus={inputFocus}
               />
@@ -240,16 +299,16 @@ export default function RegisterPage() {
                 <label className="font-medium text-base md:text-lg text-[#401323] mb-3">Core Programs</label>
                 <div className="flex flex-col gap-3">
                   <motion.div className="flex items-center cursor-pointer" whileHover={buttonHover} whileTap={buttonTap}>
-                    <input type="checkbox" id="surgeonTraining" name="trainingProgram" className="mr-3 accent-[#A67950] w-5 h-5 cursor-pointer" />
-                    <label htmlFor="surgeonTraining" className="text-sm md:text-base font-medium text-[#401323] cursor-pointer">Surgeon Training</label>
+                    <input type="checkbox" id="trainingPrograms" value="Surgeon Training" className="mr-3 accent-[#A67950] w-5 h-5 cursor-pointer" onChange={handleChange} />
+                    <label htmlFor="trainingPrograms" className="text-sm md:text-base font-medium text-[#401323] cursor-pointer">Surgeon Training</label>
                   </motion.div>
                   <motion.div className="flex items-center cursor-pointer" whileHover={buttonHover} whileTap={buttonTap}>
-                    <input type="checkbox" id="surgicalStaffTraining" name="trainingProgram" className="mr-3 accent-[#A67950] w-5 h-5 cursor-pointer" />
-                    <label htmlFor="surgicalStaffTraining" className="text-sm md:text-base font-medium text-[#401323] cursor-pointer">Surgical Staff Training</label>
+                    <input type="checkbox" id="trainingPrograms" value="Surgical Staff Training" className="mr-3 accent-[#A67950] w-5 h-5 cursor-pointer" onChange={handleChange} />
+                    <label htmlFor="trainingPrograms" className="text-sm md:text-base font-medium text-[#401323] cursor-pointer">Surgical Staff Training</label>
                   </motion.div>
                   <motion.div className="flex items-center cursor-pointer" whileHover={buttonHover} whileTap={buttonTap}>
-                    <input type="checkbox" id="anesthesiaTraining" name="trainingProgram" className="mr-3 accent-[#A67950] w-5 h-5 cursor-pointer" />
-                    <label htmlFor="anesthesiaTraining" className="text-sm md:text-base font-medium text-[#401323] cursor-pointer">Anesthesia Training for Robotic Surgery</label>
+                    <input type="checkbox" id="trainingPrograms" value="Anesthesia Training for Robotic Surgery" className="mr-3 accent-[#A67950] w-5 h-5 cursor-pointer" onChange={handleChange} />
+                    <label htmlFor="trainingPrograms" className="text-sm md:text-base font-medium text-[#401323] cursor-pointer">Anesthesia Training for Robotic Surgery</label>
                   </motion.div>
                 </div>
               </motion.div>
@@ -262,16 +321,16 @@ export default function RegisterPage() {
                 <label className="font-medium text-base md:text-lg text-[#401323] mb-3">Additional Programs</label>
                 <div className="flex flex-col gap-3">
                   <motion.div className="flex items-center cursor-pointer" whileHover={buttonHover} whileTap={buttonTap}>
-                    <input type="checkbox" id="surgeonTrainingAdditional" name="trainingProgramAdditional" className="mr-3 accent-[#A67950] w-5 h-5 cursor-pointer" />
-                    <label htmlFor="surgeonTrainingAdditional" className="text-sm md:text-base font-medium text-[#401323] cursor-pointer">Advanced Surgical Techniques</label>
+                    <input type="checkbox" id="additionalPrograms" value="Advanced Surgical Techniques" className="mr-3 accent-[#A67950] w-5 h-5 cursor-pointer" onChange={handleChange} />
+                    <label htmlFor="additionalPrograms" className="text-sm md:text-base font-medium text-[#401323] cursor-pointer">Advanced Surgical Techniques</label>
                   </motion.div>
                   <motion.div className="flex items-center cursor-pointer" whileHover={buttonHover} whileTap={buttonTap}>
-                    <input type="checkbox" id="surgicalStaffTrainingAdditional" name="trainingProgramAdditional" className="mr-3 accent-[#A67950] w-5 h-5 cursor-pointer" />
-                    <label htmlFor="surgicalStaffTrainingAdditional" className="text-sm md:text-base font-medium text-[#401323] cursor-pointer">Robotic Systems Maintenance</label>
+                    <input type="checkbox" id="additionalPrograms" value="Robotic Systems Maintenance" className="mr-3 accent-[#A67950] w-5 h-5 cursor-pointer" onChange={handleChange} />
+                    <label htmlFor="additionalPrograms" className="text-sm md:text-base font-medium text-[#401323] cursor-pointer">Robotic Systems Maintenance</label>
                   </motion.div>
                   <motion.div className="flex items-center cursor-pointer" whileHover={buttonHover} whileTap={buttonTap}>
-                    <input type="checkbox" id="anesthesiaTrainingAdditional" name="trainingProgramAdditional" className="mr-3 accent-[#A67950] w-5 h-5 cursor-pointer" />
-                    <label htmlFor="anesthesiaTrainingAdditional" className="text-sm md:text-base font-medium text-[#401323] cursor-pointer">Post-Op Robotic Care</label>
+                    <input type="checkbox" id="additionalPrograms" value="Post-Op Robotic Care" className="mr-3 accent-[#A67950] w-5 h-5 cursor-pointer" onChange={handleChange} />
+                    <label htmlFor="additionalPrograms" className="text-sm md:text-base font-medium text-[#401323] cursor-pointer">Post-Op Robotic Care</label>
                   </motion.div>
                 </div>
               </motion.div>
@@ -281,7 +340,7 @@ export default function RegisterPage() {
           {/* Section Separator */}
           <div className="border-t border-gray-300 my-10 md:my-12"></div>
 
-          {/* Upload ID & Registration */}
+          {/* Upload ID & Register */}
           <motion.div
             className="flex flex-col items-center w-full"
             variants={itemVariants}
@@ -305,6 +364,7 @@ export default function RegisterPage() {
                 id="uploadId"
                 type="file"
                 className="w-full px-4 py-3 border border-gray-300 rounded-lg text-sm md:text-base cursor-pointer file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-[#A67950] file:text-white hover:file:bg-[#8d6241] cursor-pointer"
+                onChange={handleChange}
                 whileHover={inputHover}
                 whileFocus={inputFocus}
               />
@@ -320,6 +380,7 @@ export default function RegisterPage() {
                   type="checkbox"
                   id="termsAgree"
                   className="mr-2 md:mr-3 mt-1 cursor-pointer accent-[#A67950] shrink-0 w-5 h-5"
+                  onChange={handleChange}
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.9 }}
                 />
@@ -339,16 +400,18 @@ export default function RegisterPage() {
                 </label>
               </div>
               <motion.button
+                onClick={handleSubmit}
+                disabled={loading}
                 className="font-bold text-base md:text-lg text-white bg-[#A67950] py-3 md:py-4 px-6 md:px-8 border-none rounded-full w-full max-w-xs md:max-w-md cursor-pointer shadow-lg hover:shadow-xl"
                 whileHover={buttonHover}
                 whileTap={buttonTap}
               >
-                Register Now
+                {loading ? "Registering..." : "Register Now"}
               </motion.button>
             </motion.div>
           </motion.div>
+          {/* --- End Main Registration Card --- */}
         </motion.div>
-        {/* --- End Main Registration Card --- */}
       </motion.div>
     </div>
   );
