@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { FiArrowRight } from "react-icons/fi"; // Feather arrow icon
 
 export default function SeventhSection() {
   return (
@@ -19,7 +20,7 @@ export default function SeventhSection() {
           className="absolute text-center text-4xl font-normal bg-clip-text text-transparent bg-gradient-to-r from-[#D9A05B] via-[#EFE8D6] to-[#F2F0E4] whitespace-nowrap"
           style={{
             fontFamily: "DM Serif Text, serif",
-            top: "30%", // slightly above center
+            top: "30%", 
             left: "50%",
             transform: "translate(-50%, -50%)",
           }}
@@ -33,7 +34,7 @@ export default function SeventhSection() {
           style={{
             fontFamily: "Lato, sans-serif",
             color: "#FBFAF2",
-            top: "48%", // below heading
+            top: "48%", 
             left: "50%",
             transform: "translate(-50%, -50%)",
             maxWidth: "90%",
@@ -44,7 +45,7 @@ export default function SeventhSection() {
 
         {/* Button */}
         <button
-          className="absolute flex items-center justify-center rounded-full"
+          className="absolute flex items-center justify-center rounded-full transition-shadow duration-300 hover:shadow-[0_0_15px_rgba(255,234,210,0.7)]"
           style={{
             top: "63%",
             left: "50%",
@@ -53,12 +54,13 @@ export default function SeventhSection() {
             height: "43px",
             background: "linear-gradient(90deg, #FBFAF2, #FFEAD2)",
             fontFamily: "Lato, sans-serif",
-            fontWeight: "400", // regular
+            fontWeight: "400",
             fontSize: "16px",
-            color: "#000", // black text
+            color: "#000",
           }}
         >
           Register Now
+          <FiArrowRight className="ml-2" size={18} />
         </button>
       </div>
     </section>
