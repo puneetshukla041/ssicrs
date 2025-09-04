@@ -73,10 +73,10 @@ export default function Footer() {
               top: "-200px",
             }}
           >
-            <span style={{ cursor: "pointer" }}>About</span>
-            <span style={{ cursor: "pointer" }}>Programs</span>
-            <span style={{ cursor: "pointer" }}>Resources</span>
-            <span style={{ cursor: "pointer" }}>Register Now</span>
+            <span style={{ cursor: "pointer" }}>ABOUT</span>
+            <span style={{ cursor: "pointer" }}>PROGRAMS</span>
+            <span style={{ cursor: "pointer" }}>RESOURCES</span>
+            <span style={{ cursor: "pointer" }}>REGISTER NOW</span>
           </div>
 
           {/* White line */}

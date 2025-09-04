@@ -39,20 +39,23 @@ export default function Header({ className = "" }: HeaderProps) {
   };
 
   const headerBgColor = isRegisterPage ? "bg-white" : scrolled ? "bg-white" : "bg-transparent";
+  const headerShadow = isRegisterPage ? "shadow-md" : scrolled ? "shadow-md" : "shadow-none";
   const headerTextColor = isRegisterPage ? "text-gray-600" : scrolled ? "text-gray-800" : "text-white";
+  const registerButtonBg = isRegisterPage || scrolled ? "#A67950" : "rgba(255,255,255,0.8)";
+  const registerButtonColor = isRegisterPage || scrolled ? "#fff" : "#000";
 
   return (
     <header
-      className={`w-full shadow-md p-[12px] flex items-center justify-between fixed top-0 left-0 z-50 transition-colors duration-500 ${headerBgColor} ${className}`}
+      className={`w-full p-4 flex items-center justify-between fixed top-0 left-0 z-50 transition-all duration-500 ${headerBgColor} ${headerShadow} ${className}`}
     >
       {/* Left Side - Logo */}
-      <div className="flex-shrink-0">
+      <div className="flex-shrink-0 ml-60"> {/* Added ml-60 */}
         <Image
           src="/logos/ssicrs.png"
           alt="SSI Studios Logo"
-          width={120}
-          height={40}
-          className="h-10 w-auto"
+          width={150}
+          height={50}
+          className="h-12 w-auto"
         />
       </div>
 
@@ -63,7 +66,7 @@ export default function Header({ className = "" }: HeaderProps) {
         aria-label="Toggle Mobile Menu"
       >
         <svg
-          className="w-6 h-6"
+          className="w-8 h-8"
           fill="none"
           stroke={mobileNavOpen ? "gray" : isRegisterPage ? "gray" : scrolled ? "gray" : "white"}
           viewBox="0 0 24 24"
@@ -86,7 +89,7 @@ export default function Header({ className = "" }: HeaderProps) {
         {["Home", "About Us", "Programs", "Resources"].map((item) => (
           <button
             key={item}
-            onClick={() => handleNavClick(item)} // <-- Add onClick handler
+            onClick={() => handleNavClick(item)}
             className={`hover-underline inline-block relative overflow-visible ${headerTextColor}`}
           >
             {item}
@@ -96,10 +99,10 @@ export default function Header({ className = "" }: HeaderProps) {
         {/* Register Now Button */}
         <button
           onClick={goToRegister}
-          className="cursor-pointer px-4 py-1 rounded transition-colors duration-500"
+          className="cursor-pointer px-6 py-2 rounded transition-colors duration-500"
           style={{
-            backgroundColor: isRegisterPage || scrolled ? "#A67950" : "rgba(255,255,255,0.8)",
-            color: isRegisterPage || scrolled ? "#fff" : "#000",
+            backgroundColor: registerButtonBg,
+            color: registerButtonColor,
           }}
         >
           Register Now
@@ -116,7 +119,7 @@ export default function Header({ className = "" }: HeaderProps) {
           {["Home", "About Us", "Programs", "Resources"].map((item) => (
             <button
               key={item}
-              onClick={() => handleNavClick(item)} // <-- Add onClick handler
+              onClick={() => handleNavClick(item)}
               className="text-gray-800 text-lg hover:text-gray-600 transition-colors"
             >
               {item}

@@ -72,7 +72,7 @@ export default function HomePage() {
 
 
 <FifthSection />
-<div style={{ height: "120px", backgroundColor: "#ffffff" }} /> {/* 5 lines white gap */}
+<div style={{ height: "60px", backgroundColor: "#ffffff" }} /> {/* 5 lines white gap */}
  <SixthSection />
 <SeventhSection />
 
