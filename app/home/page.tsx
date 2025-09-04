@@ -3,6 +3,7 @@
 import Header from "@/components/Header";
 import SecondSection from "@/components/home/secondsection";
 import ThirdSection from "@/components/home/thirdsection";
+import FourthSection from "@/components/home/fourthsection";
 import { motion } from "framer-motion";
 
 export default function HomePage() {
@@ -16,7 +17,7 @@ export default function HomePage() {
         {/* Background Image */}
         <img
           src="/images/image1.webp"
-          alt="SSI Studios"
+          alt="SSICrs"
           className="w-full h-full object-cover"
         />
 
@@ -57,6 +58,10 @@ export default function HomePage() {
 
             {/* ✅ White Section Below Hero */}
       <ThirdSection />
+
+      
+            {/* ✅ White Section Below Hero */}
+      <FourthSection />
     </div>
   );
 }
