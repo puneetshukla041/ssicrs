@@ -22,9 +22,9 @@ export default function SecondSection() {
               color: "#A67950",
             }}
           >
-            'Democratizing <br />
+            &apos;Democratizing <br />
             Excellence in Robotic <br />
-            Surgery'
+            Surgery&apos;
           </h2>
         </div>
 
@@ -69,10 +69,12 @@ export default function SecondSection() {
         </div>
 
         {/* Top-right Image */}
-        <img
+        <Image
           src="/images/image2.webp"
           alt="Decorative"
-          className="absolute top-32 right-[200px] w-[513px] h-[280px] object-cover rounded-[8px]"
+          width={513}
+          height={280}
+          className="absolute top-32 right-[200px] object-cover rounded-[8px]"
         />
 
         {/* Section heading */}
@@ -110,7 +112,7 @@ export default function SecondSection() {
         >
           {/* Logo 1 */}
           <div className="flex flex-col items-center text-center min-w-[220px]">
-            <img src="/logos/bottomlogo1.png" alt="Logo 1" width={36} height={37.5} />
+            <Image src="/logos/bottomlogo1.png" alt="Logo 1" width={36} height={37.5} />
             <p
               style={{
                 fontFamily: "Lato, sans-serif",
@@ -127,7 +129,7 @@ export default function SecondSection() {
 
           {/* Logo 2 */}
           <div className="flex flex-col items-center text-center min-w-[220px]">
-            <img src="/logos/bottomlogo2.png" alt="Logo 2" width={36} height={37.5} />
+            <Image src="/logos/bottomlogo2.png" alt="Logo 2" width={36} height={37.5} />
             <p
               style={{
                 fontFamily: "Lato, sans-serif",
@@ -144,7 +146,7 @@ export default function SecondSection() {
 
           {/* Logo 3 */}
           <div className="flex flex-col items-center text-center min-w-[240px]">
-            <img src="/logos/bottomlogo3.png" alt="Logo 3" width={36} height={37.5} />
+            <Image src="/logos/bottomlogo3.png" alt="Logo 3" width={36} height={37.5} />
             <p
               style={{
                 fontFamily: "Lato, sans-serif",
@@ -161,7 +163,7 @@ export default function SecondSection() {
 
           {/* Logo 4 */}
           <div className="flex flex-col items-center text-center min-w-[240px]">
-            <img src="/logos/bottomlogo4.png" alt="Logo 4" width={36} height={37.5} />
+            <Image src="/logos/bottomlogo4.png" alt="Logo 4" width={36} height={37.5} />
             <p
               style={{
                 fontFamily: "Lato, sans-serif",
@@ -181,9 +183,11 @@ export default function SecondSection() {
       {/* ✅ Mobile View */}
       <div className="flex flex-col md:hidden items-center px-6 py-12 gap-8 text-center">
         {/* Image */}
-        <img
+        <Image
           src="/images/image2.webp"
           alt="Decorative"
+          width={400}
+          height={217}
           className="w-full max-w-[400px] h-auto object-cover rounded-[8px]"
         />
 
@@ -255,7 +259,7 @@ export default function SecondSection() {
         <div className="flex flex-col gap-8 w-full max-w-[400px]">
           {/* Logo 1 */}
           <div className="flex flex-col items-center text-center">
-            <img src="/logos/bottomlogo1.png" alt="Logo 1" width={36} height={37.5} />
+            <Image src="/logos/bottomlogo1.png" alt="Logo 1" width={36} height={37.5} />
             <p
               style={{
                 fontFamily: "Lato, sans-serif",
@@ -272,7 +276,7 @@ export default function SecondSection() {
 
           {/* Logo 2 */}
           <div className="flex flex-col items-center text-center">
-            <img src="/logos/bottomlogo2.png" alt="Logo 2" width={36} height={37.5} />
+            <Image src="/logos/bottomlogo2.png" alt="Logo 2" width={36} height={37.5} />
             <p
               style={{
                 fontFamily: "Lato, sans-serif",
@@ -289,7 +293,7 @@ export default function SecondSection() {
 
           {/* Logo 3 */}
           <div className="flex flex-col items-center text-center">
-            <img src="/logos/bottomlogo3.png" alt="Logo 3" width={36} height={37.5} />
+            <Image src="/logos/bottomlogo3.png" alt="Logo 3" width={36} height={37.5} />
             <p
               style={{
                 fontFamily: "Lato, sans-serif",
@@ -306,7 +310,7 @@ export default function SecondSection() {
 
           {/* Logo 4 */}
           <div className="flex flex-col items-center text-center">
-            <img src="/logos/bottomlogo4.png" alt="Logo 4" width={36} height={37.5} />
+            <Image src="/logos/bottomlogo4.png" alt="Logo 4" width={36} height={37.5} />
             <p
               style={{
                 fontFamily: "Lato, sans-serif",
