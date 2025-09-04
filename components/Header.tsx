@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { useState, useEffect } from "react";
-import { useRouter, usePathname } from "next/navigation"; // <-- Import usePathname
+import { useRouter, usePathname } from "next/navigation";
 
 interface HeaderProps {
   className?: string;
@@ -12,9 +12,8 @@ export default function Header({ className = "" }: HeaderProps) {
   const [scrolled, setScrolled] = useState(false);
   const [mobileNavOpen, setMobileNavOpen] = useState(false);
   const router = useRouter();
-  const pathname = usePathname(); // <-- Get the current path
+  const pathname = usePathname();
 
-  // Check if we are on the /register page
   const isRegisterPage = pathname === "/register";
 
   useEffect(() => {
@@ -30,10 +29,16 @@ export default function Header({ className = "" }: HeaderProps) {
     setMobileNavOpen(false);
   };
 
-  // Determine header background color based on scroll and page
-  const headerBgColor = isRegisterPage ? "bg-white" : scrolled ? "bg-white" : "bg-transparent";
+  const handleNavClick = (item: string) => {
+    if (item === "Home") {
+      router.push("/home");
+    } else {
+      // Handle other navigation links here if needed in the future
+    }
+    setMobileNavOpen(false); // Close mobile nav after clicking
+  };
 
-  // Determine text color based on scroll and page
+  const headerBgColor = isRegisterPage ? "bg-white" : scrolled ? "bg-white" : "bg-transparent";
   const headerTextColor = isRegisterPage ? "text-gray-600" : scrolled ? "text-gray-800" : "text-white";
 
   return (
@@ -60,9 +65,7 @@ export default function Header({ className = "" }: HeaderProps) {
         <svg
           className="w-6 h-6"
           fill="none"
-          stroke={
-            mobileNavOpen ? "gray" : isRegisterPage ? "gray" : scrolled ? "gray" : "white"
-          }
+          stroke={mobileNavOpen ? "gray" : isRegisterPage ? "gray" : scrolled ? "gray" : "white"}
           viewBox="0 0 24 24"
           xmlns="http://www.w3.org/2000/svg"
         >
@@ -70,11 +73,7 @@ export default function Header({ className = "" }: HeaderProps) {
             strokeLinecap="round"
             strokeLinejoin="round"
             strokeWidth={2}
-            d={
-              mobileNavOpen
-                ? "M6 18L18 6M6 6l12 12"
-                : "M4 6h16M4 12h16M4 18h16"
-            }
+            d={mobileNavOpen ? "M6 18L18 6M6 6l12 12" : "M4 6h16M4 12h16M4 18h16"}
           />
         </svg>
       </button>
@@ -87,6 +86,7 @@ export default function Header({ className = "" }: HeaderProps) {
         {["Home", "About Us", "Programs", "Resources"].map((item) => (
           <button
             key={item}
+            onClick={() => handleNavClick(item)} // <-- Add onClick handler
             className={`hover-underline inline-block relative overflow-visible ${headerTextColor}`}
           >
             {item}
@@ -116,6 +116,7 @@ export default function Header({ className = "" }: HeaderProps) {
           {["Home", "About Us", "Programs", "Resources"].map((item) => (
             <button
               key={item}
+              onClick={() => handleNavClick(item)} // <-- Add onClick handler
               className="text-gray-800 text-lg hover:text-gray-600 transition-colors"
             >
               {item}
