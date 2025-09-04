@@ -45,7 +45,7 @@ export default function SeventhSection() {
 
         {/* Button */}
         <button
-          className="absolute flex items-center justify-center rounded-full transition-shadow duration-300 hover:shadow-[0_0_15px_rgba(255,234,210,0.7)]"
+          className="absolute flex items-center justify-center rounded-full transition-shadow duration-300 hover:shadow-[0_0_15px_rgba(255,234,210,0.5)]"
           style={{
             top: "63%",
             left: "50%",

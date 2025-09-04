@@ -7,6 +7,8 @@ import FourthSection from "@/components/home/fourthsection";
 import SixthSection from "@/components/home/sixthsection";
 import SeventhSection from "@/components/home/seventhsection";
 import { motion } from "framer-motion";
+import Footer from "@/components/Footer"; 
+
 import Image from "next/image";
 
 export default function HomePage() {
@@ -72,6 +74,8 @@ export default function HomePage() {
 
         {/* ✅ White Section Below Hero */}
       <SeventhSection/>
+            {/* Footer */}
+      <Footer />
     </div>
   );
 }
