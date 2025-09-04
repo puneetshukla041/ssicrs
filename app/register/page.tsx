@@ -6,7 +6,7 @@ import { useState } from "react";
 import { ChangeEvent } from "react";
 
 export default function RegisterPage() {
-  const [formData, setFormData] = useState<Record<string, any>>({});
+  const [formData, setFormData] = useState<Record<string, unknown>>({});
   const [loading, setLoading] = useState(false);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -17,12 +17,12 @@ export default function RegisterPage() {
       if (checkboxElement.checked) {
         setFormData({
           ...formData,
-          [id]: [...(formData[id] || []), value],
+          [id]: [...((formData[id] as string[]) || []), value],
         });
       } else {
         setFormData({
           ...formData,
-          [id]: (formData[id] || []).filter((v: string) => v !== value),
+          [id]: ((formData[id] as string[]) || []).filter((v: string) => v !== value),
         });
       }
     } else {
