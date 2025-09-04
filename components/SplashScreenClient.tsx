@@ -1,3 +1,4 @@
+// components/SplashScreenClient.tsx
 "use client";
 
 import { useEffect, useState } from "react";
@@ -13,7 +14,7 @@ export default function SplashScreen({ onComplete }: SplashProps) {
   useEffect(() => {
     const timer = setTimeout(() => {
       setShow(false);
-      if (onComplete) onComplete();
+      if (onComplete) onComplete(); // notify parent
     }, 3000);
 
     return () => clearTimeout(timer);

@@ -2,6 +2,7 @@
 
 import Header from "@/components/Header";
 import SecondSection from "@/components/home/secondsection";
+import ThirdSection from "@/components/home/thirdsection";
 import { motion } from "framer-motion";
 
 export default function HomePage() {
@@ -53,6 +54,9 @@ export default function HomePage() {
 
       {/* ✅ White Section Below Hero */}
       <SecondSection />
+
+            {/* ✅ White Section Below Hero */}
+      <ThirdSection />
     </div>
   );
 }

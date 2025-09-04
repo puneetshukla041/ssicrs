@@ -1,12 +1,12 @@
+// components/SplashLayout.tsx
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import SplashScreen from "./SplashScreenClient";
 import Header from "./Header";
 
 interface Props {
   children: React.ReactNode;
-  pops:'sans';
 }
 
 export default function SplashLayout({ children }: Props) {
@@ -14,10 +14,8 @@ export default function SplashLayout({ children }: Props) {
 
   return (
     <>
-      {/* SplashScreen only */}
       {!splashDone && <SplashScreen onComplete={() => setSplashDone(true)} />}
 
-      {/* Render Header and page content only after splash */}
       {splashDone && (
         <>
           <Header />
