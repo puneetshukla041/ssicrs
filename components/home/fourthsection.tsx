@@ -5,8 +5,8 @@ import Image from "next/image";
 
 export default function FourthSection() {
   return (
-    <section className="w-full bg-white min-h-[140vh] flex items-center justify-center relative">
-
+<section className="w-full bg-white min-h-[140vh] flex flex-col items-start justify-start relative">
+  <div className="hidden md:block w-full relative">
       {/* Heading */}
       <h2
         className="absolute"
@@ -309,7 +309,233 @@ export default function FourthSection() {
     }}
   >   Access mentorship, training pathways, and <br/>exposure to the SSI Mantra platform early in your careers.</p>
       </div>
+      </div>
+     
+      {/* Mobile Layout (hidden on PC and laptop) */}
+      <div className="md:hidden w-full flex flex-col items-center justify-center text-center px-6 py-12 gap-12">
+        <h2
+          style={{
+            fontFamily: "DM Serif Text, serif",
+            fontWeight: 400,
+            fontSize: "36px",
+            color: "#A67950",
+          }}
+        >
+          For Whom
+        </h2>
 
+        <div className="flex flex-col items-center gap-8">
+          {/* Card 1 */}
+          <div className="flex flex-col items-center">
+            <Image
+              src="/images/fouthsection/image1.png"
+              alt="Surgeons"
+              width={300}
+              height={300}
+              className="rounded-xl w-full max-w-xs"
+            />
+            <div
+              className="mt-[-25px] rounded-lg flex flex-col items-center text-center p-4"
+              style={{
+                width: "250px",
+                backgroundColor: "#70493B",
+              }}
+            >
+              <h3
+                className="mt-4"
+                style={{
+                  fontFamily: "DM Serif Text, serif",
+                  fontWeight: "200",
+                  fontSize: "16px",
+                  color: "#FFFFFF",
+                }}
+              >
+                Surgeons
+              </h3>
+              <p
+                className="mt-2"
+                style={{
+                  fontFamily: "Lato, sans-serif",
+                  fontWeight: "400",
+                  fontSize: "12px",
+                  lineHeight: "1.5",
+                  color: "#FFFFFF",
+                }}
+              >
+                Build advanced skills in multi-specialty robotic surgery and gain global certification.
+              </p>
+            </div>
+          </div>
+          
+          {/* Card 2 */}
+          <div className="flex flex-col items-center">
+            <Image
+              src="/images/fouthsection/image2.png"
+              alt="Surgical Staff"
+              width={300}
+              height={300}
+              className="rounded-xl w-full max-w-xs"
+            />
+            <div
+              className="mt-[-25px] rounded-lg flex flex-col items-center text-center p-4"
+              style={{
+                width: "250px",
+                backgroundColor: "#70493B",
+              }}
+            >
+              <h3
+                className="mt-4"
+                style={{
+                  fontFamily: "DM Serif Text, serif",
+                  fontWeight: "200",
+                  fontSize: "16px",
+                  color: "#FFFFFF",
+                }}
+              >
+                Surgical Staff
+              </h3>
+              <p
+                className="mt-2"
+                style={{
+                  fontFamily: "Lato, sans-serif",
+                  fontWeight: "400",
+                  fontSize: "12px",
+                  lineHeight: "1.5",
+                  color: "#FFFFFF",
+                }}
+              >
+                Learn the essential workflows, patient preparation, and teamwork required in robotic ORs.
+              </p>
+            </div>
+          </div>
+
+          {/* Card 3 */}
+          <div className="flex flex-col items-center">
+            <Image
+              src="/images/fouthsection/image3.png"
+              alt="Anesthesiologists"
+              width={300}
+              height={300}
+              className="rounded-xl w-full max-w-xs"
+            />
+            <div
+              className="mt-[-25px] rounded-lg flex flex-col items-center text-center p-4"
+              style={{
+                width: "250px",
+                backgroundColor: "#70493B",
+              }}
+            >
+              <h3
+                className="mt-4"
+                style={{
+                  fontFamily: "DM Serif Text, serif",
+                  fontWeight: "200",
+                  fontSize: "16px",
+                  color: "#FFFFFF",
+                }}
+              >
+                Anesthesiologists
+              </h3>
+              <p
+                className="mt-2"
+                style={{
+                  fontFamily: "Lato, sans-serif",
+                  fontWeight: "400",
+                  fontSize: "12px",
+                  lineHeight: "1.5",
+                  color: "#FFFFFF",
+                }}
+              >
+                Master the unique considerations of anesthesia in robotic surgery for safer patient outcomes.
+              </p>
+            </div>
+          </div>
+
+          {/* Card 4 */}
+          <div className="flex flex-col items-center">
+            <Image
+              src="/images/fouthsection/image4.png"
+              alt="Medical Institutions & Hospitals"
+              width={300}
+              height={300}
+              className="rounded-xl w-full max-w-xs"
+            />
+            <div
+              className="mt-[-25px] rounded-lg flex flex-col items-center text-center p-4"
+              style={{
+                width: "250px",
+                backgroundColor: "#70493B",
+              }}
+            >
+              <h3
+                className="mt-4"
+                style={{
+                  fontFamily: "DM Serif Text, serif",
+                  fontWeight: "200",
+                  fontSize: "16px",
+                  color: "#FFFFFF",
+                }}
+              >
+                Medical Institutions & Hospitals
+              </h3>
+              <p
+                className="mt-2"
+                style={{
+                  fontFamily: "Lato, sans-serif",
+                  fontWeight: "400",
+                  fontSize: "12px",
+                  lineHeight: "1.5",
+                  color: "#FFFFFF",
+                }}
+              >
+                Partner with SSICRS to upskill teams, expand surgical capabilities, and bring world-class robotic care to communities.
+              </p>
+            </div>
+          </div>
+
+          {/* Card 5 */}
+          <div className="flex flex-col items-center">
+            <Image
+              src="/images/fouthsection/image5.png"
+              alt="Residents & Fellows"
+              width={300}
+              height={300}
+              className="rounded-xl w-full max-w-xs"
+            />
+            <div
+              className="mt-[-25px] rounded-lg flex flex-col items-center text-center p-4"
+              style={{
+                width: "250px",
+                backgroundColor: "#70493B",
+              }}
+            >
+              <h3
+                className="mt-4"
+                style={{
+                  fontFamily: "DM Serif Text, serif",
+                  fontWeight: "200",
+                  fontSize: "16px",
+                  color: "#FFFFFF",
+                }}
+              >
+                Residents & Fellows
+              </h3>
+              <p
+                className="mt-2"
+                style={{
+                  fontFamily: "Lato, sans-serif",
+                  fontWeight: "400",
+                  fontSize: "12px",
+                  lineHeight: "1.5",
+                  color: "#FFFFFF",
+                }}
+              >
+                Access mentorship, training pathways, and exposure to the SSI Mantra platform early in your careers.
+              </p>
+            </div>
+          </div>
+        </div>
+       </div>
     </section>
   );
 }

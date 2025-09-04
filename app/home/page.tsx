@@ -5,6 +5,7 @@ import SecondSection from "@/components/home/secondsection";
 import ThirdSection from "@/components/home/thirdsection";
 import FourthSection from "@/components/home/fourthsection";
 import SixthSection from "@/components/home/sixthsection";
+import SeventhSection from "@/components/home/seventhsection";
 import { motion } from "framer-motion";
 import Image from "next/image";
 
@@ -68,6 +69,9 @@ export default function HomePage() {
 
                   {/* ✅ White Section Below Hero */}
       <SixthSection />
+
+        {/* ✅ White Section Below Hero */}
+      <SeventhSection/>
     </div>
   );
 }
