@@ -6,6 +6,7 @@ import Header from "./Header";
 
 interface Props {
   children: React.ReactNode;
+  pops:'sans';
 }
 
 export default function SplashLayout({ children }: Props) {
