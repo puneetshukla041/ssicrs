@@ -57,7 +57,7 @@ export default function RegisterPage() {
             paddingLeft: "360px",
           }}
         >
-          {/* Left Column: Full Name + Phone + YOE */}
+          {/* Left Column: Full Name + Phone + YOE + Preferred Call Date/Time */}
           <div style={{ display: "flex", flexDirection: "column", position: "relative" }}>
             {/* Full Name */}
             <label
@@ -91,23 +91,57 @@ export default function RegisterPage() {
             />
 
             {/* Phone Number */}
+<div style={{ marginTop: "4em", display: "flex", flexDirection: "column" }}>
+  <label
+    htmlFor="phoneNumber"
+    style={{
+      fontFamily: "Lato, sans-serif",
+      fontWeight: 500,
+      fontSize: "20px",
+      color: "#401323",
+      marginBottom: "8px",
+      textAlign: "left", // aligns label text to left
+    }}
+  >
+    Phone Number
+  </label>
+  <input
+    id="phoneNumber"
+    type="tel"
+    placeholder="Enter Your Contact Number, with Country Code"
+    style={{
+      fontFamily: "Lato, sans-serif",
+      fontWeight: 500,
+      fontSize: "18px",
+      color: "#401323",
+      padding: "12px 16px",
+      border: "1px solid #ccc",
+      borderRadius: "8px",
+      width: "400px",
+    }}
+  />
+</div>
+
+
+            {/* Years of Experience */}
             <div style={{ marginTop: "4em", display: "flex", flexDirection: "column" }}>
               <label
-                htmlFor="phoneNumber"
+                htmlFor="experience"
                 style={{
                   fontFamily: "Lato, sans-serif",
                   fontWeight: 500,
                   fontSize: "20px",
                   color: "#401323",
                   marginBottom: "8px",
+                  textAlign: "left", // aligns label text to left
                 }}
               >
-                Phone Number
+                Years of Experience
               </label>
               <input
-                id="phoneNumber"
-                type="tel"
-                placeholder="Enter Your Contact Number, with Country Code"
+                id="experience"
+                type="number"
+                placeholder="Enter the Number of Years in Practice"
                 style={{
                   fontFamily: "Lato, sans-serif",
                   fontWeight: 500,
@@ -120,25 +154,25 @@ export default function RegisterPage() {
                 }}
               />
             </div>
-
-            {/* Years of Experience */}
+            
+            {/* Preferred Call Date and Time */}
             <div style={{ marginTop: "4em", display: "flex", flexDirection: "column" }}>
               <label
-                htmlFor="experience"
+                htmlFor="callDateTime"
                 style={{
                   fontFamily: "Lato, sans-serif",
                   fontWeight: 500,
                   fontSize: "20px",
                   color: "#401323",
                   marginBottom: "8px",
+                  textAlign: "left", // aligns label text to left
                 }}
               >
-                Years of Experience
+                Preferred Call Date and Time
               </label>
               <input
-                id="experience"
-                type="number"
-                placeholder="Enter the Number of Years in Practice"
+                id="callDateTime"
+                type="datetime-local"
                 style={{
                   fontFamily: "Lato, sans-serif",
                   fontWeight: 500,
@@ -165,7 +199,7 @@ export default function RegisterPage() {
                 color: "#401323",
                 position: "absolute",
                 top: "-28px",
-                left: "0",
+                textAlign: "left", // aligns label text to left
               }}
             >
               Email
@@ -196,6 +230,7 @@ export default function RegisterPage() {
                   fontSize: "20px",
                   color: "#401323",
                   marginBottom: "8px",
+                  textAlign: "left", // aligns label text to left
                 }}
               >
                 Date of Birth
@@ -227,6 +262,7 @@ export default function RegisterPage() {
                   fontSize: "20px",
                   color: "#401323",
                   marginBottom: "8px",
+                  textAlign: "left", // aligns label text to left
                 }}
               >
                 Affiliated Institution/Hospital
@@ -235,6 +271,37 @@ export default function RegisterPage() {
                 id="institution"
                 type="text"
                 placeholder="Enter Your Current Place of Work"
+                style={{
+                  fontFamily: "Lato, sans-serif",
+                  fontWeight: 500,
+                  fontSize: "18px",
+                  color: "#401323",
+                  padding: "12px 16px",
+                  border: "1px solid #ccc",
+                  borderRadius: "8px",
+                  width: "400px",
+                }}
+              />
+            </div>
+                        {/* How Did You Hear About Us? */}
+            <div style={{ marginTop: "4em", display: "flex", flexDirection: "column" }}>
+              <label
+                htmlFor="hearAboutUs"
+                style={{
+                  fontFamily: "Lato, sans-serif",
+                  fontWeight: 500,
+                  fontSize: "20px",
+                  color: "#401323",
+                  textAlign: "left", // aligns label text to left
+                  marginBottom: "8px",
+                }}
+              >
+                How Did You Hear About Us?
+              </label>
+              <input
+                id="hearAboutUs"
+                type="text"
+                placeholder="e.g., Conference, Social Media, Colleague"
                 style={{
                   fontFamily: "Lato, sans-serif",
                   fontWeight: 500,
@@ -307,6 +374,7 @@ export default function RegisterPage() {
             </div>
           </div>
         </div>
+        
       </div>
     </div>
   );
