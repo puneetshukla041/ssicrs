@@ -1,45 +1,283 @@
 "use client";
 
-import Header from "@/components/Header"; // adjust path if needed
-
 export default function RegisterPage() {
   return (
     <div className="w-full min-h-screen bg-white flex flex-col">
-      {/* Header */}
-      <Header />
+      {/* Self-contained Header */}
+      <div className="w-full px-6 py-4 flex justify-between items-center" style={{ backgroundColor: '#F8F1E9' }}>
+        <img
+          src="https://placehold.co/100x40/E8D2C2/401323?text=Logo"
+          alt="Company Logo"
+          className="rounded"
+        />
+        <div className="flex gap-4">
+          <button className="px-4 py-2 text-[#401323] font-bold rounded-lg border-2 border-[#401323]">Sign In</button>
+        </div>
+      </div>
 
-      {/* Main Content */}
-      <div className="flex flex-col items-center text-center px-4 pt-32">
+      <div className="flex flex-col text-center px-4 pt-32">
         {/* Heading */}
         <h1
-          className="text-center"
           style={{
             fontFamily: "DM Serif Text, serif",
-            fontWeight: "400", // Regular
+            fontWeight: "400",
             fontSize: "64px",
             color: "#A67950",
             lineHeight: "1.2",
+            textAlign: "center",
           }}
         >
           Take the First Step Toward<br />
           Advancing Your Robotic Surgery Skills
         </h1>
 
-        {/* Description */}<p
-  className="mt-6 text-center"
-  style={{
-    fontFamily: "Lato, sans-serif",
-    fontWeight: "400",
-    fontSize: "20px",
-    color: "#401323",
-    lineHeight: "1.5",
-    whiteSpace: "pre", // preserves spaces and only <br /> breaks
-  }}
->
-  Please Complete the form below to enroll into our Comprehensive robotic surgery training programs, upon successful registration, our team<br />
-  will reach out with program details, schedules, and next steps.
-</p>
+        {/* Description */}
+        <p
+          style={{
+            fontFamily: "Lato, sans-serif",
+            fontWeight: "400",
+            fontSize: "20px",
+            color: "#401323",
+            lineHeight: "1.5",
+            whiteSpace: "pre",
+            textAlign: "center",
+            marginTop: "1.5em",
+          }}
+        >
+          Please Complete the form below to enroll into our Comprehensive robotic surgery training programs, upon successful registration, our team<br />
+          will reach out with program details, schedules, and next steps.
+        </p>
 
+        {/* Form: Two Columns */}
+        <div
+          style={{
+            marginTop: "5em",
+            display: "flex",
+            gap: "80px",
+            paddingLeft: "360px",
+          }}
+        >
+          {/* Left Column: Full Name + Phone + YOE */}
+          <div style={{ display: "flex", flexDirection: "column", position: "relative" }}>
+            {/* Full Name */}
+            <label
+              htmlFor="fullName"
+              style={{
+                fontFamily: "Lato, sans-serif",
+                fontWeight: 500,
+                fontSize: "20px",
+                color: "#401323",
+                position: "absolute",
+                top: "-28px",
+                left: "0",
+              }}
+            >
+              Full Name
+            </label>
+            <input
+              id="fullName"
+              type="text"
+              placeholder="Enter your full name"
+              style={{
+                fontFamily: "Lato, sans-serif",
+                fontWeight: 500,
+                fontSize: "18px",
+                color: "#401323",
+                padding: "12px 16px",
+                border: "1px solid #ccc",
+                borderRadius: "8px",
+                width: "400px",
+              }}
+            />
+
+            {/* Phone Number */}
+            <div style={{ marginTop: "4em", display: "flex", flexDirection: "column" }}>
+              <label
+                htmlFor="phoneNumber"
+                style={{
+                  fontFamily: "Lato, sans-serif",
+                  fontWeight: 500,
+                  fontSize: "20px",
+                  color: "#401323",
+                  marginBottom: "8px",
+                }}
+              >
+                Phone Number
+              </label>
+              <input
+                id="phoneNumber"
+                type="tel"
+                placeholder="Enter Your Contact Number, with Country Code"
+                style={{
+                  fontFamily: "Lato, sans-serif",
+                  fontWeight: 500,
+                  fontSize: "18px",
+                  color: "#401323",
+                  padding: "12px 16px",
+                  border: "1px solid #ccc",
+                  borderRadius: "8px",
+                  width: "400px",
+                }}
+              />
+            </div>
+
+            {/* Years of Experience */}
+            <div style={{ marginTop: "4em", display: "flex", flexDirection: "column" }}>
+              <label
+                htmlFor="experience"
+                style={{
+                  fontFamily: "Lato, sans-serif",
+                  fontWeight: 500,
+                  fontSize: "20px",
+                  color: "#401323",
+                  marginBottom: "8px",
+                }}
+              >
+                Years of Experience
+              </label>
+              <input
+                id="experience"
+                type="number"
+                placeholder="Enter the Number of Years in Practice"
+                style={{
+                  fontFamily: "Lato, sans-serif",
+                  fontWeight: 500,
+                  fontSize: "18px",
+                  color: "#401323",
+                  padding: "12px 16px",
+                  border: "1px solid #ccc",
+                  borderRadius: "8px",
+                  width: "400px",
+                }}
+              />
+            </div>
+          </div>
+
+          {/* Right Column: Email + DOB + Affiliated Institution */}
+          <div style={{ display: "flex", flexDirection: "column", position: "relative", marginLeft: "300px" }}>
+            {/* Email */}
+            <label
+              htmlFor="email"
+              style={{
+                fontFamily: "Lato, sans-serif",
+                fontWeight: 500,
+                fontSize: "20px",
+                color: "#401323",
+                position: "absolute",
+                top: "-28px",
+                left: "0",
+              }}
+            >
+              Email
+            </label>
+            <input
+              id="email"
+              type="email"
+              placeholder="Enter your email"
+              style={{
+                fontFamily: "Lato, sans-serif",
+                fontWeight: 500,
+                fontSize: "18px",
+                color: "#401323",
+                padding: "12px 16px",
+                border: "1px solid #ccc",
+                borderRadius: "8px",
+                width: "400px",
+              }}
+            />
+
+            {/* Date of Birth */}
+            <div style={{ marginTop: "4em", display: "flex", flexDirection: "column" }}>
+              <label
+                htmlFor="dob"
+                style={{
+                  fontFamily: "Lato, sans-serif",
+                  fontWeight: 500,
+                  fontSize: "20px",
+                  color: "#401323",
+                  marginBottom: "8px",
+                }}
+              >
+                Date of Birth
+              </label>
+              <input
+                id="dob"
+                type="date"
+                placeholder="Enter Your Date of Birth"
+                style={{
+                  fontFamily: "Lato, sans-serif",
+                  fontWeight: 500,
+                  fontSize: "18px",
+                  color: "#401323",
+                  padding: "12px 16px",
+                  border: "1px solid #ccc",
+                  borderRadius: "8px",
+                  width: "400px",
+                }}
+              />
+            </div>
+
+            {/* Affiliated Institution/Hospital */}
+            <div style={{ marginTop: "4em", display: "flex", flexDirection: "column" }}>
+              <label
+                htmlFor="institution"
+                style={{
+                  fontFamily: "Lato, sans-serif",
+                  fontWeight: 500,
+                  fontSize: "20px",
+                  color: "#401323",
+                  marginBottom: "8px",
+                }}
+              >
+                Affiliated Institution/Hospital
+              </label>
+              <input
+                id="institution"
+                type="text"
+                placeholder="Enter Your Current Place of Work"
+                style={{
+                  fontFamily: "Lato, sans-serif",
+                  fontWeight: 500,
+                  fontSize: "18px",
+                  color: "#401323",
+                  padding: "12px 16px",
+                  border: "1px solid #ccc",
+                  borderRadius: "8px",
+                  width: "400px",
+                }}
+              />
+            </div>
+          </div>
+        </div>
+        
+        {/* Select Core Training Programs */}
+        <div style={{ marginTop: "5em", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center" }}>
+          <label
+            style={{
+              fontFamily: "Lato, sans-serif",
+              fontWeight: 500,
+              fontSize: "20px",
+              color: "#401323",
+              marginBottom: "16px",
+            }}
+          >
+            Select Core Training Program(s)
+          </label>
+          <div style={{ display: "flex", gap: "24px" }}>
+            <div style={{ display: "flex", alignItems: "center" }}>
+              <input type="checkbox" id="surgeonTraining" name="trainingProgram" style={{ marginRight: "8px" }} />
+              <label htmlFor="surgeonTraining" style={{ fontFamily: "Lato, sans-serif", fontWeight: 500, fontSize: "18px", color: "#401323" }}>Surgeon Training</label>
+            </div>
+            <div style={{ display: "flex", alignItems: "center" }}>
+              <input type="checkbox" id="surgicalStaffTraining" name="trainingProgram" style={{ marginRight: "8px" }} />
+              <label htmlFor="surgicalStaffTraining" style={{ fontFamily: "Lato, sans-serif", fontWeight: 500, fontSize: "18px", color: "#401323" }}>Surgical Staff Training</label>
+            </div>
+            <div style={{ display: "flex", alignItems: "center" }}>
+              <input type="checkbox" id="anesthesiaTraining" name="trainingProgram" style={{ marginRight: "8px" }} />
+              <label htmlFor="anesthesiaTraining" style={{ fontFamily: "Lato, sans-serif", fontWeight: 500, fontSize: "18px", color: "#401323" }}>Anesthesia Training for Robotic Surgery</label>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );
