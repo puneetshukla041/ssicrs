@@ -2,7 +2,9 @@
 
 export default function RegisterPage() {
   return (
-    <div className="w-full min-h-screen bg-white flex flex-col">
+    <div className="w-full min-h-screen bg-white flex flex-col pb-32">
+
+
       {/* Self-contained Header */}
       <div className="w-full px-6 py-4 flex justify-between items-center" style={{ backgroundColor: '#F8F1E9' }}>
         <img
