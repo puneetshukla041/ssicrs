@@ -50,24 +50,6 @@ export default function RegisterPage() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
       >
-        <motion.img
-          src="https://placehold.co/80x30/E8D2C2/401323?text=Logo"
-          alt="Company Logo"
-          className="rounded"
-          initial={{ opacity: 0, x: -20 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-        />
-        <motion.div className="flex gap-2">
-          <motion.button
-            className="px-3 py-1 text-sm font-bold rounded-md border border-[#401323] transition-colors duration-200"
-            style={{ cursor: "pointer", color: "#401323", borderColor: "#401323" }}
-            whileHover={{ scale: 1.05, backgroundColor: "#401323", color: "#fff" }}
-            whileTap={buttonTap}
-          >
-            Sign In
-          </motion.button>
-        </motion.div>
       </motion.div>
 
       <motion.div
@@ -327,24 +309,8 @@ export default function RegisterPage() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
       >
-        <motion.img
-          src="https://placehold.co/100x40/E8D2C2/401323?text=Logo"
-          alt="Company Logo"
-          className="rounded"
-          initial={{ opacity: 0, x: -20 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-        />
-        <div className="flex gap-4">
-          <motion.button
-            className="px-4 py-2 text-[#401323] font-bold rounded-lg border-2 border-[#401323] transition-colors duration-200"
-            style={{ cursor: "pointer" }}
-            whileHover={{ scale: 1.05, backgroundColor: "#401323", color: "#fff" }}
-            whileTap={buttonTap}
-          >
-            Sign In
-          </motion.button>
-        </div>
+  
+     
       </motion.div>
 
       <motion.div
