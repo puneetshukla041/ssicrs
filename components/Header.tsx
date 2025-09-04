@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { useState, useEffect } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation"; // <-- Import usePathname
 
 interface HeaderProps {
   className?: string;
@@ -11,7 +11,11 @@ interface HeaderProps {
 export default function Header({ className = "" }: HeaderProps) {
   const [scrolled, setScrolled] = useState(false);
   const [mobileNavOpen, setMobileNavOpen] = useState(false);
-  const router = useRouter(); // <-- Add router
+  const router = useRouter();
+  const pathname = usePathname(); // <-- Get the current path
+
+  // Check if we are on the /register page
+  const isRegisterPage = pathname === "/register";
 
   useEffect(() => {
     const handleScroll = () => {
@@ -21,17 +25,20 @@ export default function Header({ className = "" }: HeaderProps) {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Navigate to /register
   const goToRegister = () => {
     router.push("/register");
-    setMobileNavOpen(false); // close mobile nav if open
+    setMobileNavOpen(false);
   };
+
+  // Determine header background color based on scroll and page
+  const headerBgColor = isRegisterPage ? "bg-white" : scrolled ? "bg-white" : "bg-transparent";
+
+  // Determine text color based on scroll and page
+  const headerTextColor = isRegisterPage ? "text-gray-600" : scrolled ? "text-gray-800" : "text-white";
 
   return (
     <header
-      className={`w-full shadow-md p-[12px] flex items-center justify-between fixed top-0 left-0 z-50 transition-colors duration-500 ${
-        scrolled ? "bg-white" : "bg-transparent"
-      } ${className}`}
+      className={`w-full shadow-md p-[12px] flex items-center justify-between fixed top-0 left-0 z-50 transition-colors duration-500 ${headerBgColor} ${className}`}
     >
       {/* Left Side - Logo */}
       <div className="flex-shrink-0">
@@ -54,7 +61,7 @@ export default function Header({ className = "" }: HeaderProps) {
           className="w-6 h-6"
           fill="none"
           stroke={
-            mobileNavOpen ? "gray" : scrolled ? "gray" : "white"
+            mobileNavOpen ? "gray" : isRegisterPage ? "gray" : scrolled ? "gray" : "white"
           }
           viewBox="0 0 24 24"
           xmlns="http://www.w3.org/2000/svg"
@@ -74,15 +81,13 @@ export default function Header({ className = "" }: HeaderProps) {
 
       {/* Desktop Nav */}
       <nav
-        className="hidden md:flex gap-10 text-gray-800 text-base font-normal mr-60"
+        className={`hidden md:flex gap-10 text-base font-normal mr-60`}
         style={{ fontFamily: "Lato, sans-serif" }}
       >
         {["Home", "About Us", "Programs", "Resources"].map((item) => (
           <button
             key={item}
-            className={`hover-underline inline-block relative overflow-visible ${
-              scrolled ? "text-gray-800" : "text-white"
-            }`}
+            className={`hover-underline inline-block relative overflow-visible ${headerTextColor}`}
           >
             {item}
           </button>
@@ -90,11 +95,11 @@ export default function Header({ className = "" }: HeaderProps) {
 
         {/* Register Now Button */}
         <button
-          onClick={goToRegister} // <-- redirect
+          onClick={goToRegister}
           className="cursor-pointer px-4 py-1 rounded transition-colors duration-500"
           style={{
-            backgroundColor: scrolled ? "#A67950" : "rgba(255,255,255,0.8)",
-            color: scrolled ? "#fff" : "#000",
+            backgroundColor: isRegisterPage || scrolled ? "#A67950" : "rgba(255,255,255,0.8)",
+            color: isRegisterPage || scrolled ? "#fff" : "#000",
           }}
         >
           Register Now
@@ -119,7 +124,7 @@ export default function Header({ className = "" }: HeaderProps) {
 
           {/* Mobile Register Button */}
           <button
-            onClick={goToRegister} // <-- redirect
+            onClick={goToRegister}
             className="mt-4 w-full px-4 py-2 rounded transition-colors"
             style={{ backgroundColor: "#A67950", color: "#fff" }}
           >
