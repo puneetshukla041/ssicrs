@@ -11,7 +11,7 @@ export default function RegisterPage() {
           className="rounded"
         />
         <div className="flex gap-4">
-          <button className="px-4 py-2 text-[#401323] font-bold rounded-lg border-2 border-[#401323]">Sign In</button>
+          <button className="px-4 py-2 text-[#401323] font-bold rounded-lg border-2 border-[#401323]" style={{ cursor: 'pointer' }}>Sign In</button>
         </div>
       </div>
 
@@ -57,7 +57,7 @@ export default function RegisterPage() {
             paddingLeft: "360px",
           }}
         >
-          {/* Left Column: Full Name + Phone + YOE + Preferred Call Date/Time */}
+          {/* Left Column: Full Name + Phone + YOE + Preferred Call Date/Time + Current Profession + Learning Goals */}
           <div style={{ display: "flex", flexDirection: "column", position: "relative" }}>
             {/* Full Name */}
             <label
@@ -91,37 +91,36 @@ export default function RegisterPage() {
             />
 
             {/* Phone Number */}
-<div style={{ marginTop: "4em", display: "flex", flexDirection: "column" }}>
-  <label
-    htmlFor="phoneNumber"
-    style={{
-      fontFamily: "Lato, sans-serif",
-      fontWeight: 500,
-      fontSize: "20px",
-      color: "#401323",
-      marginBottom: "8px",
-      textAlign: "left", // aligns label text to left
-    }}
-  >
-    Phone Number
-  </label>
-  <input
-    id="phoneNumber"
-    type="tel"
-    placeholder="Enter Your Contact Number, with Country Code"
-    style={{
-      fontFamily: "Lato, sans-serif",
-      fontWeight: 500,
-      fontSize: "18px",
-      color: "#401323",
-      padding: "12px 16px",
-      border: "1px solid #ccc",
-      borderRadius: "8px",
-      width: "400px",
-    }}
-  />
-</div>
-
+            <div style={{ marginTop: "4em", display: "flex", flexDirection: "column" }}>
+              <label
+                htmlFor="phoneNumber"
+                style={{
+                  fontFamily: "Lato, sans-serif",
+                  fontWeight: 500,
+                  fontSize: "20px",
+                  color: "#401323",
+                  marginBottom: "8px",
+                  textAlign: "left",
+                }}
+              >
+                Phone Number
+              </label>
+              <input
+                id="phoneNumber"
+                type="tel"
+                placeholder="Enter Your Contact Number, with Country Code"
+                style={{
+                  fontFamily: "Lato, sans-serif",
+                  fontWeight: 500,
+                  fontSize: "18px",
+                  color: "#401323",
+                  padding: "12px 16px",
+                  border: "1px solid #ccc",
+                  borderRadius: "8px",
+                  width: "400px",
+                }}
+              />
+            </div>
 
             {/* Years of Experience */}
             <div style={{ marginTop: "4em", display: "flex", flexDirection: "column" }}>
@@ -133,7 +132,7 @@ export default function RegisterPage() {
                   fontSize: "20px",
                   color: "#401323",
                   marginBottom: "8px",
-                  textAlign: "left", // aligns label text to left
+                  textAlign: "left",
                 }}
               >
                 Years of Experience
@@ -154,7 +153,7 @@ export default function RegisterPage() {
                 }}
               />
             </div>
-            
+
             {/* Preferred Call Date and Time */}
             <div style={{ marginTop: "4em", display: "flex", flexDirection: "column" }}>
               <label
@@ -165,7 +164,7 @@ export default function RegisterPage() {
                   fontSize: "20px",
                   color: "#401323",
                   marginBottom: "8px",
-                  textAlign: "left", // aligns label text to left
+                  textAlign: "left",
                 }}
               >
                 Preferred Call Date and Time
@@ -185,9 +184,74 @@ export default function RegisterPage() {
                 }}
               />
             </div>
+
+            {/* Current Profession */}
+            <div style={{ marginTop: "4em", display: "flex", flexDirection: "column" }}>
+              <label
+                htmlFor="currentProfession"
+                style={{
+                  fontFamily: "Lato, sans-serif",
+                  fontWeight: 500,
+                  fontSize: "20px",
+                  color: "#401323",
+                  marginBottom: "8px",
+                  textAlign: "left",
+                }}
+              >
+                Current Profession
+              </label>
+              <input
+                id="currentProfession"
+                type="text"
+                placeholder="Enter Your Current Profession"
+                style={{
+                  fontFamily: "Lato, sans-serif",
+                  fontWeight: 500,
+                  fontSize: "18px",
+                  color: "#401323",
+                  padding: "12px 16px",
+                  border: "1px solid #ccc",
+                  borderRadius: "8px",
+                  width: "400px",
+                }}
+              />
+            </div>
+
+{/* Any Specific Learning Goals or Comments? */}
+<div style={{ marginTop: "4em", display: "flex", flexDirection: "column" }}>
+  <label
+    htmlFor="learningGoals"
+    style={{
+      fontFamily: "Lato, sans-serif",
+      fontWeight: 500,
+      fontSize: "20px",
+      color: "#401323",
+      marginBottom: "8px",
+      textAlign: "left",
+    }}
+  >
+    Any Specific Learning Goals or Comments?
+  </label>
+  <textarea
+    id="learningGoals"
+    rows={4} // <-- lowercase and using JSX braces
+    placeholder="Enter Any Specific Learning Goals or Comments"
+    style={{
+      fontFamily: "Lato, sans-serif",
+      fontWeight: 500,
+      fontSize: "18px",
+      color: "#401323",
+      padding: "12px 16px",
+      border: "1px solid #ccc",
+      borderRadius: "8px",
+      width: "400px",
+    }}
+  />
+</div>
+
           </div>
 
-          {/* Right Column: Email + DOB + Affiliated Institution */}
+          {/* Right Column: Email + DOB + Affiliated Institution + How Did You Hear About Us? + Specialization */}
           <div style={{ display: "flex", flexDirection: "column", position: "relative", marginLeft: "300px" }}>
             {/* Email */}
             <label
@@ -199,7 +263,8 @@ export default function RegisterPage() {
                 color: "#401323",
                 position: "absolute",
                 top: "-28px",
-                textAlign: "left", // aligns label text to left
+                left: "0",
+                textAlign: "left",
               }}
             >
               Email
@@ -230,7 +295,7 @@ export default function RegisterPage() {
                   fontSize: "20px",
                   color: "#401323",
                   marginBottom: "8px",
-                  textAlign: "left", // aligns label text to left
+                  textAlign: "left",
                 }}
               >
                 Date of Birth
@@ -262,7 +327,7 @@ export default function RegisterPage() {
                   fontSize: "20px",
                   color: "#401323",
                   marginBottom: "8px",
-                  textAlign: "left", // aligns label text to left
+                  textAlign: "left",
                 }}
               >
                 Affiliated Institution/Hospital
@@ -283,7 +348,8 @@ export default function RegisterPage() {
                 }}
               />
             </div>
-                        {/* How Did You Hear About Us? */}
+
+            {/* How Did You Hear About Us? */}
             <div style={{ marginTop: "4em", display: "flex", flexDirection: "column" }}>
               <label
                 htmlFor="hearAboutUs"
@@ -292,7 +358,7 @@ export default function RegisterPage() {
                   fontWeight: 500,
                   fontSize: "20px",
                   color: "#401323",
-                  textAlign: "left", // aligns label text to left
+                  textAlign: "left",
                   marginBottom: "8px",
                 }}
               >
@@ -314,9 +380,41 @@ export default function RegisterPage() {
                 }}
               />
             </div>
+
+            {/* Specialization */}
+            <div style={{ marginTop: "4em", display: "flex", flexDirection: "column" }}>
+              <label
+                htmlFor="specialization"
+                style={{
+                  fontFamily: "Lato, sans-serif",
+                  fontWeight: 500,
+                  fontSize: "20px",
+                  color: "#401323",
+                  textAlign: "left",
+                  marginBottom: "8px",
+                }}
+              >
+                Specialization
+              </label>
+              <input
+                id="specialization"
+                type="text"
+                placeholder="Enter Your Specialization"
+                style={{
+                  fontFamily: "Lato, sans-serif",
+                  fontWeight: 500,
+                  fontSize: "18px",
+                  color: "#401323",
+                  padding: "12px 16px",
+                  border: "1px solid #ccc",
+                  borderRadius: "8px",
+                  width: "400px",
+                }}
+              />
+            </div>
           </div>
         </div>
-        
+
         {/* Select Core Training Programs */}
         <div style={{ marginTop: "5em", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center" }}>
           <label
@@ -345,7 +443,7 @@ export default function RegisterPage() {
             </div>
           </div>
         </div>
-        
+
         {/* Select Additional Training Programs */}
         <div style={{ marginTop: "3em", padding: "24px", backgroundColor: "#F8F1E9", borderRadius: "10px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center" }}>
           <label
@@ -374,7 +472,76 @@ export default function RegisterPage() {
             </div>
           </div>
         </div>
-        
+
+        {/* Upload ID */}
+        <div style={{ marginTop: "4em", display: "flex", flexDirection: "column", alignItems: "flex-start", paddingLeft: "360px" }}>
+          <label
+            htmlFor="uploadId"
+            style={{
+              fontFamily: "Lato, sans-serif",
+              fontWeight: 500,
+              fontSize: "20px",
+              color: "#401323",
+              marginBottom: "8px",
+            }}
+          >
+            Upload ID
+          </label>
+          <input
+            id="uploadId"
+            type="file"
+            style={{
+              fontFamily: "Lato, sans-serif",
+              fontWeight: 500,
+              fontSize: "18px",
+              color: "#401323",
+              padding: "12px 16px",
+              border: "1px solid #ccc",
+              borderRadius: "8px",
+              width: "400px",
+              cursor: "pointer",
+            }}
+          />
+        </div>
+
+        {/* Register Now Section */}
+        <div style={{ marginTop: "4em", display: "flex", flexDirection: "column", alignItems: "center" }}>
+          <div style={{ display: 'flex', alignItems: 'center', marginBottom: '16px', width: '400px' }}>
+            <input type="checkbox" id="termsAgree" style={{ marginRight: '8px', cursor: 'pointer' }} />
+            <label
+              htmlFor="termsAgree"
+              style={{
+                fontFamily: "Lato, sans-serif",
+                fontWeight: 500,
+                fontSize: "18px",
+                color: "#401323",
+                textAlign: "left",
+                cursor: "pointer",
+              }}
+            >
+              By clicking on “Register Now”, you agree to our{" "}
+              <a href="#" style={{ color: "#3B82F6", cursor: "pointer" }}>Terms and Conditions</a> and{" "}
+              <a href="#" style={{ color: "#3B82F6", cursor: "pointer" }}>Privacy Policy</a>.
+            </label>
+          </div>
+          <button
+            style={{
+              fontFamily: "Lato, sans-serif",
+              fontWeight: "700",
+              fontSize: "20px",
+              color: "#fff",
+              backgroundColor: "#A67950",
+              padding: "16px 24px",
+              border: "none",
+              borderRadius: "9999px",
+              width: "400px",
+              cursor: "pointer",
+            }}
+          >
+            Register Now
+          </button>
+        </div>
+
       </div>
     </div>
   );
