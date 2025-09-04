@@ -32,9 +32,11 @@ export default function Header({ className = "" }: HeaderProps) {
     >
       {/* Left Side - Logo */}
       <div className="flex-shrink-0">
-        <img
+        <Image
           src="/logos/ssicrs.png"
           alt="SSI Studios Logo"
+          width={120} // adjust logo width
+          height={40} // adjust logo height
           className="h-10 w-auto"
         />
       </div>
