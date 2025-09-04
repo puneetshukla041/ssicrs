@@ -11,27 +11,27 @@ export default function SecondSection() {
         {/* Heading on the left */}
         <div
           className="absolute top-32"
-          style={{ left: "70px" }}
+          style={{ left: "250px" }}
         >
           <h2
             style={{
               fontFamily: "DM Serif Text, serif",
-              fontWeight: 400,
+              fontWeight: 700,
               fontSize: "34px",
               lineHeight: "1.2",
               color: "#A67950",
             }}
           >
-            Democratizing <br />
+            'Democratizing <br />
             Excellence in Robotic <br />
-            Surgery
+            Surgery'
           </h2>
         </div>
 
         {/* Paragraphs on the right */}
         <div
           className="absolute top-32"
-          style={{ left: "450px", maxWidth: "440px" }}
+          style={{ left: "650px", maxWidth: "440px" }}
         >
           <p
             style={{
@@ -72,23 +72,23 @@ export default function SecondSection() {
         <img
           src="/images/image2.webp"
           alt="Decorative"
-          className="absolute top-32 right-[80px] w-[513px] h-[280px] object-cover rounded-[8px]"
+          className="absolute top-32 right-[200px] w-[513px] h-[280px] object-cover rounded-[8px]"
         />
 
         {/* Section heading */}
         <div
           className="absolute w-full pointer-events-none"
           style={{
-            bottom: "250px",
-            paddingLeft: "71px",
+            bottom: "400px",
+            paddingLeft: "250px",
             paddingRight: "417px",
           }}
         >
           <h3
             style={{
               fontFamily: "DM Serif Text, serif",
-              fontWeight: 400,
-              fontSize: "28px",
+              fontWeight: 550,
+              fontSize: "24px",
               lineHeight: "1.4",
               color: "#A67950",
               margin: 0,
@@ -102,8 +102,8 @@ export default function SecondSection() {
         <div
           className="absolute w-full flex justify-between items-center"
           style={{
-            bottom: "80px",
-            paddingLeft: "201px",
+            bottom: "200px",
+            paddingLeft: "330px",
             paddingRight: "417px",
             gap: "90px",
           }}
