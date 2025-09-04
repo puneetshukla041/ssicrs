@@ -278,6 +278,35 @@ export default function RegisterPage() {
             </div>
           </div>
         </div>
+        
+        {/* Select Additional Training Programs */}
+        <div style={{ marginTop: "3em", padding: "24px", backgroundColor: "#F8F1E9", borderRadius: "10px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center" }}>
+          <label
+            style={{
+              fontFamily: "Lato, sans-serif",
+              fontWeight: 500,
+              fontSize: "20px",
+              color: "#401323",
+              marginBottom: "16px",
+            }}
+          >
+            Select Additional Training Program(s)
+          </label>
+          <div style={{ display: "flex", gap: "24px" }}>
+            <div style={{ display: "flex", alignItems: "center" }}>
+              <input type="checkbox" id="surgeonTrainingAdditional" name="trainingProgramAdditional" style={{ marginRight: "8px" }} />
+              <label htmlFor="surgeonTrainingAdditional" style={{ fontFamily: "Lato, sans-serif", fontWeight: 500, fontSize: "18px", color: "#401323" }}>Surgeon Training</label>
+            </div>
+            <div style={{ display: "flex", alignItems: "center" }}>
+              <input type="checkbox" id="surgicalStaffTrainingAdditional" name="trainingProgramAdditional" style={{ marginRight: "8px" }} />
+              <label htmlFor="surgicalStaffTrainingAdditional" style={{ fontFamily: "Lato, sans-serif", fontWeight: 500, fontSize: "18px", color: "#401323" }}>Surgical Staff Training</label>
+            </div>
+            <div style={{ display: "flex", alignItems: "center" }}>
+              <input type="checkbox" id="anesthesiaTrainingAdditional" name="trainingProgramAdditional" style={{ marginRight: "8px" }} />
+              <label htmlFor="anesthesiaTrainingAdditional" style={{ fontFamily: "Lato, sans-serif", fontWeight: 500, fontSize: "18px", color: "#401323" }}>Anesthesia Training for Robotic Surgery</label>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );
