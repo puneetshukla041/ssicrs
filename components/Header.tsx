@@ -1,3 +1,4 @@
+// components/Header.tsx
 "use client";
 
 import Image from "next/image";
@@ -41,8 +42,6 @@ export default function Header({ className = "" }: HeaderProps) {
   const headerBgColor = isRegisterPage ? "bg-white" : scrolled ? "bg-white" : "bg-transparent";
   const headerShadow = isRegisterPage ? "shadow-md" : scrolled ? "shadow-md" : "shadow-none";
   const headerTextColor = isRegisterPage ? "text-gray-600" : scrolled ? "text-gray-800" : "text-white";
-  const registerButtonBg = isRegisterPage || scrolled ? "#A67950" : "rgba(255,255,255,0.8)";
-  const registerButtonColor = isRegisterPage || scrolled ? "#fff" : "#000";
 
   return (
     <header
@@ -81,47 +80,45 @@ export default function Header({ className = "" }: HeaderProps) {
         </svg>
       </button>
 
-{/* Desktop Nav */}
-<nav
-  className="hidden md:flex items-center gap-10 text-base font-normal relative z-50"
-  style={{ fontFamily: "Lato, sans-serif" }}
->
-  {["Home", "About Us", "Programs", "Resources"].map((item) => (
-    <button
-      key={item}
-      onClick={() => handleNavClick(item)}
-      className={`hover-underline inline-block relative overflow-visible ${headerTextColor}`}
-    >
-      {item}
-    </button>
-  ))}
+      {/* Desktop Nav */}
+      <nav
+        className="hidden md:flex items-center gap-10 text-base font-normal relative z-50"
+        style={{ fontFamily: "Lato, sans-serif" }}
+      >
+        {["Home", "About Us", "Programs", "Resources"].map((item) => (
+          <button
+            key={item}
+            onClick={() => handleNavClick(item)}
+            className={`hover-underline inline-block relative overflow-visible ${headerTextColor}`}
+          >
+            {item}
+          </button>
+        ))}
 
-  {/* Register Now Button with brown background touching top of header */}
-  <div className="relative flex items-center">
-    {/* Brown background behind button, touches top of nav */}
-    <div
-      className="absolute top-[-20] left-0 w-full"
-      style={{
-        height: "170%", // same as nav height
-        backgroundColor: "#A67950",
-        borderBottomLeftRadius: "25px",
-        borderBottomRightRadius: "25px",
-        zIndex: 0,
-      }}
-    ></div>
+        {/* Register Now Button with brown background touching top of header */}
+        <div className="relative flex items-center">
+          {/* Brown background behind button, touches top of nav */}
+          <div
+            className="absolute top-[-20] left-0 w-full"
+            style={{
+              height: "170%", // same as nav height
+              backgroundColor: "#A67950",
+              borderBottomLeftRadius: "25px",
+              borderBottomRightRadius: "25px",
+              zIndex: 0,
+            }}
+          ></div>
 
-    {/* Button on top */}
-    <button
-      onClick={goToRegister}
-      className="relative z-10 px-6 py-2 rounded-full cursor-pointer text-white font-medium transition-colors duration-500"
-      style={{ backgroundColor: "transparent" }}
-    >
-      Register Now
-    </button>
-  </div>
-</nav>
-
-
+          {/* Button on top */}
+          <button
+            onClick={goToRegister}
+            className="relative z-10 px-6 py-2 rounded-full cursor-pointer text-white font-medium transition-colors duration-500"
+            style={{ backgroundColor: "transparent" }}
+          >
+            Register Now
+          </button>
+        </div>
+      </nav>
 
       {/* Mobile Nav */}
       <div

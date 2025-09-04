@@ -1,25 +1,28 @@
+// app/register/page.tsx
 "use client";
 
 import { motion } from "framer-motion";
 import { useState } from "react";
+import { ChangeEvent } from "react";
 
 export default function RegisterPage() {
-  const [formData, setFormData] = useState<any>({});
+  const [formData, setFormData] = useState<Record<string, any>>({});
   const [loading, setLoading] = useState(false);
 
-  const handleChange = (e: any) => {
-    const { id, value, type, checked } = e.target;
+  const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { id, value, type } = e.target;
 
     if (type === "checkbox") {
-      if (formData[id]?.includes(value)) {
+      const checkboxElement = e.target as HTMLInputElement;
+      if (checkboxElement.checked) {
         setFormData({
           ...formData,
-          [id]: formData[id].filter((v: string) => v !== value),
+          [id]: [...(formData[id] || []), value],
         });
       } else {
         setFormData({
           ...formData,
-          [id]: [...(formData[id] || []), value],
+          [id]: (formData[id] || []).filter((v: string) => v !== value),
         });
       }
     } else {
@@ -409,8 +412,8 @@ export default function RegisterPage() {
                 {loading ? "Registering..." : "Register Now"}
               </motion.button>
             </motion.div>
+            {/* --- End Main Registration Card --- */}
           </motion.div>
-          {/* --- End Main Registration Card --- */}
         </motion.div>
       </motion.div>
     </div>
