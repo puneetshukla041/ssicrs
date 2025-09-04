@@ -46,10 +46,10 @@ export default function Header({ className = "" }: HeaderProps) {
 
   return (
     <header
-      className={`w-full p-4 flex items-center justify-between fixed top-0 left-0 z-50 transition-all duration-500 ${headerBgColor} ${headerShadow} ${className}`}
+      className={`w-full py-4 flex items-center justify-between fixed top-0 left-0 z-50 transition-all duration-500 ${headerBgColor} ${headerShadow} ${className} px-4 md:px-12 lg:px-24`}
     >
       {/* Left Side - Logo */}
-      <div className="flex-shrink-0 ml-60"> {/* Added ml-60 */}
+      <div className="flex-shrink-0">
         <Image
           src="/logos/ssicrs.png"
           alt="SSI Studios Logo"
@@ -81,33 +81,47 @@ export default function Header({ className = "" }: HeaderProps) {
         </svg>
       </button>
 
-      {/* Desktop Nav */}
-      <nav
-        className={`hidden md:flex gap-10 text-base font-normal mr-60`}
-        style={{ fontFamily: "Lato, sans-serif" }}
-      >
-        {["Home", "About Us", "Programs", "Resources"].map((item) => (
-          <button
-            key={item}
-            onClick={() => handleNavClick(item)}
-            className={`hover-underline inline-block relative overflow-visible ${headerTextColor}`}
-          >
-            {item}
-          </button>
-        ))}
+{/* Desktop Nav */}
+<nav
+  className="hidden md:flex items-center gap-10 text-base font-normal relative z-50"
+  style={{ fontFamily: "Lato, sans-serif" }}
+>
+  {["Home", "About Us", "Programs", "Resources"].map((item) => (
+    <button
+      key={item}
+      onClick={() => handleNavClick(item)}
+      className={`hover-underline inline-block relative overflow-visible ${headerTextColor}`}
+    >
+      {item}
+    </button>
+  ))}
 
-        {/* Register Now Button */}
-        <button
-          onClick={goToRegister}
-          className="cursor-pointer px-6 py-2 rounded transition-colors duration-500"
-          style={{
-            backgroundColor: registerButtonBg,
-            color: registerButtonColor,
-          }}
-        >
-          Register Now
-        </button>
-      </nav>
+  {/* Register Now Button with brown background touching top of header */}
+  <div className="relative flex items-center">
+    {/* Brown background behind button, touches top of nav */}
+    <div
+      className="absolute top-[-20] left-0 w-full"
+      style={{
+        height: "170%", // same as nav height
+        backgroundColor: "#A67950",
+        borderBottomLeftRadius: "25px",
+        borderBottomRightRadius: "25px",
+        zIndex: 0,
+      }}
+    ></div>
+
+    {/* Button on top */}
+    <button
+      onClick={goToRegister}
+      className="relative z-10 px-6 py-2 rounded-full cursor-pointer text-white font-medium transition-colors duration-500"
+      style={{ backgroundColor: "transparent" }}
+    >
+      Register Now
+    </button>
+  </div>
+</nav>
+
+
 
       {/* Mobile Nav */}
       <div
