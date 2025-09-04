@@ -22,7 +22,7 @@ export default function RegisterPage() {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.1,
+        staggerChildren: 0.08, // Slightly faster stagger for a snappier feel
       },
     },
   };
@@ -32,19 +32,19 @@ export default function RegisterPage() {
     visible: { y: 0, opacity: 1 },
   };
 
-  const buttonHover = { scale: 1.05 };
-  const buttonTap = { scale: 0.95 };
-  const inputHover = { scale: 1.01 };
-  const inputFocus = { scale: 1.01, boxShadow: "0 0 0 2px #A67950" };
+  const buttonHover = { scale: 1.03, transition: { duration: 0.2 } };
+  const buttonTap = { scale: 0.97 };
+  const inputHover = { scale: 1.005, transition: { duration: 0.1 } };
+  const inputFocus = { scale: 1.005, boxShadow: "0 0 0 2px #A67950", transition: { duration: 0.2 } };
 
   // --------------------------------------------------------------------------------
   // Mobile View JSX
   // --------------------------------------------------------------------------------
   const mobileView = (
-    <div className="w-full min-h-screen bg-white flex flex-col pb-16">
+    <div className="w-full min-h-screen bg-white flex flex-col pb-16 font-lato">
       {/* Self-contained Header for Mobile */}
       <motion.div
-        className="w-full px-4 py-3 flex justify-between items-center"
+        className="w-full px-4 py-3 flex justify-between items-center shadow-md"
         style={{ backgroundColor: "#F8F1E9" }}
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -60,9 +60,9 @@ export default function RegisterPage() {
         />
         <motion.div className="flex gap-2">
           <motion.button
-            className="px-3 py-1 text-[#401323] text-sm font-bold rounded-md border border-[#401323]"
-            style={{ cursor: "pointer" }}
-            whileHover={buttonHover}
+            className="px-3 py-1 text-sm font-bold rounded-md border border-[#401323] transition-colors duration-200"
+            style={{ cursor: "pointer", color: "#401323", borderColor: "#401323" }}
+            whileHover={{ scale: 1.05, backgroundColor: "#401323", color: "#fff" }}
             whileTap={buttonTap}
           >
             Sign In
@@ -113,7 +113,7 @@ export default function RegisterPage() {
             marginTop: "2em",
             display: "flex",
             flexDirection: "column",
-            gap: "24px",
+            gap: "1.5rem", // Improved vertical spacing
           }}
           variants={containerVariants}
         >
@@ -196,15 +196,15 @@ export default function RegisterPage() {
             </label>
             <div className="flex flex-col gap-2">
               <motion.div style={{ display: "flex", alignItems: "center" }} whileHover={buttonHover} whileTap={buttonTap}>
-                <input type="checkbox" id="surgeonTraining" name="trainingProgram" style={{ marginRight: "8px" }} />
+                <input type="checkbox" id="surgeonTraining" name="trainingProgram" style={{ marginRight: "8px", accentColor: '#A67950' }} />
                 <label htmlFor="surgeonTraining" style={{ fontFamily: "Lato, sans-serif", fontWeight: 500, fontSize: "16px", color: "#401323" }}>Surgeon Training</label>
               </motion.div>
               <motion.div style={{ display: "flex", alignItems: "center" }} whileHover={buttonHover} whileTap={buttonTap}>
-                <input type="checkbox" id="surgicalStaffTraining" name="trainingProgram" style={{ marginRight: "8px" }} />
+                <input type="checkbox" id="surgicalStaffTraining" name="trainingProgram" style={{ marginRight: "8px", accentColor: '#A67950' }} />
                 <label htmlFor="surgicalStaffTraining" style={{ fontFamily: "Lato, sans-serif", fontWeight: 500, fontSize: "16px", color: "#401323" }}>Surgical Staff Training</label>
               </motion.div>
               <motion.div style={{ display: "flex", alignItems: "center" }} whileHover={buttonHover} whileTap={buttonTap}>
-                <input type="checkbox" id="anesthesiaTraining" name="trainingProgram" style={{ marginRight: "8px" }} />
+                <input type="checkbox" id="anesthesiaTraining" name="trainingProgram" style={{ marginRight: "8px", accentColor: '#A67950' }} />
                 <label htmlFor="anesthesiaTraining" style={{ fontFamily: "Lato, sans-serif", fontWeight: 500, fontSize: "16px", color: "#401323" }}>Anesthesia Training for Robotic Surgery</label>
               </motion.div>
             </div>
@@ -229,15 +229,15 @@ export default function RegisterPage() {
             </label>
             <div className="flex flex-col gap-2">
               <motion.div style={{ display: "flex", alignItems: "center" }} whileHover={buttonHover} whileTap={buttonTap}>
-                <input type="checkbox" id="surgeonTrainingAdditional" name="trainingProgramAdditional" style={{ marginRight: "8px" }} />
+                <input type="checkbox" id="surgeonTrainingAdditional" name="trainingProgramAdditional" style={{ marginRight: "8px", accentColor: '#A67950' }} />
                 <label htmlFor="surgeonTrainingAdditional" style={{ fontFamily: "Lato, sans-serif", fontWeight: 500, fontSize: "16px", color: "#401323" }}>Surgeon Training</label>
               </motion.div>
               <motion.div style={{ display: "flex", alignItems: "center" }} whileHover={buttonHover} whileTap={buttonTap}>
-                <input type="checkbox" id="surgicalStaffTrainingAdditional" name="trainingProgramAdditional" style={{ marginRight: "8px" }} />
+                <input type="checkbox" id="surgicalStaffTrainingAdditional" name="trainingProgramAdditional" style={{ marginRight: "8px", accentColor: '#A67950' }} />
                 <label htmlFor="surgicalStaffTrainingAdditional" style={{ fontFamily: "Lato, sans-serif", fontWeight: 500, fontSize: "16px", color: "#401323" }}>Surgical Staff Training</label>
               </motion.div>
               <motion.div style={{ display: "flex", alignItems: "center" }} whileHover={buttonHover} whileTap={buttonTap}>
-                <input type="checkbox" id="anesthesiaTrainingAdditional" name="trainingProgramAdditional" style={{ marginRight: "8px" }} />
+                <input type="checkbox" id="anesthesiaTrainingAdditional" name="trainingProgramAdditional" style={{ marginRight: "8px", accentColor: '#A67950' }} />
                 <label htmlFor="anesthesiaTrainingAdditional" style={{ fontFamily: "Lato, sans-serif", fontWeight: 500, fontSize: "16px", color: "#401323" }}>Anesthesia Training for Robotic Surgery</label>
               </motion.div>
             </div>
@@ -265,7 +265,7 @@ export default function RegisterPage() {
             <motion.input
               type="checkbox"
               id="termsAgree"
-              style={{ marginRight: "8px", cursor: "pointer", marginTop: "4px" }}
+              style={{ marginRight: "8px", cursor: "pointer", marginTop: "4px", accentColor: '#A67950' }}
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
             />
@@ -318,10 +318,10 @@ export default function RegisterPage() {
   // Desktop View JSX - Your Original Code with Animations
   // --------------------------------------------------------------------------------
   const desktopView = (
-    <div className="w-full min-h-screen bg-white flex flex-col pb-32">
+    <div className="w-full min-h-screen bg-white flex flex-col pb-32 font-lato">
       {/* Self-contained Header */}
       <motion.div
-        className="w-full px-6 py-4 flex justify-between items-center"
+        className="w-full px-6 py-4 flex justify-between items-center shadow-md"
         style={{ backgroundColor: "#F8F1E9" }}
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -337,9 +337,9 @@ export default function RegisterPage() {
         />
         <div className="flex gap-4">
           <motion.button
-            className="px-4 py-2 text-[#401323] font-bold rounded-lg border-2 border-[#401323]"
+            className="px-4 py-2 text-[#401323] font-bold rounded-lg border-2 border-[#401323] transition-colors duration-200"
             style={{ cursor: "pointer" }}
-            whileHover={buttonHover}
+            whileHover={{ scale: 1.05, backgroundColor: "#401323", color: "#fff" }}
             whileTap={buttonTap}
           >
             Sign In
@@ -384,10 +384,7 @@ export default function RegisterPage() {
           }}
           variants={itemVariants}
         >
-          Please Complete the form below to enroll into our Comprehensive
-          robotic surgery training programs, upon successful registration, our
-          team
-          <br />
+          Please Complete the form below to enroll into our Comprehensive robotic surgery training programs, upon successful registration, our team<br />
           will reach out with program details, schedules, and next steps.
         </motion.p>
 
@@ -799,6 +796,41 @@ export default function RegisterPage() {
                 whileFocus={inputFocus}
               />
             </motion.div>
+
+            <motion.div
+              style={{ marginTop: "4em", display: "flex", flexDirection: "column" }}
+              variants={itemVariants}
+            >
+              <label
+                htmlFor="uploadId"
+                style={{
+                  fontFamily: "Lato, sans-serif",
+                  fontWeight: 500,
+                  fontSize: "20px",
+                  color: "#401323",
+                  marginBottom: "8px",
+                }}
+              >
+                Upload ID
+              </label>
+              <motion.input
+                id="uploadId"
+                type="file"
+                style={{
+                  fontFamily: "Lato, sans-serif",
+                  fontWeight: 500,
+                  fontSize: "18px",
+                  color: "#401323",
+                  padding: "12px 16px",
+                  border: "1px solid #ccc",
+                  borderRadius: "8px",
+                  width: "400px",
+                  cursor: "pointer",
+                }}
+                whileHover={inputHover}
+                whileFocus={inputFocus}
+              />
+            </motion.div>
           </div>
         </motion.div>
 
@@ -834,7 +866,7 @@ export default function RegisterPage() {
                 type="checkbox"
                 id="surgeonTraining"
                 name="trainingProgram"
-                style={{ marginRight: "8px" }}
+                style={{ marginRight: "8px", accentColor: '#A67950' }}
               />
               <label
                 htmlFor="surgeonTraining"
@@ -857,7 +889,7 @@ export default function RegisterPage() {
                 type="checkbox"
                 id="surgicalStaffTraining"
                 name="trainingProgram"
-                style={{ marginRight: "8px" }}
+                style={{ marginRight: "8px", accentColor: '#A67950' }}
               />
               <label
                 htmlFor="surgicalStaffTraining"
@@ -880,7 +912,7 @@ export default function RegisterPage() {
                 type="checkbox"
                 id="anesthesiaTraining"
                 name="trainingProgram"
-                style={{ marginRight: "8px" }}
+                style={{ marginRight: "8px", accentColor: '#A67950' }}
               />
               <label
                 htmlFor="anesthesiaTraining"
@@ -932,7 +964,7 @@ export default function RegisterPage() {
                 type="checkbox"
                 id="surgeonTrainingAdditional"
                 name="trainingProgramAdditional"
-                style={{ marginRight: "8px" }}
+                style={{ marginRight: "8px", accentColor: '#A67950' }}
               />
               <label
                 htmlFor="surgeonTrainingAdditional"
@@ -955,7 +987,7 @@ export default function RegisterPage() {
                 type="checkbox"
                 id="surgicalStaffTrainingAdditional"
                 name="trainingProgramAdditional"
-                style={{ marginRight: "8px" }}
+                style={{ marginRight: "8px", accentColor: '#A67950' }}
               />
               <label
                 htmlFor="surgicalStaffTrainingAdditional"
@@ -978,7 +1010,7 @@ export default function RegisterPage() {
                 type="checkbox"
                 id="anesthesiaTrainingAdditional"
                 name="trainingProgramAdditional"
-                style={{ marginRight: "8px" }}
+                style={{ marginRight: "8px", accentColor: '#A67950' }}
               />
               <label
                 htmlFor="anesthesiaTrainingAdditional"
@@ -1058,7 +1090,7 @@ export default function RegisterPage() {
             <motion.input
               type="checkbox"
               id="termsAgree"
-              style={{ marginRight: "8px", cursor: "pointer" }}
+              style={{ marginRight: "8px", cursor: "pointer", accentColor: '#A67950' }}
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
             />
