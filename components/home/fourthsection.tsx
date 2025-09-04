@@ -80,6 +80,46 @@ export default function FourthSection() {
           className="rounded-xl"
         />
       </div>
+            {/* Card */}
+      <div
+        className="absolute rounded-lg flex items-center justify-center"
+        style={{
+          width: "300px",
+          height: "111px",
+          top: `${235 + 251}px`, // 200 (image top) + 321 (gap from figma)
+          left: "24.3%",
+          transform: "translateX(-50%)",
+          backgroundColor: "#70493B",
+        }}
+      >
+        <h3
+          style={{
+            fontFamily: "DM Serif Text, serif",
+            fontWeight: "200",
+            fontSize: "18px",
+            color: "#FFFFFF",
+            margin: "-60px 0 0 -195px", // spacing from top-left
+          }}
+        >
+          Surgeons
+        </h3>
+        
+  {/* Subtitle */}
+  <p
+    style={{
+      fontFamily: "Lato, sans-serif",
+      fontWeight: "400",
+      fontSize: "12px",
+      color: "#FFFFFF",
+      lineHeight: "16px",
+      margin: "0 0 0 0", // no change to heading padding
+      position: "absolute",
+      top: "calc(30px + 22px + 4px)", // heading top + heading height + small gap
+      left: "20px", // same as heading
+    }}
+  >    Build advanced skills in multi-specialty robotic<br /> surgery
+    and gain global certification.</p>
+    </div>
 
 
         <div
