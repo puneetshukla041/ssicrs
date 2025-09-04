@@ -6,6 +6,7 @@ import ThirdSection from "@/components/home/thirdsection";
 import FourthSection from "@/components/home/fourthsection";
 import SixthSection from "@/components/home/sixthsection";
 import SeventhSection from "@/components/home/seventhsection";
+import FifthSection from "@/components/home/fifthsection";
 import { motion } from "framer-motion";
 import Footer from "@/components/Footer"; 
 
@@ -69,11 +70,15 @@ export default function HomePage() {
             {/* ✅ White Section Below Hero */}
       <FourthSection />
 
-                  {/* ✅ White Section Below Hero */}
-      <SixthSection />
 
-        {/* ✅ White Section Below Hero */}
-      <SeventhSection/>
+<FifthSection />
+<div style={{ height: "120px", backgroundColor: "#ffffff" }} /> {/* 5 lines white gap */}
+ <SixthSection />
+<SeventhSection />
+
+
+
+        
             {/* Footer */}
       <Footer />
     </div>
