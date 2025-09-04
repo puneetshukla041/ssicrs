@@ -11,14 +11,14 @@ export default function FourthSection() {
         className="absolute"
         style={{
           fontFamily: "DM Serif Text, serif",
-          fontWeight: 400,
+          fontWeight: 530,
           fontSize: "40px",
           color: "#A67950",
           top: "80px",
-          left: "276px",
+          left: "200px",
         }}
       >
-        For Whom
+        Our Expert Faculty
       </h2>
 
       {/* First Image */}
@@ -26,7 +26,7 @@ export default function FourthSection() {
         className="absolute"
         style={{
           top: "200px",
-          left: "276px",
+          left: "200px",
         }}
       >
         <Image
@@ -38,49 +38,39 @@ export default function FourthSection() {
         />
       </div>
 
-      {/* Card */}
-      <div
-        className="absolute rounded-lg flex items-center justify-center"
+      {/* Heading under first image */}
+      <h3
+        className="absolute"
         style={{
-          width: "300px",
-          height: "111px",
-          top: `${235 + 251}px`, // 200 (image top) + 321 (gap from figma)
-          left: "24.3%",
-          transform: "translateX(-50%)",
-          backgroundColor: "#70493B",
+          top: "600px", // slightly below image 1
+          left: "200px",
+          fontFamily: "DM Serif Text, serif",
+          fontWeight: 400,
+          fontSize: "34px",
+          color: "#401323",
         }}
       >
-        <h3
-          style={{
-            fontFamily: "DM Serif Text, serif",
-            fontWeight: "200",
-            fontSize: "18px",
-            color: "#FFFFFF",
-            margin: "-60px 0 0 -95px",
-          }}
-        >
-          Sudhir Srivastava, MD
+        Sudhir Srivastava, MD
+      </h3>
 
-        </h3>
+      {/* Subtitle under heading */}
+      <p
+        className="absolute"
+        style={{
+          top: "645px", // slightly below heading
+          left: "200px",
+          fontFamily: "Lato, sans-serif",
+          fontStyle: "italic",
+          fontWeight: 400,
+          fontSize: "16px",
+          color: "#D2A073",
+        }}
+      >
+        Founder, Chairman, CEO - SSICRS
+      </p>
 
-        <p
-          style={{
-            fontFamily: "Lato, sans-serif",
-            fontWeight: "400",
-            fontSize: "12px",
-            color: "#FFFFFF",
-            lineHeight: "16px",
-            margin: "0",
-            position: "absolute",
-            top: "calc(30px + 22px + 4px)",
-            left: "20px",
-          }}
-        >
-          Build advanced skills in multi-specialty robotic<br /> surgery
-          and gain global certification.
-        </p>
-      </div>
-        <div
+      {/* Second Image */}
+      <div
         className="absolute"
         style={{
           top: "200px",
@@ -97,53 +87,14 @@ export default function FourthSection() {
           className="rounded-xl"
         />
       </div>
-          {/* Card */}
+
+      {/* Third Image */}
       <div
-        className="absolute rounded-lg flex items-center justify-center"
-        style={{
-          width: "300px",
-          height: "111px",
-          top: `${235 + 251}px`, // 200 (image top) + 321 (gap from figma)
-          left: "50%",
-          transform: "translateX(-50%)",
-          backgroundColor: "#70493B",
-        }}
-      >
-        <h3
-          style={{
-            fontFamily: "DM Serif Text, serif",
-            fontWeight: "200",
-            fontSize: "18px",
-            color: "#FFFFFF",
-            margin: "-60px 0 0 -105px", // spacing from top-left
-          }}
-        >
-          Sudhir K Rawal, MD
-        </h3>
-        
-  {/* Subtitle */}
-  <p
-    style={{
-      fontFamily: "Lato, sans-serif",
-      fontWeight: "400",
-      fontSize: "12px",
-      color: "#FFFFFF",
-      lineHeight: "16px",
-      margin: "0 0 0 0", // no change to heading padding
-      position: "absolute",
-      top: "calc(30px + 22px + 4px)", // heading top + heading height + small gap
-      left: "20px", // same as heading
-    }}
-  > Learn the essential workflows, patient preparation,<br/> and teamwork required in robotic ORs.</p>
-    </div>
-
-
-        <div
         className="absolute"
         style={{
           top: "200px",
-          left: "1250px",
-          right: "270px",
+          left: "1320px",
+          right: "210px",
           bottom: "689px",
         }}
       >
@@ -155,51 +106,13 @@ export default function FourthSection() {
           className="rounded-xl"
         />
       </div>
-      {/* Card */}
-      <div
-        className="absolute rounded-lg flex items-center justify-center"
-        style={{
-          width: "300px",
-          height: "111px",
-          top: `${235 + 251}px`, // 200 (image top) + 321 (gap from figma)
-          left: "75.3%",
-          transform: "translateX(-50%)",
-          backgroundColor: "#70493B",
-        }}
-      >
-        <h3
-          style={{
-            fontFamily: "DM Serif Text, serif",
-            fontWeight: "200",
-            fontSize: "18px",
-            color: "#FFFFFF",
-            margin: "-60px 0 0 -75px", // spacing from top-left
-          }}
-        >
-          Prof. Dr. Somashekhar SP
-        </h3>
-        
-  {/* Subtitle */}
-  <p
-    style={{
-      fontFamily: "Lato, sans-serif",
-      fontWeight: "400",
-      fontSize: "12px",
-      color: "#FFFFFF",
-      lineHeight: "16px",
-      margin: "0 0 0 0", // no change to heading padding
-      position: "absolute",
-      top: "calc(30px + 22px + 4px)", // heading top + heading height + small gap
-      left: "20px", // same as heading
-    }}
-  >    Master the unique considerations of anesthesia in<br/> robotic surgery for safer patient outcomes.</p>
-      </div>
 
-        <div
+      {/* Fourth Image */}
+      <div
         className="absolute"
         style={{
-          top: "650px",
-          left: "521px",
+          top: "780px",
+          left: "480px",
           right: "1005px",
           bottom: "689px",
         }}
@@ -212,102 +125,23 @@ export default function FourthSection() {
           className="rounded-xl"
         />
       </div>
-      {/* Card */}
+
+      {/* Fifth Image */}
       <div
-        className="absolute rounded-lg flex items-center justify-center"
-        style={{
-          width: "300px",
-          height: "111px",
-          top: `${295 + 651}px`, // 200 (image top) + 321 (gap from figma)
-          left: "37%",
-          transform: "translateX(-50%)",
-          backgroundColor: "#70493B",
-        }}
-      >
-        <h3
-          style={{
-            fontFamily: "DM Serif Text, serif",
-            fontWeight: "200",
-            fontSize: "18px",
-            color: "#FFFFFF",
-            margin: "-60px 0 0 -90px", // spacing from top-left
-          }}
-        >
-          Dr. Nitin Kumar Rajput
-        </h3>
-        
-  {/* Subtitle */}
-  <p
-    style={{
-      fontFamily: "Lato, sans-serif",
-      fontWeight: "400",
-      fontSize: "12px",
-      color: "#FFFFFF",
-      lineHeight: "16px",
-      margin: "0 0 0 0", // no change to heading padding
-      position: "absolute",
-      top: "calc(28px + 22px + 4px)", // heading top + heading height + small gap
-      left: "20px", // same as heading
-    }}
-  >    Partner with SSICRS to upskill teams, expand<br/> surgical capabilities, and bring world-class robotic care to communities.</p>
-      </div>
-
-
-        <div
         className="absolute"
         style={{
-          top: "650px",
-          left: "1011px",
-          right: "515px",
+          top: "790px",
+          left: "1070px",
           bottom: "689px",
         }}
       >
         <Image
           src="/images/sixthsection/image5.png"
           alt="Fourth Section Image"
-          width={373}
-          height={378}
+          width={370}
+          height={330}
           className="rounded-xl"
         />
-      </div>      
-          {/* Card */}
-      <div
-        className="absolute rounded-lg flex items-center justify-center"
-        style={{
-          width: "300px",
-          height: "111px",
-          top: `${295 + 651}px`, // 200 (image top) + 321 (gap from figma)
-          left: "63%",
-          transform: "translateX(-50%)",
-          backgroundColor: "#70493B",
-        }}
-      >
-        <h3
-          style={{
-            fontFamily: "DM Serif Text, serif",
-            fontWeight: "200",
-            fontSize: "18px",
-            color: "#FFFFFF",
-            margin: "-60px 0 0 -110px", // spacing from top-left
-          }}
-        >
-          Dr. Magan Mehrotra
-        </h3>
-        
-  {/* Subtitle */}
-  <p
-    style={{
-      fontFamily: "Lato, sans-serif",
-      fontWeight: "400",
-      fontSize: "12px",
-      color: "#FFFFFF",
-      lineHeight: "16px",
-      margin: "0 0 0 0", // no change to heading padding
-      position: "absolute",
-      top: "calc(28px + 22px + 4px)", // heading top + heading height + small gap
-      left: "20px", // same as heading
-    }}
-  >   Access mentorship, training pathways, and <br/>exposure to the SSI Mantra platform early in your careers.</p>
       </div>
 
     </section>
