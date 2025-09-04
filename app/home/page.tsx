@@ -5,6 +5,7 @@ import SecondSection from "@/components/home/secondsection";
 import ThirdSection from "@/components/home/thirdsection";
 import FourthSection from "@/components/home/fourthsection";
 import { motion } from "framer-motion";
+import Image from "next/image";
 
 export default function HomePage() {
   return (
@@ -15,11 +16,12 @@ export default function HomePage() {
       {/* Hero Section */}
       <section className="relative w-full h-screen">
         {/* Background Image */}
-        <img
-          src="/images/image1.webp"
-          alt="SSICrs"
-          className="w-full h-full object-cover"
-        />
+<Image
+  src="/images/image1.webp"
+  alt="SSICrs"
+  fill
+  style={{ objectFit: "cover" }}
+/>
 
         {/* Centered Text with scroll-triggered animation */}
         <motion.div
