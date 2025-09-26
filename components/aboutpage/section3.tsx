@@ -73,124 +73,139 @@ export default function Section3() {
       {/* Right side: Text with hover boxes */}
       <div
         style={{
-          marginTop: "50px",
+          marginTop: "10px",
           marginLeft: "100px",
         }}
       >
         {/* Box 1 */}
         <div
-          // MODIFIED HOVER EFFECT: Added scale and a more pronounced shadow-xl
-          className="transition-all duration-300 hover:border-[#6A4336] hover:shadow-xl hover:bg-white hover:scale-[1.02] hover:-translate-y-1"
-          style={{
-            width: "756px",
-            height: "95px",
-            borderRadius: "8px",
-            border: "2px solid transparent",
-            display: "flex",
-            alignItems: "center",
-            padding: "20px",
-          }}
-        >
-          <p
-            style={{
-              color: "#724B3C",
-              fontFamily: "Lato, sans-serif",
-              fontSize: "20px",
-              fontStyle: "normal",
-              fontWeight: 500,
-              lineHeight: "24px",
-            }}
-          >
-            Deliver specialized training across surgical specialties for true<br />
-            proficiency.
-          </p>
-        </div>
 
-        {/* Box 2 */}
-        <div
-          // MODIFIED HOVER EFFECT: Added scale and a more pronounced shadow-xl
-          className="transition-all duration-300 mt-[40px] hover:border-[#6A4336] hover:shadow-xl hover:bg-white hover:scale-[1.02] hover:-translate-y-1"
-          style={{
-            width: "756px",
-            height: "95px",
-            borderRadius: "8px",
-            border: "2px solid transparent",
-            display: "flex",
-            alignItems: "center",
-            padding: "20px",
-          }}
-        >
-          <p
-            style={{
-              color: "#724B3C",
-              fontFamily: "Lato, sans-serif",
-              fontSize: "20px",
-              fontStyle: "normal",
-              fontWeight: 500,
-              lineHeight: "24px",
-            }}
-          >
-            Blend theory with hands-on practice using the SSI Mantra system.
-          </p>
-        </div>
+className="group transition-all duration-300 hover:border-[#6A4336] hover:shadow-xl hover:bg-white hover:scale-[1.02] hover:-translate-y-1 relative cursor-pointer"
+  style={{
+    width: "756px",
+    height: "95px",
+    borderRadius: "8px",
+    border: "2px solid transparent",
+    display: "flex",
+    alignItems: "center",
+    padding: "20px",
+  }}
+>
+  <div className="relative w-full h-full flex items-center">
+    <p
+      style={{
+        color: "#724B3C",
+        fontFamily: "Lato, sans-serif",
+        fontSize: "20px",
+        fontStyle: "normal",
+        fontWeight: 500,
+        lineHeight: "24px",
+      }}
+    >
+      Deliver specialized training across surgical specialties for true<br />
+      proficiency.
+    </p>
+    {/* Animated extended fading line */}
+    <div className="absolute bottom-[-22px] left-[-2px] h-[3px] rounded-full transition-all duration-500 w-0 group-hover:w-[90%] bg-gradient-to-r from-[#6A4336] to-transparent"></div>
+  </div>
+</div>
 
-        {/* Box 3 */}
-        <div
-          // MODIFIED HOVER EFFECT: Added scale and a more pronounced shadow-xl
-          className="transition-all duration-300 mt-[40px] hover:border-[#6A4336] hover:shadow-xl hover:bg-white hover:scale-[1.02] hover:-translate-y-1"
-          style={{
-            width: "756px",
-            height: "95px",
-            borderRadius: "8px",
-            border: "2px solid transparent",
-            display: "flex",
-            alignItems: "center",
-            padding: "20px",
-          }}
-        >
-          <p
-            style={{
-              color: "#724B3C",
-              fontFamily: "Lato, sans-serif",
-              fontSize: "20px",
-              fontStyle: "normal",
-              fontWeight: 500,
-              lineHeight: "24px",
-            }}
-          >
-            Make robotic surgery education accessible worldwide, with focus on<br />
-            underserved regions.
-          </p>
-        </div>
 
-        {/* Box 4 */}
-        <div
-          // MODIFIED HOVER EFFECT: Added scale and a more pronounced shadow-xl
-          className="transition-all duration-300 mt-[40px] hover:border-[#6A4336] hover:shadow-xl hover:bg-white hover:scale-[1.02] hover:-translate-y-1"
-          style={{
-            width: "756px",
-            height: "95px",
-            borderRadius: "8px",
-            border: "2px solid transparent",
-            display: "flex",
-            alignItems: "center",
-            padding: "20px",
-          }}
-        >
-          <p
-            style={{
-              color: "#724B3C",
-              fontFamily: "Lato, sans-serif",
-              fontSize: "20px",
-              fontStyle: "normal",
-              fontWeight: 500,
-              lineHeight: "24px",
-            }}
-          >
-            Create continuous learning pathways to keep professionals at the<br />
-            forefront of innovation.
-          </p>
-        </div>
+{/* Box 2 */}
+<div
+  className="group transition-all duration-300 mt-[40px] hover:border-[#6A4336] hover:shadow-xl hover:bg-white hover:scale-[1.02] hover:-translate-y-1 relative cursor-pointer"
+  style={{
+    width: "756px",
+    height: "95px",
+    borderRadius: "8px",
+    border: "2px solid transparent",
+    display: "flex",
+    alignItems: "center",
+    padding: "20px",
+  }}
+>
+  <div className="relative w-full h-full flex items-center">
+    <p
+      style={{
+        color: "#724B3C",
+        fontFamily: "Lato, sans-serif",
+        fontSize: "20px",
+        fontStyle: "normal",
+        fontWeight: 500,
+        lineHeight: "24px",
+      }}
+    >
+      Blend theory with hands-on practice using the SSI Mantra system.
+    </p>
+    {/* Animated extended fading line */}
+    <div className="absolute bottom-[-22px] left-[-2px] h-[3px] rounded-full transition-all duration-500 w-0 group-hover:w-[90%] bg-gradient-to-r from-[#6A4336] to-transparent"></div>
+  </div>
+</div>
+
+{/* Box 3 */}
+<div
+  className="group transition-all duration-300 mt-[40px] hover:border-[#6A4336] hover:shadow-xl hover:bg-white hover:scale-[1.02] hover:-translate-y-1 relative cursor-pointer"
+  style={{
+    width: "756px",
+    height: "95px",
+    borderRadius: "8px",
+    border: "2px solid transparent",
+    display: "flex",
+    alignItems: "center",
+    padding: "20px",
+  }}
+>
+  <div className="relative w-full h-full flex items-center">
+    <p
+      style={{
+        color: "#724B3C",
+        fontFamily: "Lato, sans-serif",
+        fontSize: "20px",
+        fontStyle: "normal",
+        fontWeight: 500,
+        lineHeight: "24px",
+      }}
+    >
+      Make robotic surgery education accessible worldwide, with focus on<br />
+      underserved regions.
+    </p>
+    {/* Animated extended fading line */}
+    <div className="absolute bottom-[-22px] left-[-2px] h-[3px] rounded-full transition-all duration-500 w-0 group-hover:w-[90%] bg-gradient-to-r from-[#6A4336] to-transparent"></div>
+  </div>
+</div>
+
+{/* Box 4 */}
+<div
+  className="group transition-all duration-300 mt-[40px] hover:border-[#6A4336] hover:shadow-xl hover:bg-white hover:scale-[1.02] hover:-translate-y-1 relative cursor-pointer"
+  style={{
+    width: "756px",
+    height: "95px",
+    borderRadius: "8px",
+    border: "2px solid transparent",
+    display: "flex",
+    alignItems: "center",
+    padding: "20px",
+  }}
+>
+  <div className="relative w-full h-full flex items-center">
+    <p
+      style={{
+        color: "#724B3C",
+        fontFamily: "Lato, sans-serif",
+        fontSize: "20px",
+        fontStyle: "normal",
+        fontWeight: 500,
+        lineHeight: "24px",
+      }}
+    >
+      Create continuous learning pathways to keep professionals at the<br />
+      forefront of innovation.
+    </p>
+    {/* Animated extended fading line */}
+    <div className="absolute bottom-[-22px] left-[-2px] h-[3px] rounded-full transition-all duration-500 w-0 group-hover:w-[90%] bg-gradient-to-r from-[#6A4336] to-transparent"></div>
+  </div>
+</div>
+
       </div>
     </section>
   );
