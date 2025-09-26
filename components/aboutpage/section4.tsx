@@ -1,12 +1,8 @@
-// components/aboutus/Section3.tsx
 "use client";
 
-import React, { useRef, useState } from "react";
-import Image from "next/image";
-import { motion, useScroll, useMotionValueEvent, useSpring } from "framer-motion";
+import React, { useEffect, useRef, useState, useCallback } from "react";
 
-// Image list
-const images = [
+const IMAGE_PATHS = [
   "/Images/aboutpage/section4/image1.png",
   "/Images/aboutpage/section4/image2.png",
   "/Images/aboutpage/section4/image3.png",
@@ -14,143 +10,119 @@ const images = [
   "/Images/aboutpage/section4/image5.png",
 ];
 
-// Text and paragraph for each image
-const texts = [
-  {
-    heading: "SSICRS is redefining surgical education with world-class facilities.",
-    para: `Every trainee starts with a common foundational module, covering:<br>
-The Evolution of Robotics in Surgery<br>
-Engineering Principles Behind Robotic-Assisted Surgery<br>
-The SSI Mantra System: Technology & Clinical Integration`,
-  },
-  {
-    heading: "We combine theory with real-world, hands-on training experiences.",
-    para: "Our programs ensure every learner gains both deep knowledge and practical expertise.",
-  },
-  {
-    heading: "Our mentors are leading surgeons shaping the future of robotics.",
-    para: "Students learn directly from experts driving innovation in surgery and healthcare.",
-  },
-  {
-    heading: "We believe in global collaboration to improve surgical outcomes.",
-    para: "Through partnerships, we connect the best minds worldwide for better patient care.",
-  },
-  {
-    heading: "At SSICRS, excellence is accessible to all, everywhere.",
-    para: "We aim to democratize surgical education and make advanced training universally available.",
-  },
-];
+const NUM_IMAGES = IMAGE_PATHS.length;
 
-export default function Section3() {
-  const ref = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start start", "end end"],
-  });
+// Set to 0.5 for a very short, fast-scrolling effect.
+const SCROLL_MULTIPLIER = 0.5; 
 
-  const [activeIndex, setActiveIndex] = useState(0);
+export default function SectionNew() {
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
-  const smoothProgress = useSpring(scrollYProgress, {
-    stiffness: 80,
-    damping: 20,
-    mass: 0.5,
-  });
+  const handleScroll = useCallback(() => {
+    if (!sectionRef.current) return;
 
-  useMotionValueEvent(smoothProgress, "change", (latest) => {
-    const newIndex = Math.round(latest * (images.length - 1));
-    setActiveIndex(newIndex);
-  });
+    const rect = sectionRef.current.getBoundingClientRect();
+    const sectionHeight = rect.height;
+    const viewportHeight = window.innerHeight;
+
+    // 1. Calculate the raw scroll progress within the *total scrollable* area (sectionRef).
+    const scrollProgress = Math.min(
+      Math.max(viewportHeight - rect.top, 0),
+      sectionHeight
+    );
+
+    // 2. Calculate the progress as a normalized value from 0 to 1.
+    const normalizedProgress = Math.min(
+      (scrollProgress - viewportHeight) / (sectionHeight - viewportHeight),
+      1
+    );
+
+    // 3. Map the 0-1 progress to the number of images.
+    const rawIndex = normalizedProgress * (NUM_IMAGES - 1);
+    
+    // 4. Use Math.round() for image switching.
+    const newIndex = Math.min(Math.round(rawIndex), NUM_IMAGES - 1);
+
+    setCurrentImageIndex(newIndex);
+  }, []);
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll();
+
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [handleScroll]);
+
+  // Total height = ((5 - 1) * 0.5 * 100) + 100 = 300vh.
+  const totalHeight = `${(NUM_IMAGES - 1) * 100 * SCROLL_MULTIPLIER + 100}vh`;
 
   return (
-    <section
-      ref={ref}
-      className="relative w-full bg-black"
-      style={{ height: `${images.length * 60}vh` }}
+    <div
+      ref={sectionRef}
+      style={{ height: totalHeight }} // Total scrollable height
+      className="relative w-full"
     >
-      {/* Sticky container */}
-      <div className="sticky top-0 h-screen w-full overflow-hidden">
-        {/* Crossfade Images */}
-        {images.map((src, i) => (
-          <motion.div
-            key={i}
-            className="absolute inset-0"
-            initial={false}
-            animate={{ opacity: i === activeIndex ? 1 : 0 }}
-            transition={{ duration: 0.6, ease: "easeInOut" }}
-          >
-            <Image
-              src={src}
-              alt={`Scroll Image ${i + 1}`}
-              fill
-              priority={i === 0}
-              className="object-cover"
-            />
-          </motion.div>
-        ))}
+      {/* This section will stay fixed in the viewport while scrolling */}
+      <section className="sticky top-0 w-full h-screen bg-[#FBFAF2] border-t-2 border-b-2 border-black">
+        
+        {/* Heading */}
+        <h1
+          className="absolute"
+          style={{
+            color: "#A67950",
+            fontFamily: '"DM Serif Text", serif',
+            fontSize: "40px",
+            fontWeight: 500,
+            lineHeight: "150%",
+            top: "100px",
+            left: "130px",
+          }}
+        >
+          Why Choose SSICRS
+        </h1>
 
-        {/* Overlay text */}
-        <div className="relative z-10 h-full w-full">
-          {texts.map((item, i) => (
-            <motion.div
-              key={i}
-              className="absolute"
+        {/* Image Display Area with cross-fade transition */}
+        <div
+          className="absolute left-0 right-0"
+          style={{ top: "200px", height: "calc(100vh - 200px)" }}
+        >
+          {IMAGE_PATHS.map((path, index) => (
+            <img
+              key={path}
+              src={path}
+              alt={`Image ${index + 1}`}
+              className="absolute top-0 left-0 w-full h-full object-contain"
               style={{
-                top: "133px",
-                bottom: "330px",
-                marginLeft: "780px",
-                marginRight: "117px",
-                maxWidth: "calc(100% - 897px)",
+                opacity: currentImageIndex === index ? 1 : 0,
+                transition: "opacity 0.2s ease-in-out", 
               }}
-              initial={false}
-              animate={{ opacity: i === activeIndex ? 1 : 0 }}
-              transition={{ duration: 0.6, ease: "easeInOut" }}
-            >
-              {/* Heading */}
-              <h2
-                className="font-[DM_Serif_Text]"
-                style={{
-                  fontSize: "26px",
-                  fontWeight: 400,
-                  color: "#FFFFFF",
-                  lineHeight: "1.4",
-                  marginBottom: "16px",
-                }}
-              >
-                {item.heading}
-              </h2>
-
-              {/* Paragraph with line breaks */}
-              <p
-                className="font-[Lato]"
-                style={{
-                  fontSize: "18px",
-                  fontWeight: 400,
-                  color: "#FFFFFF",
-                  lineHeight: "1.6",
-                }}
-                dangerouslySetInnerHTML={{ __html: item.para }}
-              />
-            </motion.div>
-          ))}
-        </div>
-
-        {/* Right-side dots */}
-        <div className="absolute right-6 top-1/2 -translate-y-1/2 flex flex-col gap-3 z-20">
-          {images.map((_, i) => (
-            <motion.div
-              key={i}
-              className="w-3 h-3 rounded-full"
-              initial={false}
-              animate={{
-                scale: i === activeIndex ? 1.5 : 1,
-                backgroundColor:
-                  i === activeIndex ? "#ffffff" : "rgba(255,255,255,0.4)",
-              }}
-              transition={{ duration: 0.4, ease: "easeInOut" }}
             />
           ))}
         </div>
-      </div>
-    </section>
+
+        {/* NEW: Dot Progress Indicator */}
+        <div 
+          className="absolute right-10 top-1/2 transform -translate-y-1/2 flex flex-col space-y-3"
+          aria-label="Image progress indicator"
+        >
+          {IMAGE_PATHS.map((_, index) => (
+            <div
+              key={index}
+              className={`
+                rounded-full transition-all duration-300 ease-in-out
+                ${currentImageIndex === index 
+                  ? 'w-3 h-3 bg-black' // Active dot: larger and black
+                  : 'w-2 h-2 bg-gray-400' // Inactive dot: smaller and gray
+                }
+              `}
+              // Optional: Add a smooth scroll on click for better navigation
+              // Note: Implementing click navigation requires more complex scroll-to-position logic
+              // and is outside the scope of this request, so it's omitted here.
+            />
+          ))}
+        </div>
+      </section>
+    </div>
   );
 }
