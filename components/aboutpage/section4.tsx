@@ -7,11 +7,11 @@ import { motion, useScroll, useMotionValueEvent, useSpring } from "framer-motion
 
 // Image list
 const images = [
-  "/Images/aboutpage/section3/image1.png",
-  "/Images/aboutpage/section3/image2.png",
-  "/Images/aboutpage/section3/image3.png",
-  "/Images/aboutpage/section3/image4.png",
-  "/Images/aboutpage/section3/image5.png",
+  "/Images/aboutpage/section4/image1.png",
+  "/Images/aboutpage/section4/image2.png",
+  "/Images/aboutpage/section4/image3.png",
+  "/Images/aboutpage/section4/image4.png",
+  "/Images/aboutpage/section4/image5.png",
 ];
 
 // Text and paragraph for each image
