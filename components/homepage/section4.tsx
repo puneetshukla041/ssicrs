@@ -31,7 +31,7 @@ export default function FourthSection() {
         }}
       >
         <Image
-          src="/images/homepage/section4/image1.png"
+          src="/Images/homepage/section4/image1.png"
           alt="Fourth Section Image"
           width={373}
           height={378}
@@ -90,7 +90,7 @@ export default function FourthSection() {
         }}
       >
         <Image
-          src="/images/homepage/section4/image2.png"
+          src="/images/fouthsection/image2.png"
           alt="Fourth Section Image"
           width={373}
           height={378}
@@ -148,7 +148,7 @@ export default function FourthSection() {
         }}
       >
         <Image
-          src="/images/homepage/section4/image3.png"
+          src="/images/fouthsection/image3.png"
           alt="Fourth Section Image"
           width={373}
           height={378}
@@ -205,7 +205,7 @@ export default function FourthSection() {
         }}
       >
         <Image
-          src="/images/homepage/section4/image4.png"
+          src="/images/fouthsection/image4.png"
           alt="Fourth Section Image"
           width={373}
           height={378}
@@ -263,7 +263,7 @@ export default function FourthSection() {
         }}
       >
         <Image
-          src="/images/homepage/section4/image5.png"
+          src="/images/fouthsection/image5.png"
           alt="Fourth Section Image"
           width={373}
           height={378}
@@ -328,7 +328,7 @@ export default function FourthSection() {
           {/* Card 1 */}
           <div className="flex flex-col items-center">
             <Image
-              src="/images/homepage/section4/image1.png"
+              src="/images/fouthsection/image1.png"
               alt="Surgeons"
               width={300}
               height={300}
@@ -370,7 +370,7 @@ export default function FourthSection() {
           {/* Card 2 */}
           <div className="flex flex-col items-center">
             <Image
-              src="/images/homepage/section4/image2.png"
+              src="/images/fouthsection/image2.png"
               alt="Surgical Staff"
               width={300}
               height={300}
@@ -412,7 +412,7 @@ export default function FourthSection() {
           {/* Card 3 */}
           <div className="flex flex-col items-center">
             <Image
-              src="/images/homepage/section4/image3.png"
+              src="/images/fouthsection/image3.png"
               alt="Anesthesiologists"
               width={300}
               height={300}
@@ -454,7 +454,7 @@ export default function FourthSection() {
           {/* Card 4 */}
           <div className="flex flex-col items-center">
             <Image
-              src="/images/homepage/section4/image4.png"
+              src="/images/fouthsection/image4.png"
               alt="Medical Institutions & Hospitals"
               width={300}
               height={300}
@@ -496,7 +496,7 @@ export default function FourthSection() {
           {/* Card 5 */}
           <div className="flex flex-col items-center">
             <Image
-              src="/images/homepage/section4/image5.png"
+              src="/images/fouthsection/image5.png"
               alt="Residents & Fellows"
               width={300}
               height={300}
