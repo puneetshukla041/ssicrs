@@ -31,7 +31,7 @@ export default function FourthSection() {
         }}
       >
         <Image
-          src="/images/homepage/section4/image1.png"
+          src="/images/homepage/section4/image.png"
           alt="Fourth Section Image"
           width={373}
           height={378}
