@@ -8,25 +8,34 @@ export default function SplashScreen({ onComplete }: { onComplete?: () => void }
   const [show, setShow] = useState(true);
 
   useEffect(() => {
-    setMounted(true); // ensures no SSR render
+    setMounted(true); // prevents SSR flash
   }, []);
 
   useEffect(() => {
     if (mounted) {
       const timer = setTimeout(() => {
-        setShow(false);
-        onComplete?.();
-      }, 3000);
+        setShow(false); // triggers exit animation
+      }, 2000);
       return () => clearTimeout(timer);
     }
-  }, [mounted, onComplete]);
+  }, [mounted]);
 
-  if (!mounted) return null; // ✅ nothing during SSR
+  if (!mounted) return null;
 
   return (
-    <AnimatePresence>
+    <AnimatePresence
+      onExitComplete={() => {
+        if (onComplete) onComplete(); // only call after exit finishes
+      }}
+    >
       {show && (
-        <div className="fixed inset-0 bg-white flex items-center justify-center z-50">
+        <motion.div
+          className="fixed inset-0 bg-white flex items-center justify-center z-50"
+          initial={{ opacity: 1 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }} // smooth fade out
+          transition={{ duration: 1 }}
+        >
           <motion.img
             src="/Logos/splashscreen/splashlogo.png"
             alt="Splash Logo"
@@ -36,7 +45,7 @@ export default function SplashScreen({ onComplete }: { onComplete?: () => void }
             exit={{ scale: 0.5, opacity: 0 }}
             transition={{ duration: 1.5, ease: "easeInOut" }}
           />
-        </div>
+        </motion.div>
       )}
     </AnimatePresence>
   );
