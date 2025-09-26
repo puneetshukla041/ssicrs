@@ -90,7 +90,7 @@ export default function FourthSection() {
         }}
       >
         <Image
-          src="/images/fouthsection/image2.png"
+          src="/Images/homepage/section4/image2.png"
           alt="Fourth Section Image"
           width={373}
           height={378}
@@ -148,7 +148,7 @@ export default function FourthSection() {
         }}
       >
         <Image
-          src="/images/fouthsection/image3.png"
+          src="/Images/homepage/section4/image3.png"
           alt="Fourth Section Image"
           width={373}
           height={378}
@@ -205,7 +205,7 @@ export default function FourthSection() {
         }}
       >
         <Image
-          src="/images/fouthsection/image4.png"
+          src="/Images/homepage/section4/image4.png"
           alt="Fourth Section Image"
           width={373}
           height={378}
@@ -263,7 +263,7 @@ export default function FourthSection() {
         }}
       >
         <Image
-          src="/images/fouthsection/image5.png"
+          src="/Images/homepage/section4/image5.png"
           alt="Fourth Section Image"
           width={373}
           height={378}
