@@ -112,7 +112,7 @@ export default function Section2() {
               {/* Logo */}
               <div className="absolute top-[16px] left-[16px] w-[58px] h-[58px] relative">
                 <Image
-                  src={`/logos/programs/section2/logo${item.logo}.png`}
+                  src={`/logos/programs/section2/bottomlogo${item.logo}.png`}
                   alt={`Logo ${item.logo}`}
                   fill
                   className="object-contain"
