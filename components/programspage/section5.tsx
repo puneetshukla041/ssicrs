@@ -4,7 +4,7 @@ import React from "react";
 
 export default function Section5() {
   return (
-    <section className="w-full h-screen bg-white flex flex-col" style={{ paddingTop: "50px" }}>
+    <section className="w-full h-screen bg-white flex flex-col" style={{ paddingTop: "0px" }}>
       
       {/* Heading with hover underline only under text and hand cursor */}
       <div style={{ paddingLeft: "270px" }}>
@@ -43,7 +43,7 @@ export default function Section5() {
         <div style={{ display: "flex", flexDirection: "column", gap: "30px" }}>
         
           <h3 style={{ color: "#5B102B", fontFamily: '"DM Serif Text", serif', fontSize: "20px", fontWeight: 400, lineHeight: "150%", textTransform: "capitalize", whiteSpace: "nowrap" }}>Simulated ORs</h3>
-                  <p style={{ color: "#A67950", fontFamily: "Lato, sans-serif", fontSize: "16px", fontWeight: 400, lineHeight: "24px", whiteSpace: "pre-line" }}>
+                  <p style={{ color: "#A67950", fontFamily: "Lato, sans-serif", fontSize: "16px", fontWeight: 400, lineHeight: "2px", whiteSpace: "pre-line" }}>
             Fully equipped with SSI Mantra systems for mock procedures.
           </p>
           <h3 style={{ color: "#5B102B", fontFamily: '"DM Serif Text", serif', fontSize: "20px", fontWeight: 400, lineHeight: "150%", textTransform: "capitalize", whiteSpace: "nowrap" }}>Dry Labs</h3>

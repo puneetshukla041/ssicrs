@@ -1,28 +1,29 @@
 "use client";
 
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect, useCallback } from "react";
+import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 
 const slides = [
   {
     heading: "Full-Service Equestrian Training",
     text: "Explore our complete programs designed to improve your riding skills and horse management expertise.",
-    image: "Images/homepage/section5/slider1.png",
+    image: "/Images/homepage/section5/slider1.png",
   },
   {
     heading: "Advanced Riding Techniques",
     text: "Master advanced techniques with guidance from our experienced instructors.",
-    image: "Images/homepage/section5/slider2.png",
+    image: "/Images/homepage/section5/slider2.png",
   },
   {
     heading: "Competitive Show Jumping & Dressage",
     text: "Join our community for high-level competitive training and events.",
-    image: "Images/homepage/section5/slider3.png",
+    image: "/Images/homepage/section5/slider3.png",
   },
   {
     heading: "Foundational Riding Skills",
     text: "Begin your journey with essential horsemanship and riding lessons.",
-    image: "Images/homepage/section5/slider4.png",
+    image: "/Images/homepage/section5/slider4.png",
   },
 ];
 
@@ -34,16 +35,29 @@ const Slider: React.FC = () => {
   const autoPlayInterval = 3000;
   const totalSlides = slides.length;
 
-  const handleNext = () => setCurrentIndex((prev) => (prev + 1) % totalSlides);
-  const handlePrev = () => setCurrentIndex((prev) => (prev - 1 + totalSlides) % totalSlides);
+  // ✅ useCallback ensures stable reference for useEffect
+  const handleNext = useCallback(
+    () => setCurrentIndex((prev) => (prev + 1) % totalSlides),
+    [totalSlides]
+  );
+
+  const handlePrev = useCallback(
+    () => setCurrentIndex((prev) => (prev - 1 + totalSlides) % totalSlides),
+    [totalSlides]
+  );
+
   const goToSlide = (index: number) => setCurrentIndex(index % totalSlides);
 
-  const handleTouchStart = (e: React.TouchEvent) => (touchStartX.current = e.touches[0].clientX);
+  const handleTouchStart = (e: React.TouchEvent) => {
+    touchStartX.current = e.touches[0].clientX;
+  };
+
   const handleTouchMove = (e: React.TouchEvent) => {
     if (touchStartX.current === null) return;
     const diff = touchStartX.current - e.touches[0].clientX;
     if (Math.abs(diff) > 10) e.preventDefault();
   };
+
   const handleTouchEnd = (e: React.TouchEvent) => {
     if (touchStartX.current === null) return;
     const diff = touchStartX.current - e.changedTouches[0].clientX;
@@ -57,7 +71,7 @@ const Slider: React.FC = () => {
       const timer = setInterval(handleNext, autoPlayInterval);
       return () => clearInterval(timer);
     }
-  }, [isHovered]);
+  }, [isHovered, handleNext]); // ✅ added handleNext as dependency
 
   return (
     <div className="w-full bg-white py-20 px-4 sm:px-6 lg:px-12">
@@ -115,9 +129,12 @@ const Slider: React.FC = () => {
                     transition: "transform 0.5s",
                   }}
                 >
-                  <img
+                  {/* ✅ Replaced img with next/image */}
+                  <Image
                     src={slide.image}
                     alt={`Slide ${idx + 1}`}
+                    width={700}
+                    height={400}
                     className="w-full h-[400px] object-cover rounded-2xl shadow-xl hover:scale-105 transition-transform duration-500"
                   />
                 </div>
@@ -130,7 +147,14 @@ const Slider: React.FC = () => {
             onClick={handlePrev}
             className="absolute top-1/2 left-4 transform -translate-y-1/2 bg-white rounded-full w-12 h-12 flex items-center justify-center shadow-md hover:bg-opacity-100 transition"
           >
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-6 h-6 text-[#A67950]">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth={2}
+              stroke="currentColor"
+              className="w-6 h-6 text-[#A67950]"
+            >
               <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
             </svg>
           </button>
@@ -138,7 +162,14 @@ const Slider: React.FC = () => {
             onClick={handleNext}
             className="absolute top-1/2 right-4 transform -translate-y-1/2 bg-white rounded-full w-12 h-12 flex items-center justify-center shadow-md hover:bg-opacity-100 transition"
           >
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-6 h-6 text-[#A67950]">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth={2}
+              stroke="currentColor"
+              className="w-6 h-6 text-[#A67950]"
+            >
               <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
             </svg>
           </button>
@@ -149,7 +180,9 @@ const Slider: React.FC = () => {
               <button
                 key={idx}
                 onClick={() => goToSlide(idx)}
-                className={`w-3 h-3 rounded-full transition-colors duration-300 ${currentIndex === idx ? "bg-[#A67950]" : "bg-gray-400"}`}
+                className={`w-3 h-3 rounded-full transition-colors duration-300 ${
+                  currentIndex === idx ? "bg-[#A67950]" : "bg-gray-400"
+                }`}
               />
             ))}
           </div>

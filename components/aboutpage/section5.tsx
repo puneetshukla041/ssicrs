@@ -1,7 +1,7 @@
-// components/homepage/Section2.tsx
 "use client";
 
 import Image from "next/image";
+import React from "react";
 
 interface Section2Props {
   children?: React.ReactNode;
@@ -9,7 +9,7 @@ interface Section2Props {
 
 interface LogoItem {
   src: string;
-  heading: string; // Heading for each logo
+  heading: string; // HTML allowed
   text: React.ReactNode;
   textColor?: string;
 }
@@ -17,7 +17,7 @@ interface LogoItem {
 export default function Section2({ children }: Section2Props) {
   const logos: LogoItem[] = [
     {
-      src: "Images/aboutpage/section5/bottomlogo1.png",
+      src: "/Images/aboutpage/section5/bottomlogo1.png",
       heading: "Expert-Led Faculty &<br>Mentorship",
       text: (
         <>
@@ -27,19 +27,17 @@ export default function Section2({ children }: Section2Props) {
       textColor: "#A67950",
     },
     {
-      src: "Images/aboutpage/section5/bottomlogo2.png",
-      
+      src: "/Images/aboutpage/section5/bottomlogo2.png",
       heading: "Live Surgery Observations &<br> Teleproctoring",
       text: (
         <>
           Experience real-world procedures  <br />remotely.
-          
         </>
       ),
       textColor: "#A67950",
     },
     {
-      src: "Images/aboutpage/section5/bottomlogo3.png",
+      src: "/Images/aboutpage/section5/bottomlogo3.png",
       heading: "Engineering-Integrated <br>Learning",
       text: (
         <>
@@ -49,7 +47,7 @@ export default function Section2({ children }: Section2Props) {
       textColor: "#A67950",
     },
     {
-      src: "Images/aboutpage/section5/bottomlogo4.png",
+      src: "/Images/aboutpage/section5/bottomlogo4.png",
       heading: "Comprehensive Post-Training <br> Support",
       text: (
         <>
@@ -120,16 +118,7 @@ export default function Section2({ children }: Section2Props) {
 
       {/* Logos Section */}
       <div
-        className="absolute"
-        style={{
-          bottom: "13rem",
-          width: "100%",
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          paddingLeft: "1.5rem",
-          paddingRight: "1.5rem",
-        }}
+        className="absolute bottom-52 w-full flex flex-col items-center px-6"
       >
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 justify-center w-full">
           {logos.map((logo, index) => (
@@ -137,16 +126,16 @@ export default function Section2({ children }: Section2Props) {
               key={index}
               className="relative flex flex-col items-center text-center group cursor-pointer p-4"
             >
-              {/* Logo Image */}
-              <img
+              {/* Logo Image using next/image */}
+              <Image
                 src={logo.src}
                 alt={`Logo ${index + 1}`}
                 width={48}
                 height={50}
-                className="w-12 h-auto mt-4 mb-2 relative z-10"
+                className="mt-4 mb-2 relative z-10"
               />
 
-              {/* Heading (different per logo) */}
+              {/* Heading (supports HTML) */}
               <div
                 dangerouslySetInnerHTML={{ __html: logo.heading }}
                 style={headingStyle}

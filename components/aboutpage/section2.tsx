@@ -40,7 +40,7 @@ export default function Section2() {
           whiteSpace: "pre-line",
         }}
       >
-        Dr. Sudhir Srivastava stands at the forefront of robotic surgical innovation<br /> 
+        Dr. Sudhir Srivastava stands at the forefront of robotic surgical innovation<br /> 
         as a globally recognized pioneer in robotic-assisted surgery. With an<br /> 
         unwavering commitment to democratizing this transformative technology,<br /> 
         he has dedicated his career to making robotic surgery more affordable,<br /> 
@@ -50,12 +50,12 @@ export default function Section2() {
         state-of-the-art, cost-effective robotic surgical solutions. Building on this<br /> 
         success, the SS International Centre for Robotics Surgery (SSICRS) has<br /> 
         been established to create a comprehensive educational framework. This<br /> 
-        initiative empowers the next generation of healthcare professionals—<br /> 
+        initiative empowers the next generation of healthcare professionals—<br /> 
         including surgeons, anesthesiologists, surgical staff, and ICU specialists—<br /> 
-        to master robotic-assisted surgery using the advanced SSI Mantra Surgical<br /> 
+        to master robotic-assisted surgery using the advanced SSI Mantra Surgical<br /> 
         Robotic System.
         <br /><br />
-        SSICRS is devoted to cultivating future leaders in robotic surgery, ensuring<br /> 
+        SSICRS is devoted to cultivating future leaders in robotic surgery, ensuring<br /> 
         that the benefits of robotic-assisted healthcare are accessible to all, rather<br /> 
         than being a privilege for only a select few.
       </div>
