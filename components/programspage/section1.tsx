@@ -9,7 +9,7 @@ export default function Section1() {
     <section className="w-full h-screen relative">
       {/* Background Image */}
       <Image
-        src="/Images/programs/section1/section1.webp"
+        src="/Images/programs/section1/image1.webp"
         alt="SSI CRS"
         fill
         className="object-cover"
