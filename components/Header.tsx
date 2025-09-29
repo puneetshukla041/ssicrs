@@ -6,6 +6,7 @@ import Image from "next/image";
 import { useState, useEffect } from "react";
 import { useRouter, usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 
 interface HeaderProps {
   className?: string;
@@ -38,6 +39,7 @@ export default function Header({ className = "" }: HeaderProps) {
   const headerBgColor = isRegisterPage ? "bg-white" : scrolled ? "bg-white" : "bg-transparent";
   const headerShadow = isRegisterPage ? "shadow-md" : scrolled ? "shadow-md" : "shadow-none";
   const headerTextColor = isRegisterPage ? "text-gray-600" : scrolled ? "text-gray-800" : "text-white";
+  const mobileMenuIconColor = isRegisterPage || scrolled ? "text-gray-800" : "text-white";
 
   const logoSrc =
     isRegisterPage || scrolled
@@ -52,7 +54,7 @@ export default function Header({ className = "" }: HeaderProps) {
 
   return (
     <header
-      className={`w-full py-4 flex items-center justify-between fixed top-0 left-0 z-50 transition-all duration-500 ${headerBgColor} ${headerShadow} ${className} px-4 md:px-12 lg:px-24`}
+      className={`w-full py-4 flex items-center justify-between fixed top-0 left-0 z-50 transition-all duration-500 ${headerBgColor} ${headerShadow} ${className} px-4 md:px-8 lg:px-12 xl:px-24`}
     >
       {/* Logo */}
       <div className="flex-shrink-0 flex items-center h-12">
@@ -68,7 +70,7 @@ export default function Header({ className = "" }: HeaderProps) {
 
       {/* Desktop Nav */}
       <nav
-        className="hidden md:flex items-center gap-10 text-base font-normal"
+        className="hidden md:flex items-center gap-6 lg:gap-10 text-base font-normal"
         style={{ fontFamily: "Lato, sans-serif" }}
       >
         {navItems.map((item) => {
@@ -86,10 +88,10 @@ export default function Header({ className = "" }: HeaderProps) {
           );
         })}
 
-        {/* Register Now (desktop) */}
-        <div className="relative flex items-center">
+        {/* Register Now Button */}
+        <div className="relative flex items-center ml-4">
           <div
-            className="absolute top-[-20] left-0 w-full"
+            className="absolute top-[-20px] left-0 w-full"
             style={{
               height: "170%",
               backgroundColor: "#A67950",
@@ -101,8 +103,7 @@ export default function Header({ className = "" }: HeaderProps) {
 
           <button
             onClick={goToRegister}
-            className="relative z-10 px-6 py-2 rounded-full cursor-pointer text-white font-medium transition-colors duration-500"
-            style={{ backgroundColor: "transparent" }}
+            className="relative z-10 px-6 py-2 rounded-full cursor-pointer text-white font-medium transition-colors duration-500 hover:bg-[#8C623C]"
           >
             Register Now
           </button>
@@ -111,43 +112,68 @@ export default function Header({ className = "" }: HeaderProps) {
 
       {/* Mobile Menu Button */}
       <button
-        className="md:hidden z-50 text-gray-800"
+        className={`md:hidden z-50 ${mobileMenuIconColor}`}
         onClick={() => setMobileOpen(!mobileOpen)}
+        aria-label={mobileOpen ? "Close menu" : "Open menu"}
       >
         {mobileOpen ? <X size={28} /> : <Menu size={28} />}
       </button>
 
-      {/* Mobile Nav Drawer */}
-      {mobileOpen && (
-        <div className="fixed inset-0 bg-black/50 z-40" onClick={() => setMobileOpen(false)}>
-          <div
-            className="absolute top-0 right-0 w-3/4 max-w-sm h-full bg-white shadow-lg p-6 flex flex-col gap-6"
-            onClick={(e) => e.stopPropagation()}
-          >
-            {navItems.map((item) => {
-              const isActive = pathname === item.path;
-              return (
-                <button
-                  key={item.label}
-                  onClick={() => handleNavClick(item.path)}
-                  className={`text-left text-lg ${
-                    isActive ? "text-[#C59D73] font-medium" : "text-gray-800"
-                  }`}
-                >
-                  {item.label}
-                </button>
-              );
-            })}
+      {/* Mobile Drawer with Smooth Animation */}
+      <AnimatePresence>
+        {mobileOpen && (
+          <>
+            {/* Overlay */}
+            <motion.div
+              className="fixed inset-0 bg-black/50 z-40"
+              onClick={() => setMobileOpen(false)}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+            />
 
-            <button
-              onClick={goToRegister}
-              className="mt-4 px-6 py-3 rounded-xl bg-[#A67950] text-white font-medium"
+            {/* Drawer */}
+            <motion.div
+              className="fixed top-0 right-0 w-full max-w-xs h-full bg-white shadow-xl p-6 flex flex-col gap-6 z-50"
+              onClick={(e) => e.stopPropagation()}
+              role="dialog"
+              aria-modal="true"
+              initial={{ x: "100%" }}
+              animate={{ x: 0 }}
+              exit={{ x: "100%" }}
+              transition={{ type: "spring", stiffness: 300, damping: 30 }}
             >
-              Register Now
-            </button>
-          </div>
-        </div>
-      )}
+              <div className="flex justify-end">
+                <button onClick={() => setMobileOpen(false)} className="text-gray-800 p-1" aria-label="Close menu">
+                  <X size={28} />
+                </button>
+              </div>
+
+              {navItems.map((item) => {
+                const isActive = pathname === item.path;
+                return (
+                  <button
+                    key={item.label}
+                    onClick={() => handleNavClick(item.path)}
+                    className={`text-left text-xl py-2 ${
+                      isActive ? "text-[#C59D73] font-medium" : "text-gray-800"
+                    } transition-colors duration-200 hover:text-[#A67950]`}
+                  >
+                    {item.label}
+                  </button>
+                );
+              })}
+
+              <button
+                onClick={goToRegister}
+                className="mt-8 px-6 py-3 rounded-xl bg-[#A67950] text-white font-semibold transition-colors duration-300 hover:bg-[#8C623C]"
+              >
+                Register Now
+              </button>
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
     </header>
   );
 }
