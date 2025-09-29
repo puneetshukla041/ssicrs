@@ -47,8 +47,7 @@ export default function Header({ className = "" }: HeaderProps) {
   const navItems = [
     { label: "Home", path: "/Home" },
     { label: "About Us", path: "/AboutUs" },
-    { label: "Programs", path: "/programs" },
-    { label: "Resources", path: "/resources" },
+    { label: "Programs", path: "/Programs" },
   ];
 
   return (
