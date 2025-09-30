@@ -4,18 +4,17 @@ import Image from "next/image";
 
 export default function Section3() {
   return (
-    <section className="relative w-full min-h-screen">
+    <section className="relative w-full h-screen md:min-h-screen">
       {/* Fullscreen Image */}
       <Image
-        src="/Images/homepage/section3/section3image.png" // ✅ add leading slash
+        src="/Images/homepage/section3/section3image.png"
         alt="Section 3 Background"
         fill
         priority
-        className="object-cover object-center"
+        className="object-cover object-[35%] md:object-center"
       />
 
-      {/* PC and Laptop Layout (STAYS UNCHANGED - visible only on md and up) */}
-      {/* This layout uses fixed pixel positions as requested not to change */}
+      {/* PC and Laptop Layout (UNCHANGED) */}
       <div className="hidden md:block relative w-full h-full">
         {/* First Heading */}
         <div
@@ -45,7 +44,7 @@ export default function Section3() {
         <div
           className="absolute"
           style={{
-            top: "556px",
+            top: "500px",
             right: "244px",
             left: "1059px",
             bottom: "313px",
@@ -54,7 +53,7 @@ export default function Section3() {
           <p
             style={{
               fontFamily: "Lato, sans-serif",
-              fontWeight: 500, // Medium
+              fontWeight: 500,
               fontSize: "18px",
               lineHeight: "1.6",
               color: "#F2F0E4",
@@ -68,15 +67,9 @@ export default function Section3() {
         </div>
       </div>
 
-      {/* Mobile and Tablet Layout (visible on screens smaller than md) */}
-      <div className="md:hidden flex flex-col items-center justify-center text-center w-full h-full relative z-10 p-6 sm:p-12 sm:pt-20">
-        {/*
-          Enhancements for tablet (sm:) include:
-          - Increased padding (p-6 to sm:p-12)
-          - Increased font size for better readability on a larger screen.
-          - Added max-width for better line lengths on tablets.
-        */}
-        <div className="max-w-xl">
+      {/* Mobile and Tablet Layout */}
+      <div className="md:hidden absolute bottom-0 left-0 right-0 z-10 p-6 sm:p-12 bg-gradient-to-t from-black/70 via-black/30 to-transparent h-full flex flex-col justify-end">
+        <div className="max-w-xl mx-auto text-center">
           <h2
             style={{
               fontFamily: "DM Serif Text, serif",
@@ -84,7 +77,7 @@ export default function Section3() {
               lineHeight: "1.4",
               color: "#F2F0E4",
             }}
-            className="mb-8 text-2xl sm:text-3xl" // Responsive font size: 2xl on mobile, 3xl on tablet
+            className="mb-4 text-2xl sm:text-3xl"
           >
             Empowering the next generation of surgeons to transform healthcare with innovation and compassion
           </h2>
@@ -96,7 +89,7 @@ export default function Section3() {
               lineHeight: "1.6",
               color: "#F2F0E4",
             }}
-            className="text-base sm:text-lg" // Responsive font size: base on mobile, lg on tablet
+            className="text-base sm:text-lg"
           >
             Dr. Sudhir Srivastava leads a global mission to democratize robotic surgery. His vision is shaping the future of healthcare—making advanced surgical techniques accessible worldwide and equipping surgeons to deliver precision and excellence in every procedure.
           </p>

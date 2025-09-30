@@ -61,35 +61,25 @@ export default function Section2({ children }: Section2Props) {
   const headingStyle: React.CSSProperties = {
     color: "#5B102B",
     fontFamily: "DM Serif Text",
-    fontSize: "20px",
+    fontSize: "clamp(16px, 2vw, 20px)", // responsive font
     fontWeight: 400,
-    lineHeight: "1.4",
+    lineHeight: 1.4,
     textAlign: "center",
     marginBottom: "8px",
   };
 
   return (
-    <section
-      className="w-full min-h-[80vh] relative"
-      style={{ backgroundColor: "#FBFAF2" }}
-    >
-      {/* Optional children content */}
-      <div className="w-full h-full">{children}</div>
+    <section className="w-full min-h-[80vh] relative bg-[#FBFAF2] px-4 md:px-12 lg:px-32">
+      {/* Optional children */}
+      {children && <div className="w-full h-full">{children}</div>}
 
       {/* Main Heading */}
       <div
-        className="absolute"
+        className="font-serif font-normal text-[#A67950] leading-[1.2] absolute left-1/2 -translate-x-1/2 text-center"
         style={{
-          left: "200px",
-          width: "700px",
-          fontFamily: "'DM Serif Display', serif",
-          fontWeight: 400,
-          fontStyle: "normal",
-          top: "120px",
-          fontSize: "38px",
-          lineHeight: "1.2",
-          color: "#A67950",
-          whiteSpace: "pre-line",
+          top: "clamp(60px, 10vw, 120px)",
+          fontSize: "clamp(28px, 4vw, 38px)",
+          width: "90%",
         }}
       >
         Our Approach
@@ -97,18 +87,12 @@ export default function Section2({ children }: Section2Props) {
 
       {/* Subtext */}
       <div
-        className="absolute"
+        className="absolute left-1/2 -translate-x-1/2 text-center text-[#401323] font-sans"
         style={{
-          left: "200px",
-          width: "700px",
-          fontFamily: "Lato, sans-serif",
-          fontWeight: 400,
-          fontStyle: "normal",
-          top: "200px",
-          fontSize: "16px",
-          lineHeight: "1.6",
-          color: "#401323",
-          whiteSpace: "pre-line",
+          top: "clamp(140px, 20vw, 200px)",
+          fontSize: "clamp(14px, 1.5vw, 16px)",
+          lineHeight: 1.6,
+          width: "90%",
         }}
       >
         SSICRS is equipped with world-class infrastructure, combining theoretical education with practical,
@@ -117,16 +101,13 @@ export default function Section2({ children }: Section2Props) {
       </div>
 
       {/* Logos Section */}
-      <div
-        className="absolute bottom-52 w-full flex flex-col items-center px-6"
-      >
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 justify-center w-full">
+      <div className="absolute bottom-12 w-full flex justify-center px-4 md:px-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 md:gap-12 w-full max-w-[1200px]">
           {logos.map((logo, index) => (
             <div
               key={index}
               className="relative flex flex-col items-center text-center group cursor-pointer p-4"
             >
-              {/* Logo Image using next/image */}
               <Image
                 src={logo.src}
                 alt={`Logo ${index + 1}`}
@@ -135,17 +116,12 @@ export default function Section2({ children }: Section2Props) {
                 className="mt-4 mb-2 relative z-10"
               />
 
-              {/* Heading (supports HTML) */}
               <div
                 dangerouslySetInnerHTML={{ __html: logo.heading }}
                 style={headingStyle}
               />
 
-              {/* Logo Text */}
-              <p
-                className="font-lato font-normal text-sm md:text-base leading-snug mt-2"
-                style={{ color: logo.textColor }}
-              >
+              <p className="font-lato font-normal text-sm md:text-base leading-snug mt-2" style={{ color: logo.textColor }}>
                 {logo.text}
               </p>
 

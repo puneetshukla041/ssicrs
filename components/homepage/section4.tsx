@@ -2,12 +2,119 @@
 
 import Image from "next/image";
 
+
+// Safe offset function
+const DESKTOP_LEFT_MARGIN_OFFSET = 50;
+
+const applyOffset = (originalLeft: string | number | undefined | null): string => {
+  if (!originalLeft) return "0px"; // fallback for undefined/null
+  if (typeof originalLeft === "number") return `${originalLeft + DESKTOP_LEFT_MARGIN_OFFSET}px`;
+  if (typeof originalLeft === "string") {
+    if (originalLeft.endsWith("px")) {
+      const value = parseFloat(originalLeft);
+      if (!isNaN(value)) return `${value + DESKTOP_LEFT_MARGIN_OFFSET}px`;
+      return originalLeft; // fallback if parse fails
+    }
+    // For percentages or other units, return unchanged
+    return originalLeft;
+  }
+  return "0px"; // fallback for unexpected types
+};
+
 export default function FourthSection() {
+  // Common data structure for card content
+  const cardsData = [
+    {
+      title: "Surgeons",
+      subtitle:
+        "Build advanced skills in multi-specialty robotic surgery and gain global certification.",
+      imageSrc: "/Images/homepage/section4/image1.png",
+      // Desktop positions (adjusted by offset)
+      imgLeft: "276px",
+      cardLeft: "27%", // Kept percentage for complex centering logic, assuming it's correctly placed over the column
+    },
+    {
+      title: "Surgical Staff",
+      subtitle:
+        "Learn the essential workflows, patient preparation, and teamwork required in robotic ORs.",
+      imageSrc: "/Images/homepage/section4/image2.png",
+      imgLeft: "766px",
+      cardLeft: "52.5%",
+    },
+    {
+      title: "Anesthesiologists",
+      subtitle:
+        "Master the unique considerations of anesthesia in robotic surgery for safer patient outcomes.",
+      imageSrc: "/Images/homepage/section4/image3.png",
+      imgLeft: "1250px",
+      cardLeft: "78%",
+    },
+    {
+      title: "Medical Institutions & Hospitals",
+      subtitle:
+        "Partner with SSICRS to upskill teams, expand surgical capabilities, and bring world-class robotic care to communities.",
+      imageSrc: "/Images/homepage/section4/image4.png",
+      imgLeft: "521px",
+      cardLeft: "39.5%",
+    },
+    {
+      title: "Residents & Fellows",
+      subtitle:
+        "Access mentorship, training pathways, and exposure to the SSI Mantra platform early in your careers.",
+      imageSrc: "/Images/homepage/section4/image5.png",
+      imgLeft: "1011px",
+      cardLeft: "65.4%",
+    },
+  ];
+
   return (
-    <section className="w-full bg-white min-h-[110vh] flex flex-col items-start justify-start relative">
+    <section className="w-full bg-white min-h-[110vh] md:min-h-[1050px] flex flex-col items-start justify-start relative">
+      {/* Mobile/Tablet Layout (Visible on screens less than md) */}
+      <div className="md:hidden w-full p-6 space-y-8 pt-12">
+        <h2
+          className="text-3xl text-[#A67950]"
+          style={{ fontFamily: "DM Serif Text, serif", fontWeight: 400 }}
+        >
+          For Whom
+        </h2>
+        
+        {cardsData.map((card, index) => (
+          <div key={index} className="flex flex-col items-center">
+            {/* Image */}
+            <div className="w-full max-w-sm rounded-xl overflow-hidden shadow-lg">
+              <Image
+                src={card.imageSrc}
+                alt={card.title}
+                width={373}
+                height={378}
+                layout="responsive"
+                className="rounded-xl"
+              />
+            </div>
+            {/* Card Content Overlay */}
+            <div className="w-full max-w-sm -mt-20 p-4 rounded-lg bg-[#70493B] flex flex-col items-start shadow-xl">
+              <h3
+                className="text-xl text-white mb-1"
+                style={{ fontFamily: "DM Serif Text, serif", fontWeight: 400 }}
+              >
+                {card.title}
+              </h3>
+              <p
+                className="text-xs text-white leading-relaxed"
+                style={{ fontFamily: "Lato, sans-serif", fontWeight: 400 }}
+              >
+                {card.subtitle}
+              </p>
+            </div>
+          </div>
+        ))}
+      </div>
+
+
       {/* PC and Laptop Layout (STAYS UNCHANGED - visible only on md and up) */}
-      {/* This layout uses fixed pixel positions as requested not to change */}
-      <div className="hidden md:block w-full relative">
+      {/* This layout uses fixed pixel positions as requested, now with an added DESKTOP_LEFT_MARGIN_OFFSET */}
+      <div className="hidden md:block w-full relative h-[1050px]">
+        
         {/* Heading */}
         <h2
           className="absolute"
@@ -17,23 +124,25 @@ export default function FourthSection() {
             fontSize: "40px",
             color: "#A67950",
             top: "80px",
-            left: "276px",
+            left: applyOffset("276px"), // MARGIN APPLIED HERE
           }}
         >
           For Whom
         </h2>
+
+        {/* --- First Row (Images & Cards 1, 2, 3) --- */}
 
         {/* First Image */}
         <div
           className="absolute"
           style={{
             top: "200px",
-            left: "276px",
+            left: applyOffset("276px"), // MARGIN APPLIED HERE
           }}
         >
           <Image
-            src="/Images/homepage/section4/image1.png"
-            alt="Fourth Section Image"
+            src={cardsData[0].imageSrc}
+            alt={cardsData[0].title}
             width={373}
             height={378}
             className="rounded-xl"
@@ -46,40 +155,27 @@ export default function FourthSection() {
           style={{
             width: "300px",
             height: "111px",
-            top: `${235 + 251}px`, // 200 (image top) + 321 (gap from figma)
-            left: "24.3%",
+            top: `${235 + 251}px`,
+            left: cardsData[0].cardLeft, // Percentage left position remains unchanged
             transform: "translateX(-50%)",
             backgroundColor: "#70493B",
           }}
         >
-          <h3
-            style={{
-              fontFamily: "DM Serif Text, serif",
-              fontWeight: "200",
-              fontSize: "18px",
-              color: "#FFFFFF",
-              margin: "-60px 0 0 -195px",
-            }}
-          >
-            Surgeons
-          </h3>
-
-          <p
-            style={{
-              fontFamily: "Lato, sans-serif",
-              fontWeight: "400",
-              fontSize: "12px",
-              color: "#FFFFFF",
-              lineHeight: "16px",
-              margin: "0",
-              position: "absolute",
-              top: "calc(30px + 22px + 4px)",
-              left: "20px",
-            }}
-          >
-            Build advanced skills in multi-specialty robotic<br /> surgery
-            and gain global certification.
-          </p>
+          {/* Card Content */}
+          <div className="absolute top-5 left-5 right-5">
+            <h3
+              className="text-lg text-white mb-1"
+              style={{ fontFamily: "DM Serif Text, serif", fontWeight: 200 }}
+            >
+              {cardsData[0].title}
+            </h3>
+            <p
+              className="text-xs text-white leading-tight"
+              style={{ fontFamily: "Lato, sans-serif", fontWeight: 400 }}
+            >
+              {cardsData[0].subtitle.replace('<br />', '')}
+            </p>
+          </div>
         </div>
 
         {/* Second Image */}
@@ -87,14 +183,12 @@ export default function FourthSection() {
           className="absolute"
           style={{
             top: "200px",
-            left: "766px",
-            right: "760px",
-            bottom: "689px",
+            left: applyOffset("766px"), // MARGIN APPLIED HERE
           }}
         >
           <Image
-            src="/Images/homepage/section4/image2.png"
-            alt="Fourth Section Image"
+            src={cardsData[1].imageSrc}
+            alt={cardsData[1].title}
             width={373}
             height={378}
             className="rounded-xl"
@@ -107,39 +201,27 @@ export default function FourthSection() {
           style={{
             width: "300px",
             height: "111px",
-            top: `${235 + 251}px`, // 200 (image top) + 321 (gap from figma)
-            left: "50%",
+            top: `${235 + 251}px`,
+            left: cardsData[1].cardLeft, // Percentage left position remains unchanged
             transform: "translateX(-50%)",
             backgroundColor: "#70493B",
           }}
         >
-          <h3
-            style={{
-              fontFamily: "DM Serif Text, serif",
-              fontWeight: "200",
-              fontSize: "18px",
-              color: "#FFFFFF",
-              margin: "-60px 0 0 -160px", // spacing from top-left
-            }}
-          >
-            Surgical Staff
-          </h3>
-
-          {/* Subtitle */}
-          <p
-            style={{
-              fontFamily: "Lato, sans-serif",
-              fontWeight: "400",
-              fontSize: "12px",
-              color: "#FFFFFF",
-              lineHeight: "16px",
-              margin: "0 0 0 0", // no change to heading padding
-              position: "absolute",
-              top: "calc(30px + 22px + 4px)", // heading top + heading height + small gap
-              left: "20px", // same as heading
-            }}
-          > 	Learn the essential workflows, patient preparation,<br /> and teamwork required in robotic ORs.
-          </p>
+          {/* Card Content */}
+          <div className="absolute top-5 left-5 right-5">
+            <h3
+              className="text-lg text-white mb-1"
+              style={{ fontFamily: "DM Serif Text, serif", fontWeight: 200 }}
+            >
+              {cardsData[1].title}
+            </h3>
+            <p
+              className="text-xs text-white leading-tight"
+              style={{ fontFamily: "Lato, sans-serif", fontWeight: 400 }}
+            >
+              {cardsData[1].subtitle.replace('<br />', '')}
+            </p>
+          </div>
         </div>
 
         {/* Third Image */}
@@ -147,14 +229,12 @@ export default function FourthSection() {
           className="absolute"
           style={{
             top: "200px",
-            left: "1250px",
-            right: "270px",
-            bottom: "689px",
+            left: applyOffset("1250px"), // MARGIN APPLIED HERE
           }}
         >
           <Image
-            src="/Images/homepage/section4/image3.png"
-            alt="Fourth Section Image"
+            src={cardsData[2].imageSrc}
+            alt={cardsData[2].title}
             width={373}
             height={378}
             className="rounded-xl"
@@ -167,53 +247,42 @@ export default function FourthSection() {
           style={{
             width: "300px",
             height: "111px",
-            top: `${235 + 251}px`, // 200 (image top) + 321 (gap from figma)
-            left: "75.3%",
+            top: `${235 + 251}px`,
+            left: cardsData[2].cardLeft, // Percentage left position remains unchanged
             transform: "translateX(-50%)",
             backgroundColor: "#70493B",
           }}
         >
-          <h3
-            style={{
-              fontFamily: "DM Serif Text, serif",
-              fontWeight: "200",
-              fontSize: "18px",
-              color: "#FFFFFF",
-              margin: "-60px 0 0 -135px", // spacing from top-left
-            }}
-          >
-            Anesthesiologists
-          </h3>
-
-          {/* Subtitle */}
-          <p
-            style={{
-              fontFamily: "Lato, sans-serif",
-              fontWeight: "400",
-              fontSize: "12px",
-              color: "#FFFFFF",
-              lineHeight: "16px",
-              margin: "0 0 0 0", // no change to heading padding
-              position: "absolute",
-              top: "calc(30px + 22px + 4px)", // heading top + heading height + small gap
-              left: "20px", // same as heading
-            }}
-          > 	Master the unique considerations of anesthesia in<br /> robotic surgery for safer patient outcomes.</p>
+           {/* Card Content */}
+           <div className="absolute top-5 left-5 right-5">
+            <h3
+              className="text-lg text-white mb-1"
+              style={{ fontFamily: "DM Serif Text, serif", fontWeight: 200 }}
+            >
+              {cardsData[2].title}
+            </h3>
+            <p
+              className="text-xs text-white leading-tight"
+              style={{ fontFamily: "Lato, sans-serif", fontWeight: 400 }}
+            >
+              {cardsData[2].subtitle.replace('<br />', '')}
+            </p>
+          </div>
         </div>
+
+        {/* --- Second Row (Images & Cards 4, 5) --- */}
 
         {/* Fourth Image */}
         <div
           className="absolute"
           style={{
             top: "650px",
-            left: "521px",
-            right: "1005px",
-            bottom: "689px",
+            left: applyOffset("521px"), // MARGIN APPLIED HERE
           }}
         >
           <Image
-            src="/Images/homepage/section4/image4.png"
-            alt="Fourth Section Image"
+            src={cardsData[3].imageSrc}
+            alt={cardsData[3].title}
             width={373}
             height={378}
             className="rounded-xl"
@@ -226,38 +295,27 @@ export default function FourthSection() {
           style={{
             width: "300px",
             height: "111px",
-            top: `${295 + 651}px`, // 200 (image top) + 321 (gap from figma)
-            left: "37%",
+            top: `${295 + 651}px`,
+            left: cardsData[3].cardLeft, // Percentage left position remains unchanged
             transform: "translateX(-50%)",
             backgroundColor: "#70493B",
           }}
         >
-          <h3
-            style={{
-              fontFamily: "DM Serif Text, serif",
-              fontWeight: "200",
-              fontSize: "18px",
-              color: "#FFFFFF",
-              margin: "-60px 0 0 -25px", // spacing from top-left
-            }}
-          >
-            Medical Institutions & Hospitals
-          </h3>
-
-          {/* Subtitle */}
-          <p
-            style={{
-              fontFamily: "Lato, sans-serif",
-              fontWeight: "400",
-              fontSize: "12px",
-              color: "#FFFFFF",
-              lineHeight: "16px",
-              margin: "0 0 0 0", // no change to heading padding
-              position: "absolute",
-              top: "calc(28px + 22px + 4px)", // heading top + heading height + small gap
-              left: "20px", // same as heading
-            }}
-          > 	Partner with SSICRS to upskill teams, expand<br /> surgical capabilities, and bring world-class robotic care to communities.</p>
+          {/* Card Content */}
+          <div className="absolute top-5 left-5 right-5">
+            <h3
+              className="text-lg text-white mb-1"
+              style={{ fontFamily: "DM Serif Text, serif", fontWeight: 200 }}
+            >
+              {cardsData[3].title}
+            </h3>
+            <p
+              className="text-xs text-white leading-tight"
+              style={{ fontFamily: "Lato, sans-serif", fontWeight: 400 }}
+            >
+              {cardsData[3].subtitle.replace('<br />', '')}
+            </p>
+          </div>
         </div>
 
         {/* Fifth Image */}
@@ -265,14 +323,12 @@ export default function FourthSection() {
           className="absolute"
           style={{
             top: "650px",
-            left: "1011px",
-            right: "515px",
-            bottom: "689px",
+            left: applyOffset("1011px"), // MARGIN APPLIED HERE
           }}
         >
           <Image
-            src="/Images/homepage/section4/image5.png"
-            alt="Fourth Section Image"
+            src={cardsData[4].imageSrc}
+            alt={cardsData[4].title}
             width={373}
             height={378}
             className="rounded-xl"
@@ -285,38 +341,27 @@ export default function FourthSection() {
           style={{
             width: "300px",
             height: "111px",
-            top: `${295 + 651}px`, // 200 (image top) + 321 (gap from figma)
-            left: "63%",
+            top: `${295 + 651}px`,
+            left: cardsData[4].cardLeft, // Percentage left position remains unchanged
             transform: "translateX(-50%)",
             backgroundColor: "#70493B",
           }}
         >
-          <h3
-            style={{
-              fontFamily: "DM Serif Text, serif",
-              fontWeight: "200",
-              fontSize: "18px",
-              color: "#FFFFFF",
-              margin: "-60px 0 0 -110px", // spacing from top-left
-            }}
-          >
-            Residents & Fellows
-          </h3>
-
-          {/* Subtitle */}
-          <p
-            style={{
-              fontFamily: "Lato, sans-serif",
-              fontWeight: "400",
-              fontSize: "12px",
-              color: "#FFFFFF",
-              lineHeight: "16px",
-              margin: "0 0 0 0", // no change to heading padding
-              position: "absolute",
-              top: "calc(28px + 22px + 4px)", // heading top + heading height + small gap
-              left: "20px", // same as heading
-            }}
-          > 	Access mentorship, training pathways, and <br />exposure to the SSI Mantra platform early in your careers.</p>
+          {/* Card Content */}
+          <div className="absolute top-5 left-5 right-5">
+            <h3
+              className="text-lg text-white mb-1"
+              style={{ fontFamily: "DM Serif Text, serif", fontWeight: 200 }}
+            >
+              {cardsData[4].title}
+            </h3>
+            <p
+              className="text-xs text-white leading-tight"
+              style={{ fontFamily: "Lato, sans-serif", fontWeight: 400 }}
+            >
+              {cardsData[4].subtitle.replace('<br />', '')}
+            </p>
+          </div>
         </div>
       </div>
 
