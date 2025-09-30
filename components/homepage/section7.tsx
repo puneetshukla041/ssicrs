@@ -99,7 +99,7 @@ import { FiArrowRight } from "react-icons/fi";
            }}
          >
            <Image
-             src="/Images/homepage/section7/image2.png"
+             src="/Images/homepage/section7/image6.png"
              alt="Expert 2"
              width={373}
              height={378}
@@ -166,7 +166,7 @@ The University of Chicago Medicine and Biological <br/>Sciences Chicago, IL, USA
            }}
          >
            <Image
-             src="/Images/homepage/section7/image3.png"
+             src="/Images/homepage/section7/image4.png"
              alt="Expert 3"
              width={373}
              height={378}
