@@ -140,81 +140,54 @@ export default function Section3() {
       
       {/* --- Desktop View (visible from 'md' breakpoint and up) --- */}
       <div className="hidden md:flex items-start px-32 pt-16 md:pt-24 lg:pt-26 w-full">
-  {/* Left side: Images */}
-  <div className="relative ml-14"> {/* Added margin-left to move right */}
-        <div className="relative">
-          {/* First image */}
-          <Image
-            src="/Images/aboutpage/section3/image1.png"
-            alt="Image 1"
-            width={650}
-            height={550}
-            style={{
-              left:"400px",
-              top:"0px",
-            }}
-          />
+{/* Desktop View (md and up) */}
+<div className="hidden md:flex items-start px-32 pt-16 md:pt-24 lg:pt-26 w-full">
+  {/* Left side: Image + overlay */}
+  <div className="relative ml-4 w-[650px]">
+    {/* First image */}
+    <Image
+      src="/Images/aboutpage/section3/image1.png"
+      alt="Our Vision"
+      width={650}
+      height={550}
+      className="w-full h-auto rounded-lg"
+    />
+
+    {/* Heading and paragraph overlay */}
+    <div className="absolute top-36 left-8 text-white">
+      <h2 className="font-serif text-[40px] font-normal leading-[150%]">
+        Our Vision
+      </h2>
+      <p className="mt-4 text-[16px] font-sans font-normal leading-6 whitespace-pre-line">
+        To become the global leader in robotic surgery
+        <br />
+        education by providing comprehensive, cutting-edge
+        <br />
+        training that equips healthcare professionals with the
+        <br />
+        skills needed to excel in robotic-assisted surgery using
+        <br />
+        the SSI Mantra.
+      </p>
+    </div>
+
+    {/* Optional second overlay image */}
+    <Image
+      src="/Images/aboutpage/section3/image2.png"
+      alt="Image 2"
+      width={85}
+      height={60}
+      className="absolute top-0 left-[566px]"
+    />
+  </div>
 </div>
-          {/* Heading on top of image1 */}
-          <h2
-            className="absolute"
-            style={{
-              top: "140px",
-              left: "140px",
-              color: "#FFFFFF",
-              fontFamily: '"DM Serif Text", serif',
-              fontSize: "40px",
-              fontStyle: "normal",
-              fontWeight: 400,
-              lineHeight: "150%",
-            }}
-          >
-            Our Vision
-          </h2>
 
-          {/* Paragraph below the heading */}
-          <p
-            className="absolute"
-            style={{
-              top: "220px",
-              left: "140px",
-              color: "#FFFFFF",
-              fontFamily: "Lato, sans-serif",
-              fontSize: "16px",
-              fontStyle: "normal",
-              fontWeight: 400,
-              lineHeight: "24px",
-              whiteSpace: "pre-line",
-            }}
-          >
-            To become the global leader in robotic surgery
-            <br />
-            education by providing comprehensive, cutting-edge
-            <br />
-            training that equips healthcare professionals with the <br />
-            skills needed to excel in robotic-assisted surgery using <br />
-            the SSI Mantra.
-          </p>
-
-          {/* Second image overlay */}
-          <Image
-            src="/Images/aboutpage/section3/image2.png"
-            alt="Image 2"
-            width={85}
-            height={60}
-            className="absolute"
-            style={{
-              left: "586px",
-              top: "0px",
-            }}
-          />
-        </div>
 
         {/* Right side: Text with hover boxes */}
         <div
           style={{
-            marginTop: "10px",
-            marginLeft: "180px",
+            marginTop: "100px",
+            marginLeft: "0px",
           }}
         >
           {/* Box 1 */}
