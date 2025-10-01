@@ -142,13 +142,12 @@ export default function Footer() {
           {/* Logo and text */}
           <div className="flex items-center gap-2">
             <Image
-              src="/logos/ssicrs.png"
+              src="/Logos/Header/ssicrshead2.png"
               alt="SSICRS Logo"
-              width={57}
-              height={57}
+              width={87}
+              height={87}
               className="object-contain"
             />
-            <span className="text-white font-bold text-2xl font-serif">SSICRS</span>
           </div>
 
           {/* Paragraph */}
