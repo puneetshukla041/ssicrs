@@ -26,7 +26,7 @@ export default function Header({ className = "" }: HeaderProps) {
   }, []);
 
   const goToRegister = () => {
-    router.push("/register");
+    router.push("/Register");
     setMobileOpen(false);
   };
 
