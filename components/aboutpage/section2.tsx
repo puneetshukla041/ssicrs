@@ -47,13 +47,13 @@ export default function Section2() {
     >
       {/* DESKTOP VIEW (lg: prefix): Retains original absolute positioning
       */}
-      <div className="hidden lg:block relative w-full min-h-[570px] lg:min-h-[620px]">
+      <div className="hidden lg:block relative w-full min-h-[570px] lg:min-h-[660px]">
         {/* Heading on the left (Desktop) */}
         <h2
           className="absolute"
           style={{
             left: "270px",
-            top: "250px",
+            top: "330px",
             fontFamily: "DM Serif Display, serif",
             fontSize: "34px",
             fontWeight: 500,
@@ -69,7 +69,7 @@ export default function Section2() {
           style={{
             left: "680px",
             width: "700px",
-            top: "120px",
+            top: "220px",
             fontFamily: "Lato, sans-serif",
             fontWeight: 400,
             fontSize: "16px",
@@ -108,7 +108,7 @@ export default function Section2() {
         {/* Image on the right (Desktop) */}
         <div
           className="absolute w-[404px] h-[404px]"
-          style={{ left: "1260px", top: "50px" }}
+          style={{ left: "1260px", top: "250px" }}
         >
           <Image
             src="/Images/aboutpage/section2/sudhir.png"

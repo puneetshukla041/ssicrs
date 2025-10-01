@@ -6,7 +6,8 @@ import Image from "next/image";
 
 export default function Section3() {
   return (
-    <section className="w-full relative bg-[#FBFAF2] py-8 md:h-[75vh] md:py-0">
+    <section className="w-full relative bg-[#FBFAF2] pt-2 md:h-[75vh] md:pt-0">
+
       
       {/* --- Mobile View (visible below 'md' breakpoint) --- */}
       <div className="md:hidden flex flex-col items-center px-6">
@@ -187,7 +188,7 @@ export default function Section3() {
         <div
           style={{
             marginTop: "100px",
-            marginLeft: "0px",
+            marginLeft: "-50px",
           }}
         >
           {/* Box 1 */}
