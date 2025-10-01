@@ -4,12 +4,13 @@ import React from "react";
 import Image from "next/image";
 
 export default function Section2() {
-  const logos = [
-    "/logos/programs/section2/bottomlogo1.png",
-    "/logos/programs/section2/bottomlogo2.png",
-    "/logos/programs/section2/bottomlogo3.png",
-    "/logos/programs/section2/bottomlogo4.png",
-  ];
+const logos = [
+  "/Logos/Programs/section2/bottomlogo1.png",
+  "/Logos/Programs/section2/bottomlogo2.png",
+  "/Logos/Programs/section2/bottomlogo3.png",
+  "/Logos/Programs/section2/bottomlogo4.png",
+];
+
 
   const containers = [
     {
