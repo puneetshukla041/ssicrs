@@ -3,7 +3,7 @@
 import Image from "next/image";
 
 
-// Safe offset function
+// Safe offset function (Kept for the fixed-position desktop view)
 const DESKTOP_LEFT_MARGIN_OFFSET = 50;
 
 const applyOffset = (originalLeft: string | number | undefined | null): string => {
@@ -69,50 +69,77 @@ export default function FourthSection() {
 
   return (
     <section className="w-full bg-white min-h-[110vh] md:min-h-[1050px] flex flex-col items-start justify-start relative">
-      {/* Mobile/Tablet Layout (Visible on screens less than md) */}
-      <div className="md:hidden w-full p-6 space-y-8 pt-12">
+
+      {/* =====================================================================================
+        RESPONSIVE MOBILE/TABLET/SMALL LAPTOP LAYOUT (Visible on screens LESS THAN md)
+        This block is fully responsive using flexbox and grid for all screen sizes below 'md'.
+        =====================================================================================
+      */}
+      <div className="md:hidden w-full flex flex-col items-center justify-center text-center px-6 py-12 gap-12 sm:px-12 sm:py-16">
         <h2
-          className="text-3xl text-[#A67950]"
-          style={{ fontFamily: "DM Serif Text, serif", fontWeight: 400 }}
+          style={{
+            fontFamily: "DM Serif Text, serif",
+            fontWeight: 400,
+            color: "#A67950",
+          }}
+          className="text-3xl sm:text-4xl" // Responsive font size
         >
           For Whom
         </h2>
-        
-        {cardsData.map((card, index) => (
-          <div key={index} className="flex flex-col items-center">
-            {/* Image */}
-            <div className="w-full max-w-sm rounded-xl overflow-hidden shadow-lg">
-              <Image
-                src={card.imageSrc}
-                alt={card.title}
-                width={373}
-                height={378}
-                layout="responsive"
-                className="rounded-xl"
-              />
-            </div>
-            {/* Card Content Overlay */}
-            <div className="w-full max-w-sm -mt-20 p-4 rounded-lg bg-[#70493B] flex flex-col items-start shadow-xl">
-              <h3
-                className="text-xl text-white mb-1"
-                style={{ fontFamily: "DM Serif Text, serif", fontWeight: 400 }}
+
+        {/* Cards Container: Flexible Grid Layout */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 items-start justify-center gap-12 sm:gap-10 w-full max-w-6xl">
+          {cardsData.map((card, index) => (
+            <div key={index} className="flex flex-col items-center w-full">
+              {/* Image Container - Use aspect ratio or fixed height for uniform look if needed */}
+              <div className="w-full max-w-sm rounded-xl overflow-hidden">
+                <Image
+                  src={card.imageSrc}
+                  alt={card.title}
+                  width={373}
+                  height={378}
+                  layout="responsive" // Use responsive layout for flexible scaling
+                  className="rounded-xl"
+                />
+              </div>
+
+              {/* Card Content Overlay - Repositioned for standard responsive flow */}
+              <div
+                className="mt-[-25px] rounded-lg flex flex-col items-center text-center p-4 w-full max-w-[300px] z-10 shadow-xl"
+                style={{
+                  backgroundColor: "#70493B",
+                }}
               >
-                {card.title}
-              </h3>
-              <p
-                className="text-xs text-white leading-relaxed"
-                style={{ fontFamily: "Lato, sans-serif", fontWeight: 400 }}
-              >
-                {card.subtitle}
-              </p>
+                <h3
+                  className="mt-4 text-white text-lg"
+                  style={{
+                    fontFamily: "DM Serif Text, serif",
+                    fontWeight: "200",
+                  }}
+                >
+                  {card.title}
+                </h3>
+                <p
+                  className="mt-2 text-sm text-white leading-tight mb-2"
+                  style={{
+                    fontFamily: "Lato, sans-serif",
+                    fontWeight: "400",
+                  }}
+                >
+                  {card.subtitle}
+                </p>
+              </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
 
 
-      {/* PC and Laptop Layout (STAYS UNCHANGED - visible only on md and up) */}
-      {/* This layout uses fixed pixel positions as requested, now with an added DESKTOP_LEFT_MARGIN_OFFSET */}
+      {/* =====================================================================================
+        PC and Laptop Layout (STAYS UNCHANGED - visible only on md and up)
+        This uses fixed pixel positions as originally requested.
+        =====================================================================================
+      */}
       <div className="hidden md:block w-full relative h-[1050px]">
         
         {/* Heading */}
@@ -137,7 +164,7 @@ export default function FourthSection() {
           className="absolute"
           style={{
             top: "200px",
-            left: applyOffset("276px"), // MARGIN APPLIED HERE
+            left: applyOffset(cardsData[0].imgLeft), // MARGIN APPLIED HERE
           }}
         >
           <Image
@@ -183,7 +210,7 @@ export default function FourthSection() {
           className="absolute"
           style={{
             top: "200px",
-            left: applyOffset("766px"), // MARGIN APPLIED HERE
+            left: applyOffset(cardsData[1].imgLeft), // MARGIN APPLIED HERE
           }}
         >
           <Image
@@ -229,7 +256,7 @@ export default function FourthSection() {
           className="absolute"
           style={{
             top: "200px",
-            left: applyOffset("1250px"), // MARGIN APPLIED HERE
+            left: applyOffset(cardsData[2].imgLeft), // MARGIN APPLIED HERE
           }}
         >
           <Image
@@ -277,7 +304,7 @@ export default function FourthSection() {
           className="absolute"
           style={{
             top: "650px",
-            left: applyOffset("521px"), // MARGIN APPLIED HERE
+            left: applyOffset(cardsData[3].imgLeft), // MARGIN APPLIED HERE
           }}
         >
           <Image
@@ -323,7 +350,7 @@ export default function FourthSection() {
           className="absolute"
           style={{
             top: "650px",
-            left: applyOffset("1011px"), // MARGIN APPLIED HERE
+            left: applyOffset(cardsData[4].imgLeft), // MARGIN APPLIED HERE
           }}
         >
           <Image
@@ -361,223 +388,6 @@ export default function FourthSection() {
             >
               {cardsData[4].subtitle.replace('<br />', '')}
             </p>
-          </div>
-        </div>
-      </div>
-
-      {/* Mobile and Tablet Layout (Responsive for all devices smaller than md) */}
-      <div className="md:hidden w-full flex flex-col items-center justify-center text-center px-6 py-12 gap-12 sm:px-12 sm:py-16">
-        <h2
-          style={{
-            fontFamily: "DM Serif Text, serif",
-            fontWeight: 400,
-            color: "#A67950",
-          }}
-          className="text-3xl sm:text-4xl" // Responsive font size
-        >
-          For Whom
-        </h2>
-
-        {/* Cards Container - Adjusted for better tablet layout */}
-        <div className="flex flex-col sm:flex-row sm:flex-wrap items-center justify-center gap-8 sm:gap-12 w-full max-w-4xl">
-          {/* Card 1 */}
-          <div className="flex flex-col items-center w-full max-w-sm">
-            <Image
-              src="/Images/homepage/section4/image1.png"
-              alt="Surgeons"
-              width={373}
-              height={378}
-              className="rounded-xl w-full"
-            />
-            <div
-              className="mt-[-25px] rounded-lg flex flex-col items-center text-center p-4 w-[250px] sm:w-[300px] z-10" // z-10 ensures it overlaps the image below
-              style={{
-                backgroundColor: "#70493B",
-              }}
-            >
-              <h3
-                className="mt-4"
-                style={{
-                  fontFamily: "DM Serif Text, serif",
-                  fontWeight: "200",
-                  fontSize: "16px",
-                  color: "#FFFFFF",
-                }}
-              >
-                Surgeons
-              </h3>
-              <p
-                className="mt-2 text-sm" // increased text size slightly for readability
-                style={{
-                  fontFamily: "Lato, sans-serif",
-                  fontWeight: "400",
-                  lineHeight: "1.5",
-                  color: "#FFFFFF",
-                }}
-              >
-                Build advanced skills in multi-specialty robotic surgery and gain global certification.
-              </p>
-            </div>
-          </div>
-
-          {/* Card 2 */}
-          <div className="flex flex-col items-center w-full max-w-sm">
-            <Image
-              src="/Images/homepage/section4/image2.png"
-              alt="Surgical Staff"
-              width={373}
-              height={378}
-              className="rounded-xl w-full"
-            />
-            <div
-              className="mt-[-25px] rounded-lg flex flex-col items-center text-center p-4 w-[250px] sm:w-[300px] z-10"
-              style={{
-                backgroundColor: "#70493B",
-              }}
-            >
-              <h3
-                className="mt-4"
-                style={{
-                  fontFamily: "DM Serif Text, serif",
-                  fontWeight: "200",
-                  fontSize: "16px",
-                  color: "#FFFFFF",
-                }}
-              >
-                Surgical Staff
-              </h3>
-              <p
-                className="mt-2 text-sm"
-                style={{
-                  fontFamily: "Lato, sans-serif",
-                  fontWeight: "400",
-                  lineHeight: "1.5",
-                  color: "#FFFFFF",
-                }}
-              >
-                Learn the essential workflows, patient preparation, and teamwork required in robotic ORs.
-              </p>
-            </div>
-          </div>
-
-          {/* Card 3 */}
-          <div className="flex flex-col items-center w-full max-w-sm">
-            <Image
-              src="/Images/homepage/section4/image3.png"
-              alt="Anesthesiologists"
-              width={373}
-              height={378}
-              className="rounded-xl w-full"
-            />
-            <div
-              className="mt-[-25px] rounded-lg flex flex-col items-center text-center p-4 w-[250px] sm:w-[300px] z-10"
-              style={{
-                backgroundColor: "#70493B",
-              }}
-            >
-              <h3
-                className="mt-4"
-                style={{
-                  fontFamily: "DM Serif Text, serif",
-                  fontWeight: "200",
-                  fontSize: "16px",
-                  color: "#FFFFFF",
-                }}
-              >
-                Anesthesiologists
-              </h3>
-              <p
-                className="mt-2 text-sm"
-                style={{
-                  fontFamily: "Lato, sans-serif",
-                  fontWeight: "400",
-                  lineHeight: "1.5",
-                  color: "#FFFFFF",
-                }}
-              >
-                Master the unique considerations of anesthesia in robotic surgery for safer patient outcomes.
-              </p>
-            </div>
-          </div>
-
-          {/* Card 4 */}
-          <div className="flex flex-col items-center w-full max-w-sm">
-            <Image
-              src="/Images/homepage/section4/image4.png"
-              alt="Medical Institutions & Hospitals"
-              width={373}
-              height={378}
-              className="rounded-xl w-full"
-            />
-            <div
-              className="mt-[-25px] rounded-lg flex flex-col items-center text-center p-4 w-[250px] sm:w-[300px] z-10"
-              style={{
-                backgroundColor: "#70493B",
-              }}
-            >
-              <h3
-                className="mt-4"
-                style={{
-                  fontFamily: "DM Serif Text, serif",
-                  fontWeight: "200",
-                  fontSize: "16px",
-                  color: "#FFFFFF",
-                }}
-              >
-                Medical Institutions & Hospitals
-              </h3>
-              <p
-                className="mt-2 text-sm"
-                style={{
-                  fontFamily: "Lato, sans-serif",
-                  fontWeight: "400",
-                  lineHeight: "1.5",
-                  color: "#FFFFFF",
-                }}
-              >
-                Partner with SSICRS to upskill teams, expand surgical capabilities, and bring world-class robotic care to communities.
-              </p>
-            </div>
-          </div>
-
-          {/* Card 5 */}
-          <div className="flex flex-col items-center w-full max-w-sm">
-            <Image
-              src="/Images/homepage/section4/image5.png"
-              alt="Residents & Fellows"
-              width={373}
-              height={378}
-              className="rounded-xl w-full"
-            />
-            <div
-              className="mt-[-25px] rounded-lg flex flex-col items-center text-center p-4 w-[250px] sm:w-[300px] z-10"
-              style={{
-                backgroundColor: "#70493B",
-              }}
-            >
-              <h3
-                className="mt-4"
-                style={{
-                  fontFamily: "DM Serif Text, serif",
-                  fontWeight: "200",
-                  fontSize: "16px",
-                  color: "#FFFFFF",
-                }}
-              >
-                Residents & Fellows
-              </h3>
-              <p
-                className="mt-2 text-sm"
-                style={{
-                  fontFamily: "Lato, sans-serif",
-                  fontWeight: "400",
-                  lineHeight: "1.5",
-                  color: "#FFFFFF",
-                }}
-              >
-                Access mentorship, training pathways, and exposure to the SSI Mantra platform early in your careers.
-              </p>
-            </div>
           </div>
         </div>
       </div>

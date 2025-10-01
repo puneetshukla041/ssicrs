@@ -1,5 +1,4 @@
 // components/Header.tsx
-
 "use client";
 
 import Image from "next/image";
@@ -17,7 +16,6 @@ export default function Header({ className = "" }: HeaderProps) {
   const router = useRouter();
   const pathname = usePathname();
 
-  // Determine if the current page is the register page
   const isRegisterPage = pathname === "/register";
 
   // Scroll listener
@@ -27,7 +25,6 @@ export default function Header({ className = "" }: HeaderProps) {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Navigation functions
   const goToRegister = () => {
     router.push("/register");
     setMobileOpen(false);
@@ -38,17 +35,14 @@ export default function Header({ className = "" }: HeaderProps) {
     setMobileOpen(false);
   };
 
-  // Header styles
   const headerBgColor = isRegisterPage ? "bg-white" : scrolled ? "bg-white" : "bg-transparent";
   const headerShadow = isRegisterPage ? "shadow-md" : scrolled ? "shadow-md" : "shadow-none";
   const headerTextColor = isRegisterPage ? "text-gray-600" : scrolled ? "text-gray-800" : "text-white";
   const mobileMenuIconColor = isRegisterPage || scrolled ? "text-gray-800" : "text-white";
 
-  // Logo source
-  const logoSrc =
-    isRegisterPage || scrolled
-      ? "/Logos/Header/ssicrshead1.png"
-      : "/Logos/Header/ssicrshead2.png";
+  const logoSrc = isRegisterPage || scrolled
+    ? "/Logos/Header/ssicrshead1.png"
+    : "/Logos/Header/ssicrshead2.png";
 
   const navItems = [
     { label: "Home", path: "/Home" },
@@ -60,65 +54,57 @@ export default function Header({ className = "" }: HeaderProps) {
     <header
       className={`w-full py-4 flex items-center justify-between fixed top-0 left-0 z-50 transition-all duration-500 ${headerBgColor} ${headerShadow} ${className} px-4 md:px-8 lg:px-12 xl:px-24`}
     >
-{/* Logo */}
-<div className="flex-shrink-0 flex items-center h-12 ml-60"> {/* added ml-4 to move right */}
-  <Image
-    src={logoSrc}
-    alt="SSI crs Logo"
-    width={220}
-    height={0}
-    className="w-auto h-10 md:h-12 object-contain transition-all duration-500"
-    priority
-  />
-</div>
-{/* Desktop Nav */}
-<nav
-  className="hidden md:flex items-center text-base font-normal"
-  style={{ fontFamily: "Lato, sans-serif" }}
->
-  {navItems.map((item, index) => {
-    const isActive = pathname === item.path;
-    // Add right margin for all buttons except the last one (before Register)
-    const marginRight = index < navItems.length - 1 ? "mr-10 lg:mr-15" : "";
-    return (
-      <button
-        key={item.label}
-        onClick={() => handleNavClick(item.path)}
-        className={`inline-block relative transition-colors duration-300 ${marginRight} ${
-          isActive ? "text-[#C59D73] font-medium" : headerTextColor
-        }`}
-      >
-        {item.label}
-      </button>
-    );
-  })}
+      {/* Logo */}
+      <div className="flex-shrink-0 flex items-center h-12 ml-4 md:ml-60">
+        <Image
+          src={logoSrc}
+          alt="SSI crs Logo"
+          width={220}
+          height={0}
+          className="w-auto h-10 md:h-12 object-contain transition-all duration-500"
+          priority
+        />
+      </div>
 
-  {/* Register Now Button */}
-  <div className="relative flex items-center ml-2"> {/* optional small left margin */}
-    <div
-      className="absolute top-[-20px] left-0 w-full"
-      style={{
-        height: "170%",
-        backgroundColor: "#A67950",
-        borderBottomLeftRadius: "25px",
-        borderBottomRightRadius: "25px",
-        zIndex: 0,
-      }}
-    ></div>
+      {/* Desktop Nav */}
+      <nav className="hidden md:flex items-center text-base font-normal" style={{ fontFamily: "Lato, sans-serif" }}>
+        {navItems.map((item, index) => {
+          const isActive = pathname === item.path;
+          const marginRight = index < navItems.length - 1 ? "mr-6 lg:mr-10" : "";
+          return (
+            <button
+              key={item.label}
+              onClick={() => handleNavClick(item.path)}
+              className={`inline-block relative transition-colors duration-300 ${marginRight} ${
+                isActive ? "text-[#C59D73] font-medium" : headerTextColor
+              }`}
+            >
+              {item.label}
+            </button>
+          );
+        })}
 
-    <button
-      onClick={goToRegister}
-      className="relative z-10 px-6 py-2 rounded-full cursor-pointer text-white font-medium transition-colors duration-500 hover:bg-[#8C623C]"
-      style={{
-        backgroundColor: "transparent",
-        color: isRegisterPage ? "#FFFFFF" : "white",
-      }}
-    >
-      Register Now
-    </button>
-  </div>
-</nav>
+        {/* Register Now Button */}
+        <div className="relative flex items-center ml-2">
+          <div
+            className="absolute top-[-20px] left-0 w-full"
+            style={{
+              height: "170%",
+              backgroundColor: "#A67950",
+              borderBottomLeftRadius: "25px",
+              borderBottomRightRadius: "25px",
+              zIndex: 0,
+            }}
+          ></div>
 
+          <button
+            onClick={goToRegister}
+            className="relative z-10 px-6 py-2 rounded-full cursor-pointer text-white font-medium transition-colors duration-500 hover:bg-[#8C623C]"
+          >
+            Register Now
+          </button>
+        </div>
+      </nav>
 
       {/* Mobile Menu Button */}
       <button
@@ -167,9 +153,7 @@ export default function Header({ className = "" }: HeaderProps) {
 
             <button
               onClick={goToRegister}
-              className={`mt-8 px-6 py-3 rounded-xl text-white font-semibold transition-colors duration-300 hover:bg-[#8C623C] ${
-                isRegisterPage ? "bg-[#A67950]" : "bg-[#A67950]"
-              }`}
+              className="mt-8 px-6 py-3 rounded-xl text-white font-semibold bg-[#A67950] transition-colors duration-300 hover:bg-[#8C623C]"
             >
               Register Now
             </button>
