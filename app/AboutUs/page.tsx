@@ -16,6 +16,7 @@ export default function AboutUsPage() {
       <Section2 />
       <Section3 />
       <Section5 />
+      <Section6 />
       <Footer />
     </div>
   );
