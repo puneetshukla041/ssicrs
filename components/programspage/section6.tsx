@@ -8,9 +8,9 @@ export default function SeventhSection() {
     <section className="w-full bg-white relative flex justify-center items-center py-12 md:py-0">
       
       {/* ---------------- Mobile view - small card ---------------- */}
-      <div className="md:hidden w-11/12 max-w-sm mx-auto flex flex-col items-center justify-center p-6 bg-cover bg-center rounded-lg relative"
-           style={{ backgroundImage: "url('/images/seventhsection/image1.png')" }}>
-        <div className="absolute inset-0 bg-black opacity-40 rounded-lg"></div>
+      <div className="md:hidden w-11/12 max-w-sm mx-auto flex flex-col items-center justify-center p-10 bg-cover bg-center rounded-lg relative"
+           style={{ backgroundImage: "url('/Images/homepage/section8/image1.png')" }}>
+        <div className="absolute inset-0 bg-black opacity-0 rounded-lg"></div>
         <div className="relative z-10 text-center flex flex-col items-center">
           
           {/* Heading */}
