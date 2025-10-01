@@ -19,7 +19,8 @@ export default function Section1() {
       {/* Centered Heading */}
       <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-4">
         <h1
-          className="text-white text-[64px] font-serif mb-6"
+          className="text-white font-serif mb-6 
+          text-3xl sm:text-4xl md:text-5xl lg:text-[64px]" 
           style={{
             fontFamily: "DM Serif Display, serif",
             fontWeight: 400,
@@ -29,7 +30,6 @@ export default function Section1() {
         >
           Explore Our Robotic <br /> Surgery Training Programs
         </h1>
-
       </div>
     </section>
   );
