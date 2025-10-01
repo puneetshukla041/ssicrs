@@ -6,10 +6,16 @@ import Image from "next/image";
 
 export default function Section4() {
   return (
-    <section
-      className="w-full bg-white flex flex-col items-start"
-      style={{ height: "135vh", paddingLeft: "270px", paddingTop: "0px" }}
-    >
+<section
+  className="w-full bg-white flex flex-col items-start"
+  style={{
+    minHeight: "100vh",  // Changed from fixed 135vh to minHeight
+    paddingLeft: "270px",
+    paddingTop: "0px",
+    paddingBottom: "160px", // optional padding at bottom
+  }}
+>
+
       {/* Heading with hover + line */}
       <div className="group relative cursor-pointer inline-block" style={{ paddingTop: "0px" }}>
         <h2
