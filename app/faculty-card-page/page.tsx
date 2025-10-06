@@ -132,7 +132,7 @@ const FacultyCard: React.FC<FacultyCardProps> = ({ faculty }) => (
       alt={faculty.name}
       width={373}
       height={378}
-      className="rounded-xl w-full h-auto max-w-[280px] aspect-square object-cover mb-4 border-4 border-[#A67950]"
+      className="rounded-xl w-full h-auto max-w-[280px] aspect-square object-cover mb-4" // Removed border-4 border-[#A67950]
       priority={true}
     />
     <h3
