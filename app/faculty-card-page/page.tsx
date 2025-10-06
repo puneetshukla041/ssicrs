@@ -81,17 +81,41 @@ const otherFaculty: Faculty[] = [
     details: "Associate Director - Cardiac Surgery | Medanta, The Medicity - Gurugram, Haryana",
     image: "/Images/homepage/section7/image4.png",
   },
-  {
-    name: "Sudhir K Rawal, MD",
-    title: "MBBS, MS, M.Ch, D.N.B (Urology)",
-    details: "Medical Director and Chief of GenitoUro – Oncology Services | Rajiv Gandhi Cancer Institute and Research Center, New Delhi",
-    image: "/Images/homepage/section7/image2.png",
+    {
+    name: "Dr. Sathyaki Nambala",
+    title: "MBBS, MS, DNB, MCh",
+    details: "Chief Surgeon, Robotic & Minimally Invasive Cardiac Surgery, Apollo Hospitals Bannerghatta",
+    image: "/Images/homepage/section7/image15.png",
   },
-  {
-    name: "Prof. Dr. Somashekhar SP",
-    title: "MBBS, MS, MCh (Onco), FRCS Edinburgh",
-    details: "Chairman - Medical Advisory Board | Aster DM Healthcare - GCC & India",
-    image: "/Images/homepage/section7/image3.png",
+    {
+    name: "Dr. M M Yusuf ",
+    title: "FRCS (Edin), FRCS (Glasgow), FRCS (CardioTh)",
+    details: "Apollo Hospital,Chennai, TN",
+    image: "/Images/homepage/section7/image16.png",
+  },
+      {
+    name: "Dr. Yugal Kishore Mishra ",
+    title: "MBBS, MS, Ph.D (Cardiovascular Surgery)",
+    details: "Chairman - Manipal Institute of Medical Sciences",
+    image: "/Images/homepage/section7/image17.png",
+  },
+      {
+    name: "Dr. Lalitaditya Malik",
+    title: "MBBS | MS | MCh (C.T.V.S)",
+    details: "HOD, Chief Cardiac Surgeon, Manipal Hospital, Jaipur, India",
+    image: "/Images/homepage/section7/image18.png",
+  },
+        {
+    name: "Dr. Ritwick Raj Bhuyan",
+    title: "MBBS, MS, MCh",
+    details: "DIRECTOR CARDIO THORACIC VASCULAR SURGERY | Fortis Okhla",
+    image: "/Images/homepage/section7/image19.png",
+  },
+          {
+    name: "Dr. Harish Badami",
+    title: "MBBS | MS | MCh (C.T.V.S)",
+    details: "Consultant Cardiac Thoracic Surgeon, Parthima Hospital, Kachiguda, Hyderabad",
+    image: "/Images/homepage/section7/image20.png",
   },
 ];
 
