@@ -2,10 +2,17 @@
 
 import Image from "next/image";
 import { FiArrowRight } from "react-icons/fi";
+import { useRouter } from "next/navigation"; // 1. Import useRouter
 
 export default function SeventhSection() {
+  const router = useRouter(); // 2. Initialize router
+
   // Define a common background image source
   const mobileImageSrc = "/Images/homepage/section8/image1.png"; // Corrected image path to match desktop image name assumption
+
+  const handleRegisterClick = () => {
+    router.push("/Register"); // 3. Navigation logic
+  };
 
   return (
     <section className="w-full bg-white relative flex justify-center items-center py-12 md:py-0 min-h-[500px] md:min-h-0">
@@ -42,8 +49,9 @@ export default function SeventhSection() {
             Enroll today and gain access to expert mentorship, hands-on training, and internationally recognized certification.
           </p>
 
-          {/* Button */}
+          {/* Button (Mobile) */}
           <button
+            onClick={handleRegisterClick} // Add onClick handler
             className="flex items-center justify-center rounded-full transition-shadow duration-300 hover:shadow-[0_0_15px_rgba(255,234,210,0.5)] px-8 py-3 w-48 sm:w-52"
             style={{
               background: "linear-gradient(90deg, #FBFAF2, #FFEAD2)",
@@ -97,8 +105,9 @@ export default function SeventhSection() {
           Enroll today and gain access to expert mentorship, hands-on training, and internationally recognized certification.
         </p>
 
-        {/* Button */}
+        {/* Button (Desktop) */}
         <button
+          onClick={handleRegisterClick} // Add onClick handler
           className="absolute flex items-center justify-center rounded-full transition-shadow duration-300 hover:shadow-[0_0_15px_rgba(255,234,210,0.5)]"
           style={{
             top: "58%", // moved a bit lower from 63%

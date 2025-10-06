@@ -2,8 +2,15 @@
 
 import Image from "next/image";
 import { FiArrowRight } from "react-icons/fi";
+import { useRouter } from "next/navigation"; // 1. Import useRouter
 
 export default function SeventhSection() {
+  const router = useRouter(); // 2. Initialize router
+
+  const handleRegisterClick = () => {
+    router.push("/Register"); // 3. Navigation logic
+  };
+
   return (
     <section className="w-full bg-white relative flex justify-center items-center py-12 md:py-0">
       
@@ -22,16 +29,17 @@ export default function SeventhSection() {
           </h2>
 
           {/* Subtitle */}
-<p
-  className="text-base font-medium text-[#FBFAF2] mb-6"
-  style={{ fontFamily: "Lato, sans-serif", whiteSpace: "pre-line" }}
->
-  Take the next step toward transforming your surgical practice. Explore <br />
-  our programs and secure your seat in an upcoming training batch.
-</p>
+          <p
+            className="text-base font-medium text-[#FBFAF2] mb-6"
+            style={{ fontFamily: "Lato, sans-serif", whiteSpace: "pre-line" }}
+          >
+            Take the next step toward transforming your surgical practice. Explore <br />
+            our programs and secure your seat in an upcoming training batch.
+          </p>
 
-          {/* Button */}
+          {/* Button (Mobile) */}
           <button
+            onClick={handleRegisterClick} // Add onClick handler
             className="flex items-center justify-center rounded-full transition-shadow duration-300 hover:shadow-[0_0_15px_rgba(255,234,210,0.5)] px-6 py-2"
             style={{
               background: "linear-gradient(90deg, #FBFAF2, #FFEAD2)",
@@ -46,64 +54,68 @@ export default function SeventhSection() {
           </button>
         </div>
       </div>
-{/* ---------------- Desktop view ---------------- */}
-<div className="hidden md:block relative flex flex-col justify-center items-center min-h-screen">
-  <Image
-    src="/Images/homepage/section8/image1.png"
-    alt="Seventh Section Image"
-    width={1306}
-    height={724}
-    className="object-contain mt-32" // <-- increased margin-top to push image further down
-  />
+      
+      {/* ---------------- Desktop view ---------------- */}
+      <div className="hidden md:block relative flex flex-col justify-center items-center min-h-screen">
+        <Image
+          src="/Images/homepage/section8/image1.png"
+          alt="Seventh Section Image"
+          width={1306}
+          height={724}
+          className="object-contain mt-32" // <-- increased margin-top to push image further down
+        />
 
-  {/* Heading */}
-  <h2
-    className="absolute text-center text-4xl font-normal bg-clip-text text-transparent bg-gradient-to-r from-[#D9A05B] via-[#EFE8D6] to-[#F2F0E4] whitespace-nowrap"
-    style={{
-      fontFamily: "DM Serif Text, serif",
-      top: "40%", // moved a bit lower from 30%
-      left: "50%",
-      transform: "translate(-50%, -50%)",
-    }}
-  >
-    Ready to Begin Your Journey?
-  </h2>{/* Subtitle */}
-<p
-  className="absolute text-center text-[24px] font-medium"
-  style={{
-    fontFamily: "Lato, sans-serif",
-    color: "#FBFAF2",
-    top: "48%",
-    left: "50%",
-    transform: "translate(-50%, -50%)",
-    maxWidth: "90%",
-    whiteSpace: "nowrap", // prevents wrapping except at <br/>
-  }}
->
-  Take the next step toward transforming your surgical practice. Explore <br />
-  our programs and secure your seat in an upcoming training batch.
-</p>
+        {/* Heading */}
+        <h2
+          className="absolute text-center text-4xl font-normal bg-clip-text text-transparent bg-gradient-to-r from-[#D9A05B] via-[#EFE8D6] to-[#F2F0E4] whitespace-nowrap"
+          style={{
+            fontFamily: "DM Serif Text, serif",
+            top: "40%", // moved a bit lower from 30%
+            left: "50%",
+            transform: "translate(-50%, -50%)",
+          }}
+        >
+          Ready to Begin Your Journey?
+        </h2>
+        
+        {/* Subtitle */}
+        <p
+          className="absolute text-center text-[24px] font-medium"
+          style={{
+            fontFamily: "Lato, sans-serif",
+            color: "#FBFAF2",
+            top: "48%",
+            left: "50%",
+            transform: "translate(-50%, -50%)",
+            maxWidth: "90%",
+            whiteSpace: "nowrap", // prevents wrapping except at <br/>
+          }}
+        >
+          Take the next step toward transforming your surgical practice. Explore <br />
+          our programs and secure your seat in an upcoming training batch.
+        </p>
 
-  {/* Button */}
-  <button
-    className="absolute flex items-center justify-center rounded-full transition-shadow duration-300 hover:shadow-[0_0_15px_rgba(255,234,210,0.5)]"
-    style={{
-      top: "58%", // moved a bit lower from 63%
-      left: "50%",
-      transform: "translate(-50%, -50%)",
-      width: "167px",
-      height: "43px",
-      background: "linear-gradient(90deg, #FBFAF2, #FFEAD2)",
-      fontFamily: "Lato, sans-serif",
-      fontWeight: "400",
-      fontSize: "16px",
-      color: "#000",
-    }}
-  >
-    Register Now
-    <FiArrowRight className="ml-2" size={18} />
-  </button>
-</div>
+        {/* Button (Desktop) */}
+        <button
+          onClick={handleRegisterClick} // Add onClick handler
+          className="absolute flex items-center justify-center rounded-full transition-shadow duration-300 hover:shadow-[0_0_15px_rgba(255,234,210,0.5)]"
+          style={{
+            top: "58%", // moved a bit lower from 63%
+            left: "50%",
+            transform: "translate(-50%, -50%)",
+            width: "167px",
+            height: "43px",
+            background: "linear-gradient(90deg, #FBFAF2, #FFEAD2)",
+            fontFamily: "Lato, sans-serif",
+            fontWeight: "400",
+            fontSize: "16px",
+            color: "#000",
+          }}
+        >
+          Register Now
+          <FiArrowRight className="ml-2" size={18} />
+        </button>
+      </div>
 
     </section>
   );
