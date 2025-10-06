@@ -105,21 +105,22 @@ export default function Section7() {
           ))}
         </div>
 
-        {/* View All Button */}
-        <div className="flex justify-center mt-16">
-          <Link
-            href={facultyPagePath}
-            className="px-8 py-3 rounded-[30px] text-white flex items-center justify-center gap-2 transition-transform duration-200 hover:scale-[1.03]"
-            style={{
-              ...latoSansSerif,
-              fontWeight: 500,
-              fontSize: "16px",
-              backgroundColor: buttonBgColor,
-            }}
-          >
-            View All <FiArrowRight size={18} />
-          </Link>
-        </div>
+{/* View All Button aligned right with margin */}
+<div className="flex justify-end mt-16 w-full">
+  <Link
+    href={facultyPagePath}
+    className="px-8 py-3 rounded-[30px] text-white flex items-center justify-center gap-1 transition-transform duration-200 hover:scale-[1.03] mr-12"
+    style={{
+      ...latoSansSerif,
+      fontWeight: 500,
+      fontSize: "16px",
+      backgroundColor: buttonBgColor,
+    }}
+  >
+    View All <FiArrowRight size={18} />
+  </Link>
+</div>
+
       </div>
     </section>
   );
