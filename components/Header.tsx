@@ -55,7 +55,7 @@ export default function Header({ className = "" }: HeaderProps) {
     <header
       className={`w-full py-3 md:py-4 flex items-center justify-between fixed top-0 left-0 z-50 transition-all duration-500
         ${headerBgColor} ${headerShadow} ${className}
-        px-4 sm:px-6 md:px-10 lg:px-[200px] xl:px-[260px]
+        px-4 sm:px-6 md:px-10 lg:px-[200px] xl:px-[290px]
       `}
     >
       {/* Logo */}
@@ -90,10 +90,10 @@ export default function Header({ className = "" }: HeaderProps) {
           );
         })}
 
-        {/* Register Now Button */}
-        <div className="relative flex items-center ml-3 lg:ml-5">
+        {/* Register Now Button with brown background touching top of header */}
+        <div className="relative flex items-center">
           <div
-            className="absolute top-[-20px] left-0 w-full"
+            className="absolute top-[-20] left-0 w-full"
             style={{
               height: "170%",
               backgroundColor: "#A67950",
@@ -105,7 +105,8 @@ export default function Header({ className = "" }: HeaderProps) {
 
           <button
             onClick={goToRegister}
-            className="relative z-10 px-4 sm:px-5 md:px-6 py-2 rounded-full cursor-pointer text-white font-medium transition-colors duration-500 hover:bg-[#8C623C]"
+            className="relative z-10 px-6 py-2 rounded-full cursor-pointer text-white font-medium transition-colors duration-500"
+            style={{ backgroundColor: "transparent" }}
           >
             Register Now
           </button>
