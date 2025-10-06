@@ -1,9 +1,13 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link"; // Import Link for navigation
 import { FiArrowRight } from "react-icons/fi";
 
 export default function Section7() {
+  // Define the path for the faculty page
+  const facultyPagePath = "/faculty-card-page";
+
   return (
     <section className="w-full bg-white min-h-[90vh] flex flex-col items-start justify-start relative pb-20 md:pb-0">
       {/* ========================================================
@@ -68,7 +72,6 @@ export default function Section7() {
             left: "330px",
             color: "#D2A073",
             fontFamily: "Lato, sans-serif",
-            fontSize: "16px",
             fontStyle: "italic",
             fontWeight: 400,
             lineHeight: "150%", // equivalent to 24px
@@ -225,19 +228,17 @@ export default function Section7() {
           Associate Director - Cardiac Surgery | Medanta, <br />The Medicity - Gurugram, Haryana
         </p>
 
-        {/* View All Button - PC / Laptop */}
-        {/* Adjusted to be a standard-looking button and added the arrow icon */}
-        <div
-          className="absolute flex items-center justify-center cursor-pointer"
+        {/* View All Button - PC / Laptop - CONVERTED TO LINK */}
+        <Link
+          href={facultyPagePath}
+          className="absolute flex items-center justify-center cursor-pointer transition-transform duration-200 hover:scale-[1.02]"
           style={{
-            top: "800px", 
-            left: "1270px", 
-            // The following styles mimic the mobile button, but you can revert them to the original:
+            top: "800px",
+            left: "1270px",
             gap: "6px",
-            padding: "10px 28px", 
-            borderRadius: "30px", 
+            padding: "10px 28px",
+            borderRadius: "30px",
             background: "#A46831",
-            // The original button at 1520px left was removed/merged here
           }}
         >
           <span
@@ -247,13 +248,13 @@ export default function Section7() {
               fontWeight: 500,
               fontSize: "14px",
               display: "flex",
-              alignItems: "center", 
-              gap: "6px", 
+              alignItems: "center",
+              gap: "6px",
             }}
           >
             View All <FiArrowRight size={16} />
           </span>
-        </div>
+        </Link>
       </div>
 
       {/* ========================================================
@@ -264,7 +265,7 @@ export default function Section7() {
       <div className="md:hidden w-full flex flex-col items-center text-center px-6 py-12 sm:py-16 gap-12 sm:gap-16">
         {/* Section Heading */}
         <h2
-          className="text-4xl sm:text-[40px]" 
+          className="text-4xl sm:text-[40px]"
           style={{
             fontFamily: "DM Serif Text, serif",
             fontWeight: 530,
@@ -286,7 +287,7 @@ export default function Section7() {
               width={373}
               height={378}
               // Added aspect-ratio class to keep image scaling consistent on mobile
-              className="rounded-xl w-full h-auto max-w-[300px] aspect-square object-cover" 
+              className="rounded-xl w-full h-auto max-w-[300px] aspect-square object-cover"
             />
             <h3
               className="mt-4 text-2xl sm:text-2xl lg:text-3xl"
@@ -325,7 +326,7 @@ export default function Section7() {
           {/* Expert 2 (Sudhir K Rawal, MD) - Corrected image source for mobile to match PC layout's *name* flow if possible, using image2 here for a second unique profile. */}
           <div className="flex flex-col items-center w-full">
             <Image
-              src="/Images/homepage/section7/image2.png" 
+              src="/Images/homepage/section7/image2.png"
               alt="Expert 2"
               width={373}
               height={378}
@@ -368,7 +369,7 @@ export default function Section7() {
           {/* Expert 3 (Prof. Dr. Somashekhar SP) - Corrected image source for mobile to match PC layout's *name* flow if possible, using image3 here for a third unique profile. */}
           <div className="flex flex-col items-center w-full">
             <Image
-              src="/Images/homepage/section7/image3.png" 
+              src="/Images/homepage/section7/image3.png"
               alt="Expert 3"
               width={373}
               height={378}
@@ -409,9 +410,9 @@ export default function Section7() {
           </div>
 
           {/* Expert 4 (Dr. Husam Balkhy) - Adding the missing expert from the PC layout here for mobile view. Using image6 from PC layout. */}
-           <div className="flex flex-col items-center w-full">
+          <div className="flex flex-col items-center w-full">
             <Image
-              src="/Images/homepage/section7/image6.png" 
+              src="/Images/homepage/section7/image6.png"
               alt="Expert 4 (Dr. Husam Balkhy)"
               width={373}
               height={378}
@@ -450,18 +451,18 @@ export default function Section7() {
               The University of Chicago Medicine and Biological Sciences Chicago, IL, USA
             </p>
           </div>
-          
+
         </div>
-        
-        {/* View All Button - Mobile / Tablet */}
-        {/* Moved outside the grid for better centering and flow */}
+
+        {/* View All Button - Mobile / Tablet - CONVERTED TO LINK */}
         <div className="flex justify-center mt-12 sm:mt-16">
-          <button
+          <Link
+            href={facultyPagePath}
             className="px-8 py-3 rounded-[30px] bg-[#A46831] text-white flex items-center justify-center gap-2 transition-transform duration-200 hover:scale-[1.02]"
             style={{ fontFamily: "Lato, sans-serif", fontWeight: 500, fontSize: "16px" }}
           >
             View All <FiArrowRight size={18} />
-          </button>
+          </Link>
         </div>
       </div>
     </section>
