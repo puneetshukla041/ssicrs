@@ -11,11 +11,12 @@ const cardsData = [
     imageSrc: "/Images/homepage/section4/image1.png",
   },
   {
-    title: "Surgical Staff",
+    title: "Residents & Fellows",
     subtitle:
-      "Learn the essential workflows, patient preparation, and teamwork required in robotic ORs.",
-    imageSrc: "/Images/homepage/section4/image2.png",
+      "Access mentorship, training pathways, and exposure to the SSI Mantra platform early in your careers.",
+    imageSrc: "/Images/homepage/section4/image5.png",
   },
+
   {
     title: "Anesthesiologists",
     subtitle:
@@ -28,11 +29,11 @@ const cardsData = [
       "Partner with SSICRS to upskill teams, expand surgical capabilities, and bring world-class robotic care to communities.",
     imageSrc: "/Images/homepage/section4/image4.png",
   },
-  {
-    title: "Residents & Fellows",
+    {
+    title: "Surgical Staff",
     subtitle:
-      "Access mentorship, training pathways, and exposure to the SSI Mantra platform early in your careers.",
-    imageSrc: "/Images/homepage/section4/image5.png",
+      "Learn the essential workflows, patient preparation, and teamwork required in robotic ORs.",
+    imageSrc: "/Images/homepage/section4/image2.png",
   },
 ];
 
