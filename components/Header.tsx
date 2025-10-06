@@ -17,7 +17,7 @@ export default function Header({ className = "" }: HeaderProps) {
   const pathname = usePathname();
 
   const isRegisterPage = pathname === "/register";
-  const loginPath = "/Login"; // Define your login path here
+  const loginPath = "/Login";
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50);
@@ -37,6 +37,11 @@ export default function Header({ className = "" }: HeaderProps) {
 
   const handleNavClick = (path: string) => {
     router.push(path);
+    setMobileOpen(false);
+  };
+
+  const goHome = () => {
+    router.push("/Home");
     setMobileOpen(false);
   };
 
@@ -63,8 +68,12 @@ export default function Header({ className = "" }: HeaderProps) {
         px-4 sm:px-6 md:px-10 lg:px-[200px] xl:px-[290px]
       `}
     >
-      {/* Logo (stays in place) */}
-      <div className="flex-shrink-0 flex items-center h-10 sm:h-12">
+      {/* ✅ Clickable Logo (redirects to Home) */}
+      <button
+        onClick={goHome}
+        className="flex-shrink-0 flex items-center h-10 sm:h-12 focus:outline-none transition-transform duration-300 hover:scale-[1.02]"
+        aria-label="Go to Home"
+      >
         <Image
           src={logoSrc}
           alt="SSI CRS Logo"
@@ -73,7 +82,7 @@ export default function Header({ className = "" }: HeaderProps) {
           className="w-auto h-8 sm:h-10 md:h-12 object-contain transition-all duration-500"
           priority
         />
-      </div>
+      </button>
 
       {/* Desktop Nav */}
       <nav
@@ -111,16 +120,16 @@ export default function Header({ className = "" }: HeaderProps) {
 
         {/* Register Now Button */}
         <div className="relative flex items-center">
-            <div
-              className="absolute top-[-20] left-0 w-full"
-              style={{
-                height: "170%",
-                backgroundColor: "#A67950",
-                borderBottomLeftRadius: "10px",
-                borderBottomRightRadius: "10px",
-                zIndex: 0,
-              }}
-            ></div>
+          <div
+            className="absolute top-[-20] left-0 w-full"
+            style={{
+              height: "170%",
+              backgroundColor: "#A67950",
+              borderBottomLeftRadius: "10px",
+              borderBottomRightRadius: "10px",
+              zIndex: 0,
+            }}
+          ></div>
           <button
             onClick={goToRegister}
             className="relative z-10 px-6 py-2 rounded-full cursor-pointer text-white font-medium transition-colors duration-500"
