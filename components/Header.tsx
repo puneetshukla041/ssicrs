@@ -16,14 +16,16 @@ export default function Header({ className = "" }: HeaderProps) {
   const router = useRouter();
   const pathname = usePathname();
 
-  const isRegisterPage = pathname === "/register";
+  const isRegisterPage = pathname === "/Register"; // ✅ fixed case
   const loginPath = "/Login";
 
+  // ✅ Only track scroll if NOT on register page
   useEffect(() => {
+    if (isRegisterPage) return;
     const handleScroll = () => setScrolled(window.scrollY > 50);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [isRegisterPage]);
 
   const goToRegister = () => {
     router.push("/Register");
@@ -45,10 +47,27 @@ export default function Header({ className = "" }: HeaderProps) {
     setMobileOpen(false);
   };
 
-  const headerBgColor = isRegisterPage ? "bg-white" : scrolled ? "bg-white" : "bg-transparent";
-  const headerShadow = isRegisterPage ? "shadow-md" : scrolled ? "shadow-md" : "shadow-none";
-  const headerTextColor = isRegisterPage ? "text-gray-600" : scrolled ? "text-gray-800" : "text-white";
-  const mobileMenuIconColor = isRegisterPage || scrolled ? "text-gray-800" : "text-white";
+  // ✅ Always white on Register page, scroll behavior otherwise
+  const headerBgColor = isRegisterPage
+    ? "bg-white"
+    : scrolled
+    ? "bg-white"
+    : "bg-transparent";
+
+  const headerShadow = isRegisterPage
+    ? "shadow-md"
+    : scrolled
+    ? "shadow-md"
+    : "shadow-none";
+
+  const headerTextColor = isRegisterPage
+    ? "text-gray-800"
+    : scrolled
+    ? "text-gray-800"
+    : "text-white";
+
+  const mobileMenuIconColor =
+    isRegisterPage || scrolled ? "text-gray-800" : "text-white";
 
   const logoSrc =
     isRegisterPage || scrolled
@@ -84,7 +103,7 @@ export default function Header({ className = "" }: HeaderProps) {
         />
       </button>
 
-      {/* Desktop Nav */}
+      {/* Desktop Navigation */}
       <nav
         className="hidden md:flex items-center space-x-8 lg:space-x-10 ml-8"
         style={{ fontFamily: "Lato, sans-serif" }}
