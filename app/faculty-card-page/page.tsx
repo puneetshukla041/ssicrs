@@ -10,8 +10,8 @@ interface Faculty {
   image: string;
 }
 
-// Dummy data for all faculty members (you can expand this list)
-const facultyMembers: Faculty[] = [
+// 1. Separate the faculty members into two main categories: International/Cardiac and Others
+const internationalCardiacFaculty: Faculty[] = [
   {
     name: "Sudhir Srivastava, MD",
     title: "Founder, Chairman, CEO - SSICRS",
@@ -24,52 +24,57 @@ const facultyMembers: Faculty[] = [
     details: "The University of Chicago Medicine and Biological Sciences Chicago, IL, USA",
     image: "/Images/homepage/section7/image6.png",
   },
-    {
+  {
     name: "Dr. T Sloane Guy",
     title: "MBA, MS. FACC",
     details: "Georgia Heart Institute,Gainesville, GA",
     image: "/Images/homepage/section7/image7.png",
   },
-      {
+  {
     name: "Dr. Nirav Patel",
     title: "MBBS, MS, FRCS",
     details: "Lenox Hill Hospital, New York, NY, USA",
     image: "/Images/homepage/section7/image8.png",
   },
-        {
+  {
     name: "Dr. Gianluca Torregrossa ",
     title: "MBBS, MS",
     details: "Lankenau Heart Institute,Philidelphia, PA, USA",
     image: "/Images/homepage/section7/image9.png",
   },
-          {
+  {
     name: "Dr. Frank van Praet ",
     title: "MS, FETCS",
     details: "Co-Director of Cardiovascular Center AZorg, Aalst, Belgium",
     image: "/Images/homepage/section7/image10.png",
-    
   },
-            {
+  {
     name: "Dr. Wouter Oosterlinck ",
     title: "MD, PhD",
     details: "Cardiac Surgery Professor, University Hospitals, Leuven, Belgium",
     image: "/Images/homepage/section7/image11.png",
-    
   },
-              {
+  {
     name: "Dr. Bob Kiaii ",
     title: "BSc, MD, FRCSC, FACS",
     details: "Chief of Section of Cardiac Surgery, Department of Cardiac Sciences, Foothills Medical Centre, Libin Cardiovascular Institute, University of Calgary",
     image: "/Images/homepage/section7/image12.png",
-    
   },
-                {
+  {
     name: "Dr. Johannes Oliver Bonatti",
     title: "MBBS, MS",
     details: "University of Pittsburgh Medical Center, Pittsburg, PA, USA",
     image: "/Images/homepage/section7/image13.png",
-    
   },
+  {
+    name: "Dr. Danny Ramsey",
+    title: "MD, Phd",
+    details: "Professor and Chief of Cardiac Surgery, UTHealth McGovern School of Medicine",
+    image: "/Images/homepage/section7/image14.png",
+  },
+];
+
+const otherFaculty: Faculty[] = [
   {
     name: "Dr. Nitin Kumar Rajput",
     title: "MCH (Cardiothoracic and Vascular Surgery), MS (General Surgery)",
@@ -88,7 +93,6 @@ const facultyMembers: Faculty[] = [
     details: "Chairman - Medical Advisory Board | Aster DM Healthcare - GCC & India",
     image: "/Images/homepage/section7/image3.png",
   },
-  // Add more faculty members here
 ];
 
 // Interface for FacultyCard props
@@ -105,7 +109,7 @@ const FacultyCard: React.FC<FacultyCardProps> = ({ faculty }) => (
       width={373}
       height={378}
       className="rounded-xl w-full h-auto max-w-[280px] aspect-square object-cover mb-4 border-4 border-[#A67950]"
-      priority={true} // Good for profiles that load on the main faculty page
+      priority={true}
     />
     <h3
       className="mt-4 text-xl font-bold"
@@ -142,28 +146,98 @@ const FacultyCard: React.FC<FacultyCardProps> = ({ faculty }) => (
 
 const FacultyCardPage: React.FC = () => {
   return (
-    <div className="min-h-screen bg-white py-16 px-4 sm:px-6 lg:px-8">
-      <header className="max-w-7xl mx-auto mb-12 text-center">
-        <h1
-          className="text-5xl font-extrabold sm:text-6xl"
-          style={{
-            fontFamily: "DM Serif Text, serif",
-            fontWeight: 530,
-            color: "#A67950",
-          }}
-        >
-          Meet Our Expert Faculty 
-        </h1>
-        <p className="mt-4 text-xl text-gray-600" style={{ fontFamily: "Lato, sans-serif" }}>
-          Pioneers and leaders in the field of surgical robotics.
-        </p>
-      </header>
+    // Added a container with decorative squares for visual similarity to the image
+    <div className="min-h-screen bg-white py-16 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+      
+      {/* Absolute positioned decorative elements (light beige squares) */}
+      <div className="absolute inset-0 z-0 opacity-20 pointer-events-none">
+        {/* Simple grid to scatter the elements */}
+        <div className="grid grid-cols-4 grid-rows-4 w-full h-full">
+          <div className="border border-[#D2A073] h-24 w-24 m-8 row-start-1 col-start-1"></div>
+          <div className="border border-[#D2A073] h-16 w-16 m-12 row-start-2 col-start-2"></div>
+          <div className="border border-[#D2A073] h-32 w-32 m-16 row-start-1 col-end-5"></div>
+          <div className="border border-[#D2A073] h-20 w-20 m-4 row-start-4 col-start-3"></div>
+          <div className="border border-[#D2A073] h-28 w-28 m-10 row-start-3 col-end-5"></div>
+        </div>
+      </div>
 
-      {/* Faculty Grid */}
-      <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-8 gap-y-16">
-        {facultyMembers.map((faculty, index) => (
-          <FacultyCard key={index} faculty={faculty} />
-        ))}
+      <div className="relative z-10 max-w-7xl mx-auto">
+        
+        {/* Main Header */}
+        <header className="mb-12 text-center">
+          <h1
+            className="text-5xl font-extrabold sm:text-6xl"
+            style={{
+              fontFamily: "DM Serif Text, serif",
+              fontWeight: 530,
+              color: "#A67950",
+            }}
+          >
+            Meet Our Faculty
+          </h1>
+          <p className="mt-4 text-xl text-gray-600" style={{ fontFamily: "Lato, sans-serif" }}>
+            Renowned surgeons and clinical leaders guiding the next generation of robotic surgery.
+          </p>
+        </header>
+
+        {/* =========================================================
+            Cardiac / International Faculties Section
+        ========================================================= */}
+        <div className="mt-20">
+          <h2
+            className="text-4xl sm:text-5xl mb-4"
+            style={{
+              fontFamily: "DM Serif Text, serif",
+              fontWeight: 530,
+              color: "#401323", // Dark color for main section title
+            }}
+          >
+            Cardiac
+          </h2>
+          <p
+            className="text-lg italic mb-12"
+            style={{
+              fontFamily: "Lato, sans-serif",
+              color: "#A67950", // Lighter color for subheading
+            }}
+          >
+            International Faculties
+          </p>
+
+          {/* Faculty Grid for International Cardiac */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-8 gap-y-16">
+            {internationalCardiacFaculty.map((faculty, index) => (
+              <FacultyCard key={`int-${index}`} faculty={faculty} />
+            ))}
+          </div>
+        </div>
+        
+        {/* Divider for next section */}
+        <hr className="my-20 border-[#D2A073] border-t-2 max-w-4xl mx-auto" />
+
+        {/* =========================================================
+            Other Faculty (e.g., Domestic/Other Specialities)
+            I've added a generic heading for the remaining faculty.
+        ========================================================= */}
+        <div className="mt-20">
+          <h2
+            className="text-4xl sm:text-5xl mb-12"
+            style={{
+              fontFamily: "DM Serif Text, serif",
+              fontWeight: 530,
+              color: "#401323",
+            }}
+          >
+            National Faculties
+          </h2>
+          
+          {/* Faculty Grid for Other Faculty */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-8 gap-y-16">
+            {otherFaculty.map((faculty, index) => (
+              <FacultyCard key={`other-${index}`} faculty={faculty} />
+            ))}
+          </div>
+        </div>
       </div>
     </div>
   );
