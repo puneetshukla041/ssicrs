@@ -51,7 +51,7 @@ export default function Header({ className = "" }: HeaderProps) {
   const headerBgColor = isRegisterPage
     ? "bg-white"
     : scrolled
-    ? "bg-white"
+    ? "bg-[#FBFAF2]"
     : "bg-transparent";
 
   const headerShadow = isRegisterPage

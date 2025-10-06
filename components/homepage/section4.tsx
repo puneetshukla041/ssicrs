@@ -120,10 +120,13 @@ export default function FourthSection() {
             fontWeight: 400,
             fontSize: "40px",
             color: "#A67950",
-            marginLeft: "180px",
+            marginLeft: "200px",
           }}
         >
           For Whom
+              {/* Underline for hover effect */}
+    <div className="absolute bottom-[-10px] left-0 h-[3px] rounded-full transition-all duration-500 w-0 group-hover:w-full lg:group-hover:w-[90%] bg-gradient-to-r from-[#6A4336] to-transparent"></div>
+
         </h2>
 
         {/* --- First Row (Surgeons, Surgical Staff, Anesthesiologists) --- */}
