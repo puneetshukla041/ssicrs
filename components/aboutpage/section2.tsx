@@ -5,145 +5,118 @@ import React from "react";
 import Image from "next/image";
 
 export default function Section2() {
-  // Mobile styles are set for the default (no prefix)
-  // Desktop styles use the 'lg:' prefix
-
-  const fullText = (
-    <>
-      <p className="mb-6 lg:mb-4">
-        <span className="font-semibold lg:font-normal">
-          Dr. Sudhir Srivastava
-        </span>{" "}
-        stands at the forefront of robotic surgical innovation as a globally
-        recognized pioneer in robotic-assisted surgery.
-      </p>
-      <p className="mb-6 lg:mb-4">
-        With an unwavering commitment to democratizing this transformative
-        technology, he has dedicated his career to making robotic surgery more
-        affordable, accessible, and impactful for patients worldwide.
-      </p>
-      <p className="mb-6 lg:mb-4">
-        In pursuit of this vision, Dr. Srivastava founded SS Innovations to
-        develop state-of-the-art, cost-effective robotic surgical solutions.
-        Building on this success, the SS International Centre for Robotics Surgery
-        (SSICRS) has been established to create a comprehensive educational
-        framework. This initiative empowers the next generation of healthcare
-        professionals—including surgeons, anesthesiologists, surgical staff, and
-        ICU specialists—to master robotic-assisted surgery using the advanced SSI
-        Mantra Surgical Robotic System.
-      </p>
-      <p>
-        SSICRS is devoted to cultivating future leaders in robotic surgery,
-        ensuring that the benefits of robotic-assisted healthcare are accessible
-        to all, rather than being a privilege for only a select few.
-      </p>
-    </>
-  );
-
   return (
     <section
-      className="w-full"
+      className="w-full py-10 lg:py-24" // Added vertical padding for spacing on all devices
       style={{ backgroundColor: "#FBFAF2" }}
     >
-      {/* DESKTOP VIEW (lg: prefix): Retains original absolute positioning
+      {/* The main container is centered and sets a max-width for large screens 
+        to prevent the content from stretching too wide on massive monitors.
       */}
-      <div className="hidden lg:block relative w-full min-h-[570px] lg:min-h-[660px]">
-        {/* Heading on the left (Desktop) */}
-        <h2
-          className="absolute"
-          style={{
-            left: "270px",
-            top: "330px",
-            fontFamily: "DM Serif Display, serif",
-            fontSize: "34px",
-            fontWeight: 500,
-            color: "#A67950",
-          }}
-        >
-          Educating the future of<br />Accessible Robotic <br />Surgery
-        </h2>
+      <div className="max-w-[1440px] mx-auto px-8 lg:px-16 xl:px-20">
+        
+        {/*
+          DESKTOP/TABLET VIEW (lg: prefix): Uses a flex/grid layout
+          Visible on screens >= 1024px.
+          The content is split into three main areas (Heading, Text, Image) 
+          and arranged using a modern flex-based grid.
+        */}
+        <div className="hidden lg:grid lg:grid-cols-12 lg:gap-10 xl:gap-20">
+          
+          {/* Section 1: Heading (Spans 4 columns) */}
+          <div className="col-span-4 self-center">
+            <h2
+              className="mt-0" // Reset default margin
+              style={{
+                fontFamily: "DM Serif Display, serif",
+                fontSize: "34px",
+                fontWeight: 500,
+                color: "#A67950",
+                lineHeight: "1.2", // Adjust line height for better typography
+              }}
+            >
+              Educating the future of
+              <br />
+              Accessible Robotic
+              <br />
+              Surgery
+            </h2>
+          </div>
 
-        {/* Text on the left (Desktop) */}
-        <div
-          className="absolute"
-          style={{
-            left: "680px",
-            width: "700px",
-            top: "220px",
-            fontFamily: "Lato, sans-serif",
-            fontWeight: 400,
-            fontSize: "16px",
-            lineHeight: "1.6",
-            color: "#401323",
-          }}
-        >
-          {/* Note: I'm converting your <br /> based structure to a standard paragraph structure 
-              for better practice, but replicating the original spacing where possible. 
-              The content is the same as the original. 
-          */}
-          <p className="mb-4">
-            Dr. Sudhir Srivastava stands at the forefront of robotic surgical innovation <br/>
-            as a globally recognized pioneer in robotic-assisted surgery. With an <br/>
-            unwavering commitment to democratizing this transformative technology, <br/>
-            he has dedicated his career to making robotic surgery more affordable, <br/>
-            accessible, and impactful for patients worldwide.
-          </p>
-          <p className="mb-4">
-            In pursuit of this vision, Dr. Srivastava founded SS Innovations to develop <br/>
-            state-of-the-art, cost-effective robotic surgical solutions. Building on this <br/>
-            success, the SS International Centre for Robotics Surgery (SSICRS) has <br/>
-            been established to create a comprehensive educational framework. This <br/>
-            initiative empowers the next generation of healthcare professionals— <br/>
-            including surgeons, anesthesiologists, surgical staff, and ICU specialists— <br/>
-            to master robotic-assisted surgery using the advanced SSI Mantra Surgical <br/>
-            Robotic System.
-          </p>
-          <p>
-            SSICRS is devoted to cultivating future leaders in robotic surgery, ensuring <br/>
-            that the benefits of robotic-assisted healthcare are accessible to all, rather <br/>
-            than being a privilege for only a select few.
-          </p>
+          {/* Section 2: Text Content (Spans 5 columns) */}
+          <div className="col-span-5 self-center">
+            <div
+              className="mt-0" // Reset default margin
+              style={{
+                fontFamily: "Lato, sans-serif",
+                fontWeight: 400,
+                fontSize: "16px",
+                lineHeight: "1.6",
+                color: "#401323",
+              }}
+            >
+              <p className="mb-6">
+                <span className="font-semibold">Dr. Sudhir Srivastava</span> stands at the forefront of robotic surgical innovation 
+                as a globally recognized pioneer in robotic-assisted surgery. With an 
+                unwavering commitment to democratizing this transformative technology, 
+                he has dedicated his career to making robotic surgery more affordable, 
+                accessible, and impactful for patients worldwide.
+              </p>
+              <p className="mb-6">
+                In pursuit of this vision, Dr. Srivastava founded SS Innovations to develop 
+                state-of-the-art, cost-effective robotic surgical solutions. Building on this 
+                success, the SS International Centre for Robotics Surgery (SSICRS) has 
+                been established to create a comprehensive educational framework. This 
+                initiative empowers the next generation of healthcare professionals—
+                including surgeons, anesthesiologists, surgical staff, and ICU specialists—
+                to master robotic-assisted surgery using the advanced SSI Mantra Surgical 
+                Robotic System.
+              </p>
+              <p>
+                SSICRS is devoted to cultivating future leaders in robotic surgery, ensuring 
+                that the benefits of robotic-assisted healthcare are accessible to all, rather 
+                than being a privilege for only a select few.
+              </p>
+            </div>
+          </div>
+
+          {/* Section 3: Image (Spans 3 columns) */}
+          <div className="col-span-3 self-center">
+            {/* Added aspect-square and relative for the Image component */}
+            <div className="relative w-full aspect-square max-w-[404px] mx-auto">
+              <Image
+                src="/Images/aboutpage/section2/sudhir.png"
+                alt="Dr. Sudhir Srivastava"
+                fill
+                className="object-cover rounded-full" // Added rounded-full for the circle style
+                priority
+              />
+            </div>
+          </div>
         </div>
+        
 
-        {/* Image on the right (Desktop) */}
-        <div
-          className="absolute w-[404px] h-[404px]"
-          style={{ left: "1260px", top: "250px" }}
-        >
-          <Image
-            src="/Images/aboutpage/section2/sudhir.png"
-            alt="Dr. Sudhir Srivastava"
-            fill
-            className="object-cover"
-            priority
-          />
-        </div>
-      </div>
-
-      {/* MOBILE VIEW (No prefix): Uses fluid layout and specified mobile styles
-      */}
-      <div className="lg:hidden px-8 py-10 flex flex-col items-center">
-        {/* Mobile Heading */}
-        <h2
-          className="w-[351px] text-center mb-8"
-          style={{
-            color: "#A67950",
-            fontFamily: "DM Serif Text",
-            fontSize: "24px",
-            fontWeight: 400,
-            lineHeight: "150%", // 36px
-          }}
-        >
-          Educating the future of Accessible Robotic Surgery
-        </h2>
-
-        {/* Mobile Image and first paragraph combined */}
-        <div className="flex flex-col items-center mb-6">
-          {/* Mobile Image */}
-          <div
-            className="w-[158px] h-[158px] relative rounded-full overflow-hidden mb-6"
-            // The aspect-ratio and background property are inherent in w/h and Image fill
+        {/* MOBILE VIEW (No prefix): Uses fluid layout and specified mobile styles
+          Visible on screens < 1024px.
+        */}
+        <div className="lg:hidden flex flex-col items-center">
+          
+          {/* Mobile Heading */}
+          <h2
+            className="text-center mb-8 max-w-lg"
+            style={{
+              color: "#A67950",
+              fontFamily: "DM Serif Text",
+              fontSize: "24px",
+              fontWeight: 400,
+              lineHeight: "150%", // 36px
+            }}
           >
+            Educating the future of Accessible Robotic Surgery
+          </h2>
+
+          {/* Mobile Image */}
+          <div className="w-[158px] h-[158px] relative rounded-full overflow-hidden mb-8">
             <Image
               src="/Images/aboutpage/section2/sudhir.png"
               alt="Dr. Sudhir Srivastava"
@@ -153,9 +126,9 @@ export default function Section2() {
             />
           </div>
 
-          {/* Mobile Text Content - Note: I'm combining the specified mobile paragraphs for a clean flow */}
+          {/* Mobile Text Content */}
           <div
-            className="max-w-[351px] text-left"
+            className="max-w-lg text-left" // Use max-w-lg for better readability on narrow screens
             style={{
               color: "#401323",
               fontFamily: "Lato",
@@ -165,10 +138,7 @@ export default function Section2() {
             }}
           >
             <p className="mb-6">
-              <span className="font-semibold" style={{ width: "0px", display: "inline-block" }}>
-                
-              </span>
-               Dr. Sudhir Srivastava stands at the forefront of robotic surgical innovation as a globally recognized pioneer in robotic-assisted surgery.
+              <span className="font-semibold">Dr. Sudhir Srivastava</span> stands at the forefront of robotic surgical innovation as a globally recognized pioneer in robotic-assisted surgery.
             </p>
             <p className="mb-6">
               With an unwavering commitment to democratizing this transformative technology, he has dedicated his career to making robotic surgery more affordable, accessible, and impactful for patients worldwide.

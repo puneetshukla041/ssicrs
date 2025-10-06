@@ -12,12 +12,12 @@ import Footer from "@/components/Footer";
 export default function ProgramsPage() {
   return (
     <div className="w-full bg-[#FBFAF2]">
-      <Section1 />
-      <Section2 />
-      <Section3 />
-      <Section4 />
-      <Section5 />
-      <Section6 />
+    <Section1 />
+    <Section2 />
+    <Section3 />
+    <Section4 />
+    <Section5 />
+    <Section6 />
       <Footer />
     </div>
   );

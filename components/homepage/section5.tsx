@@ -7,7 +7,7 @@ import { motion, AnimatePresence } from "framer-motion";
 // Helper component to safely render text with <br/> tags
 const SafeTextRenderer: React.FC<{ text: string }> = ({ text }) => {
   return (
-    <p className="text-[#A67950] text-sm sm:text-base font-lato font-normal max-w-lg lg:mx-0">
+    <p className="text-[#A67950] text-sm sm:text-base font-lato font-normal max-w-lg mx-auto lg:mx-0">
       {text.split(/<br\s*\/?>/i).map((line, idx) => (
         <React.Fragment key={idx}>
           {line.trim()}
@@ -59,25 +59,24 @@ const Slider: React.FC = () => {
 
   const goToSlide = (index: number) => setCurrentIndex(index % totalSlides);
 
-  // --- Touch Handlers (Improved) ---
+  // --- Touch Handlers ---
   const handleTouchStart = (e: React.TouchEvent) => {
     touchStartX.current = e.touches[0].clientX;
   };
 
   const handleTouchMove = (e: React.TouchEvent) => {
     if (touchStartX.current === null) return;
-    // Prevent vertical scrolling issues while swiping horizontally
+    // Only prevent default if swiping horizontally to avoid blocking vertical scroll
     const diff = touchStartX.current - e.touches[0].clientX;
     const absDiff = Math.abs(diff);
-    // You might want to also check e.touches[0].clientY for vertical difference
     if (absDiff > 10) e.preventDefault();
   };
 
   const handleTouchEnd = (e: React.TouchEvent) => {
     if (touchStartX.current === null) return;
     const diff = touchStartX.current - e.changedTouches[0].clientX;
-    if (diff > 50) handleNext();
-    else if (diff < -50) handlePrev();
+    if (diff > 50) handleNext(); // Swiped left
+    else if (diff < -50) handlePrev(); // Swiped right
     touchStartX.current = null;
   };
 
@@ -91,11 +90,8 @@ const Slider: React.FC = () => {
 
   // --- Transform Value for Carousel Movement ---
   const getTransformValue = () => {
-    // Determine the base width of a slide based on the largest size in the carousel
-    // On small screens, the slide takes full width (w-full / 100%)
-    // On large screens, the slide is set to lg:w-[70%]
-    const slideBaseWidth = 100; // Use a base of 100% since the inner divs are w-full in the flow
-    return `translateX(-${currentIndex * slideBaseWidth}%)`;
+    // Each slide is w-full (100%) of its container's width, so we translate by 100% per index.
+    return `translateX(-${currentIndex * 100}%)`;
   };
 
   return (
@@ -106,7 +102,6 @@ const Slider: React.FC = () => {
           Our Comprehensive Training Program
           <span
             className="absolute left-0 bottom-0 w-0 h-[4px] bg-gradient-to-r from-[#A67950] to-[#5B102B] transition-all duration-500 ease-out group-hover:w-full"
-            // Replaced complex clipPath with a simpler bottom alignment
           ></span>
         </h2>
       </div>
@@ -147,48 +142,38 @@ const Slider: React.FC = () => {
             onTouchEnd={handleTouchEnd}
           >
             {slides.map((slide, idx) => {
-              // Calculate offset relative to currentIndex
+              // Determine zIndex and scale/translate values for the 'peek' effect on large screens
               const offset = idx - currentIndex;
-              // Determine zIndex and scale for the 'peek' effect on large screens
               const isCurrent = offset === 0;
-              const zIndexValue = isCurrent ? 20 : 10 - Math.abs(offset);
-              const scaleValue = isCurrent ? 1 : 0.9;
-              // Horizontal translation for the 'peek' effect
-              const translateXValue = isCurrent ? 0 : (offset > 0 ? 30 : -30);
+
+              // Tailwind classes for the 'peek' effect on large screens (lg:)
+              const zIndexClass = isCurrent ? 'lg:z-20' : `lg:z-${10 - Math.abs(offset)}`;
+              const scaleClass = isCurrent ? 'lg:scale-100' : 'lg:scale-[0.9]';
+              const translateClass = isCurrent ? 'lg:translate-x-0' : (offset > 0 ? 'lg:translate-x-[30px]' : 'lg:-translate-x-[30px]');
 
               return (
                 <div
                   key={idx}
                   // Set base width to w-full, which means 100% of the parent (lg:w-2/3)
-                  className="flex-shrink-0 w-full px-4 sm:px-8 lg:px-6 flex justify-center relative"
-                  style={{
-                    // Apply visual effects only on screens larger than 'lg'
-                    ...(window.innerWidth >= 1024
-                      ? {
-                          zIndex: zIndexValue,
-                          transform: `translateX(${translateXValue}px) scale(${scaleValue})`,
-                          transition: "transform 0.5s",
-                        }
-                      : {}),
-                  }}
+                  className={`flex-shrink-0 w-full px-4 sm:px-8 lg:px-6 flex justify-center relative transition-all duration-500 ease-in-out ${zIndexClass} ${scaleClass} ${translateClass}`}
+                  // Removed inline style with window.innerWidth check and replaced with utility classes
                 >
-                  <Image
-                    src={slide.image}
-                    alt={`Slide ${idx + 1}`}
-                    // Set appropriate aspect ratio for better sizing
-                    width={900}
-                    height={500}
-                    className="w-full h-64 sm:h-[400px] lg:h-[450px] xl:h-[500px] object-cover rounded-2xl shadow-xl hover:scale-[1.02] transition-transform duration-500"
-                  />
+                  <div className="relative w-full max-w-3xl h-64 sm:h-[400px] lg:h-[450px] xl:h-[500px] rounded-2xl shadow-xl overflow-hidden hover:scale-[1.02] transition-transform duration-500">
+                      <Image
+                        src={slide.image}
+                        alt={`Slide ${idx + 1}`}
+                        fill // Use fill for better responsiveness in Next/Image
+                        className="object-cover" // Ensure the image covers the container
+                      />
+                  </div>
                 </div>
               );
             })}
           </div>
 
-          {/* Navigation Arrows (Positioning is now relative to the Image Carousel div) */}
+          {/* Navigation Arrows */}
           <button
             onClick={handlePrev}
-            // Adjusted positioning for better responsiveness
             className="absolute top-1/2 left-0 sm:left-4 lg:left-0 transform -translate-y-1/2 bg-white rounded-full w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center shadow-lg hover:bg-opacity-90 transition z-30 opacity-70 hover:opacity-100"
           >
             <svg
