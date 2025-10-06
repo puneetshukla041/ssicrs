@@ -24,6 +24,52 @@ const facultyMembers: Faculty[] = [
     details: "The University of Chicago Medicine and Biological Sciences Chicago, IL, USA",
     image: "/Images/homepage/section7/image6.png",
   },
+    {
+    name: "Dr. T Sloane Guy",
+    title: "MBA, MS. FACC",
+    details: "Georgia Heart Institute,Gainesville, GA",
+    image: "/Images/homepage/section7/image7.png",
+  },
+      {
+    name: "Dr. Nirav Patel",
+    title: "MBBS, MS, FRCS",
+    details: "Lenox Hill Hospital, New York, NY, USA",
+    image: "/Images/homepage/section7/image8.png",
+  },
+        {
+    name: "Dr. Gianluca Torregrossa ",
+    title: "MBBS, MS",
+    details: "Lankenau Heart Institute,Philidelphia, PA, USA",
+    image: "/Images/homepage/section7/image9.png",
+  },
+          {
+    name: "Dr. Frank van Praet ",
+    title: "MS, FETCS",
+    details: "Co-Director of Cardiovascular Center AZorg, Aalst, Belgium",
+    image: "/Images/homepage/section7/image10.png",
+    
+  },
+            {
+    name: "Dr. Wouter Oosterlinck ",
+    title: "MD, PhD",
+    details: "Cardiac Surgery Professor, University Hospitals, Leuven, Belgium",
+    image: "/Images/homepage/section7/image11.png",
+    
+  },
+              {
+    name: "Dr. Bob Kiaii ",
+    title: "BSc, MD, FRCSC, FACS",
+    details: "Chief of Section of Cardiac Surgery, Department of Cardiac Sciences, Foothills Medical Centre, Libin Cardiovascular Institute, University of Calgary",
+    image: "/Images/homepage/section7/image12.png",
+    
+  },
+                {
+    name: "Dr. Johannes Oliver Bonatti",
+    title: "MBBS, MS",
+    details: "University of Pittsburgh Medical Center, Pittsburg, PA, USA",
+    image: "/Images/homepage/section7/image13.png",
+    
+  },
   {
     name: "Dr. Nitin Kumar Rajput",
     title: "MCH (Cardiothoracic and Vascular Surgery), MS (General Surgery)",
