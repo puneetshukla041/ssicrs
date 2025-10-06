@@ -12,7 +12,7 @@ export const metadata: Metadata = {
   title: "SSICRS",
   description: "Professional web & mobile app",
   icons: {
-    icon: "/logos/ssicrs.png", // ✅ favicon
+    icon: "/Logos/ssicrs.png", // ✅ favicon
   },
 };
 
