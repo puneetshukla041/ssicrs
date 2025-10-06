@@ -143,8 +143,8 @@ export default function Section2({ children }: Section2Props) {
                   {/* Decorative Brackets */}
                   <div className="absolute inset-0 pointer-events-none">
                     {/* Vertical Lines */}
-                    <span className="absolute left-0 top-0 bottom-0 w-[2px] border-l-2 border-[#6A4336] rounded-tl-lg rounded-bl-lg opacity-0 transition-all duration-500 ease-in-out group-hover:opacity-60 group-hover:w-6"></span>
-                    <span className="absolute right-0 top-0 bottom-0 w-[2px] border-r-2 border-[#6A4336] rounded-tr-lg rounded-br-lg opacity-0 transition-all duration-500 ease-in-out group-hover:opacity-60 group-hover:w-6"></span>
+                    <span className="absolute left-0 top-3.5 bottom-3.5 w-[2px] border-l-2 border-[#6A4336] rounded-tl-lg rounded-bl-lg opacity-0 transition-all duration-500 ease-in-out group-hover:opacity-60 group-hover:w-0"></span>
+                    <span className="absolute right-0 top-3.5 bottom-3.5 w-[2px] border-r-2 border-[#6A4336] rounded-tr-lg rounded-br-lg opacity-0 transition-all duration-500 ease-in-out group-hover:opacity-60 group-hover:w-0"></span>
 
                     {/* Corners */}
                     <span className="absolute top-0 left-0 w-8 h-[2px] border-t-2 border-l-2 border-[#6A4336] rounded-tl-lg opacity-0 transition-all duration-500 ease-in-out group-hover:opacity-60 group-hover:w-12 group-hover:h-4"></span>

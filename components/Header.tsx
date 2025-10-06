@@ -19,7 +19,6 @@ export default function Header({ className = "" }: HeaderProps) {
   const isRegisterPage = pathname === "/register";
   const loginPath = "/Login"; // Define your login path here
 
-  // Scroll listener for shadow + bg color
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50);
     window.addEventListener("scroll", handleScroll);
@@ -64,7 +63,7 @@ export default function Header({ className = "" }: HeaderProps) {
         px-4 sm:px-6 md:px-10 lg:px-[200px] xl:px-[290px]
       `}
     >
-      {/* Logo */}
+      {/* Logo (stays in place) */}
       <div className="flex-shrink-0 flex items-center h-10 sm:h-12">
         <Image
           src={logoSrc}
@@ -78,7 +77,7 @@ export default function Header({ className = "" }: HeaderProps) {
 
       {/* Desktop Nav */}
       <nav
-        className="hidden md:flex items-center text-sm sm:text-base font-normal"
+        className="hidden md:flex items-center space-x-8 lg:space-x-10 ml-8"
         style={{ fontFamily: "Lato, sans-serif" }}
       >
         {navItems.map((item) => {
@@ -87,7 +86,7 @@ export default function Header({ className = "" }: HeaderProps) {
             <button
               key={item.label}
               onClick={() => handleNavClick(item.path)}
-              className={`px-3 lg:px-5 xl:px-6 py-1 transition-colors duration-300 ${
+              className={`transition-colors duration-300 text-base lg:text-[1rem] ${
                 isActive ? "text-[#C59D73] font-medium" : headerTextColor
               } hover:text-[#C59D73]`}
             >
@@ -96,42 +95,38 @@ export default function Header({ className = "" }: HeaderProps) {
           );
         })}
 
-        {/* Login and Register Buttons Container */}
-        <div className="flex items-center space-x-2 ml-4">
-          
-          {/* Register Now Button (Moved to Left) */}
-          <div className="relative flex items-center">
+        {/* Log In Button */}
+        <button
+          onClick={goToLogin}
+          className={`px-6 py-2 rounded-[5px] font-medium transition-colors duration-300 border text-base
+            ${
+              isRegisterPage || scrolled
+                ? "bg-transparent text-gray-800 border-[#A67950] hover:border-[#A67950]"
+                : "bg-transparent text-white border-[#A67950] hover:border-[#A67950]"
+            }
+          `}
+        >
+          Log In
+        </button>
+
+        {/* Register Now Button */}
+        <div className="relative flex items-center">
             <div
               className="absolute top-[-20] left-0 w-full"
               style={{
                 height: "170%",
                 backgroundColor: "#A67950",
-                borderBottomLeftRadius: "25px",
-                borderBottomRightRadius: "25px",
+                borderBottomLeftRadius: "10px",
+                borderBottomRightRadius: "10px",
                 zIndex: 0,
               }}
             ></div>
-
-            <button
-              onClick={goToRegister}
-              className="relative z-10 px-6 py-2 rounded-full cursor-pointer text-white font-medium transition-colors duration-500"
-              style={{ backgroundColor: "transparent" }}
-            >
-              Register Now
-            </button>
-          </div>
-
-          {/* Log In Button (Moved to Right) */}
           <button
-            onClick={goToLogin}
-            className={`px-6 py-2 rounded-[25px] font-medium transition-colors duration-300 relative
-              ${isRegisterPage || scrolled
-                ? 'bg-transparent text-gray-800 border border-gray-400 hover:border-gray-800'
-                : 'bg-transparent text-white border border-[#C59D73] hover:border-[#A67950]'
-              }
-            `}
+            onClick={goToRegister}
+            className="relative z-10 px-6 py-2 rounded-full cursor-pointer text-white font-medium transition-colors duration-500"
+            style={{ backgroundColor: "transparent" }}
           >
-            Log In
+            Register Now
           </button>
         </div>
       </nav>
@@ -184,21 +179,21 @@ export default function Header({ className = "" }: HeaderProps) {
                 </button>
               );
             })}
-            
-            {/* Register Button in Mobile Drawer (Moved to top) */}
-            <button
-              onClick={goToRegister}
-              className="mt-6 px-6 py-3 rounded-xl text-white font-semibold bg-[#A67950] transition-colors duration-300 hover:bg-[#8C623C]"
-            >
-              Register Now
-            </button>
-            
-            {/* Login Button in Mobile Drawer (Moved to bottom) */}
+
+            {/* Mobile Log In Button */}
             <button
               onClick={goToLogin}
               className="px-6 py-3 rounded-xl text-gray-800 font-semibold border border-gray-400 transition-colors duration-300 hover:bg-gray-100"
             >
               Log In
+            </button>
+
+            {/* Mobile Register Button */}
+            <button
+              onClick={goToRegister}
+              className="mt-4 px-6 py-3 rounded-xl text-white font-semibold bg-[#A67950] transition-colors duration-300 hover:bg-[#8C623C]"
+            >
+              Register Now
             </button>
           </div>
         </>

@@ -42,8 +42,8 @@ export default function Footer() {
             >
               <span style={{ cursor: "pointer" }}>ABOUT</span>
               <span style={{ cursor: "pointer" }}>PROGRAMS</span>
-              <span style={{ cursor: "pointer" }}>RESOURCES</span>
-              <span style={{ cursor: "pointer" }} className="font-semibold">REGISTER NOW</span>
+              <span style={{ cursor: "pointer" }}>OUR FACULTY</span>
+              <span style={{ cursor: "pointer" }}>REGISTER NOW</span>
             </div>
           </div>
         </div>
@@ -75,7 +75,7 @@ export default function Footer() {
             <span>|</span>
             <span style={{ cursor: "pointer" }}>Terms of use</span>
             <span>|</span>
-            <span style={{ cursor: "pointer" }}>Sitemap</span>
+         
           </div>
         </div>
       </div>
@@ -108,7 +108,7 @@ export default function Footer() {
             <span className="cursor-pointer">About</span>
             <span className="cursor-pointer">Programs</span>
             <span className="cursor-pointer">Resources</span>
-            <span className="cursor-pointer font-semibold">Register Now</span>
+            <span className="cursor-pointer">Register Now</span>
           </div>
 
           {/* White line */}
@@ -129,7 +129,6 @@ export default function Footer() {
               <span>|</span>
               <span className="cursor-pointer">Terms of use</span>
               <span>|</span>
-              <span className="cursor-pointer">Sitemap</span>
             </div>
           </div>
         </div>

@@ -120,6 +120,7 @@ export default function FourthSection() {
             fontWeight: 400,
             fontSize: "40px",
             color: "#A67950",
+            marginLeft: "180px",
           }}
         >
           For Whom
