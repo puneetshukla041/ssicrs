@@ -27,12 +27,12 @@ const slides = [
   {
     heading: "Hands-On Experience",
     text: "Train directly on simulators and live systems, <br/> building confidence through immersive <br/> practice.",
-    image: "/Images/homepage/section5/slider2.png",
+    image: "/Images/homepage/section5/slider3.png",
   },
   {
     heading: "Expert Mentorship",
     text: "Learn from pioneering robotic surgeons and <br/> clinical leaders who guide every step <br/> of your journey.",
-    image: "/Images/homepage/section5/slider3.png",
+    image: "/Images/homepage/section5/slider2.png",
   },
   {
     heading: "Global Certification Pathways",
