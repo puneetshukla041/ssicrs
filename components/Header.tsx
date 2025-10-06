@@ -98,7 +98,7 @@ export default function Header({ className = "" }: HeaderProps) {
           alt="SSI CRS Logo"
           width={220}
           height={0}
-          className="w-auto h-8 sm:h-10 md:h-12 object-contain transition-all duration-500"
+          className="w-auto h-8 sm:h-10 md:h-16 object-contain transition-all duration-500"
           priority
         />
       </button>
