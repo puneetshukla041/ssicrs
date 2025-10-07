@@ -48,9 +48,11 @@ export default function FourthSection() {
       <div className="md:hidden w-full flex flex-col items-center justify-center text-center px-6 py-12 gap-12 sm:px-12 sm:py-16">
         <h2
           style={{
-            fontFamily: "DM Serif Text, serif",
-            fontWeight: 400,
-            color: "#A67950",
+                fontFamily: "'DM Serif Display', serif",
+                fontWeight: 400,
+                fontStyle: "normal",
+                color: "#A67950",
+                whiteSpace: "pre-line",
           }}
           className="text-3xl sm:text-4xl" // Responsive font size
         >
