@@ -12,7 +12,7 @@ export default function SeventhSection() {
   };
 
   return (
-    <section className="w-full bg-white relative flex justify-center items-center py-12 md:py-0">
+    <section className="w-full bg-[#FBFAF2] relative flex justify-center items-center py-12 md:py-0">
       
       {/* ---------------- Mobile view - small card ---------------- */}
       <div className="md:hidden w-11/12 max-w-sm mx-auto flex flex-col items-center justify-center p-10 bg-cover bg-center rounded-lg relative"
