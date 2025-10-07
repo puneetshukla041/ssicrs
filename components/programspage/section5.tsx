@@ -3,7 +3,7 @@
 import React from "react";
 
 const Colors = {
-  background: "#F5F3ED",
+  background: "#FBFAF2", // Updated background color
   mainHeading: "#A67950",
   bodyText: "#401323",
   facilityHeading: "#5B102B",
@@ -94,7 +94,7 @@ const Section5: React.FC = () => {
           </div>
 
           {/* Image */}
-          <div className="flex justify-center lg:justify-start mb-8 lg:mb-0 order-1 lg:order-2 w-full lg:w-50%">
+          <div className="flex justify-center lg:justify-start mb-8 lg:mb-0 order-1 lg:order-2 w-full lg:w-7/12">
             <div
               style={{
                 background: `url("/Images/programs/section5/image1.png") lightgray center / cover no-repeat`,
