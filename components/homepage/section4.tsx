@@ -113,23 +113,16 @@ export default function FourthSection() {
       */}
       <div className="hidden md:flex flex-col items-center justify-start w-full px-6 py-16 md:px-12 lg:px-24 xl:px-32">
         {/* Heading */}
-{/* Heading */}
-<div className="max-w-7xl mx-auto w-full relative group">
-  <h2
-    className="text-4xl md:text-5xl font-serif text-[#A67950] mb-16 text-left relative inline-block cursor-pointer"
-    style={{
-      fontFamily: "DM Serif Display, serif",
-      fontWeight: 300,
-      lineHeight: 1.2,
-      whiteSpace: "pre-line", // allows line breaks
-    }}
-  >
-    For Whom
-    {/* Underline effect */}
-    <span className="absolute bottom-[-10px] left-0 h-[3px] rounded-full w-0 group-hover:w-full transition-all duration-500 bg-gradient-to-r from-[#6A4336] to-transparent"></span>
-  </h2>
-</div>
-
+        <div className="max-w-7xl mx-auto w-full">
+          <h2
+            className="text-4xl md:text-5xl font-serif text-[#A67950] mb-16 text-left relative inline-block group cursor-pointer"
+            style={{ fontFamily: "DM Serif Text, serif", fontWeight: 400 }}
+          >
+            For Whom
+            {/* Underline for hover effect */}
+            <span className="absolute bottom-[-10px] left-0 h-[3px] rounded-full transition-all duration-500 w-0 group-hover:w-full lg:group-hover:w-[90%] bg-gradient-to-r from-[#6A4336] to-transparent"></span>
+          </h2>
+        </div>
 
         {/* --- First Row (Surgeons, Residents & Fellows, Anesthesiologists) --- */}
         {/* Note: I'm keeping the original order of the cardsData array as it maps to the images,
