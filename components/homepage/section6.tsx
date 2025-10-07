@@ -6,17 +6,15 @@ export default function Section6() {
   const imageSrc = "/Images/homepage/section6/image1.png";
 
   return (
-    // Increased minimum height for the section to allow more vertical space
-    <section className="w-full relative bg-[#FBFAF2] flex justify-center items-center overflow-hidden min-h-[700px] md:min-h-[800px] lg:min-h-[700px]">
+    <section className="w-full relative bg-[#FBFAF2] flex justify-center items-center overflow-hidden min-h-[600px] md:min-h-[700px] lg:min-h-[500px]">
       
-      {/* Desktop & Laptop View (MODIFIED) */}
+      {/* Desktop & Laptop View */}
       <div className="hidden md:flex relative w-full justify-center">
         <Image
           src={imageSrc}
           alt="Fifth Section Image"
-          // Increased height on the Image component for better fit in the taller container
-          width={1906}
-          height={600} // CHANGED from 124 to a larger value (e.g., 600)
+          width={1906} 
+          height={124}
           className="object-contain w-full"
         />
 
@@ -36,7 +34,7 @@ export default function Section6() {
         </div>
       </div>
 
-      {/* Mobile & Tablet View (UNCHANGED, but overall section height increased) */}
+      {/* Mobile & Tablet View */}
       <div className="flex md:hidden relative w-full min-h-[400px] sm:min-h-[500px]">
         <Image
           src={imageSrc}

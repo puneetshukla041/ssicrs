@@ -15,13 +15,11 @@ export default function RegisterPage() {
     if (type === "checkbox") {
       const checkboxElement = e.target as HTMLInputElement;
       if (checkboxElement.checked) {
-        // Correctly handles array of strings for multi-select checkboxes
         setFormData({
           ...formData,
           [id]: [...((formData[id] as string[]) || []), value],
         });
       } else {
-        // Removes value from array when unchecked
         setFormData({
           ...formData,
           [id]: ((formData[id] as string[]) || []).filter((v: string) => v !== value),
@@ -33,7 +31,6 @@ export default function RegisterPage() {
   };
 
   const handleSubmit = async () => {
-    // You might want to add validation here before submitting
     setLoading(true);
     try {
       const res = await fetch("/api/register", {
@@ -81,10 +78,8 @@ export default function RegisterPage() {
   const inputFocus = { scale: 1.005, boxShadow: "0 0 0 2px #A67950", transition: { duration: 0.2 } };
 
   return (
-    // 1. Swapped the main container background from 'bg-white' to 'bg-[#FBFAF2]'
-    <div className="w-full min-h-screen bg-[#FBFAF2] flex flex-col pb-16 md:pb-32 font-lato">
-      
-      {/* Header - Kept existing color (F8F1E9) or you can change to match the new body color if desired */}
+    <div className="w-full min-h-screen bg-white flex flex-col pb-16 md:pb-32 font-lato">
+      {/* Header */}
       <motion.div
         className="w-full px-4 py-3 md:px-6 md:py-4 flex justify-between items-center shadow-md bg-[#F8F1E9]"
         initial={{ opacity: 0, y: -20 }}
@@ -100,7 +95,7 @@ export default function RegisterPage() {
         initial="hidden"
         animate="visible"
       >
-        {/* Heading and Description remain the same */}
+        {/* Heading */}
         <motion.h1
           className="font-serif text-3xl md:text-6xl text-center font-normal leading-tight text-[#A67950]"
           variants={textVariants}
@@ -110,6 +105,7 @@ export default function RegisterPage() {
           Advancing Your Robotic Surgery Skills
         </motion.h1>
 
+        {/* Description */}
         <motion.p
           className="text-base md:text-xl text-center text-[#401323] leading-relaxed mt-6 md:mt-8"
           variants={textVariants}
@@ -119,21 +115,21 @@ export default function RegisterPage() {
           Upon successful registration, our team will reach out with program details, schedules, and next steps.
         </motion.p>
 
-        {/* 2. Swapped the Main Registration Card background from 'bg-[#F8F1E9]' to 'bg-white' */}
+        {/* Main Registration Card */}
         <motion.div
-          className="mt-8 md:mt-16 bg-white rounded-2xl shadow-xl p-6 md:p-12 max-w-5xl mx-auto w-full"
+          className="mt-8 md:mt-16 bg-[#F8F1E9] rounded-2xl shadow-xl p-6 md:p-12 max-w-5xl mx-auto w-full"
           variants={itemVariants}
           initial="hidden"
           animate="visible"
         >
-          {/* Form Fields - No changes needed, they use default white input backgrounds */}
+          {/* Form Fields */}
           <motion.div
             className="flex flex-col gap-6 md:grid md:grid-cols-2 md:gap-x-24 md:gap-y-8"
             variants={containerVariants}
             initial="hidden"
             animate="visible"
           >
-            {/** All input fields are here... */}
+            {/** Full Name */}
             <motion.div variants={itemVariants}>
               <label htmlFor="fullName" className="block text-left mb-1 text-sm md:text-base font-medium text-[#401323]">Full Name</label>
               <motion.input
@@ -147,6 +143,7 @@ export default function RegisterPage() {
               />
             </motion.div>
 
+            {/** Email */}
             <motion.div variants={itemVariants}>
               <label htmlFor="email" className="block text-left mb-1 text-sm md:text-base font-medium text-[#401323]">Email</label>
               <motion.input
@@ -160,6 +157,7 @@ export default function RegisterPage() {
               />
             </motion.div>
 
+            {/** Phone Number */}
             <motion.div variants={itemVariants}>
               <label htmlFor="phoneNumber" className="block text-left mb-1 text-sm md:text-base font-medium text-[#401323]">Phone Number</label>
               <motion.input
@@ -173,6 +171,7 @@ export default function RegisterPage() {
               />
             </motion.div>
 
+            {/** Date of Birth */}
             <motion.div variants={itemVariants}>
               <label htmlFor="dob" className="block text-left mb-1 text-sm md:text-base font-medium text-[#401323]">Date of Birth</label>
               <motion.input
@@ -185,6 +184,7 @@ export default function RegisterPage() {
               />
             </motion.div>
 
+            {/** Years of Experience */}
             <motion.div variants={itemVariants}>
               <label htmlFor="experience" className="block text-left mb-1 text-sm md:text-base font-medium text-[#401323]">Years of Experience</label>
               <motion.input
@@ -198,6 +198,7 @@ export default function RegisterPage() {
               />
             </motion.div>
 
+            {/** Affiliated Institution/Hospital */}
             <motion.div variants={itemVariants}>
               <label htmlFor="institution" className="block text-left mb-1 text-sm md:text-base font-medium text-[#401323]">Affiliated Institution/Hospital</label>
               <motion.input
@@ -211,6 +212,7 @@ export default function RegisterPage() {
               />
             </motion.div>
 
+            {/** Preferred Call Date and Time */}
             <motion.div variants={itemVariants}>
               <label htmlFor="callDateTime" className="block text-left mb-1 text-sm md:text-base font-medium text-[#401323]">Preferred Call Date and Time</label>
               <motion.input
@@ -223,6 +225,7 @@ export default function RegisterPage() {
               />
             </motion.div>
 
+            {/** How Did You Hear About Us? */}
             <motion.div variants={itemVariants}>
               <label htmlFor="hearAboutUs" className="block text-left mb-1 text-sm md:text-base font-medium text-[#401323]">How Did You Hear About Us?</label>
               <motion.input
@@ -236,6 +239,7 @@ export default function RegisterPage() {
               />
             </motion.div>
 
+            {/** Current Profession */}
             <motion.div variants={itemVariants}>
               <label htmlFor="currentProfession" className="block text-left mb-1 text-sm md:text-base font-medium text-[#401323]">Current Profession</label>
               <motion.input
@@ -249,6 +253,7 @@ export default function RegisterPage() {
               />
             </motion.div>
 
+            {/** Specialization */}
             <motion.div variants={itemVariants}>
               <label htmlFor="specialization" className="block text-left mb-1 text-sm md:text-base font-medium text-[#401323]">Specialization</label>
               <motion.input
@@ -262,6 +267,7 @@ export default function RegisterPage() {
               />
             </motion.div>
 
+            {/** Learning Goals */}
             <motion.div variants={itemVariants} className="md:col-span-2">
               <label htmlFor="learningGoals" className="block text-left mb-1 text-sm md:text-base font-medium text-[#401323]">Any Specific Learning Goals or Comments?</label>
               <motion.textarea
@@ -289,9 +295,8 @@ export default function RegisterPage() {
             </motion.h2>
             <div className="flex flex-col md:flex-row justify-center items-start gap-8 md:gap-16 w-full">
               {/* Core Training Programs */}
-              {/* 3. Swapped inner program card background from 'bg-white' to 'bg-[#F8F1E9]' to provide contrast with the main white card. */}
               <motion.div
-                className="flex flex-col items-start p-4 bg-[#F8F1E9] rounded-lg shadow-sm"
+                className="flex flex-col items-start p-4 bg-white rounded-lg shadow-sm"
                 variants={itemVariants}
               >
                 <label className="font-medium text-base md:text-lg text-[#401323] mb-3">Core Programs</label>
@@ -312,9 +317,8 @@ export default function RegisterPage() {
               </motion.div>
 
               {/* Additional Training Programs */}
-              {/* 4. Swapped inner program card background from 'bg-white' to 'bg-[#F8F1E9]'. */}
               <motion.div
-                className="p-4 bg-[#F8F1E9] rounded-lg shadow-sm flex flex-col items-start"
+                className="p-4 bg-white rounded-lg shadow-sm flex flex-col items-start"
                 variants={itemVariants}
               >
                 <label className="font-medium text-base md:text-lg text-[#401323] mb-3">Additional Programs</label>
@@ -336,9 +340,10 @@ export default function RegisterPage() {
             </div>
           </motion.div>
 
-          {/* Rest of the form (Final Steps and Button) remains the same */}
+          {/* Section Separator */}
           <div className="border-t border-gray-300 my-10 md:my-12"></div>
 
+          {/* Upload ID & Register */}
           <motion.div
             className="flex flex-col items-center w-full"
             variants={itemVariants}
@@ -407,6 +412,7 @@ export default function RegisterPage() {
                 {loading ? "Registering..." : "Register Now"}
               </motion.button>
             </motion.div>
+            {/* --- End Main Registration Card --- */}
           </motion.div>
         </motion.div>
       </motion.div>

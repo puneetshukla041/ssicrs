@@ -2,16 +2,16 @@
 
 import Image from "next/image";
 import { FiArrowRight } from "react-icons/fi";
-import { useRouter } from "next/navigation";
+import { useRouter } from "next/navigation"; // 1. Import useRouter
 
 export default function SeventhSection() {
-  const router = useRouter();
+  const router = useRouter(); // 2. Initialize router
 
   // Define a common background image source
-  const mobileImageSrc = "/Images/homepage/section8/image1.png";
+  const mobileImageSrc = "/Images/homepage/section8/image1.png"; // Corrected image path to match desktop image name assumption
 
   const handleRegisterClick = () => {
-    router.push("/Register");
+    router.push("/Register"); // 3. Navigation logic
   };
 
   return (
@@ -67,15 +67,14 @@ export default function SeventhSection() {
         </div>
       </div>
       
-      {/* ---------------- Desktop view (MODIFIED) ---------------- */}
+      {/* ---------------- Desktop view (STAYS UNCHANGED) ---------------- */}
       <div className="hidden md:block relative flex flex-col justify-center items-center min-h-screen">
         <Image
           src="/Images/homepage/section8/image1.png"
           alt="Seventh Section Image"
           width={1306}
           height={724}
-          // The margin has been reduced from 'mt-32' to 'mt-16' (or another lower value)
-          className="object-contain mt-3" 
+          className="object-contain mt-32" // <-- increased margin-top to push image further down
         />
 
         {/* Heading */}
@@ -83,7 +82,7 @@ export default function SeventhSection() {
           className="absolute text-center text-4xl font-normal bg-clip-text text-transparent bg-gradient-to-r from-[#D9A05B] via-[#EFE8D6] to-[#F2F0E4] whitespace-nowrap"
           style={{
             fontFamily: "DM Serif Text, serif",
-            top: "40%",
+            top: "40%", // moved a bit lower from 30%
             left: "50%",
             transform: "translate(-50%, -50%)",
           }}
@@ -97,7 +96,7 @@ export default function SeventhSection() {
           style={{
             fontFamily: "Lato, sans-serif",
             color: "#FBFAF2",
-            top: "48%",
+            top: "48%", // moved a bit lower from 48%
             left: "50%",
             transform: "translate(-50%, -50%)",
             maxWidth: "90%",
@@ -108,10 +107,10 @@ export default function SeventhSection() {
 
         {/* Button (Desktop) */}
         <button
-          onClick={handleRegisterClick}
+          onClick={handleRegisterClick} // Add onClick handler
           className="absolute flex items-center justify-center rounded-full transition-shadow duration-300 hover:shadow-[0_0_15px_rgba(255,234,210,0.5)]"
           style={{
-            top: "58%",
+            top: "58%", // moved a bit lower from 63%
             left: "50%",
             transform: "translate(-50%, -50%)",
             width: "167px",
