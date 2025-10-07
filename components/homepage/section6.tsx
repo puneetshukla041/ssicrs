@@ -6,8 +6,9 @@ export default function Section6() {
   const imageSrc = "/Images/homepage/section6/image1.png";
 
   return (
-    <section className="w-full flex justify-center items-center relative bg-white">
-      {/* Desktop & Laptop View (STAYS UNCHANGED - visible on md and up) */}
+    <section className="w-full relative bg-[#FBFAF2] flex justify-center items-center overflow-hidden min-h-[600px] md:min-h-[700px] lg:min-h-[500px]">
+      
+      {/* Desktop & Laptop View */}
       <div className="hidden md:flex relative w-full justify-center">
         <Image
           src={imageSrc}
@@ -33,9 +34,8 @@ export default function Section6() {
         </div>
       </div>
 
-      {/* Mobile & Tablet View (responsive below md) */}
-      <div className="flex md:hidden relative w-full min-h-[300px] sm:min-h-[350px]">
-        {/* Background Image */}
+      {/* Mobile & Tablet View */}
+      <div className="flex md:hidden relative w-full min-h-[400px] sm:min-h-[500px]">
         <Image
           src={imageSrc}
           alt="Mobile Background"
@@ -44,10 +44,8 @@ export default function Section6() {
           className="object-cover object-center"
         />
 
-        {/* Overlay for text readability */}
         <div className="absolute inset-0 bg-black opacity-40 z-10"></div>
 
-        {/* Centered Text */}
         <div className="relative z-20 flex flex-col justify-center items-center text-center w-full px-4 sm:px-6">
           <h2
             className="text-white text-2xl sm:text-[28px] md:text-[32px] lg:text-[36px] leading-snug sm:leading-tight"
