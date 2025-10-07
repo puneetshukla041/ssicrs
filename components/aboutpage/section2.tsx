@@ -81,18 +81,18 @@ export default function Section2() {
           </div>
 
           {/* Section 3: Image (Spans 3 columns) */}
-          <div className="col-span-3 self-center">
-            {/* Added aspect-square and relative for the Image component */}
-            <div className="relative w-full aspect-square max-w-[404px] mx-auto">
-              <Image
-                src="/Images/aboutpage/section2/sudhir.png"
-                alt="Dr. Sudhir Srivastava"
-                fill
-                className="object-cover rounded-full" // Added rounded-full for the circle style
-                priority
-              />
-            </div>
-          </div>
+<div className="col-span-3 self-center">
+  <div className="relative w-full aspect-square max-w-[404px] mx-auto">
+    <Image
+      src="/Images/aboutpage/section2/sudhir.png"
+      alt="Dr. Sudhir Srivastava"
+      fill
+      className="object-cover" // removed 'rounded-full'
+      priority
+    />
+  </div>
+</div>
+
         </div>
         
 

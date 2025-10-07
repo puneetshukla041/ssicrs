@@ -114,67 +114,61 @@ export default function Header({ className = "" }: HeaderProps) {
         />
       </button>
 
-      {/* Desktop Navigation */}
-      <nav
-        className="hidden md:flex items-center space-x-8 lg:space-x-10 ml-8"
-        style={{ fontFamily: "Lato, sans-serif" }}
+{/* Desktop Navigation */}
+<nav
+  className="hidden md:flex items-center space-x-8 lg:space-x-10 ml-8"
+  style={{ fontFamily: "Lato, sans-serif" }}
+>
+  {navItems.map((item) => {
+    const isActive = pathname === item.path;
+    return (
+      <button
+        key={item.label}
+        onClick={() => handleNavClick(item.path)}
+        className={`transition-colors duration-300 text-base lg:text-[1rem] 
+          ${isActive ? "text-[#C59D73]" : headerTextColor} 
+          font-normal
+          hover:text-[#C59D73]`}
       >
-        {navItems.map((item) => {
-          const isActive = pathname === item.path;
-          const isHome = item.label === "Home";
-          return (
-            <button
-              key={item.label}
-              onClick={() => handleNavClick(item.path)}
-              className={`transition-colors duration-300 text-base lg:text-[1rem] 
-                ${
-                  isActive
-                    ? "text-[#C59D73]"
-                    : headerTextColor
-                } 
-                ${isHome ? "font-semibold" : "font-normal"}
-                hover:text-[#C59D73]`}
-            >
-              {item.label}
-            </button>
-          );
-        })}
+        {item.label}
+      </button>
+    );
+  })}
 
-        {/* Log In Button */}
-        <button
-          onClick={goToLogin}
-          className={`px-6 py-2 rounded-[5px] font-normal transition-colors duration-300 border text-base
-            ${
-              isRegisterPage || scrolled
-                ? "bg-transparent text-[#A67950] border-[#A67950] hover:border-[#A67950]"
-                : "bg-transparent text-[#A67950] border-[#A67950] hover:border-[#A67950]"
-            }
-          `}
-        >
-          Log In
-        </button>
+  {/* Log In Button */}
+  <button
+    onClick={goToLogin}
+    className={`px-6 py-2 rounded-[5px] font-normal transition-colors duration-300 border text-base
+      ${isRegisterPage || scrolled
+        ? "bg-transparent text-[#A67950] border-[#A67950] hover:border-[#A67950]"
+        : "bg-transparent text-[#A67950] border-[#A67950] hover:border-[#A67950]"
+      }
+    `}
+  >
+    Log In
+  </button>
 
-        {/* Register Now Button */}
-        <div className="relative flex items-center">
-          <div
-            className="absolute top-[-20] left-0 w-full"
-            style={{
-              height: "170%",
-              backgroundColor: "#A67950",
-              borderBottomLeftRadius: "10px",
-              borderBottomRightRadius: "10px",
-              zIndex: 0,
-            }}
-          ></div>
-          <button
-            onClick={goToRegister}
-            className="relative z-10 px-3 py-2 rounded-full cursor-pointer text-white font-medium transition-colors duration-500"
-            style={{ backgroundColor: "transparent" }}
-          >
-            Register Now
-          </button>
-        </div>
-      </nav>
+  {/* Register Now Button */}
+  <div className="relative flex items-center">
+    <div
+      className="absolute top-[-20] left-0 w-full"
+      style={{
+        height: "170%",
+        backgroundColor: "#A67950",
+        borderBottomLeftRadius: "10px",
+        borderBottomRightRadius: "10px",
+        zIndex: 0,
+      }}
+    ></div>
+    <button
+      onClick={goToRegister}
+      className="relative z-10 px-3 py-2 rounded-full cursor-pointer text-white font-medium transition-colors duration-500"
+      style={{ backgroundColor: "transparent" }}
+    >
+      Register Now
+    </button>
+  </div>
+</nav>
 
       {/* Mobile Button */}
       <button
