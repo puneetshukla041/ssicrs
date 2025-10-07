@@ -20,11 +20,24 @@ export default function Header({ className = "" }: HeaderProps) {
   const loginPath = "/Login";
 
   useEffect(() => {
+    // Prevent scroll-based changes on the Register page
     if (isRegisterPage) return;
     const handleScroll = () => setScrolled(window.scrollY > 50);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, [isRegisterPage]);
+
+  // Lock scrolling when mobile menu is open
+  useEffect(() => {
+    if (mobileOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [mobileOpen]);
 
   const goToRegister = () => {
     router.push("/Register");
@@ -155,7 +168,7 @@ export default function Header({ className = "" }: HeaderProps) {
           ></div>
           <button
             onClick={goToRegister}
-            className="relative z-10 px-6 py-2 rounded-full cursor-pointer text-white font-medium transition-colors duration-500"
+            className="relative z-10 px-3 py-2 rounded-full cursor-pointer text-white font-medium transition-colors duration-500"
             style={{ backgroundColor: "transparent" }}
           >
             Register Now
@@ -163,13 +176,56 @@ export default function Header({ className = "" }: HeaderProps) {
         </div>
       </nav>
 
-      {/* Mobile Button (unchanged) */}
+      {/* Mobile Button */}
       <button
-        className={`md:hidden z-50 ${mobileMenuIconColor}`}
+        className={`md:hidden z-50 transition-colors duration-300 ${mobileMenuIconColor}`}
         onClick={() => setMobileOpen(!mobileOpen)}
+        aria-label={mobileOpen ? "Close menu" : "Open menu"}
       >
         {mobileOpen ? <X size={26} /> : <Menu size={26} />}
       </button>
+
+      {/* Mobile Navigation Menu (New Responsive Addition) */}
+      <div
+        className={`fixed inset-0 pt-[72px] bg-white transition-transform duration-300 md:hidden z-40
+          ${mobileOpen ? "translate-x-0" : "translate-x-full"}
+          flex flex-col items-center space-y-8 p-6 overflow-y-auto`}
+        style={{ fontFamily: "Lato, sans-serif" }}
+      >
+        {/* Nav Items */}
+        {navItems.map((item) => {
+          const isActive = pathname === item.path;
+          return (
+            <button
+              key={item.label}
+              onClick={() => handleNavClick(item.path)}
+              className={`text-xl font-medium transition-colors duration-300 w-full text-center py-2
+                ${isActive ? "text-[#C59D73]" : "text-gray-800"} 
+                hover:text-[#C59D73]`}
+            >
+              {item.label}
+            </button>
+          );
+        })}
+
+        <div className="w-full h-[1px] bg-gray-200 my-4"></div>
+
+        {/* Log In Button (Mobile) */}
+        <button
+          onClick={goToLogin}
+          className="w-full max-w-xs px-6 py-3 rounded-[5px] font-normal transition-colors duration-300 border text-lg bg-transparent text-[#A67950] border-[#A67950] hover:bg-[#F2F2F2]"
+        >
+          Log In
+        </button>
+
+        {/* Register Now Button (Mobile) */}
+        <button
+          onClick={goToRegister}
+          className="w-full max-w-xs px-6 py-3 rounded-[5px] cursor-pointer text-white font-medium transition-colors duration-300 text-lg bg-[#A67950] hover:bg-[#8e613f]"
+        >
+          Register Now
+        </button>
+      </div>
     </header>
   );
 }
