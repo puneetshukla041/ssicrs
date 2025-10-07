@@ -43,17 +43,17 @@ export default function Section7() {
   return (
 <section className="w-full bg-[#FBFAF2] py-16 md:py-24 flex flex-col items-start">
   <div className="w-full max-w-full px-6 sm:px-8 md:px-10 lg:px-[270px] xl:px-[270px] flex flex-col items-start">
-    {/* Section Heading */}
-    <h2
-      className="text-3xl sm:text-4xl md:text-[40px] font-normal mb-12 md:mb-16 text-left"
-      style={{
-        ...dmSerifText,
-        color: facultyTitleColor,
-        fontWeight: 530,
-      }}
-    >
-      Our Expert Faculty
-    </h2>
+{/* Section Heading */}
+<div className="max-w-7xl mx-auto w-full">
+  <h2 className="text-4xl md:text-5xl font-serif text-[#A67950] mb-16 text-left relative inline-block group cursor-pointer">
+    Our Expert Faculty
+    {/* Underline for hover effect */}
+    <span
+      className="absolute bottom-[-10px] left-0 h-[3px] rounded-full transition-all duration-500 w-0 group-hover:w-full lg:group-hover:w-[90%] bg-gradient-to-r from-[#6A4336] to-transparent"
+    ></span>
+  </h2>
+</div>
+
 
         {/* Experts Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-10 gap-y-16 justify-items-center w-full">

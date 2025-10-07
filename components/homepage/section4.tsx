@@ -112,23 +112,23 @@ export default function FourthSection() {
         =====================================================================================
       */}
       <div className="hidden md:flex flex-col items-center justify-start w-full px-6 py-16 md:px-12 lg:px-24 xl:px-32">
-        
-        {/* Heading */}
-        <h2
-          className="self-start mb-16"
-          style={{
-            fontFamily: "DM Serif Text, serif",
-            fontWeight: 400,
-            fontSize: "40px",
-            color: "#A67950",
-            marginLeft: "200px",
-          }}
-        >
-          For Whom
-              {/* Underline for hover effect */}
-    <div className="absolute bottom-[-10px] left-0 h-[3px] rounded-full transition-all duration-500 w-0 group-hover:w-full lg:group-hover:w-[90%] bg-gradient-to-r from-[#6A4336] to-transparent"></div>
 
-        </h2>
+
+{/* Heading */}
+<div className="max-w-7xl mx-auto w-full">
+  <h2 className="text-4xl md:text-5xl font-serif text-[#A67950] mb-16 text-left relative inline-block group cursor-pointer">
+    For Whom
+    {/* Underline for hover effect */}
+    <span
+      className="absolute bottom-[-10px] left-0 h-[3px] rounded-full transition-all duration-500 w-0 group-hover:w-full lg:group-hover:w-[90%] bg-gradient-to-r from-[#6A4336] to-transparent"
+    ></span>
+  </h2>
+</div>
+
+
+
+
+        
 
         {/* --- First Row (Surgeons, Surgical Staff, Anesthesiologists) --- */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-x-8 xl:gap-x-12 2xl:gap-x-16 w-full max-w-7xl">
