@@ -70,7 +70,8 @@ export default function Section2({ children }: Section2Props) {
 
   return (
     // Main Section: Use standard padding and remove excessive fixed desktop padding (px-32)
-    <section className="w-full relative bg-[#FBFAF2] px-4 sm:px-6 md:px-8 pt-16 pb-8 md:pt-32 md:pb-16 min-h-[60vh]">
+    <section className="w-full relative bg-[#FBFAF2] px-4 sm:px-6 md:px-8 pt-16 pb-8 md:pt-20 lg:pt-24 md:pb-16 min-h-[60vh]">
+
       
       {/* Centered Content Container for Desktop */}
       <div className="max-w-7xl mx-auto">
@@ -108,7 +109,7 @@ export default function Section2({ children }: Section2Props) {
         </div>
 
 {/* Logos Section */}
-<div className="w-full flex justify-center md:justify-start mt-16 md:mt-32 relative">
+<div className="w-full flex justify-center md:justify-start mt-16 md:mt-25 relative">
   <div className="grid grid-cols-2 gap-y-10 gap-x-6 sm:grid-cols-4 sm:gap-x-10 md:gap-x-16 lg:gap-x-20 w-full">
     {logos.map((logo, index) => (
       <div

@@ -94,17 +94,24 @@ const Slider: React.FC = () => {
     return `translateX(-${currentIndex * 100}%)`;
   };
 
+  
   return (
     <div className="w-full bg-[#FBFAF2] pt-20 sm:pt-28 pb-12 px-4 sm:px-8 lg:px-12 xl:px-20">
-      {/* Heading */}
-      <div className="max-w-7xl mx-auto">
-        <h2 className="text-4xl md:text-5xl font-serif text-[#A67950] mb-12 text-center lg:text-left relative inline-block group cursor-pointer">
-          Our Comprehensive Training Program
-          <span
-            className="absolute bottom-[-10px] left-0 h-[3px] rounded-full transition-all duration-500 w-0 group-hover:w-full lg:group-hover:w-[90%] bg-gradient-to-r from-[#6A4336] to-transparent"
-          ></span>
-        </h2>
-      </div>
+{/* Heading */}
+<div className="max-w-7xl mx-auto w-full relative group">
+  <h2
+    className="text-4xl md:text-5xl font-serif text-[#A67950] mb-16 text-left relative inline-block cursor-pointer"
+    style={{
+      fontFamily: "DM Serif Display, serif",
+      fontWeight: 300,
+      lineHeight: 1.2,
+      whiteSpace: "pre-line", // allows line breaks
+    }}
+  >
+   Our Comprehensive Training Program
+    {/* Underline effect */}
+  </h2>
+</div>
 
       {/* Slider Container */}
       <div
