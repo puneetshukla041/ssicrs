@@ -42,7 +42,7 @@ const Section5: React.FC = () => {
   return (
     <section
       // Adjusted classes: Using pt- for top padding and a smaller pb- for bottom padding
-      className="w-full flex flex-col pt-8 pb-4 md:pt-12 md:pb-6 lg:pt-16 lg:pb-8"
+      className="w-full flex flex-col pt-8 pb-4 md:pt-12 md:pb-6 lg:pt-16 lg:pb-0"
       style={{ backgroundColor: Colors.background }}
     >
       <div className="mx-auto px-4 sm:px-6 md:px-10 lg:px-14 xl:px-24 max-w-full lg:max-w-7xl">
