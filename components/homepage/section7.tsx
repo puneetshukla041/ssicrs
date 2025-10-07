@@ -43,20 +43,14 @@ export default function Section7() {
   return (
 <section className="w-full bg-[#FBFAF2] py-16 md:py-24 flex flex-col items-start">
   <div className="w-full max-w-full px-6 sm:px-8 md:px-10 lg:px-[270px] xl:px-[270px] flex flex-col items-start">
-{/* Heading */}
-<div className="max-w-7xl mx-auto w-full relative group">
-  <h2
-    className="text-4xl md:text-5xl font-serif text-[#A67950] mb-16 text-left relative inline-block cursor-pointer"
-    style={{
-      fontFamily: "DM Serif Display, serif",
-      fontWeight: 300,
-      lineHeight: 1.2,
-      whiteSpace: "pre-line", // allows line breaks
-    }}
-  >
+{/* Section Heading */}
+<div className="max-w-7xl mx-auto w-full">
+  <h2 className="text-4xl md:text-5xl font-serif text-[#A67950] mb-16 text-left relative inline-block group cursor-pointer">
     Our Expert Faculty
-    {/* Underline effect */}
-    <span className="absolute bottom-[-10px] left-0 h-[3px] rounded-full w-0 group-hover:w-full transition-all duration-500 bg-gradient-to-r from-[#6A4336] to-transparent"></span>
+    {/* Underline for hover effect */}
+    <span
+      className="absolute bottom-[-10px] left-0 h-[3px] rounded-full transition-all duration-500 w-0 group-hover:w-full lg:group-hover:w-[90%] bg-gradient-to-r from-[#6A4336] to-transparent"
+    ></span>
   </h2>
 </div>
 
