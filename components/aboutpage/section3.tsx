@@ -92,33 +92,35 @@ export default function Section3() {
             />
           </div>
 
-          {/* Right side: Hover Boxes */}
-          <div className="flex-1 md:ml-8 lg:ml-12 space-y-6 lg:space-y-10 w-full">
-            {[
-              "Deliver specialized training across surgical specialties for true proficiency.",
-              "Blend theory with hands-on practice using the SSI Mantra system.",
-              "Make robotic surgery education accessible worldwide, with focus on underserved regions.",
-              "Create continuous learning pathways to keep professionals at the forefront of innovation."
-            ].map((text, idx) => (
-              <div
-                key={idx}
-                className="group transition-all duration-300 hover:border-[#6A4336] hover:shadow-xl hover:bg-white hover:scale-[1.02] hover:-translate-y-1 relative cursor-pointer w-full"
-                style={{
-                  height: "95px",
-                  borderRadius: "8px",
-                  border: "2px solid transparent",
-                  display: "flex",
-                  alignItems: "center",
-                  padding: "0px",
-                }}
-              >
-                <p className="text-[#724B3C] font-sans font-medium text-base sm:text-lg leading-5 sm:leading-6 w-full">
-                  {text}
-                </p>
-                <div className="absolute bottom-[-6px] left-0 h-[3px] rounded-full transition-all duration-500 w-0 group-hover:w-full bg-gradient-to-r from-[#6A4336] to-transparent"></div>
-              </div>
-            ))}
-          </div>
+{/* Right side: Permanent Underline Boxes */}
+<div className="flex-1 md:ml-8 lg:ml-12 space-y-6 lg:space-y-10 w-full">
+  {[
+    "Deliver specialized training across surgical specialties for true proficiency.",
+    "Blend theory with hands-on practice using the SSI Mantra system.",
+    "Make robotic surgery education accessible worldwide, with focus on underserved regions.",
+    "Create continuous learning pathways to keep professionals at the forefront of innovation."
+  ].map((text, idx) => (
+    <div
+      key={idx}
+      className="relative w-full"
+      style={{
+        height: "95px",
+        borderRadius: "8px",
+        border: "2px solid transparent",
+        display: "flex",
+        alignItems: "center",
+        padding: "0px",
+      }}
+    >
+      <p className="text-[#724B3C] font-sans font-medium text-base sm:text-lg leading-5 sm:leading-6 w-full">
+        {text}
+      </p>
+      {/* Permanent underline */}
+      <div className="absolute bottom-[-6px] left-0 h-[3px] w-full rounded-full bg-gradient-to-r from-[#6A4336] to-transparent"></div>
+    </div>
+  ))}
+</div>
+
         </div>
 
       </div>
