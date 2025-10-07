@@ -60,7 +60,7 @@ export default function Section7() {
           {experts.map((expert, index) => (
             <div
               key={index}
-              className="flex flex-col items-center text-center w-full max-w-[320px]"
+              className="flex flex-col items-left text-left w-full max-w-[320px]"
             >
               <Image
                 src={expert.imageSrc}
