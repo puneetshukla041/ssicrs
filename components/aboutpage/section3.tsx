@@ -1,4 +1,3 @@
-// components/aboutus/Section3.tsx
 "use client";
 
 import React from "react";
@@ -8,11 +7,11 @@ export default function Section3() {
   return (
     <section className="w-full relative bg-[#FBFAF2] pt-2 md:h-[75vh] md:pt-0">
       
-      {/* Container for 80% width centered content */}
-      <div className="w-4/5 mx-auto">
+      {/* Container with consistent horizontal padding */}
+      <div className="w-full max-w-[1440px] mx-auto px-4 sm:px-6 md:px-8 lg:px-16 xl:px-20">
 
-        {/* --- Mobile View (below 'md') --- */}
-        <div className="md:hidden flex flex-col items-center px-6">
+        {/* --- Mobile View --- */}
+        <div className="md:hidden flex flex-col items-center">
           
           {/* Mobile Vision Card */}
           <div className="relative w-full mb-8">
@@ -24,33 +23,16 @@ export default function Section3() {
               className="w-full h-auto object-cover rounded-lg"
             />
 
-            <div className="absolute inset-0 p-6 flex flex-col justify-center bg-black bg-opacity-30 rounded-lg">
+            <div className="absolute inset-0 p-4 sm:p-6 flex flex-col justify-center bg-black bg-opacity-30 rounded-lg">
               <h2
-                style={{
-                  color: "#FFFFFF",
-                  fontFamily: '"DM Serif Text", serif',
-                  fontSize: "28px",
-                  fontWeight: 400,
-                  lineHeight: "130%",
-                }}
+                className="text-2xl sm:text-3xl font-serif text-white"
+                style={{ lineHeight: "1.3" }}
               >
                 Our Vision
               </h2>
 
-              <p
-                className="mt-2"
-                style={{
-                  color: "#FFFFFF",
-                  fontFamily: "Lato, sans-serif",
-                  fontSize: "14px",
-                  fontWeight: 400,
-                  lineHeight: "150%",
-                }}
-              >
-                To become the global leader in robotic surgery education by
-                providing comprehensive, cutting-edge training that equips
-                healthcare professionals with the skills needed to excel in
-                robotic-assisted surgery using the SSI Mantra.
+              <p className="mt-2 text-sm sm:text-base font-sans text-white leading-[1.5]">
+                To become the global leader in robotic surgery education by providing comprehensive, cutting-edge training that equips healthcare professionals with the skills needed to excel in robotic-assisted surgery using the SSI Mantra.
               </p>
             </div>
           </div>
@@ -67,15 +49,7 @@ export default function Section3() {
                 key={idx}
                 className="w-full h-auto min-h-[70px] bg-white rounded-lg border-2 border-[#724B3C] shadow-lg cursor-pointer p-4"
               >
-                <p
-                  style={{
-                    color: "#724B3C",
-                    fontFamily: "Lato, sans-serif",
-                    fontSize: "16px",
-                    fontWeight: 500,
-                    lineHeight: "20px",
-                  }}
-                >
+                <p className="text-[#724B3C] font-sans font-medium text-base sm:text-lg leading-5 sm:leading-6">
                   {text}
                 </p>
               </div>
@@ -83,8 +57,9 @@ export default function Section3() {
           </div>
         </div>
 
-        {/* --- Desktop View (from 'md') --- */}
+        {/* --- Desktop View --- */}
         <div className="hidden md:flex flex-col md:flex-row items-start pt-16 md:pt-24 lg:pt-26 w-full">
+          
           {/* Left side: Image + overlay */}
           <div className="relative w-full md:w-1/2 lg:w-[650px] mb-8 md:mb-0">
             <Image
@@ -95,19 +70,15 @@ export default function Section3() {
               className="w-full h-auto rounded-lg"
             />
 
-            <div className="absolute top-10 left-6 md:top-36 md:left-8 text-white">
-              <h2 className="font-serif text-[40px] font-normal leading-[150%]">
+            <div className="absolute top-10 left-6 md:top-20 md:left-8 text-white max-w-[80%]">
+              <h2 className="font-serif text-3xl lg:text-[40px] font-normal leading-[1.5]">
                 Our Vision
               </h2>
-              <p className="mt-4 text-[16px] font-sans font-normal leading-6 whitespace-pre-line">
-                To become the global leader in robotic surgery
-                <br />
-                education by providing comprehensive, cutting-edge
-                <br />
-                training that equips healthcare professionals with the
-                <br />
-                skills needed to excel in robotic-assisted surgery using
-                <br />
+              <p className="mt-4 text-sm sm:text-base lg:text-[16px] font-sans font-normal leading-6 whitespace-pre-line">
+                To become the global leader in robotic surgery<br/>
+                education by providing comprehensive, cutting-edge<br/>
+                training that equips healthcare professionals with the<br/>
+                skills needed to excel in robotic-assisted surgery using<br/>
                 the SSI Mantra.
               </p>
             </div>
@@ -117,12 +88,12 @@ export default function Section3() {
               alt="Image 2"
               width={85}
               height={60}
-              className="absolute top-0 left-[566px]"
+              className="absolute top-0 left-[calc(100%-85px)]"
             />
           </div>
 
           {/* Right side: Hover Boxes */}
-          <div className="flex-1 md:ml-12 space-y-10">
+          <div className="flex-1 md:ml-8 lg:ml-12 space-y-6 lg:space-y-10 w-full">
             {[
               "Deliver specialized training across surgical specialties for true proficiency.",
               "Blend theory with hands-on practice using the SSI Mantra system.",
@@ -131,31 +102,20 @@ export default function Section3() {
             ].map((text, idx) => (
               <div
                 key={idx}
-                className="group transition-all duration-300 hover:border-[#6A4336] hover:shadow-xl hover:bg-white hover:scale-[1.02] hover:-translate-y-1 relative cursor-pointer"
+                className="group transition-all duration-300 hover:border-[#6A4336] hover:shadow-xl hover:bg-white hover:scale-[1.02] hover:-translate-y-1 relative cursor-pointer w-full"
                 style={{
-                  width: "100%",
                   height: "95px",
                   borderRadius: "8px",
                   border: "2px solid transparent",
                   display: "flex",
                   alignItems: "center",
-                  padding: "20px",
+                  padding: "0px",
                 }}
               >
-                <div className="relative w-full h-full flex items-center">
-                  <p
-                    style={{
-                      color: "#724B3C",
-                      fontFamily: "Lato, sans-serif",
-                      fontSize: "20px",
-                      fontWeight: 500,
-                      lineHeight: "24px",
-                    }}
-                  >
-                    {text}
-                  </p>
-                  <div className="absolute bottom-[-22px] left-[-18px] h-[3px] rounded-full transition-all duration-500 w-0 group-hover:w-[90%] bg-gradient-to-r from-[#6A4336] to-transparent"></div>
-                </div>
+                <p className="text-[#724B3C] font-sans font-medium text-base sm:text-lg leading-5 sm:leading-6 w-full">
+                  {text}
+                </p>
+                <div className="absolute bottom-[-6px] left-0 h-[3px] rounded-full transition-all duration-500 w-0 group-hover:w-full bg-gradient-to-r from-[#6A4336] to-transparent"></div>
               </div>
             ))}
           </div>
