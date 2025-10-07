@@ -12,7 +12,7 @@ export default function Section2({ children }: Section2Props) {
       src: "/Images/homepage/section2/bottomlogo1.png",
       text: (
         <>
-          Learn from visionary surgeons <br /> and clinical leaders.
+          Learn from visionary surgeons  and clinical <br /> leaders.
         </>
       ),
     },
@@ -21,7 +21,7 @@ export default function Section2({ children }: Section2Props) {
       text: (
         <>
           Access world-class training,
-          <br /> resources, and research.
+          resources, <br /> and research.
         </>
       ),
     },
@@ -29,7 +29,7 @@ export default function Section2({ children }: Section2Props) {
       src: "/Images/homepage/section2/bottomlogo3.png",
       text: (
         <>
-          Join a global initiative shaping the <br /> future of robotic surgery.
+          Join a global initiative shaping the future of<br />  robotic surgery.
         </>
       ),
     },
@@ -37,7 +37,7 @@ export default function Section2({ children }: Section2Props) {
       src: "/Images/homepage/section2/bottomlogo4.png",
       text: (
         <>
-          Lead the effort to make surgical <br /> excellence accessible to all.
+          Lead the effort to make surgical excellence accessible to all.
         </>
       ),
     },
@@ -45,7 +45,7 @@ export default function Section2({ children }: Section2Props) {
 
   return (
     <section
-      className="w-full relative py-10 md:py-20 lg:py-24" // Added vertical padding
+      className="w-full relative py-10 md:py-20 lg:py-24"
       style={{ backgroundColor: "#FBFAF2" }}
     >
       <div className="w-full h-full">{children}</div>
@@ -55,8 +55,7 @@ export default function Section2({ children }: Section2Props) {
         <div className="flex flex-col lg:flex-row lg:justify-between lg:gap-12 xl:gap-24 mb-16 lg:mb-24">
           {/* Text Content (Heading and Subtext) */}
           <div className="lg:w-1/2 xl:w-2/5 mb-10 lg:mb-0">
-            {/* Main Heading - PC View: Fixed negative margin left */}
-            {/* Mobile View: No fixed negative margin, default alignment */}
+            {/* Main Heading - Alignment remains implicitly left-aligned by negative margin on LG */}
             <div
               className="text-2xl sm:text-3xl lg:text-3xl leading-snug mb-6"
               style={{
@@ -64,7 +63,6 @@ export default function Section2({ children }: Section2Props) {
                 fontWeight: 400,
                 fontStyle: "normal",
                 color: "#A67950",
-                // PC ONLY: marginLeft: "-20px",
                 whiteSpace: "pre-line",
               }}
             >
@@ -73,10 +71,9 @@ export default function Section2({ children }: Section2Props) {
               </div>
             </div>
 
-            {/* Subtext - PC View: Fixed translation to position it right/up */}
-            {/* Mobile View: Static position, default flow */}
+            {/* Subtext - Explicitly set to text-left */}
             <div
-              className="text-sm md:text-base leading-relaxed"
+              className="text-sm md:text-base leading-relaxed text-left" // <-- ADDED text-left
               style={{
                 fontFamily: "Lato, sans-serif",
                 fontWeight: 400,
@@ -85,7 +82,8 @@ export default function Section2({ children }: Section2Props) {
                 whiteSpace: "pre-line",
               }}
             >
-              <div className="lg:transform lg:translate-x-[310px] lg:translate-y-[-127px]">
+              {/* Added text-left to the inner, positioned div for safety */}
+              <div className="lg:transform lg:translate-x-[310px] lg:translate-y-[-127px] text-left"> 
                 SSICRS is a pioneering center committed to<br className="lg:block hidden" /> transforming surgical education and innovation. Our<br className="lg:block hidden" /> mission is to empower healthcare professionals across <br className="lg:block hidden" />the globe with access to advanced knowledge, expert<br className="lg:block hidden" /> mentorship, and multi-specialty training on the SSI<br className="lg:block hidden" /> Mantra platform.<br/><br/>
 
                 Through our programs, surgeons and surgical teams<br className="lg:block hidden" /> develop the expertise to drive a worldwide movement <br className="lg:block hidden" />in decentralizing robotic surgery—bringing advanced <br className="lg:block hidden" />care to every corner of the world, including<br className="lg:block hidden" /> underserved regions.
@@ -118,8 +116,7 @@ export default function Section2({ children }: Section2Props) {
           <h3
             className="font-serif text-xl md:text-2xl font-semibold leading-tight mb-8 text-center text-[#A67950]"
           >
-            {/* PC View: Fixed negative margin left */}
-            {/* Mobile View: No fixed negative margin, text-left */}
+            {/* Ensure the heading "At SSICRS, you will:" is left-aligned in its block, centered on screen */}
             <span className="text-left block lg:ml-[-20px]">
               At SSICRS, you will:
             </span>
@@ -130,7 +127,8 @@ export default function Section2({ children }: Section2Props) {
             {logos.map((logo, index) => (
               <div
                 key={index}
-                className="relative flex flex-col items-center text-center group cursor-pointer p-4 max-w-[200px]"
+                // Removed text-center from parent, kept items-center for icon centering
+                className="relative flex flex-col items-center group cursor-pointer p-4 max-w-[200px] w-full" 
               >
                 <Image
                   src={logo.src}
@@ -153,7 +151,8 @@ export default function Section2({ children }: Section2Props) {
                     <span className="absolute bottom-0 right-0 w-8 h-[2px] border-b-2 border-r-2 border-[#6A4336] rounded-br-lg opacity-0 transition-all duration-500 ease-in-out group-hover:opacity-60 group-hover:w-12 group-hover:h-4"></span>
                   </div>
                 </div>
-                <p className="font-lato font-normal text-sm md:text-base leading-snug text-[#401323] mt-4">
+                {/* Text is explicitly set to text-left and w-full to align to the left edge of the 200px container */}
+                <p className="font-lato font-normal text-sm md:text-base leading-snug text-[#401323] mt-4 text-left w-full"> 
                   {logo.text}
                 </p>
               </div>
