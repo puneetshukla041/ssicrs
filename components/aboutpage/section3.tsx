@@ -10,7 +10,7 @@ export default function Section3() {
       {/* Container with consistent horizontal padding */}
       <div className="w-full max-w-[1440px] mx-auto px-4 sm:px-6 md:px-8 lg:px-16 xl:px-20">
 
-        {/* --- Mobile View --- */}
+        {/* --- Mobile View --- (Unchanged) */}
         <div className="md:hidden flex flex-col items-center">
           
           {/* Mobile Vision Card */}
@@ -57,10 +57,10 @@ export default function Section3() {
           </div>
         </div>
 
-        {/* --- Desktop View --- */}
+        {/* --- Desktop View (Modified) --- */}
         <div className="hidden md:flex flex-col md:flex-row items-start pt-16 md:pt-24 lg:pt-26 w-full">
           
-          {/* Left side: Image + overlay */}
+          {/* Left side: Image + overlay (Unchanged) */}
           <div className="relative w-full md:w-1/2 lg:w-[650px] mb-8 md:mb-0">
             <Image
               src="/Images/aboutpage/section3/image1.png"
@@ -92,35 +92,26 @@ export default function Section3() {
             />
           </div>
 
-{/* Right side: Permanent Underline Boxes */}
-<div className="flex-1 md:ml-8 lg:ml-12 space-y-6 lg:space-y-10 w-full">
-  {[
-    "Deliver specialized training across surgical specialties for true proficiency.",
-    "Blend theory with hands-on practice using the SSI Mantra system.",
-    "Make robotic surgery education accessible worldwide, with focus on underserved regions.",
-    "Create continuous learning pathways to keep professionals at the forefront of innovation."
-  ].map((text, idx) => (
-    <div
-      key={idx}
-      className="relative w-full"
-      style={{
-        height: "95px",
-        borderRadius: "8px",
-        border: "2px solid transparent",
-        display: "flex",
-        alignItems: "center",
-        padding: "0px",
-      }}
-    >
-      <p className="text-[#724B3C] font-sans font-medium text-base sm:text-lg leading-5 sm:leading-6 w-full">
-        {text}
-      </p>
-      {/* Permanent underline */}
-      <div className="absolute bottom-[-6px] left-0 h-[3px] w-full rounded-full bg-gradient-to-r from-[#6A4336] to-transparent"></div>
-    </div>
-  ))}
-</div>
-
+          {/* Right side: Bordered Boxes (Modified) */}
+          <div className="flex-1 md:ml-8 lg:ml-0 space-y-6 lg:space-y-10 w-full mt-4">
+            {[
+              "Deliver specialized training across surgical specialties for true proficiency.",
+              "Blend theory with hands-on practice using the SSI Mantra system.",
+              "Make robotic surgery education accessible worldwide, with focus on underserved regions.",
+              "Create continuous learning pathways to keep professionals at the forefront of innovation."
+            ].map((text, idx) => (
+              <div
+                key={idx}
+                // ADDED: Mobile border classes and fixed height/padding
+                className="w-full h-auto min-h-[95px] bg-white rounded-lg border-1.5 border-[#000000] shadow-lg p-4 cursor-default flex items-center"
+              >
+                <p className="text-[#724B3C] font-sans font-medium text-base sm:text-lg leading-5 sm:leading-6 w-full">
+                  {text}
+                </p>
+                {/* REMOVED: All underline and hover elements */}
+              </div>
+            ))}
+          </div>
         </div>
 
       </div>

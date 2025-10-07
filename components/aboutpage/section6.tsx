@@ -12,7 +12,7 @@ export default function Section8() {
   };
 
   return (
-    <section className="w-full bg-white relative flex justify-center items-center pt-4 pb-12 md:py-0">
+    <section className="w-full bg-[#F2F0E4] relative flex justify-center items-center pt-4 pb-12 md:py-0">
 
       {/* ---------------- Mobile view - small card ---------------- */}
       <div className="md:hidden w-11/12 max-w-sm mx-auto relative rounded-lg overflow-hidden bg-black">
