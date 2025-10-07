@@ -16,7 +16,7 @@ interface FacilityBlockProps {
 }
 
 const FacilityBlock: React.FC<FacilityBlockProps> = ({ title, description }) => (
-  <div className="mb-6 md:mb-10 lg:mb-14">
+  <div className="mb-6 md:mb-10 lg:mb-10">
     <h3
       style={{
         color: Colors.facilityHeading,
@@ -41,7 +41,8 @@ const FacilityBlock: React.FC<FacilityBlockProps> = ({ title, description }) => 
 const Section5: React.FC = () => {
   return (
     <section
-      className="w-full flex flex-col py-8 md:py-12 lg:py-16"
+      // Adjusted classes: Using pt- for top padding and a smaller pb- for bottom padding
+      className="w-full flex flex-col pt-8 pb-4 md:pt-12 md:pb-6 lg:pt-16 lg:pb-8"
       style={{ backgroundColor: Colors.background }}
     >
       <div className="mx-auto px-4 sm:px-6 md:px-10 lg:px-14 xl:px-24 max-w-full lg:max-w-7xl">
