@@ -42,7 +42,7 @@ const logos = [
   return (
     // *** MODIFIED PADDING: Changed lg:px-[270px] to lg:pl-[270px] lg:pr-[100px] ***
     // This reduces the right-side margin on large screens, pushing content wider.
-    <section className="w-full bg-white relative flex flex-col items-center lg:items-start p-4 sm:p-8 md:px-12 lg:pl-[270px] lg:pr-[100px] pt-[60px] lg:pt-[100px] pb-12">
+    <section className="w-full bg-[#FBFAF2] relative flex flex-col items-center lg:items-start p-4 sm:p-8 md:px-12 lg:pl-[270px] lg:pr-[100px] pt-[60px] lg:pt-[100px] pb-12">
       <div className="w-full max-w-7xl">
         
         {/* Heading container: Centered on mobile, left-aligned on large screens */}

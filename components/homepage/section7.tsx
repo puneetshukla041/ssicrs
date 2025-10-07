@@ -41,7 +41,7 @@ export default function Section7() {
   ];
 
   return (
-<section className="w-full bg-white py-16 md:py-24 flex flex-col items-start">
+<section className="w-full bg-[#FBFAF2] py-16 md:py-24 flex flex-col items-start">
   <div className="w-full max-w-full px-6 sm:px-8 md:px-10 lg:px-[270px] xl:px-[270px] flex flex-col items-start">
     {/* Section Heading */}
     <h2

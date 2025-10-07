@@ -7,14 +7,15 @@ import Image from "next/image";
 export default function Section4() {
   return (
     // 1. Convert fixed padding-left to responsive padding (p-4 for small, px-72 for large)
-    <section
-      className="w-full bg-white flex flex-col items-center xl:items-start px-4 md:px-8 lg:px-16 xl:px-64"
-      style={{
-        minHeight: "100vh",
-        paddingTop: "0px",
-        paddingBottom: "160px",
-      }}
-    >
+<section
+  className="w-full bg-[#FBFAF2] flex flex-col items-center xl:items-start px-4 md:px-8 lg:px-16 xl:px-64"
+  style={{
+    minHeight: "100vh",
+    paddingTop: "0px",
+    paddingBottom: "160px",
+  }}
+>
+
       {/* Container for alignment on large screens */}
       <div className="w-full max-w-7xl">
         {/* Heading with hover + line */}

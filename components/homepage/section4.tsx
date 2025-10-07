@@ -39,7 +39,7 @@ const cardsData = [
 
 export default function FourthSection() {
   return (
-    <section className="w-full bg-white min-h-[110vh] flex flex-col items-start justify-start relative">
+    <section className="w-full bg-[#FBFAF2] min-h-[110vh] flex flex-col items-start justify-start relative">
 
       {/* =====================================================================================
         RESPONSIVE MOBILE/TABLET/SMALL LAPTOP LAYOUT (Visible on screens LESS THAN md)

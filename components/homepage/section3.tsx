@@ -5,7 +5,8 @@ import Image from "next/image";
 export default function Section3() {
   return (
     // Section container for full width and minimum screen height
-    <section className="relative w-full h-screen md:min-h-screen">
+    <section className="relative w-full h-screen md:min-h-screen bg-[#FBFAF2]">
+
       
       {/* Fullscreen Image */}
       <Image

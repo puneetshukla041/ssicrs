@@ -16,10 +16,9 @@ export default function Header({ className = "" }: HeaderProps) {
   const router = useRouter();
   const pathname = usePathname();
 
-  const isRegisterPage = pathname === "/Register"; // ✅ fixed case
+  const isRegisterPage = pathname === "/Register";
   const loginPath = "/Login";
 
-  // ✅ Only track scroll if NOT on register page
   useEffect(() => {
     if (isRegisterPage) return;
     const handleScroll = () => setScrolled(window.scrollY > 50);
@@ -47,7 +46,6 @@ export default function Header({ className = "" }: HeaderProps) {
     setMobileOpen(false);
   };
 
-  // ✅ Always white on Register page, scroll behavior otherwise
   const headerBgColor = isRegisterPage
     ? "bg-white"
     : scrolled
@@ -87,7 +85,7 @@ export default function Header({ className = "" }: HeaderProps) {
         px-4 sm:px-6 md:px-10 lg:px-[200px] xl:px-[290px]
       `}
     >
-      {/* ✅ Clickable Logo (redirects to Home) */}
+      {/* Logo */}
       <button
         onClick={goHome}
         className="flex-shrink-0 flex items-center h-10 sm:h-12 focus:outline-none transition-transform duration-300 hover:scale-[1.02]"
@@ -110,13 +108,19 @@ export default function Header({ className = "" }: HeaderProps) {
       >
         {navItems.map((item) => {
           const isActive = pathname === item.path;
+          const isHome = item.label === "Home";
           return (
             <button
               key={item.label}
               onClick={() => handleNavClick(item.path)}
-              className={`transition-colors duration-300 text-base lg:text-[1rem] ${
-                isActive ? "text-[#C59D73] font-medium" : headerTextColor
-              } hover:text-[#C59D73]`}
+              className={`transition-colors duration-300 text-base lg:text-[1rem] 
+                ${
+                  isActive
+                    ? "text-[#C59D73]"
+                    : headerTextColor
+                } 
+                ${isHome ? "font-semibold" : "font-normal"}
+                hover:text-[#C59D73]`}
             >
               {item.label}
             </button>
@@ -126,11 +130,11 @@ export default function Header({ className = "" }: HeaderProps) {
         {/* Log In Button */}
         <button
           onClick={goToLogin}
-          className={`px-6 py-2 rounded-[5px] font-medium transition-colors duration-300 border text-base
+          className={`px-6 py-2 rounded-[5px] font-normal transition-colors duration-300 border text-base
             ${
               isRegisterPage || scrolled
-                ? "bg-transparent text-gray-800 border-[#A67950] hover:border-[#A67950]"
-                : "bg-transparent text-white border-[#A67950] hover:border-[#A67950]"
+                ? "bg-transparent text-[#A67950] border-[#A67950] hover:border-[#A67950]"
+                : "bg-transparent text-[#A67950] border-[#A67950] hover:border-[#A67950]"
             }
           `}
         >
@@ -159,73 +163,13 @@ export default function Header({ className = "" }: HeaderProps) {
         </div>
       </nav>
 
-      {/* Mobile Menu Button */}
+      {/* Mobile Button (unchanged) */}
       <button
         className={`md:hidden z-50 ${mobileMenuIconColor}`}
         onClick={() => setMobileOpen(!mobileOpen)}
-        aria-label={mobileOpen ? "Close menu" : "Open menu"}
       >
         {mobileOpen ? <X size={26} /> : <Menu size={26} />}
       </button>
-
-      {/* Mobile Drawer */}
-      {mobileOpen && (
-        <>
-          <div
-            className="fixed inset-0 bg-black/50 z-40"
-            onClick={() => setMobileOpen(false)}
-            aria-hidden="true"
-          ></div>
-
-          <div
-            className="fixed top-0 right-0 w-[80%] max-w-xs h-full bg-white shadow-xl p-6 flex flex-col gap-6 transition-transform duration-300 translate-x-0 z-50"
-            onClick={(e) => e.stopPropagation()}
-            role="dialog"
-            aria-modal="true"
-          >
-            <div className="flex justify-end">
-              <button
-                onClick={() => setMobileOpen(false)}
-                className="text-gray-800 p-1"
-                aria-label="Close menu"
-              >
-                <X size={26} />
-              </button>
-            </div>
-
-            {navItems.map((item) => {
-              const isActive = pathname === item.path;
-              return (
-                <button
-                  key={item.label}
-                  onClick={() => handleNavClick(item.path)}
-                  className={`text-left text-lg py-2 ${
-                    isActive ? "text-[#C59D73] font-medium" : "text-gray-800"
-                  } transition-colors duration-200 hover:text-[#A67950]`}
-                >
-                  {item.label}
-                </button>
-              );
-            })}
-
-            {/* Mobile Log In Button */}
-            <button
-              onClick={goToLogin}
-              className="px-6 py-3 rounded-xl text-gray-800 font-semibold border border-gray-400 transition-colors duration-300 hover:bg-gray-100"
-            >
-              Log In
-            </button>
-
-            {/* Mobile Register Button */}
-            <button
-              onClick={goToRegister}
-              className="mt-4 px-6 py-3 rounded-xl text-white font-semibold bg-[#A67950] transition-colors duration-300 hover:bg-[#8C623C]"
-            >
-              Register Now
-            </button>
-          </div>
-        </>
-      )}
     </header>
   );
 }

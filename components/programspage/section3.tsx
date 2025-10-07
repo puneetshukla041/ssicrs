@@ -6,7 +6,8 @@ import { FiArrowRight } from "react-icons/fi";
 export default function Section3() {
   return (
     // Use min-h-screen for height and p-4/p-8 for padding on small screens, then adjust for larger screens
-    <section className="w-full min-h-[90vh] flex flex-col items-center md:items-start p-4 md:p-8 lg:px-48 xl:px-64 pt-10 md:pt-0">
+    <section className="w-full min-h-[90vh] flex flex-col items-center md:items-start p-4 md:p-8 lg:px-48 xl:px-64 pt-10 md:pt-0 bg-[#FBFAF2]">
+
       {/* Container for content to apply padding/margin easily and center on mobile */}
       <div className="w-full max-w-7xl">
         {/* Heading with hover + line */}

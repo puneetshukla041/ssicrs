@@ -15,7 +15,7 @@ export default function SeventhSection() {
   };
 
   return (
-    <section className="w-full bg-white relative flex justify-center items-center py-12 md:py-0 min-h-[500px] md:min-h-0">
+    <section className="w-full bg-[#FBFAF2] relative flex justify-center items-center py-12 md:py-0 min-h-[500px] md:min-h-0">
       
       {/* ---------------- Mobile & Tablet View (Responsive) ---------------- */}
       <div className="md:hidden w-11/12 max-w-xl mx-auto flex flex-col items-center justify-center p-8 sm:p-12 rounded-lg relative min-h-[300px] sm:min-h-[400px]">
