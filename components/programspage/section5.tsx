@@ -2,7 +2,6 @@
 
 import React from "react";
 
-// Colors used in the section
 const Colors = {
   background: "#F5F3ED",
   mainHeading: "#A67950",
@@ -11,14 +10,13 @@ const Colors = {
   paragraphColor: "#401323",
 };
 
-// Facility Block
 interface FacilityBlockProps {
   title: string;
   description: string;
 }
 
 const FacilityBlock: React.FC<FacilityBlockProps> = ({ title, description }) => (
-  <div className="mb-8 lg:mb-14 scale-[1.02]">
+  <div className="mb-6 md:mb-10 lg:mb-14">
     <h3
       style={{
         color: Colors.facilityHeading,
@@ -40,18 +38,15 @@ const FacilityBlock: React.FC<FacilityBlockProps> = ({ title, description }) => 
   </div>
 );
 
-// Main Section5
 const Section5: React.FC = () => {
   return (
     <section
-      className="w-full flex flex-col py-8 md:py-12 lg:py-16 scale-[0.95] origin-top" // slightly zoomed-out, but larger content
-      style={{
-        backgroundColor: Colors.background,
-      }}
+      className="w-full flex flex-col py-8 md:py-12 lg:py-16"
+      style={{ backgroundColor: Colors.background }}
     >
-      <div className="mx-auto px-6 sm:px-8 lg:px-14 xl:px-24 max-w-[85%]">
+      <div className="mx-auto px-4 sm:px-6 md:px-10 lg:px-14 xl:px-24 max-w-full lg:max-w-7xl">
         {/* Heading */}
-        <div className="group relative cursor-pointer inline-block pt-0 mb-6">
+        <div className="group relative inline-block pt-0 mb-6 text-center lg:text-left">
           <h2
             style={{
               color: Colors.mainHeading,
@@ -61,7 +56,7 @@ const Section5: React.FC = () => {
           >
             How We Train
           </h2>
-          <div className="absolute bottom-0 left-0 h-[3px] rounded-full transition-all duration-500 w-0 group-hover:w-full bg-gradient-to-r from-[#6A4336] to-transparent"></div>
+          <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 md:left-0 md:translate-x-0 h-[3px] rounded-full transition-all duration-500 w-0 group-hover:w-full bg-gradient-to-r from-[#6A4336] to-transparent"></div>
         </div>
 
         {/* Paragraph */}
@@ -70,16 +65,16 @@ const Section5: React.FC = () => {
             color: Colors.paragraphColor,
             fontFamily: "Lato, sans-serif",
           }}
-          className="text-base md:text-lg font-normal leading-7 mb-10 md:mb-12 lg:mb-16 mt-3 max-w-3xl"
+          className="text-base md:text-lg font-normal leading-7 mb-10 md:mb-12 lg:mb-16 mt-3 max-w-full lg:max-w-3xl mx-auto lg:mx-0 text-center lg:text-left"
         >
           Our institute mirrors the environment of a modern robotic operating room. Trainees gain confidence
           by practicing in facilities that replicate real-world surgical conditions.
         </p>
 
         {/* Facilities + Image */}
-        <div className="flex flex-col lg:flex-row lg:gap-14 xl:gap-20">
+        <div className="flex flex-col lg:flex-row lg:gap-10 xl:gap-16">
           {/* Facility List */}
-          <div className="flex flex-col flex-shrink-0 lg:w-1/2 xl:w-[580px] lg:order-1 order-2">
+          <div className="flex flex-col flex-shrink-0 w-full lg:w-1/2 order-2 lg:order-1">
             <FacilityBlock
               title="Simulated ORs"
               description="Fully equipped with SSI Mantra systems for mock procedures."
@@ -99,14 +94,14 @@ const Section5: React.FC = () => {
           </div>
 
           {/* Image */}
-          <div className="flex-grow flex justify-center lg:justify-start mb-10 lg:mb-0 lg:order-2 order-1">
+          <div className="flex justify-center lg:justify-start mb-8 lg:mb-0 order-1 lg:order-2 w-full lg:w-50%">
             <div
               style={{
                 background: `url("/Images/programs/section5/image1.png") lightgray center / cover no-repeat`,
                 boxShadow:
                   "0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 5px 6px -2px rgba(0, 0, 0, 0.05)",
               }}
-              className="w-full max-w-md sm:max-w-lg md:max-w-xl lg:w-[600px] lg:h-[400px] rounded-lg overflow-hidden"
+              className="w-full max-w-xs sm:max-w-md md:max-w-lg lg:max-w-full h-64 md:h-80 lg:h-[400px] rounded-lg overflow-hidden"
             />
           </div>
         </div>

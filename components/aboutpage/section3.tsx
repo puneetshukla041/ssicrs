@@ -5,7 +5,8 @@ import Image from "next/image";
 
 export default function Section3() {
   return (
-    <section className="w-full relative bg-[#FBFAF2] pt-2 md:h-[75vh] md:pt-0">
+    <section className="w-full relative bg-[#FBFAF2] pt-2 pb-24 md:h-auto md:pt-0 md:pb-0 min-h-[0vh]">
+
       
       {/* Container with consistent horizontal padding */}
       <div className="w-full max-w-[1440px] mx-auto px-4 sm:px-6 md:px-8 lg:px-16 xl:px-20">
@@ -47,7 +48,7 @@ export default function Section3() {
             ].map((text, idx) => (
               <div
                 key={idx}
-                className="w-full h-auto min-h-[70px] bg-white rounded-lg border-2 border-[#724B3C] shadow-lg cursor-pointer p-4"
+                className="w-full h-auto min-h-[70px] bg-[#FBFAF2] rounded-lg border-2 border-[#724B3C] shadow-lg cursor-pointer p-4"
               >
                 <p className="text-[#724B3C] font-sans font-medium text-base sm:text-lg leading-5 sm:leading-6">
                   {text}

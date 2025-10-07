@@ -36,9 +36,9 @@ export default function Section2() {
               }}
             >
               Educating the future of
-              <br />
+              
               Accessible Robotic
-              <br />
+             
               Surgery
             </h2>
           </div>

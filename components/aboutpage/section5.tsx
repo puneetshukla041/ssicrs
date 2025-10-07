@@ -41,17 +41,17 @@ export default function Section2({ children }: Section2Props) {
       heading: "Engineering-Integrated <br>Learning",
       text: (
         <>
-          Understand robotic mechanics<br />  alongside clinical applications.
+          Understand robotic mechanics<br />  alongside clinical applications.
         </>
       ),
       textColor: "#A67950",
     },
     {
       src: "/Images/aboutpage/section5/bottomlogo4.png",
-      heading: "Comprehensive Post-Training <br> Support",
+      heading: "Comprehensive Post-Training <br>Support",
       text: (
         <>
-          Access digital resources, case <br />  discussions, and ongoing mentorship.
+          Access digital resources, case <br />  discussions, and ongoing mentorship.
         </>
       ),
       textColor: "#A67950",
@@ -69,8 +69,8 @@ export default function Section2({ children }: Section2Props) {
   };
 
   return (
-    // Main Section: Use standard padding and remove excessive fixed desktop padding (px-32)
-    <section className="w-full relative bg-[#FBFAF2] px-4 sm:px-6 md:px-8 pt-16 pb-8 md:pt-32 md:pb-16 min-h-[60vh]">
+    // Updated: Added lg:px-12 xl:px-20 for more padding on large/xl screens (laptops/desktops)
+    <section className="w-full relative bg-[#FBFAF2] px-4 sm:px-6 md:px-8 **lg:px-12 xl:px-20** pt-16 pb-8 md:pt-32 md:pb-16 min-h-[60vh]">
       
       {/* Centered Content Container for Desktop */}
       <div className="max-w-7xl mx-auto">
@@ -88,7 +88,6 @@ export default function Section2({ children }: Section2Props) {
               fontSize: "clamp(28px, 4vw, 38px)",
             }}
           >
-            {/* Removed fixed pl-36/pl-22, relying on the centered container */}
             Our Approach
           </div>
 
@@ -100,7 +99,6 @@ export default function Section2({ children }: Section2Props) {
               lineHeight: 1.6,
             }}
           >
-            {/* Removed fixed pl-36/pl-22 */}
             SSICRS is equipped with world-class infrastructure, combining theoretical education with practical,
             <br className="hidden md:inline-block"/>
             hands-on experience. Our training approach includes:<br />
