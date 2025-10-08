@@ -291,7 +291,7 @@ export default function RegisterPage() {
               {/* Core Training Programs */}
               {/* 3. Swapped inner program card background from 'bg-white' to 'bg-[#F8F1E9]' to provide contrast with the main white card. */}
               <motion.div
-                className="flex flex-col items-start p-4 bg-[#F8F1E9] rounded-lg shadow-sm"
+                className="flex flex-col items-start p-4 bg-[#FBFAF2] rounded-lg shadow-sm"
                 variants={itemVariants}
               >
                 <label className="font-medium text-base md:text-lg text-[#401323] mb-3">Core Programs</label>
@@ -314,7 +314,7 @@ export default function RegisterPage() {
               {/* Additional Training Programs */}
               {/* 4. Swapped inner program card background from 'bg-white' to 'bg-[#F8F1E9]'. */}
               <motion.div
-                className="p-4 bg-[#F8F1E9] rounded-lg shadow-sm flex flex-col items-start"
+                className="p-4 bg-[#FBFAF2] rounded-lg shadow-sm flex flex-col items-start"
                 variants={itemVariants}
               >
                 <label className="font-medium text-base md:text-lg text-[#401323] mb-3">Additional Programs</label>
