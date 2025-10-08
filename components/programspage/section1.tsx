@@ -1,20 +1,25 @@
+// components/programspage/section1.tsx
+
 "use client";
 
 import React from "react";
-// Removed: import Image from "next/image"; -> Causes compilation error outside of Next.js
+import Image from "next/image"; // Re-added the correct import
 
 export default function Section1() {
   return (
     <section className="w-full h-screen relative overflow-x-hidden">
-      {/* Background Image: Replaced Next.js Image with a standard <img> tag.
-          The classes absolute inset-0 w-full h-full object-cover mimic the behavior of Next/Image fill 
-          to ensure it covers the entire section responsively.
+      {/* Background Image: Replaced <img> with Next.js <Image />.
+        - fill: Makes the image fill the parent container.
+        - className="object-cover": Ensures the image covers the section without stretching.
+        - priority: Essential for images in the hero section to speed up LCP.
       */}
-      <img
+      <Image
         src="/Images/programs/section1/image1.webp"
         alt="SSI CRS"
-        className="absolute inset-0 w-full h-full object-cover"
-        // Note: 'priority' attribute is for Next.js Image component only and is removed here.
+        fill
+        className="object-cover"
+        sizes="100vw" // Helps Next.js optimize image loading based on viewport width
+        priority
       />
 
       {/* Centered Heading Container 
@@ -24,7 +29,7 @@ export default function Section1() {
         <h1
           className="text-white font-serif mb-6 
           text-3xl sm:text-4xl md:text-5xl lg:text-[64px]
-          max-w-4xl mx-auto" 
+          max-w-4xl mx-auto"
           style={{
             fontFamily: "DM Serif Display, serif",
             fontWeight: 400,

@@ -1,8 +1,11 @@
+// components/programspage/section3.tsx
+
 "use client";
 
 import React from "react";
 import { FiArrowRight } from "react-icons/fi";
 import { useRouter } from "next/navigation";
+import Image from "next/image"; // Added the correct Image import
 
 export default function Section3() {
   const router = useRouter();
@@ -40,7 +43,7 @@ export default function Section3() {
           className="flex flex-col lg:flex-row justify-between items-center lg:items-start 
                       p-6 md:p-10 lg:p-12 mt-8 md:mt-12 lg:mt-16 
                       rounded-lg border border-[#A67950] bg-white w-full 
-                      min-h-[auto] shadow-lg" // Removed fixed lg:min-h to allow expansion
+                      min-h-[auto] shadow-lg"
         >
           {/* Left Side: Text and Details */}
           <div className="flex flex-col gap-4 w-full lg:w-1/2 lg:pr-8">
@@ -123,13 +126,17 @@ export default function Section3() {
             </div>
           </div>
 
-          {/* Right Side: Image */}
+          {/* Right Side: Image Container with Next.js Image */}
           <div className="mt-8 lg:mt-0 w-full lg:w-1/2 flex justify-center lg:justify-end">
-            <img 
-              src="/Images/programs/section3/image1.png" 
-              alt="Model of a human heart representing cardiac surgery"
-              className="w-full max-w-sm md:max-w-md lg:max-w-[456px] h-auto object-cover rounded-lg"
-            />
+            <div className="relative w-full max-w-sm md:max-w-md lg:max-w-[456px] h-[280px] md:h-[350px] lg:h-[400px] rounded-lg overflow-hidden">
+                <Image 
+                    src="/Images/programs/section3/image1.png" 
+                    alt="Model of a human heart representing cardiac surgery"
+                    fill
+                    className="object-cover" // Ensure it covers the area
+                    sizes="(max-width: 1024px) 100vw, 50vw" // Responsive sizes for optimization
+                />
+            </div>
           </div>
         </div>
       </div>
