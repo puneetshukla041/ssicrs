@@ -39,7 +39,7 @@ export default function Section2() {
   ];
 
   return (
-    <section 
+    <section
       // Adjusted main padding for better responsiveness on laptops
       className="w-full bg-[#FBFAF2] relative flex flex-col items-center p-4 sm:p-8 md:px-12 lg:px-16 xl:px-24 2xl:px-32 pt-[60px] lg:pt-[100px] pb-12"
     >
@@ -47,10 +47,19 @@ export default function Section2() {
       <div className="w-full max-w-7xl flex flex-col items-center lg:items-start">
         {/* Heading */}
         <div className="group relative cursor-pointer inline-block mx-auto lg:mx-0 text-center lg:text-left">
-          <h2 className="font-[DM Serif Text] text-[#A67950] text-2xl sm:text-3xl md:text-[40px] font-normal leading-[150%]">
-            Our Specialized Training
-          </h2>
-          <div className="absolute bottom-[-10px] left-0 h-[3px] rounded-full transition-all duration-500 w-0 group-hover:w-full lg:group-hover:w-[90%] bg-gradient-to-r from-[#6A4336] to-transparent"></div>
+<h2
+  className="text-3xl sm:text-4xl lg:text-4xl text-center lg:text-left leading-snug mb-6"
+  style={{
+    fontFamily: "'DM Serif Display', serif",
+    fontWeight: 400,
+    fontStyle: "normal",
+    color: "#A67950",
+    whiteSpace: "pre-line",
+  }}
+>
+  Training Pathways
+</h2>
+         
         </div>
 
         {/* Subheading */}
@@ -85,10 +94,8 @@ export default function Section2() {
               <div
                 key={index}
                 className="flex-shrink-0 rounded-[8px] border-2 border-transparent
-                           bg-white hover:bg-[#FBF6F3]
-                           shadow-[0_6px_20px_rgba(0,0,0,0.25)]
-                           hover:shadow-[0_12px_35px_rgba(0,0,0,0.35)]
-                           hover:border-[#6A4336]
+                           bg-white 
+                           shadow-md hover:shadow-lg
                            relative cursor-pointer transform transition duration-400 ease-out 
                            hover:scale-[1.03] sm:hover:scale-105 p-4 sm:p-6
                            min-h-[220px] sm:min-h-[241px] w-full max-w-full sm:max-w-[400px]

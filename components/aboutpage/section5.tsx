@@ -82,14 +82,18 @@ export default function Section2({ children }: Section2Props) {
         <div className="pb-8 md:pb-10 lg:pb-12">
           
           {/* Main Heading */}
-          <div
-            className="font-serif font-normal text-[#A67950] leading-[1.2] text-center md:text-left" // Align left on medium screens and up
-            style={{
-              fontSize: "clamp(28px, 4vw, 38px)",
-            }}
-          >
-            Our Approach
-          </div>
+<h2
+  className="text-3xl sm:text-4xl lg:text-4xl text-center lg:text-left leading-snug mb-6"
+  style={{
+    fontFamily: "'DM Serif Display', serif",
+    fontWeight: 400,
+    fontStyle: "normal",
+    color: "#A67950",
+    whiteSpace: "pre-line",
+  }}
+>
+  Our Expert Faculty
+</h2>
 
           {/* Subtext */}
           <div

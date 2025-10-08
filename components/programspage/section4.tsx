@@ -25,19 +25,20 @@ export default function Section4() {
           className="group relative cursor-pointer inline-block mt-10"
           style={{ paddingTop: "0px" }}
         >
-          <h2
-            className="text-3xl sm:text-4xl lg:text-[40px]" // Made font size responsive
-            style={{
-              color: "#A67950",
-              fontFamily: '"DM Serif Text", serif',
-              fontWeight: 400,
-              lineHeight: "150%",
-            }}
-          >
-            How We Train
-          </h2>
+<h2
+  className="text-3xl sm:text-4xl lg:text-4xl text-center lg:text-left leading-snug mb-6"
+  style={{
+    fontFamily: "'DM Serif Display', serif",
+    fontWeight: 400,
+    fontStyle: "normal",
+    color: "#A67950",
+    whiteSpace: "pre-line",
+  }}
+>
+  How We Train
+</h2>
           {/* Responsive Line */}
-          <div className="absolute bottom-[-10px] left-0 h-[3px] rounded-full transition-all duration-500 w-0 group-hover:w-[90%] bg-gradient-to-r from-[#6A4336] to-transparent"></div>
+       
         </div>
 
         {/* Subheading */}
