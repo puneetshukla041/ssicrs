@@ -3,7 +3,7 @@
 import React from "react";
 
 const Colors = {
-  background: "#FBFAF2", // Updated background color
+  background: "#FBFAF2",
   mainHeading: "#A67950",
   bodyText: "#401323",
   facilityHeading: "#5B102B",
@@ -41,11 +41,10 @@ const FacilityBlock: React.FC<FacilityBlockProps> = ({ title, description }) => 
 const Section5: React.FC = () => {
   return (
     <section
-      // Adjusted classes: Using pt- for top padding and a smaller pb- for bottom padding
-      className="w-full flex flex-col pt-8 pb-4 md:pt-12 md:pb-6 lg:pt-16 lg:pb-0"
+      className="w-full flex flex-col pt-8 pb-4 md:pt-12 md:pb-6 lg:pt-16 lg:pb-8"
       style={{ backgroundColor: Colors.background }}
     >
-      <div className="mx-auto px-4 sm:px-6 md:px-10 lg:px-14 xl:px-24 max-w-full lg:max-w-7xl">
+      <div className="mx-auto px-2 sm:px-4 md:px-6 lg:px-8 xl:px-12 max-w-full lg:max-w-[1400px]">
         {/* Heading */}
         <div className="group relative inline-block pt-0 mb-6 text-center lg:text-left cursor-pointer">
           <h2
@@ -55,7 +54,7 @@ const Section5: React.FC = () => {
             }}
             className="text-3xl md:text-4xl lg:text-5xl font-normal leading-snug"
           >
-           Training Facilities
+            Training Facilities
           </h2>
           <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 md:left-0 md:translate-x-0 h-[3px] rounded-full transition-all duration-500 w-0 group-hover:w-full bg-gradient-to-r from-[#6A4336] to-transparent"></div>
         </div>
@@ -66,14 +65,14 @@ const Section5: React.FC = () => {
             color: Colors.paragraphColor,
             fontFamily: "Lato, sans-serif",
           }}
-          className="text-base md:text-lg font-normal leading-7 mb-10 md:mb-12 lg:mb-16 mt-3 max-w-full lg:max-w-3xl mx-auto lg:mx-0 text-center lg:text-left"
+          className="text-base md:text-lg font-normal leading-7 mb-10 md:mb-12 lg:mb-16 mt-3 max-w-full mx-auto lg:mx-0 text-center lg:text-left"
         >
           Our institute mirrors the environment of a modern robotic operating room. Trainees gain confidence
           by practicing in facilities that replicate real-world surgical conditions.
         </p>
 
         {/* Facilities + Image */}
-        <div className="flex flex-col lg:flex-row lg:gap-10 xl:gap-16">
+        <div className="flex flex-col lg:flex-row lg:gap-8 xl:gap-12">
           {/* Facility List */}
           <div className="flex flex-col flex-shrink-0 w-full lg:w-1/2 order-2 lg:order-1">
             <FacilityBlock
@@ -102,7 +101,7 @@ const Section5: React.FC = () => {
                 boxShadow:
                   "0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 5px 6px -2px rgba(0, 0, 0, 0.05)",
               }}
-              className="w-full max-w-xs sm:max-w-md md:max-w-lg lg:max-w-full h-64 md:h-80 lg:h-[400px] rounded-lg overflow-hidden"
+              className="w-full h-72 sm:h-80 md:h-96 lg:h-[450px] rounded-lg overflow-hidden"
             />
           </div>
         </div>
