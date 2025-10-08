@@ -46,17 +46,18 @@ export default function Section7() {
 
         {/* Section Heading */}
         <div className="w-full relative mb-16">
-          <h2
-            className="text-4xl md:text-5xl text-[#A67950] font-serif text-left relative inline-block group cursor-pointer"
-            style={{
-              fontFamily: "DM Serif Display, serif",
-              fontWeight: 300,
-              lineHeight: 1.2,
-            }}
-          >
-            Our Expert Faculty
-            <span className="absolute bottom-[-10px] left-0 h-[3px] rounded-full w-0 group-hover:w-[90%] transition-all duration-500 bg-gradient-to-r from-[#6A4336] to-transparent"></span>
-          </h2>
+<h2
+  className="text-3xl sm:text-4xl lg:text-4xl text-center lg:text-left leading-snug mb-6"
+  style={{
+    fontFamily: "'DM Serif Display', serif",
+    fontWeight: 400,
+    fontStyle: "normal",
+    color: "#A67950",
+    whiteSpace: "pre-line",
+  }}
+>
+  Our Expert Faculty
+</h2>
         </div>
 
         {/* Experts Grid */}
