@@ -115,14 +115,20 @@ export default function FourthSection() {
       <div className="hidden md:flex flex-col items-center justify-start w-full px-6 py-16 md:px-12 lg:px-24 xl:px-32">
         {/* Heading */}
         <div className="max-w-7xl mx-auto w-full">
-          <h2
-            className="text-4xl md:text-5xl font-serif text-[#A67950] mb-16 text-left relative inline-block group cursor-pointer"
-            style={{ fontFamily: "DM Serif Text, serif", fontWeight: 400 }}
-          >
-            For Whom
-            {/* Underline for hover effect */}
-            <span className="absolute bottom-[-10px] left-0 h-[3px] rounded-full transition-all duration-500 w-0 group-hover:w-full lg:group-hover:w-[90%] bg-gradient-to-r from-[#6A4336] to-transparent"></span>
-          </h2>
+{/* Main Heading */}
+<h2
+  className="text-3xl sm:text-4xl lg:text-4xl text-center lg:text-left leading-snug mb-6"
+  style={{
+    fontFamily: "'DM Serif Display', serif",
+    fontWeight: 400,
+    fontStyle: "normal",
+    color: "#A67950",
+    whiteSpace: "pre-line",
+  }}
+>
+  For Whom
+</h2>
+
         </div>
 
         {/* --- First Row (Surgeons, Residents & Fellows, Anesthesiologists) --- */}

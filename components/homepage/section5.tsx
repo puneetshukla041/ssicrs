@@ -99,10 +99,18 @@ const Slider: React.FC = () => {
 
       {/* Heading */}
       <div className="max-w-7xl mx-auto">
-        <h2 className="text-4xl md:text-5xl font-serif text-[#A67950] mb-12 text-center lg:text-left relative inline-block group cursor-pointer">
-          Our Comprehensive Training Program
-     
-        </h2>
+<h2
+  className="text-3xl sm:text-4xl lg:text-4xl text-center lg:text-left leading-snug mb-6"
+  style={{
+    fontFamily: "'DM Serif Display', serif",
+    fontWeight: 400,
+    fontStyle: "normal",
+    color: "#A67950",
+    whiteSpace: "pre-line",
+  }}
+>
+  Our Comprehensive Training Program
+</h2>
       </div>
 
       {/* Slider Container */}
