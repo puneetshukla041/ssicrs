@@ -1,20 +1,162 @@
 "use client";
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
-// Cookie Banner Component
-const CookieBanner: React.FC = () => {
-  const BANNER_BG_COLOR = '#A67950'; // The requested background color
+// --- CookieSettingsModal Component (The Card from the image) ---
+interface CookieSettingsModalProps {
+  isOpen: boolean;
+  onClose: () => void;
+}
+
+const CookieSettingsModal: React.FC<CookieSettingsModalProps> = ({ isOpen, onClose }) => {
+  // Color palette based on the image:
+  const CARD_BG = '#FBF2E3'; // Light background for the card
+  const HEADER_COLOR = '#A67950'; // Header text color
+  const LEGAL_TEXT_COLOR = '#401323'; // Legal text
+  const BUTTON_BG = '#E7B58B'; // Save & Accept button background
+  const BUTTON_TEXT = '#7A4822'; // Save & Accept button text
+
+  // Local state for each cookie category's consent
+  const [performance, setPerformance] = useState(false);
+  const [functionality, setFunctionality] = useState(false);
+  const [advertising, setAdvertising] = useState(false);
+
+  // Helper component for the Toggle Switch
+  const CookieToggle: React.FC<{ label: string, description: string, alwaysActive?: boolean, checked: boolean, onChange?: (checked: boolean) => void }> = ({
+    label,
+    description,
+    alwaysActive = false,
+    checked,
+    onChange,
+  }) => {
+    const isEnabled = alwaysActive || checked;
+    
+    return (
+      <div className="flex flex-col border-b border-stone-200 py-4 last:border-b-0">
+        <div className="flex justify-between items-start">
+          <div>
+            <h3 className="text-lg font-semibold" style={{ color: LEGAL_TEXT_COLOR }}>
+              {label}
+            </h3>
+            {alwaysActive && (
+              <p className="text-sm text-gray-500 mt-1">
+                Always Enabled
+              </p>
+            )}
+          </div>
+          
+          <label className="relative inline-flex items-center cursor-pointer ml-4 flex-shrink-0">
+            <input 
+              type="checkbox" 
+              value="" 
+              className="sr-only peer" 
+              checked={isEnabled} 
+              disabled={alwaysActive}
+              onChange={(e) => onChange && onChange(e.target.checked)}
+            />
+            {/* Toggle Track (Background) */}
+            <div className={`w-11 h-6 rounded-full peer-focus:outline-none ${isEnabled ? 'bg-green-500' : 'bg-gray-300'} peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all ${alwaysActive ? 'opacity-100' : 'opacity-100'}`}></div>
+          </label>
+        </div>
+
+        <p className="text-sm text-stone-700 mt-2">
+          {description}
+        </p>
+      </div>
+    );
+  };
+
+  if (!isOpen) return null;
+
+  // The Modal Overlay and Card
+  return (
+    // 1. Modal Overlay (Responsive: uses full screen on small devices, fixed position)
+    <div 
+      className={`fixed inset-0 bg-black bg-opacity-40 flex items-center sm:items-start justify-center p-4 sm:p-8 z-[100] transition-opacity duration-300 ${isOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'}`} 
+      onClick={onClose}
+    >
+      {/* 2. Modal Card (Responsive: full width on small screens, wider on laptop screens) */}
+      <div 
+        // *** FIX APPLIED: Set max-w-xl for small screens and md:max-w-3xl for laptop/desktop ***
+        className={`w-full max-w-xl md:max-w-3xl mt-4 sm:mt-16 rounded-xl shadow-2xl transition-all duration-500 ease-out max-h-[90vh] overflow-y-auto
+                    ${isOpen ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-[-20px]'}`} 
+        style={{ backgroundColor: CARD_BG }}
+        onClick={(e) => e.stopPropagation()} // Prevent closing when clicking inside the card
+      >
+        {/* Content of the Settings Card (p-6 on mobile, p-8 on larger screens) */}
+        <div className="p-6 sm:p-8 space-y-6">
+          
+          {/* Header */}
+          <header>
+            <h1 className="text-3xl font-normal mb-2" style={{ color: HEADER_COLOR, fontFamily: '"DM Serif Text", serif' }}>
+              Cookie Settings
+            </h1>
+            <p className="text-sm text-stone-700 leading-relaxed">
+              Where required, we place non-essential cookies only with your consent. For essential cookies, our legal basis is legitimate interests in running a secure, functional website. If you are in the EEA/UK, you'll see a consent banner before any non-essential cookies load.
+            </p>
+            <div className="my-4 h-px" style={{ backgroundColor: '#D4C3A3' }}></div> {/* Separator */}
+          </header>
+
+          {/* Cookie Categories */}
+          <div className="space-y-2">
+            
+            <CookieToggle 
+              label="Always active"
+              description="These cookies are essential for the website to function properly. They ensure basic operations like security, session management, and accessibility."
+              alwaysActive={true}
+              checked={true}
+            />
+
+            <CookieToggle
+              label="Performance & Analytics Cookies"
+              description="Help us improve our website by collecting anonymous data on how visitors use it. These cookies allow us to track which pages are popular and how users move around the site."
+              checked={performance}
+              onChange={setPerformance}
+            />
+
+            <CookieToggle
+              label="Functionality Cookies"
+              description="Remember your preferences, such as language, location, or previous selections, to provide a more personalized experience."
+              checked={functionality}
+              onChange={setFunctionality}
+            />
+
+            <CookieToggle
+              label="Advertising & Targeting Cookies"
+              description="Used to deliver relevant updates and measure the effectiveness of our communications. We only use these with your consent."
+              checked={advertising}
+              onChange={setAdvertising}
+            />
+          </div>
+
+          {/* Save & Accept Button */}
+          <div className="flex justify-end pt-4">
+            <button
+              onClick={() => {
+                // Logic to save settings would go here
+                console.log('Settings Saved:', { performance, functionality, advertising });
+                onClose(); // Close the modal after saving
+              }}
+              className="px-6 py-3 text-sm font-medium rounded-xl transition-colors duration-300"
+              style={{ backgroundColor: BUTTON_BG, color: BUTTON_TEXT, border: `1px solid ${BUTTON_TEXT}` }}
+            >
+              Save & Accept
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+
+// --- Cookie Banner Component ---
+const CookieBanner: React.FC<{ onSettingsClick: () => void }> = ({ onSettingsClick }) => {
+  const BANNER_BG_COLOR = '#A67950'; 
   const TEXT_COLOR = 'text-white';
   const BUTTON_BORDER_COLOR = 'border-white';
   const BUTTON_TEXT_COLOR = 'text-white';
 
-  const handleCookieSettings = () => {
-    // In a real application, this would open a modal for granular settings
-    console.log('Open Cookie Settings modal...');
-  };
-
   const handleAcceptAll = () => {
-    // In a real application, this would set the necessary cookies and dismiss the banner
     console.log('Accepting all cookies...');
   };
 
@@ -23,24 +165,25 @@ const CookieBanner: React.FC = () => {
       className="fixed bottom-0 left-0 right-0 p-4 shadow-2xl transition-all duration-500 ease-in-out z-50 rounded-t-xl"
       style={{ backgroundColor: BANNER_BG_COLOR }}
     >
+      {/* Adjusted spacing for small screens */}
       <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between space-y-4 md:space-y-0 md:space-x-8">
         
         {/* Text Content */}
         <p className={`text-sm ${TEXT_COLOR} leading-relaxed text-center md:text-left`}>
-          We use cookies on our website to give you the most relevant experience by remembering your preferences and repeat visits. By clicking "Accept All", you consent to the use of all the cookies. However, you may visit "Cookie Settings" to provide controlled consent.
+          We use cookies on our website to give you the most relevant experience by remembering your preferences and repeat visits. By clicking "Accept All", you consent to the use of all the cookies. However, you may visit **"Cookie Settings"** to provide controlled consent.
         </p>
 
-        {/* Buttons */}
+        {/* Buttons (Uses space-x-4, stacks naturally) */}
         <div className="flex space-x-4 flex-shrink-0">
           <button
-            onClick={handleCookieSettings}
-            className={`px-6 py-3 text-sm font-medium rounded-xl border-2 ${BUTTON_BORDER_COLOR} ${BUTTON_TEXT_COLOR} hover:bg-white hover:text-amber-900 transition-colors duration-300 ease-in-out`}
+            onClick={onSettingsClick} 
+            className={`px-4 py-2 sm:px-6 sm:py-3 text-sm font-medium rounded-xl border-2 ${BUTTON_BORDER_COLOR} ${BUTTON_TEXT_COLOR} hover:bg-white hover:text-amber-900 transition-colors duration-300 ease-in-out`}
           >
-            Cookie Settings
+            Settings
           </button>
           <button
             onClick={handleAcceptAll}
-            className="px-6 py-3 text-sm font-medium rounded-xl border-2 border-white bg-white text-amber-900 hover:bg-opacity-90 transition-colors duration-300 ease-in-out"
+            className="px-4 py-2 sm:px-6 sm:py-3 text-sm font-medium rounded-xl border-2 border-white bg-white text-amber-900 hover:bg-opacity-90 transition-colors duration-300 ease-in-out"
           >
             Accept All
           </button>
@@ -51,11 +194,38 @@ const CookieBanner: React.FC = () => {
 };
 
 
-// Main component for the Cookie Policy page
+// --- Main component for the Cookie Policy page ---
 const CookiesPage: React.FC = () => {
-  const lastUpdated = '1 Oct 2025'; // Placeholder date
+  const lastUpdated = '1 Oct 2025'; 
+  
+  const [isSettingsModalOpen, setIsSettingsModalOpen] = useState(false);
 
-  // Component to wrap sections for animated entry
+  const openSettingsModal = () => setIsSettingsModalOpen(true);
+  const closeSettingsModal = () => setIsSettingsModalOpen(false);
+
+  // Lock body scroll to prevent page content shift when modal is open
+  useEffect(() => {
+    if (isSettingsModalOpen) {
+      document.body.style.overflow = 'hidden';
+      // To prevent page content shifting when scrollbar is hidden, calculate and apply padding
+      const scrollBarWidth = window.innerWidth - document.documentElement.clientWidth;
+      document.body.style.paddingRight = `${scrollBarWidth}px`;
+    } else {
+      document.body.style.overflow = '';
+      document.body.style.paddingRight = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+      document.body.style.paddingRight = '';
+    };
+  }, [isSettingsModalOpen]);
+
+  const handleRedirectToSettings = () => {
+    openSettingsModal(); 
+    console.log('Opening Cookie Settings Modal');
+  };
+
+  // Policy Section Component
   const PolicySection: React.FC<{ title: string; children: React.ReactNode; delay: number }> = ({ title, children, delay }) => (
     <div 
       className={`mb-8 opacity-0 transform translate-y-4 animate-fade-in-up`}
@@ -82,8 +252,8 @@ const CookiesPage: React.FC = () => {
   );
 
   return (
-    // Outer Container: Background color set to #FBFAF2
-    <div className="min-h-screen pt-40 pb-24 px-4 sm:px-8 md:px-12 font-sans" style={{ backgroundColor: '#FBFAF2' }}>
+    // Outer Container (Responsive padding: p-4 on small, p-8 on medium, p-12 on large)
+    <div className="min-h-screen pt-20 sm:pt-40 pb-24 px-4 sm:px-8 md:px-12 font-sans" style={{ backgroundColor: '#FBFAF2' }}>
       
       {/* Injecting keyframe styles and Google Font link */}
       <style>{`
@@ -98,10 +268,10 @@ const CookiesPage: React.FC = () => {
         }
       `}</style>
       
-      {/* Policy Card Wrapper: Centered with max-w-4xl and white background (bg-white) */}
-      <div className="max-w-4xl mx-auto bg-white p-8 sm:p-12 rounded-2xl shadow-xl">
+      {/* Policy Card Wrapper (Responsive padding: p-6 on small, p-12 on large) */}
+      <div className="max-w-4xl mx-auto bg-white p-6 sm:p-8 md:p-12 rounded-2xl shadow-xl">
         
-        {/* Header - Removed all bottom lines/borders */}
+        {/* Header */}
         <header className={`flex justify-between items-center mb-10 transition-all duration-500`}>
           {/* Main H1 Heading Styles */}
           <h1 
@@ -121,7 +291,7 @@ const CookiesPage: React.FC = () => {
           </p>
         </header>
 
-        {/* 1. Cookie Policy */}
+        {/* Policy Content Sections... (Structure preserved) */}
         <PolicySection title="Cookie Policy" delay={1}>
           <p>
             We use cookies and similar technologies to run our site, understand how it's used, and improve your experience with SSICRS programs and resources. You can manage your preferences at any time in the **Cookie Settings**.
@@ -129,7 +299,6 @@ const CookiesPage: React.FC = () => {
           </p>
         </PolicySection>
 
-        {/* 2. How we use cookies - EXPANDED */}
         <PolicySection title="How we use cookies" delay={2}>
           <ul className="list-disc pl-5 space-y-3 text-base">
             <li>
@@ -153,14 +322,13 @@ const CookiesPage: React.FC = () => {
           </ul>
         </PolicySection>
 
-        {/* 3. Types of cookies we use - EXPANDED */}
         <PolicySection title="Types of cookies we use" delay={3}>
           <ul className="list-disc pl-5 space-y-3 text-base">
             <li>
               Strictly Necessary (always active): Required for core functionality (security, forms, session). These cookies cannot be turned off in our systems as they are fundamental for safe navigation and service access, such as maintaining items in a shopping cart or securely logging you in.
             </li>
             <li>
-              Performance/Analytics: Help us understand usage to improve pages and navigation. These cookies collect aggregated and anonymous data, such as visitor count and traffic sources, to evaluate and report on the overall performance of the website.
+              Performance/Analytics: Help us understand usage to improve pages and navigation. These cookies collect aggregated and anonymous data, suchs as visitor count and traffic sources, to evaluate and report on the overall performance of the website.
             </li>
             <li>
               Functionality: Remember choices such as language or region. These are used to provide enhanced, more personal features, like remembering your username and custom settings. They may be set by us or by third-party providers whose services we have added to our pages.
@@ -180,14 +348,13 @@ const CookiesPage: React.FC = () => {
           </ul>
         </PolicySection>
 
-        {/* 4. Managing your preferences - EXPANDED */}
         <PolicySection title="Managing your preferences" delay={4}>
           <p>
             You control how non-essential cookies are used. This flexibility allows you to customize your privacy settings without impacting the site's necessary core functions.
           </p>
           <ul className="list-disc pl-5 space-y-3 text-base">
             <li>
-              Cookie Settings Panel: Adjust categories anytime. <button className={`text-amber-700 hover:text-amber-900 font-medium underline focus:outline-none transition-colors duration-200`}>[Open Cookie Settings]</button> This panel allows for granular control, giving you the power to enable or disable specific types of cookies beyond the strictly necessary ones.
+              Cookie Settings Panel: Adjust categories anytime. <button onClick={handleRedirectToSettings} className={`text-amber-700 hover:text-amber-900 font-medium underline focus:outline-none transition-colors duration-200`}>[Open Cookie Settings]</button> This panel allows for granular control, giving you the power to enable or disable specific types of cookies beyond the strictly necessary ones.
             </li>
             <li>
               Browser controls: Most browsers let you block or delete cookies. See help pages for Chrome, Safari, Edge, or Firefox. Be aware that blocking all cookies, especially strictly necessary ones, may prevent certain parts of the site from working correctly.
@@ -201,14 +368,12 @@ const CookiesPage: React.FC = () => {
           </ul>
         </PolicySection>
 
-        {/* 5. Legal bases & region notes */}
         <PolicySection title="Legal bases & region notes" delay={5}>
           <p>
             Where required, we place non-essential cookies only with your consent. For essential cookies, our legal basis is legitimate interests in running a secure, functional website. If you are in the EEA/UK, you'll see a consent banner before any non-essential cookies load. The legal basis for processing data varies by cookie category and region.
           </p>
         </PolicySection>
 
-        {/* 6. Changes to this notice */}
         <PolicySection title="Changes to this notice" delay={6}>
           <p>
             We may update this page to reflect new cookies or providers. Significant changes will be highlighted in the banner or on this page with a new "Last updated" date. We encourage users to review this policy periodically to stay informed about how we are using these technologies.
@@ -217,8 +382,9 @@ const CookiesPage: React.FC = () => {
         
       </div>
       
-      {/* ADDED: Fixed Cookie Consent Banner at the bottom */}
-      <CookieBanner />
+      {/* RENDER the Modal and Banner */}
+      <CookieBanner onSettingsClick={openSettingsModal} />
+      <CookieSettingsModal isOpen={isSettingsModalOpen} onClose={closeSettingsModal} />
     </div>
   );
 };
