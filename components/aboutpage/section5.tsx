@@ -92,7 +92,7 @@ export default function Section2({ children }: Section2Props) {
     whiteSpace: "pre-line",
   }}
 >
-  Our Expert Faculty
+  Our Approach
 </h2>
 
           {/* Subtext */}
