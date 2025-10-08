@@ -10,15 +10,17 @@ export default function Footer() {
     router.push("/cookies");
   };
 
+  const handlePrivacyClick = () => {
+    router.push("/privacypolicy");
+  };
+
   return (
-    // Base footer is full width with the background color
     <footer className="w-full bg-[#A67951] relative">
 
       {/* ---------------- Desktop View (md and up) ---------------- */}
       <div className="hidden md:block w-full min-h-[469px] py-20 px-4 xl:px-32 2xl:px-64">
         
         <div className="flex justify-between items-start">
-          
           {/* Left Section */}
           <div className="flex flex-col items-start max-w-lg">
             <div className="flex items-center mb-4">
@@ -59,7 +61,7 @@ export default function Footer() {
           <div className="flex flex-wrap justify-center gap-x-4 gap-y-2 text-xs sm:text-sm font-normal font-sora">
             <span onClick={handleCookiesClick} className="cursor-pointer hover:underline">Cookies</span>
             <span>|</span>
-            <span className="cursor-pointer">Privacy Policy</span>
+            <span onClick={handlePrivacyClick} className="cursor-pointer hover:underline">Privacy Policy</span>
             <span>|</span>
             <span className="cursor-pointer">Contact us</span>
             <span>|</span>
@@ -104,7 +106,7 @@ export default function Footer() {
             <div className="flex flex-wrap justify-center gap-x-3 gap-y-1 items-center font-sora pt-1">
               <span onClick={handleCookiesClick} className="cursor-pointer hover:underline">Cookies</span>
               <span>|</span>
-              <span className="cursor-pointer">Privacy Policy</span>
+              <span onClick={handlePrivacyClick} className="cursor-pointer hover:underline">Privacy Policy</span>
               <span>|</span>
               <span className="cursor-pointer">Contact us</span>
               <span>|</span>
