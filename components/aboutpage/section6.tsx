@@ -83,7 +83,7 @@ export default function Section8() {
           className="absolute text-center text-4xl font-normal bg-clip-text text-transparent bg-gradient-to-r from-[#D9A05B] via-[#EFE8D6] to-[#F2F0E4] whitespace-nowrap"
           style={{
             fontFamily: "DM Serif Text, serif",
-            top: "30%",
+            top: "36%",
             left: "50%",
             transform: "translate(-50%, -50%)",
           }}
@@ -97,7 +97,7 @@ export default function Section8() {
           style={{
             fontFamily: "Lato, sans-serif",
             color: "#FBFAF2",
-            top: "48%",
+            top: "49%",
             left: "50%",
             transform: "translate(-50%, -50%)",
             width: "100%",
@@ -115,7 +115,7 @@ export default function Section8() {
           onClick={handleRegisterClick} // Add onClick handler
           className="absolute flex items-center justify-center rounded-full transition-shadow duration-300 hover:shadow-[0_0_15px_rgba(255,234,210,0.5)]"
           style={{
-            top: "68%",
+            top: "62%",
             left: "50%",
             transform: "translate(-50%, -50%)",
             width: "167px",
