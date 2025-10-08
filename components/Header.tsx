@@ -21,22 +21,17 @@ export default function Header({ className = "" }: HeaderProps) {
   const loginPath = "/Login";
 
   useEffect(() => {
-    // Prevent scroll-based changes on the Register page
     if (isRegisterPage) return;
     const handleScroll = () => setScrolled(window.scrollY > 50);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, [isRegisterPage]);
 
-  // Lock scrolling when mobile menu is open
   useEffect(() => {
-    if (mobileOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = 'unset';
-    }
+    if (mobileOpen) document.body.style.overflow = "hidden";
+    else document.body.style.overflow = "unset";
     return () => {
-      document.body.style.overflow = 'unset';
+      document.body.style.overflow = "unset";
     };
   }, [mobileOpen]);
 
@@ -97,7 +92,7 @@ export default function Header({ className = "" }: HeaderProps) {
       className={`w-full py-3 md:py-4 flex items-center justify-between fixed top-0 left-0 z-50 transition-all duration-500
         ${headerBgColor} ${headerShadow} ${className}
         px-4 sm:px-6 md:px-10 
-        lg:px-8 xl:px-[200px] 2xl:px-[290px] // ADJUSTED: Maximum expansion on laptops (lg)
+        lg:px-20 xl:px-36 2xl:px-[290px] // laptops only expanded, desktop untouched
       `}
     >
       {/* Logo */}
@@ -111,66 +106,66 @@ export default function Header({ className = "" }: HeaderProps) {
           alt="SSI CRS Logo"
           width={220}
           height={0}
-          className="w-auto h-8 sm:h-10 md:h-16 object-contain transition-all duration-500"
+          className="w-auto h-8 sm:h-10 md:h-16 lg:h-18 xl:h-20 2xl:h-16 object-contain transition-all duration-500"
           priority
         />
       </button>
 
-{/* Desktop Navigation */}
-<nav
-  className="hidden md:flex items-center space-x-8 lg:space-x-10 ml-8"
-  style={{ fontFamily: "Lato, sans-serif" }}
->
-  {navItems.map((item) => {
-    const isActive = pathname === item.path;
-    return (
-      <button
-        key={item.label}
-        onClick={() => handleNavClick(item.path)}
-        className={`transition-colors duration-300 text-base lg:text-[1rem] 
-          ${isActive ? "text-[#C59D73]" : headerTextColor} 
-          font-normal
-          hover:text-[#C59D73]`}
+      {/* Desktop Navigation */}
+      <nav
+        className="hidden md:flex items-center space-x-8 lg:space-x-14 xl:space-x-16 2xl:space-x-10 ml-8"
+        style={{ fontFamily: "Lato, sans-serif" }}
       >
-        {item.label}
-      </button>
-    );
-  })}
+        {navItems.map((item) => {
+          const isActive = pathname === item.path;
+          return (
+            <button
+              key={item.label}
+              onClick={() => handleNavClick(item.path)}
+              className={`transition-colors duration-300 text-base lg:text-[1rem]
+                ${isActive ? "text-[#C59D73]" : headerTextColor}
+                font-normal
+                hover:text-[#C59D73]`}
+            >
+              {item.label}
+            </button>
+          );
+        })}
 
-  {/* Log In Button */}
-  <button
-    onClick={goToLogin}
-    className={`px-6 py-2 rounded-[5px] font-normal transition-colors duration-300 border text-base
-      ${isRegisterPage || scrolled
-        ? "bg-transparent text-[#A67950] border-[#A67950] hover:border-[#A67950]"
-        : "bg-transparent text-[#A67950] border-[#A67950] hover:border-[#A67950]"
-      }
-    `}
-  >
-    Log In
-  </button>
+        {/* Log In Button */}
+        <button
+          onClick={goToLogin}
+          className={`px-6 py-2 rounded-[5px] font-normal transition-colors duration-300 border text-base
+            ${isRegisterPage || scrolled
+              ? "bg-transparent text-[#A67950] border-[#A67950] hover:border-[#A67950]"
+              : "bg-transparent text-[#A67950] border-[#A67950] hover:border-[#A67950]"
+            }
+          `}
+        >
+          Log In
+        </button>
 
-  {/* Register Now Button */}
-  <div className="relative flex items-center">
-    <div
-      className="absolute top-[-20] left-0 w-full"
-      style={{
-        height: "170%",
-        backgroundColor: "#A67950",
-        borderBottomLeftRadius: "10px",
-        borderBottomRightRadius: "10px",
-        zIndex: 0,
-      }}
-    ></div>
-    <button
-      onClick={goToRegister}
-      className="relative z-10 px-3 py-2 rounded-full cursor-pointer text-white font-medium transition-colors duration-500"
-      style={{ backgroundColor: "transparent" }}
-    >
-      Register Now
-    </button>
-  </div>
-</nav>
+        {/* Register Now Button */}
+        <div className="relative flex items-center">
+          <div
+            className="absolute top-[-20] left-0 w-full"
+            style={{
+              height: "170%",
+              backgroundColor: "#A67950",
+              borderBottomLeftRadius: "10px",
+              borderBottomRightRadius: "10px",
+              zIndex: 0,
+            }}
+          ></div>
+          <button
+            onClick={goToRegister}
+            className="relative z-10 px-3 py-2 rounded-full cursor-pointer text-white font-medium transition-colors duration-500"
+            style={{ backgroundColor: "transparent" }}
+          >
+            Register Now
+          </button>
+        </div>
+      </nav>
 
       {/* Mobile Button */}
       <button
@@ -181,14 +176,13 @@ export default function Header({ className = "" }: HeaderProps) {
         {mobileOpen ? <X size={26} /> : <Menu size={26} />}
       </button>
 
-      {/* Mobile Navigation Menu (New Responsive Addition) */}
+      {/* Mobile Navigation Menu */}
       <div
         className={`fixed inset-0 pt-[72px] bg-white transition-transform duration-300 md:hidden z-40
           ${mobileOpen ? "translate-x-0" : "translate-x-full"}
           flex flex-col items-center space-y-8 p-6 overflow-y-auto`}
         style={{ fontFamily: "Lato, sans-serif" }}
       >
-        {/* Nav Items */}
         {navItems.map((item) => {
           const isActive = pathname === item.path;
           return (
@@ -196,7 +190,7 @@ export default function Header({ className = "" }: HeaderProps) {
               key={item.label}
               onClick={() => handleNavClick(item.path)}
               className={`text-xl font-medium transition-colors duration-300 w-full text-center py-2
-                ${isActive ? "text-[#C59D73]" : "text-gray-800"} 
+                ${isActive ? "text-[#C59D73]" : "text-gray-800"}
                 hover:text-[#C59D73]`}
             >
               {item.label}
