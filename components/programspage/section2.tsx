@@ -63,7 +63,7 @@ const logos = [
         <div className="mt-8 lg:mt-[60px] flex flex-col lg:flex-row gap-8 lg:gap-[40px] items-center lg:items-start">
           
           {/* Main image - Dimensions remain the same */}
-          <div className="hidden sm:block relative w-full max-w-[400px] h-[550px] lg:w-[465px] lg:h-[532px] rounded-[8px] overflow-hidden flex-shrink-0">
+          <div className="hidden sm:block relative w-full max-w-[400px] h-[550px] lg:w-[465px] lg:h-[632px] rounded-[8px] overflow-hidden flex-shrink-0">
             <Image
               src="/Images/programs/section2/image1.png"
               alt="Surgeon operating with robotic-assisted surgery tools."
@@ -75,7 +75,8 @@ const logos = [
           </div>
 
           {/* Right containers (Training Cards) */}
-          <div className="grid w-full lg:w-auto grid-cols-1 sm:grid-cols-2 gap-6 lg:gap-[40px] max-w-full">
+          <div className="grid w-full lg:w-auto grid-cols-1 sm:grid-cols-2 gap-6 lg:gap-[40px] max-w-full lg:mt-[40px] xl:mt-[5px] 2xl:mt-[50px]">
+
             {containers.map((item, index) => (
               <div
                 key={index}
