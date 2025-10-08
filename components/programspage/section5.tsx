@@ -47,7 +47,7 @@ const Section5: React.FC = () => {
     >
       <div className="mx-auto px-4 sm:px-6 md:px-10 lg:px-14 xl:px-24 max-w-full lg:max-w-7xl">
         {/* Heading */}
-        <div className="group relative inline-block pt-0 mb-6 text-center lg:text-left">
+        <div className="group relative inline-block pt-0 mb-6 text-center lg:text-left cursor-pointer">
           <h2
             style={{
               color: Colors.mainHeading,
@@ -55,7 +55,7 @@ const Section5: React.FC = () => {
             }}
             className="text-3xl md:text-4xl lg:text-5xl font-normal leading-snug"
           >
-            How We Train
+           Training Facilities
           </h2>
           <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 md:left-0 md:translate-x-0 h-[3px] rounded-full transition-all duration-500 w-0 group-hover:w-full bg-gradient-to-r from-[#6A4336] to-transparent"></div>
         </div>
