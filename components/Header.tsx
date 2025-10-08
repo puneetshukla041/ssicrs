@@ -1,4 +1,5 @@
 // components/Header.tsx
+
 "use client";
 
 import Image from "next/image";
@@ -95,7 +96,8 @@ export default function Header({ className = "" }: HeaderProps) {
     <header
       className={`w-full py-3 md:py-4 flex items-center justify-between fixed top-0 left-0 z-50 transition-all duration-500
         ${headerBgColor} ${headerShadow} ${className}
-        px-4 sm:px-6 md:px-10 lg:px-[200px] xl:px-[290px]
+        px-4 sm:px-6 md:px-10 
+        lg:px-8 xl:px-[200px] 2xl:px-[290px] // ADJUSTED: Maximum expansion on laptops (lg)
       `}
     >
       {/* Logo */}
