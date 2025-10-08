@@ -100,9 +100,7 @@ const Slider: React.FC = () => {
       <div className="max-w-7xl mx-auto">
         <h2 className="text-4xl md:text-5xl font-serif text-[#A67950] mb-12 text-center lg:text-left relative inline-block group cursor-pointer">
           Our Comprehensive Training Program
-          <span
-            className="absolute bottom-[-10px] left-0 h-[3px] rounded-full transition-all duration-500 w-0 group-hover:w-full lg:group-hover:w-[90%] bg-gradient-to-r from-[#6A4336] to-transparent"
-          ></span>
+     
         </h2>
       </div>
 

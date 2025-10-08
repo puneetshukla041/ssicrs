@@ -14,6 +14,14 @@ const IMAGE_PATHS = [
 const NUM_IMAGES = IMAGE_PATHS.length;
 const SCROLL_MULTIPLIER = 0.5; // Adjust scroll speed
 
+// Define consistent large screen values using Tailwind's spacing scale (e.g., 20/5rem, 32/8rem)
+// We'll use custom values from the original code for a close match: [100px] and [130px]
+const DESKTOP_TOP_CLASS = "md:top-[100px] lg:top-[100px]"; // Consistent top placement
+const DESKTOP_LEFT_CLASS = "md:left-[130px] lg:left-[130px]"; // Consistent left placement
+
+// NEW: Fixed dimensions for the image wrapper/display (for large screens)
+const IMAGE_WRAPPER_CLASSES = "w-full lg:w-[1380px] lg:h-[502px] flex-shrink-0 mx-auto";
+
 export default function SectionNew() {
   const sectionRef = useRef<HTMLDivElement>(null);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
@@ -57,12 +65,12 @@ export default function SectionNew() {
     // The main container determines the overall scrollable height.
     <div ref={sectionRef} style={{ height: totalHeight }} className="relative w-full">
       {/* The sticky section is what stays fixed in the viewport while scrolling. */}
-      <section className="sticky top-0 w-full h-screen bg-[#FBFAF2] border-t-2 border-b-2 border-black relative overflow-hidden">
+      <section className="sticky top-0 w-full h-screen bg-[#FBFAF2] relative overflow-hidden">
         
-        {/* Heading - Made responsive with dynamic font-size, padding/margin, and positioning */}
+        {/* Heading - Consistent md: and lg: values for laptop/PC screens. */}
         <h1
-          className="absolute text-xl sm:text-2xl md:text-3xl lg:text-4xl text-[#A67950] font-serif font-medium leading-normal 
-                     top-10 left-5 sm:top-16 sm:left-10 md:top-20 md:left-20 lg:top-[100px] lg:left-[130px] z-10"
+          className={`absolute text-xl sm:text-2xl md:text-3xl lg:text-4xl text-[#A67950] font-serif font-medium leading-normal 
+                    top-10 left-5 sm:top-16 sm:left-10 ${DESKTOP_TOP_CLASS} ${DESKTOP_LEFT_CLASS} z-10`}
           style={{
             fontFamily: '"DM Serif Text", serif',
           }}
@@ -70,34 +78,42 @@ export default function SectionNew() {
           Why Choose SSICRS
         </h1>
 
-        {/* Image Display Area - Responsive positioning and size adjustment */}
+        {/* Image Display Area - MODIFIED to apply fixed dimensions and centering on large screens. */}
         <div 
-          className="absolute left-0 right-0" 
+          // The image wrapper is centered (mx-auto) and applies fixed dimensions for large screens (lg:)
+          className={`absolute left-0 right-0 ${IMAGE_WRAPPER_CLASSES}`} 
           style={{ 
-            top: "100px", // Adjusted for smaller screens
-            height: "calc(100vh - 100px)", // Adjusted height
-            position: "relative" 
+            // Position the entire image block below the heading area
+            top: "20%", 
+            // The height of this wrapper is now controlled by the lg:h-[502px] class 
+            // to enforce the requested dimension.
+            position: "relative",
+            // The max-width style prevents it from expanding beyond the viewport on small screens
+            maxWidth: '100%', 
           }} 
-          // Further adjustments for larger screens (desktop view)
-          // lg:top-[200px] lg:h-[calc(100vh - 200px)] are not strictly necessary 
-          // since the image scale handles it, but keeps the original layout intention.
         >
           {IMAGE_PATHS.map((path, index) => (
             <Image
               key={path}
               src={path}
               alt={`Image ${index + 1}`}
-              fill
-              // Image will contain within its parent div, scaling down for mobile.
-              // object-position can be added if specific alignment is needed (e.g., center-top)
+              // Removed 'fill' as we are using explicit width and height
+              width={1380} // Explicit width as requested
+              height={502} // Explicit height as requested
               style={{
+                // objectFit: "contain" is kept to ensure the image scales within the fixed 1380x502 container if needed
                 objectFit: "contain", 
                 opacity: currentImageIndex === index ? 1 : 0,
                 transition: "opacity 0.2s ease-in-out",
+                // Make the image absolute within its relative parent (the div)
                 position: "absolute",
+                // Center the image within its 1380px container
+                left: '50%',
+                transform: 'translateX(-50%)',
               }}
               priority={currentImageIndex === index}
-              sizes="(max-width: 768px) 90vw, (max-width: 1200px) 70vw, 50vw" // Helps Next.js optimize image loading
+              // The 'sizes' prop is less critical when fixed dimensions are used, but kept for optimization context
+              sizes="(max-width: 768px) 90vw, 1380px"
             />
           ))}
         </div>
