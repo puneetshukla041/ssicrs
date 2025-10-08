@@ -94,7 +94,7 @@ const Section5: React.FC = () => {
           </div>
 
           {/* Image */}
-          <div className="flex justify-center lg:justify-start mb-8 lg:mb-0 order-1 lg:order-2 w-full lg:w-7/12">
+          <div className="flex justify-center lg:justify-start mb-8 lg:mb-0 order-1 lg:order-2 w-full lg:w-7/12 -mt-8 lg:-mt-16">
             <div
               style={{
                 background: `url("/Images/programs/section5/image1.png") lightgray center / cover no-repeat`,
