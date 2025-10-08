@@ -39,7 +39,8 @@ const cardsData = [
 
 export default function FourthSection() {
   return (
-    <section className="w-full bg-[#FBFAF2] min-h-[110vh] flex flex-col items-start justify-start relative">
+    <section className="w-full bg-[#FBFAF2] pt-16 md:pt-24 lg:pt-28 pb-16 md:pb-20 lg:pb-5 flex flex-col items-start justify-start relative">
+
       {/* =====================================================================================
         RESPONSIVE MOBILE/TABLET/SMALL LAPTOP LAYOUT (Visible on screens LESS THAN md)
         This block is fully responsive using flexbox and grid.

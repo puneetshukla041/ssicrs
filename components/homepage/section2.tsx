@@ -45,10 +45,12 @@ export default function Section2({ children }: Section2Props) {
   ];
 
   return (
-    <section
-      className="w-full relative py-10 md:py-20 lg:py-24"
-      style={{ backgroundColor: "#FBFAF2" }}
-    >
+<section
+  className="w-full relative pt-10 md:pt-20 lg:pt-28 pb-2 md:pb-3 lg:pb-4"
+  style={{ backgroundColor: "#FBFAF2" }}
+>
+
+
       <div className="w-full h-full">{children}</div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

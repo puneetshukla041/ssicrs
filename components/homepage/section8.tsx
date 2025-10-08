@@ -15,7 +15,8 @@ export default function SeventhSection() {
   };
 
   return (
-    <section className="w-full bg-[#FBFAF2] relative flex justify-center items-center py-12 md:py-0 min-h-[500px] md:min-h-0">
+    <section className="w-full bg-[#FBFAF2] relative flex justify-center items-center pt-12 sm:pt-0 pb-20 md:pb-24 min-h-[500px] md:min-h-0">
+
       
       {/* ---------------- Mobile & Tablet View (Responsive) ---------------- 
           Content is already centered vertically using flex utilities on the parent div.

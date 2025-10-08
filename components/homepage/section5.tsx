@@ -95,7 +95,8 @@ const Slider: React.FC = () => {
   };
 
   return (
-    <div className="w-full bg-[#FBFAF2] pt-20 sm:pt-28 pb-12 px-4 sm:px-8 lg:px-12 xl:px-20">
+    <div className="w-full bg-[#FBFAF2] pt-28 sm:pt-30 pb-20 sm:pb-40 px-4 sm:px-8 lg:px-12 xl:px-20">
+
       {/* Heading */}
       <div className="max-w-7xl mx-auto">
         <h2 className="text-4xl md:text-5xl font-serif text-[#A67950] mb-12 text-center lg:text-left relative inline-block group cursor-pointer">
