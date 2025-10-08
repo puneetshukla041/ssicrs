@@ -16,18 +16,34 @@ async function getBucket() {
   return bucket;
 }
 
+interface RegistrationBody {
+  fullName?: string;
+  email?: string;
+  phoneNumber?: string;
+  dob?: Date;
+  experience?: string;
+  institution?: string;
+  callDateTime?: string;
+  hearAboutUs?: string;
+  currentProfession?: string;
+  specialization?: string;
+  learningGoals?: string;
+  trainingPrograms?: string[];
+  additionalPrograms?: string[];
+  termsAgree?: boolean;
+}
+
 export async function POST(req: Request) {
   try {
     await connectDB();
 
-    let body: any = {};
+    let body: RegistrationBody = {};
     let uploadId: ObjectId | null = null;
     let uploadName: string | null = null;
 
     const contentType = req.headers.get("content-type") || "";
 
     if (contentType.includes("multipart/form-data")) {
-      // Handle formData (file upload)
       const formData = await req.formData();
 
       body.fullName = formData.get("fullName")?.toString();
@@ -44,11 +60,11 @@ export async function POST(req: Request) {
       body.trainingPrograms = formData.getAll("trainingPrograms").map(v => v.toString());
       body.additionalPrograms = formData.getAll("additionalPrograms").map(v => v.toString());
 
-      // ✅ Fix: correctly handle checkbox/boolean
+      // Properly handle boolean checkbox
       const termsAgreeRaw = formData.get("termsAgree");
       body.termsAgree = termsAgreeRaw === "on" || termsAgreeRaw === "true";
 
-      // Handle file upload
+      // File upload
       const uploadFile = formData.get("uploadId") as File | null;
       if (uploadFile) {
         uploadName = uploadFile.name;
@@ -67,11 +83,11 @@ export async function POST(req: Request) {
         });
       }
     } else if (contentType.includes("application/json")) {
-      // Handle JSON (no file)
-      body = await req.json();
-
-      // Ensure termsAgree is boolean
-      body.termsAgree = !!body.termsAgree;
+      const json = await req.json();
+      body = {
+        ...json,
+        termsAgree: !!json.termsAgree,
+      };
     } else {
       return NextResponse.json(
         { success: false, error: "Unsupported Content-Type" },
@@ -86,7 +102,6 @@ export async function POST(req: Request) {
       );
     }
 
-    // ✅ Get next ticket number
     const ticketNo = await Registration.getNextTicketNo();
 
     const newRegistration = new Registration({

@@ -5,7 +5,7 @@ import React from "react";
 import Section1 from "@/components/aboutpage/section1";
 import Section2 from "@/components/aboutpage/section2";
 import Section3 from "@/components/aboutpage/section3";
-import Section4 from "@/components/aboutpage/section4";
+
 import Section5 from "@/components/aboutpage/section5";
 import Section6 from "@/components/aboutpage/section6";
 import Footer from "@/components/Footer";
