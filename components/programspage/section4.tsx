@@ -6,45 +6,47 @@ import Image from "next/image";
 
 export default function Section4() {
   return (
-    // 1. Convert fixed padding-left to responsive padding (p-4 for small, px-72 for large)
-<section
-  className="w-full bg-[#FBFAF2] flex flex-col items-center xl:items-start px-4 md:px-8 lg:px-16 xl:px-64"
-  style={{
-    minHeight: "100vh",
-    paddingTop: "0px",
-    paddingBottom: "160px",
-  }}
->
-
-      {/* Container for alignment on large screens */}
+    // 1. Updated: Adjusted padding for better responsiveness across all screens,
+    // especially reducing the extreme 'xl' padding so content expands on laptops.
+    // The main content is now contained by 'max-w-7xl' for central alignment on very large screens.
+    <section
+      className="w-full bg-[#FBFAF2] flex flex-col items-center pl-4 pr-4 md:pl-8 md:pr-8 lg:pl-12 lg:pr-12 xl:pl-20 xl:pr-20"
+      style={{
+        minHeight: "100vh",
+        paddingTop: "40px", // Added a default top padding
+        paddingBottom: "160px",
+      }}
+    >
+      {/* Container for alignment on all screens. This centers the content
+          and ensures it doesn't get squished by excessive padding on laptops (xl) */}
       <div className="w-full max-w-7xl">
         {/* Heading with hover + line */}
-        {/* Align text left on all screens, but center the div itself on small screens if we were centering content, but here we align left */}
         <div
-          className="group relative cursor-pointer inline-block mt-10 xl:mt-0"
+          className="group relative cursor-pointer inline-block mt-10"
           style={{ paddingTop: "0px" }}
         >
           <h2
+            className="text-3xl sm:text-4xl lg:text-[40px]" // Made font size responsive
             style={{
               color: "#A67950",
               fontFamily: '"DM Serif Text", serif',
-              fontSize: "40px", // Remains large but can be made responsive if needed (e.g., text-3xl sm:text-4xl)
               fontWeight: 400,
               lineHeight: "150%",
             }}
           >
             How We Train
           </h2>
+          {/* Responsive Line */}
           <div className="absolute bottom-[-10px] left-0 h-[3px] rounded-full transition-all duration-500 w-0 group-hover:w-[90%] bg-gradient-to-r from-[#6A4336] to-transparent"></div>
         </div>
 
         {/* Subheading */}
         <p
+          className="text-base" // Ensure font size is controlled
           style={{
             marginTop: "22px",
             color: "#401323",
             fontFamily: "Lato, sans-serif",
-            fontSize: "16px",
             fontWeight: 400,
             lineHeight: "44px",
           }}
@@ -52,12 +54,10 @@ export default function Section4() {
           A Balanced Approach: Theory, Practice, and Innovation.
         </p>
 
-        {/* 2x2 Image Grid: Changed to 1 column on small/medium and 2 columns on large. */}
-        {/* max-w-7xl added to constrain the grid width on very large screens */}
+        {/* 2x2 Image Grid: 1 column on small, 2 columns on medium/large. */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 gap-y-10 mt-6 w-full">
-          {/* Image 1: Zoom and Pointer Cursor Only */}
+          {/* Image 1: Classroom Learning */}
           <div className="relative group rounded-lg overflow-hidden cursor-pointer">
-            {/* Set parent div to full width and use a padding-bottom hack for the original aspect ratio (461/634 ≈ 72.71%) */}
             <div
               className="w-full relative"
               style={{
@@ -68,17 +68,17 @@ export default function Section4() {
               <Image
                 src="/Images/programs/section4/image1.png"
                 alt="Image 1"
-                // The fill prop makes the image fill the parent element.
                 fill
                 className="object-cover transition-transform duration-500 group-hover:scale-105"
+                sizes="(max-width: 768px) 100vw, 50vw" // Added sizes for performance
                 style={{
                   borderRadius: "8px",
                 }}
               />
             </div>
-            {/* Text Overlay - Change fixed width to w-[90%] and center it */}
+            {/* Text Overlay */}
             <div
-              className="absolute bottom-5 left-1/2 transform -translate-x-1/2 rounded-lg py-4 px-4 flex flex-col items-start justify-start w-[90%] sm:w-[95%] max-w-[534px] h-auto min-h-[120px] md:h-[120px]"
+              className="absolute bottom-5 left-1/2 transform -translate-x-1/2 rounded-lg py-4 px-4 flex flex-col items-start justify-start w-[90%] max-w-[534px] min-h-[120px]" // Removed unnecessary 'sm:w-[95%]' and 'md:h-[120px]' for better flow
               style={{
                 background: "#381205",
                 opacity: 0.7,
@@ -86,10 +86,10 @@ export default function Section4() {
               }}
             >
               <p
+                className="text-xl" // Added responsive class for text
                 style={{
                   color: "#FFF",
                   fontFamily: '"DM Serif Text", serif',
-                  fontSize: "20px",
                   fontWeight: 400,
                   lineHeight: "30px",
                   marginBottom: "6px",
@@ -98,10 +98,10 @@ export default function Section4() {
                 Classroom Learning
               </p>
               <p
+                className="text-base" // Added responsive class for text
                 style={{
                   color: "#FFF",
                   fontFamily: "Lato, sans-serif",
-                  fontSize: "16px",
                   fontWeight: 400,
                   lineHeight: "24px",
                 }}
@@ -112,13 +112,12 @@ export default function Section4() {
             </div>
           </div>
 
-          {/* Image 2: Removed ml-7, gap is handled by the grid's gap-x-6 */}
+          {/* Image 2: Lab-Based Practice */}
           <div className="relative group rounded-lg overflow-hidden cursor-pointer">
-            {/* Set parent div to full width and use padding-bottom for aspect ratio */}
             <div
               className="w-full relative"
               style={{
-                paddingTop: "72.71%", // Maintains the original 634x461 aspect ratio
+                paddingTop: "72.71%",
                 borderRadius: "8px",
               }}
             >
@@ -127,14 +126,15 @@ export default function Section4() {
                 alt="Image 2"
                 fill
                 className="object-cover transition-transform duration-500 group-hover:scale-105"
+                sizes="(max-width: 768px) 100vw, 50vw"
                 style={{
                   borderRadius: "8px",
                 }}
               />
             </div>
-            {/* Text Overlay - Change fixed width to w-[90%] and center it */}
+            {/* Text Overlay */}
             <div
-              className="absolute bottom-5 left-1/2 transform -translate-x-1/2 rounded-lg py-4 px-4 flex flex-col items-start justify-start w-[90%] sm:w-[95%] max-w-[534px] h-auto min-h-[120px] md:h-[120px]"
+              className="absolute bottom-5 left-1/2 transform -translate-x-1/2 rounded-lg py-4 px-4 flex flex-col items-start justify-start w-[90%] max-w-[534px] min-h-[120px]"
               style={{
                 background: "#381205",
                 opacity: 0.7,
@@ -142,10 +142,10 @@ export default function Section4() {
               }}
             >
               <p
+                className="text-xl"
                 style={{
                   color: "#FFF",
                   fontFamily: '"DM Serif Text", serif',
-                  fontSize: "20px",
                   fontWeight: 400,
                   lineHeight: "30px",
                   marginBottom: "6px",
@@ -154,10 +154,10 @@ export default function Section4() {
                 Lab-Based Practice
               </p>
               <p
+                className="text-base"
                 style={{
                   color: "#FFF",
                   fontFamily: "Lato, sans-serif",
-                  fontSize: "16px",
                   fontWeight: 400,
                   lineHeight: "24px",
                 }}
@@ -168,13 +168,12 @@ export default function Section4() {
             </div>
           </div>
 
-          {/* Image 3: No fixed margin needed */}
+          {/* Image 3: Online Modules */}
           <div className="relative group rounded-lg overflow-hidden cursor-pointer">
-            {/* Set parent div to full width and use padding-bottom for aspect ratio */}
             <div
               className="w-full relative"
               style={{
-                paddingTop: "72.71%", // Maintains the original 634x461 aspect ratio
+                paddingTop: "72.71%",
                 borderRadius: "8px",
               }}
             >
@@ -183,14 +182,15 @@ export default function Section4() {
                 alt="Image 3"
                 fill
                 className="object-cover transition-transform duration-500 group-hover:scale-105"
+                sizes="(max-width: 768px) 100vw, 50vw"
                 style={{
                   borderRadius: "8px",
                 }}
               />
             </div>
-            {/* Text Overlay - Change fixed width to w-[90%] and center it */}
+            {/* Text Overlay */}
             <div
-              className="absolute bottom-5 left-1/2 transform -translate-x-1/2 rounded-lg py-4 px-4 flex flex-col items-start justify-start w-[90%] sm:w-[95%] max-w-[534px] h-auto min-h-[120px] md:h-[120px]"
+              className="absolute bottom-5 left-1/2 transform -translate-x-1/2 rounded-lg py-4 px-4 flex flex-col items-start justify-start w-[90%] max-w-[534px] min-h-[120px]"
               style={{
                 background: "#381205",
                 opacity: 0.7,
@@ -198,10 +198,10 @@ export default function Section4() {
               }}
             >
               <p
+                className="text-xl"
                 style={{
                   color: "#FFF",
                   fontFamily: '"DM Serif Text", serif',
-                  fontSize: "20px",
                   fontWeight: 400,
                   lineHeight: "30px",
                   marginBottom: "6px",
@@ -210,10 +210,10 @@ export default function Section4() {
                 Online Modules
               </p>
               <p
+                className="text-base"
                 style={{
                   color: "#FFF",
                   fontFamily: "Lato, sans-serif",
-                  fontSize: "16px",
                   fontWeight: 400,
                   lineHeight: "24px",
                 }}
@@ -224,13 +224,12 @@ export default function Section4() {
             </div>
           </div>
 
-          {/* Image 4: Removed ml-7, gap is handled by the grid's gap-x-6 */}
+          {/* Image 4: Certification & Mentorship */}
           <div className="relative group rounded-lg overflow-hidden cursor-pointer">
-            {/* Set parent div to full width and use padding-bottom for aspect ratio */}
             <div
               className="w-full relative"
               style={{
-                paddingTop: "72.71%", // Maintains the original 634x461 aspect ratio
+                paddingTop: "72.71%",
                 borderRadius: "8px",
               }}
             >
@@ -239,14 +238,15 @@ export default function Section4() {
                 alt="Image 4"
                 fill
                 className="object-cover transition-transform duration-500 group-hover:scale-105"
+                sizes="(max-width: 768px) 100vw, 50vw"
                 style={{
                   borderRadius: "8px",
                 }}
               />
             </div>
-            {/* Text Overlay - Change fixed width to w-[90%] and center it */}
+            {/* Text Overlay */}
             <div
-              className="absolute bottom-5 left-1/2 transform -translate-x-1/2 rounded-lg py-4 px-4 flex flex-col items-start justify-start w-[90%] sm:w-[95%] max-w-[534px] h-auto min-h-[120px] md:h-[120px]"
+              className="absolute bottom-5 left-1/2 transform -translate-x-1/2 rounded-lg py-4 px-4 flex flex-col items-start justify-start w-[90%] max-w-[534px] min-h-[120px]"
               style={{
                 background: "#381205",
                 opacity: 0.7,
@@ -254,10 +254,10 @@ export default function Section4() {
               }}
             >
               <p
+                className="text-xl"
                 style={{
                   color: "#FFF",
                   fontFamily: '"DM Serif Text", serif',
-                  fontSize: "20px",
                   fontWeight: 400,
                   lineHeight: "30px",
                   marginBottom: "6px",
@@ -266,10 +266,10 @@ export default function Section4() {
                 Certification & Mentorship
               </p>
               <p
+                className="text-base"
                 style={{
                   color: "#FFF",
                   fontFamily: "Lato, sans-serif",
-                  fontSize: "16px",
                   fontWeight: 400,
                   lineHeight: "24px",
                 }}
