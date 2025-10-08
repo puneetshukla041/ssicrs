@@ -14,6 +14,15 @@ export default function Footer() {
     router.push("/privacypolicy");
   };
 
+    const handleContactus = () => {
+    router.push("/contactus");
+  };
+
+    const handleTermsofuse = () => {
+    router.push("/privacypolicy");
+  };
+
+
   return (
     <footer className="w-full bg-[#A67951] relative">
 
@@ -63,9 +72,9 @@ export default function Footer() {
             <span>|</span>
             <span onClick={handlePrivacyClick} className="cursor-pointer hover:underline">Privacy Policy</span>
             <span>|</span>
-            <span className="cursor-pointer">Contact us</span>
+            <span onClick={handleContactus} className="cursor-pointer hover:underline">Contact us</span>
             <span>|</span>
-            <span className="cursor-pointer">Terms of use</span>
+            <span onClick={handleTermsofuse} className="cursor-pointer hover:underline">Terms of use</span>
           </div>
         </div>
       </div>
