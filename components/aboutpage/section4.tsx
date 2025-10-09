@@ -1,118 +1,174 @@
-"use client";
+import React, { useState, useEffect, useRef } from 'react';
 
-import React, { useEffect, useRef, useState, useCallback } from "react";
-import Image from "next/image";
-
-const IMAGE_PATHS = [
-  "/Images/aboutpage/section4/image1.png",
-  "/Images/aboutpage/section4/image2.png",
-  "/Images/aboutpage/section4/image3.png",
-  "/Images/aboutpage/section4/image4.png",
-  "/Images/aboutpage/section4/image5.png",
+// --- Configuration ---
+const IMAGE_URLS = [
+    '/Images/aboutpage/section4/image1.png',
+    '/Images/aboutpage/section4/image2.png',
+    '/Images/aboutpage/section4/image3.png',
+    '/Images/aboutpage/section4/image4.png',
+    '/Images/aboutpage/section4/image5.png',
 ];
 
-const NUM_IMAGES = IMAGE_PATHS.length;
-// SCROLL_MULTIPLIER controls the scroll duration for image change.
-const SCROLL_MULTIPLIER = 0.35;
+// The total scroll duration for the image sequence, measured in viewport heights (VH).
+const ANIMATION_HEIGHT_VH = 400;
+// --- End Configuration ---
 
-// Define responsive class for heading positioning
-// We use 'top-10' and 'left-5' as base, then adjust up for tablets/desktop using percentages/vh
-const HEADING_POSITION_CLASSES = "top-8 left-4 sm:top-12 sm:left-8 md:top-[10vh] md:left-[5vw] lg:top-[100px] lg:left-[130px]";
+const NUM_IMAGES = IMAGE_URLS.length;
 
-// Define responsive class for image wrapper positioning
-// Centered horizontally, positioned vertically using percentage/vh
-const IMAGE_WRAPPER_POSITION_CLASSES = "top-[30vh] sm:top-[35vh] md:top-[40vh] lg:top-[200px]";
+// --- Image Size Configuration ---
+const MAX_IMAGE_WIDTH_PX = '1500px';
+const MAX_IMAGE_HEIGHT_PX = '550px';
+// --------------------------------
 
-// Define fixed dimensions for the image wrapper/display (for large screens)
-// For small screens, the width is 'w-[90vw]' (90% of viewport width)
-const IMAGE_WRAPPER_CLASSES = "w-[90vw] h-[300px] sm:w-[80vw] sm:h-[400px] lg:w-[1380px] lg:h-[502px] flex-shrink-0 mx-auto";
+const App = () => {
+    const [imageIndex, setImageIndex] = useState(0);
+    // Use HTMLDivElement type for better safety if this were a .tsx file
+    const sectionRef = useRef<HTMLDivElement>(null);
+    const headerRef = useRef<HTMLDivElement>(null); 
 
-export default function SectionNew() {
-  const sectionRef = useRef<HTMLDivElement>(null);
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+    // Debounced scroll handler to prevent excessive re-renders
+    useEffect(() => {
+        let animationFrameId: number | null = null;
+        let lastScrollY = window.scrollY;
 
-  const handleScroll = useCallback(() => {
-    if (!sectionRef.current) return;
+        const handleScroll = () => {
+            // Check for ref
+            if (!sectionRef.current) return;
 
-    const rect = sectionRef.current.getBoundingClientRect();
-    const sectionHeight = rect.height;
-    const viewportHeight = window.innerHeight;
+            const currentScrollY = window.scrollY;
+            
+            // Optimization
+            if (currentScrollY === lastScrollY && animationFrameId) {
+                cancelAnimationFrame(animationFrameId);
+                animationFrameId = null;
+                return;
+            }
+            lastScrollY = currentScrollY;
 
-    // Calculate how far the top of the section has scrolled up into the viewport
-    const scrollProgress = Math.min(
-      Math.max(viewportHeight - rect.top, 0),
-      sectionHeight
-    );
+            // Start of the section relative to the document
+            const sectionTop = sectionRef.current.offsetTop;
+            
+            // Total pixel height of the scrollable "spacer" that drives the animation
+            const totalScrollHeight = (ANIMATION_HEIGHT_VH / 100) * window.innerHeight;
 
-    // Normalize progress from 0 to 1 across the full scrollable section area
-    const normalizedProgress = Math.min(
-      (scrollProgress - viewportHeight) / (sectionHeight - viewportHeight),
-      1
-    );
+            // Current scroll position within the sticky phase
+            let scrollProgress = currentScrollY - sectionTop;
 
-    const rawIndex = normalizedProgress * (NUM_IMAGES - 1);
-    const newIndex = Math.min(Math.round(rawIndex), NUM_IMAGES - 1);
+            // Ensure the scroll progress is clamped
+            scrollProgress = Math.max(0, Math.min(scrollProgress, totalScrollHeight));
 
-    setCurrentImageIndex(newIndex);
-  }, []);
+            // Calculate image index
+            const newIndex = Math.floor((scrollProgress / totalScrollHeight) * (NUM_IMAGES - 0.001)); 
 
-  useEffect(() => {
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    handleScroll();
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, [handleScroll]);
+            // Clamp index
+            const clampedIndex = Math.max(0, Math.min(NUM_IMAGES - 1, newIndex));
 
-  // Total height needed to create the scroll effect
-  const totalHeight = `${(NUM_IMAGES - 1) * 100 * SCROLL_MULTIPLIER + 100}vh`;
+            // Update state
+            if (clampedIndex !== imageIndex) {
+                setImageIndex(clampedIndex);
+            }
+        };
 
-  return (
-    // The main container determines the overall scrollable height.
-    <div ref={sectionRef} style={{ height: totalHeight }} className="relative w-full">
-      {/* The sticky section is what stays fixed in the viewport while scrolling. */}
-      <section className="sticky top-0 w-full h-screen bg-[#FBFAF2] relative overflow-hidden">
+        const onScroll = () => {
+            if (animationFrameId) {
+                cancelAnimationFrame(animationFrameId);
+            }
+            animationFrameId = requestAnimationFrame(handleScroll);
+        };
 
-        {/* Heading - Now uses responsive classes for positioning */}
-        <h1
-          className={`absolute text-xl sm:text-2xl md:text-3xl lg:text-4xl text-[#A67950] font-serif font-medium leading-normal
-                      ${HEADING_POSITION_CLASSES} z-10`}
-          style={{
-            fontFamily: '"DM Serif Text", serif',
-          }}
-        >
-          Why Choose SSICRS
-        </h1>
+        window.addEventListener('scroll', onScroll);
+        // Clean up
+        return () => {
+            window.removeEventListener('scroll', onScroll);
+            if (animationFrameId) {
+                cancelAnimationFrame(animationFrameId);
+            }
+        };
+    }, [imageIndex]); 
 
-        {/* Image Display Area - Now uses responsive classes for positioning and sizing */}
-        <div
-          // Centered horizontally, positioned vertically using responsive classes
-          className={`absolute left-1/2 -translate-x-1/2 ${IMAGE_WRAPPER_CLASSES} ${IMAGE_WRAPPER_POSITION_CLASSES}`}
-          style={{
-            position: "absolute", // Keep absolute positioning relative to the sticky section
-            // The height and width are now controlled by IMAGE_WRAPPER_CLASSES
-          }}
-        >
-          {IMAGE_PATHS.map((path, index) => (
-            <Image
-              key={path}
-              src={path}
-              alt={`Image ${index + 1}`}
-              // Use fill to allow the image to scale within the responsive wrapper div
-              fill // Use fill with objectFit: "contain" for responsiveness
-              style={{
-                objectFit: "contain",
-                opacity: currentImageIndex === index ? 1 : 0,
-                transition: "opacity 0.2s ease-in-out",
-                // position: 'absolute' is implicitly set by 'fill'
-              }}
-              priority={currentImageIndex === index}
-              // Updated sizes for better mobile performance
-              sizes="(max-width: 768px) 90vw, (max-width: 1200px) 80vw, 1380px"
-            />
-          ))}
+    // Calculate responsive padding: 
+    const paddingClasses = 'px-4 sm:px-12 lg:px-24 xl:px-24'; 
+    // Custom left padding for the heading at xl breakpoint.
+    const headingLeftPaddingClass = 'xl:pl-[210px]'; 
+
+    return (
+        <div className="min-h-screen">
+            
+            {/* 1. Outer Container: The Scroll Spacer (Ref and Height for Animation) */}
+            <div 
+                ref={sectionRef} 
+                className={`relative w-full ${paddingClasses}`} 
+                style={{ 
+                    minHeight: `${ANIMATION_HEIGHT_VH}vh`, // Provides the scroll "duration"
+                    backgroundColor: '#FBFAF2' // The required background color
+                }}
+            >
+                {/* Custom Heading Section: STICKY */}
+                <div 
+                    ref={headerRef}
+                    // Sticky top-0 locks the header in place
+                    className={`sticky top-0 z-30 bg-[#FBFAF2] pt-16 pb-6 ${headingLeftPaddingClass}`} 
+                >
+                    <h2
+                        className="text-3xl sm:text-4xl lg:text-4xl text-center lg:text-left leading-snug"
+                        style={{
+                            fontFamily: "'DM Serif Display', serif",
+                            fontWeight: 400,
+                            fontStyle: "normal",
+                            color: "#A67950",
+                            whiteSpace: "pre-line",
+                            marginTop:"100px",
+                            marginLeft:"-170px",
+                           
+                        }}
+                    >
+                        Why Choose SSICRS
+                    </h2>
+                </div>
+
+                {/* 2. Sticky Content Container (Image Card): Locks lower on the screen */}
+                <div 
+                    // 🚀 FIX: Increased top-20 to top-32 to push the image container further down.
+                    className="sticky top-32 h-screen flex items-center justify-center"
+                >
+                    <div className="w-full flex justify-center items-center">
+                        <div className="relative overflow-hidden rounded-xl shadow-2xl transition-all duration-300">
+                            {IMAGE_URLS.map((url, index) => (
+                                <img
+                                    key={index}
+                                    src={url}
+                                    alt={`Sequence Image ${index + 1}`}
+                                    className={`
+                                        object-cover object-center 
+                                        transition-opacity duration-700 ease-in-out
+                                        max-w-[1500px] w-full 
+                                        aspect-[2.75/1] 
+                                    `}
+                                    style={{
+                                        maxHeight: MAX_IMAGE_HEIGHT_PX,
+                                        opacity: index === imageIndex ? 1 : 0,
+                                        position: index === imageIndex ? 'relative' : 'absolute',
+                                        top: 0,
+                                        left: 0,
+                                        zIndex: index === imageIndex ? 10 : 1, 
+                                    }}
+                                    onError={(e) => {
+                                        e.currentTarget.onerror = null; 
+                                        e.currentTarget.src = `https://placehold.co/${MAX_IMAGE_WIDTH_PX.replace('px', '')}x${MAX_IMAGE_HEIGHT_PX.replace('px', '')}/ccc/000?text=Error:+Check+Path`;
+                                    }}
+                                />
+                            ))}
+                            {/* Scroll Indicator */}
+                            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 bg-black bg-opacity-50 text-white px-4 py-2 rounded-full text-sm font-medium z-20">
+                                Current Image: {imageIndex + 1} / {NUM_IMAGES}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {/* The concluding "Sequence Finished" section was removed as requested. */}
         </div>
-
-
-      </section>
-    </div>
-  );
+    );
 }
+
+export default App;
