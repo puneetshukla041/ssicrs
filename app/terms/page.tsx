@@ -128,9 +128,10 @@ const TermsOfUsePage = () => {
             </ul>
           </PolicySection>
 
+          {/* ✅ Fixed section below */}
           <PolicySection title="Disclaimer & Limitation of Liability" delay={4}>
             <p>
-              The content on this website is provided "as is" for general
+              The content on this website is provided &quot;as is&quot; for general
               informational use. While SSICRS strives for accuracy, we make no
               guarantees about completeness, reliability, or availability.
             </p>
