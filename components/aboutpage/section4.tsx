@@ -157,10 +157,7 @@ const App = () => {
                                     }}
                                 />
                             ))}
-                            {/* Scroll Indicator */}
-                            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 bg-black bg-opacity-50 text-white px-4 py-2 rounded-full text-sm font-medium z-20">
-                                Current Image: {imageIndex + 1} / {NUM_IMAGES}
-                            </div>
+
                         </div>
                     </div>
                 </div>
