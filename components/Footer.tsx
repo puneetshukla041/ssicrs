@@ -19,6 +19,13 @@ export default function Footer() {
   const handleContactus = () => router.push("/contactus");
   const handleTermsofuse = () => router.push("/terms");
 
+
+    // Navigation Handlers
+  const handleABOUT = () => router.push("/about");
+  const handlePROGRAMS = () => router.push("/programs");
+  const handleOURFACULTY = () => router.push("/register");
+  const handleREGISTERNOW = () => router.push("/login");
+  
   // Navigation Links for Mobile
   const navLinks = [
     { name: "ABOUT", handler: handleAboutClick },
