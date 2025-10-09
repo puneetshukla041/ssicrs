@@ -12,15 +12,20 @@ const IMAGE_PATHS = [
 ];
 
 const NUM_IMAGES = IMAGE_PATHS.length;
-const SCROLL_MULTIPLIER = 0.5; // Adjust scroll speed
+// SCROLL_MULTIPLIER controls the scroll duration for image change.
+const SCROLL_MULTIPLIER = 0.35;
 
-// Define consistent large screen values using Tailwind's spacing scale (e.g., 20/5rem, 32/8rem)
-// We'll use custom values from the original code for a close match: [100px] and [130px]
-const DESKTOP_TOP_CLASS = "md:top-[100px] lg:top-[100px]"; // Consistent top placement
-const DESKTOP_LEFT_CLASS = "md:left-[130px] lg:left-[130px]"; // Consistent left placement
+// Define responsive class for heading positioning
+// We use 'top-10' and 'left-5' as base, then adjust up for tablets/desktop using percentages/vh
+const HEADING_POSITION_CLASSES = "top-8 left-4 sm:top-12 sm:left-8 md:top-[10vh] md:left-[5vw] lg:top-[100px] lg:left-[130px]";
 
-// NEW: Fixed dimensions for the image wrapper/display (for large screens)
-const IMAGE_WRAPPER_CLASSES = "w-full lg:w-[1380px] lg:h-[502px] flex-shrink-0 mx-auto";
+// Define responsive class for image wrapper positioning
+// Centered horizontally, positioned vertically using percentage/vh
+const IMAGE_WRAPPER_POSITION_CLASSES = "top-[30vh] sm:top-[35vh] md:top-[40vh] lg:top-[200px]";
+
+// Define fixed dimensions for the image wrapper/display (for large screens)
+// For small screens, the width is 'w-[90vw]' (90% of viewport width)
+const IMAGE_WRAPPER_CLASSES = "w-[90vw] h-[300px] sm:w-[80vw] sm:h-[400px] lg:w-[1380px] lg:h-[502px] flex-shrink-0 mx-auto";
 
 export default function SectionNew() {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -40,7 +45,6 @@ export default function SectionNew() {
     );
 
     // Normalize progress from 0 to 1 across the full scrollable section area
-    // This part is crucial for making the image change smooth during the scroll.
     const normalizedProgress = Math.min(
       (scrollProgress - viewportHeight) / (sectionHeight - viewportHeight),
       1
@@ -66,11 +70,11 @@ export default function SectionNew() {
     <div ref={sectionRef} style={{ height: totalHeight }} className="relative w-full">
       {/* The sticky section is what stays fixed in the viewport while scrolling. */}
       <section className="sticky top-0 w-full h-screen bg-[#FBFAF2] relative overflow-hidden">
-        
-        {/* Heading - Consistent md: and lg: values for laptop/PC screens. */}
+
+        {/* Heading - Now uses responsive classes for positioning */}
         <h1
-          className={`absolute text-xl sm:text-2xl md:text-3xl lg:text-4xl text-[#A67950] font-serif font-medium leading-normal 
-                    top-10 left-5 sm:top-16 sm:left-10 ${DESKTOP_TOP_CLASS} ${DESKTOP_LEFT_CLASS} z-10`}
+          className={`absolute text-xl sm:text-2xl md:text-3xl lg:text-4xl text-[#A67950] font-serif font-medium leading-normal
+                      ${HEADING_POSITION_CLASSES} z-10`}
           style={{
             fontFamily: '"DM Serif Text", serif',
           }}
@@ -78,61 +82,36 @@ export default function SectionNew() {
           Why Choose SSICRS
         </h1>
 
-        {/* Image Display Area - MODIFIED to apply fixed dimensions and centering on large screens. */}
-        <div 
-          // The image wrapper is centered (mx-auto) and applies fixed dimensions for large screens (lg:)
-          className={`absolute left-0 right-0 ${IMAGE_WRAPPER_CLASSES}`} 
-          style={{ 
-            // Position the entire image block below the heading area
-            top: "20%", 
-            // The height of this wrapper is now controlled by the lg:h-[502px] class 
-            // to enforce the requested dimension.
-            position: "relative",
-            // The max-width style prevents it from expanding beyond the viewport on small screens
-            maxWidth: '100%', 
-          }} 
+        {/* Image Display Area - Now uses responsive classes for positioning and sizing */}
+        <div
+          // Centered horizontally, positioned vertically using responsive classes
+          className={`absolute left-1/2 -translate-x-1/2 ${IMAGE_WRAPPER_CLASSES} ${IMAGE_WRAPPER_POSITION_CLASSES}`}
+          style={{
+            position: "absolute", // Keep absolute positioning relative to the sticky section
+            // The height and width are now controlled by IMAGE_WRAPPER_CLASSES
+          }}
         >
           {IMAGE_PATHS.map((path, index) => (
             <Image
               key={path}
               src={path}
               alt={`Image ${index + 1}`}
-              // Removed 'fill' as we are using explicit width and height
-              width={1380} // Explicit width as requested
-              height={502} // Explicit height as requested
+              // Use fill to allow the image to scale within the responsive wrapper div
+              fill // Use fill with objectFit: "contain" for responsiveness
               style={{
-                // objectFit: "contain" is kept to ensure the image scales within the fixed 1380x502 container if needed
-                objectFit: "contain", 
+                objectFit: "contain",
                 opacity: currentImageIndex === index ? 1 : 0,
                 transition: "opacity 0.2s ease-in-out",
-                // Make the image absolute within its relative parent (the div)
-                position: "absolute",
-                // Center the image within its 1380px container
-                left: '50%',
-                transform: 'translateX(-50%)',
+                // position: 'absolute' is implicitly set by 'fill'
               }}
               priority={currentImageIndex === index}
-              // The 'sizes' prop is less critical when fixed dimensions are used, but kept for optimization context
-              sizes="(max-width: 768px) 90vw, 1380px"
+              // Updated sizes for better mobile performance
+              sizes="(max-width: 768px) 90vw, (max-width: 1200px) 80vw, 1380px"
             />
           ))}
         </div>
 
-        {/* Dot Progress Indicator - Responsive positioning and spacing */}
-        <div
-          className="absolute right-5 sm:right-8 md:right-10 top-1/2 transform -translate-y-1/2 flex flex-col space-y-2 sm:space-y-3 z-10"
-          aria-label="Image progress indicator"
-        >
-          {IMAGE_PATHS.map((_, index) => (
-            <div
-              key={index}
-              className={`rounded-full transition-all duration-300 ease-in-out ${
-                // Adjusting size for responsiveness: smaller dots on mobile
-                currentImageIndex === index ? "w-2.5 h-2.5 sm:w-3 sm:h-3 bg-black" : "w-1.5 h-1.5 sm:w-2 sm:h-2 bg-gray-400"
-              }`}
-            />
-          ))}
-        </div>
+
       </section>
     </div>
   );

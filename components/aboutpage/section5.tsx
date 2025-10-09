@@ -70,7 +70,9 @@ export default function Section2({ children }: Section2Props) {
 
   return (
     // Updated: Added lg:px-12 xl:px-20 for more padding on large/xl screens (laptops/desktops)
-    <section className="w-full relative bg-[#FBFAF2] px-4 sm:px-6 md:px-8 **lg:px-12 xl:px-20** pt-16 pb-8 md:pt-32 md:pb-16 min-h-[60vh]">
+    <section className="w-full relative bg-[#FBFAF2] px-4 sm:px-6 md:px-8 lg:px-12 xl:px-20
+                    pt-16 md:pt-24 lg:pt-32 xl:pt-40 pb-8 md:pb-16 min-h-[60vh]">
+
       
       {/* Centered Content Container for Desktop */}
       <div className="max-w-7xl mx-auto">
