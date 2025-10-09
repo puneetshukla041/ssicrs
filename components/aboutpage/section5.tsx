@@ -110,7 +110,7 @@ export default function Section2({ children }: Section2Props) {
         </div>
 
 {/* Logos Section */}
-<div className="w-full flex justify-center md:justify-start mt-16 md:mt-32 relative">
+<div className="w-full flex justify-center md:justify-start mt-16 md:mt-20 relative">
   <div className="grid grid-cols-2 gap-y-10 gap-x-6 sm:grid-cols-4 sm:gap-x-10 md:gap-x-16 lg:gap-x-20 w-full">
     {logos.map((logo, index) => (
       <div

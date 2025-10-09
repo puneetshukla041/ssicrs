@@ -13,7 +13,7 @@ export default function Section4() {
       className="w-full bg-[#FBFAF2] flex flex-col items-center pl-4 pr-4 md:pl-8 md:pr-8 lg:pl-12 lg:pr-12 xl:pl-20 xl:pr-20"
       style={{
         minHeight: "100vh",
-        paddingTop: "40px", // Added a default top padding
+        paddingTop: "20px", // Added a default top padding
         paddingBottom: "160px",
       }}
     >
@@ -45,7 +45,7 @@ export default function Section4() {
         <p
           className="text-base" // Ensure font size is controlled
           style={{
-            marginTop: "22px",
+            marginTop: "0px",
             color: "#401323",
             fontFamily: "Lato, sans-serif",
             fontWeight: 400,

@@ -41,14 +41,14 @@ export default function Section2() {
   return (
     <section
       // Adjusted main padding for better responsiveness on laptops
-      className="w-full bg-[#FBFAF2] relative flex flex-col items-center p-4 sm:p-8 md:px-12 lg:px-16 xl:px-24 2xl:px-32 pt-[60px] lg:pt-[100px] pb-12"
+      className="w-full bg-[#FBFAF2] relative flex flex-col items-center p-4 sm:p-8 md:px-12 lg:px-16 xl:px-24 2xl:px-32 pt-[60px] lg:pt-[130px] pb-12"
     >
       {/* Use a max-width container to center the content on super-wide screens */}
       <div className="w-full max-w-7xl flex flex-col items-center lg:items-start">
         {/* Heading */}
         <div className="group relative cursor-pointer inline-block mx-auto lg:mx-0 text-center lg:text-left">
 <h2
-  className="text-3xl sm:text-4xl lg:text-4xl text-center lg:text-left leading-snug mb-6"
+  className="text-3xl sm:text-4xl lg:text-4xl text-center lg:text-left leading-snug mb-0"
   style={{
     fontFamily: "'DM Serif Display', serif",
     fontWeight: 400,
@@ -68,7 +68,7 @@ export default function Section2() {
         </p>
 
         {/* Image + Cards Container */}
-        <div className="mt-8 lg:mt-[60px] flex flex-col lg:flex-row gap-8 lg:gap-[40px] items-center lg:items-start">
+        <div className="mt-8 lg:mt-[20px] flex flex-col lg:flex-row gap-8 lg:gap-[40px] items-center lg:items-start">
           
           {/* Image - Adjusted for better flexibility on Laptops */}
           <div className="hidden sm:block relative w-full max-w-[400px] aspect-[465/632] 

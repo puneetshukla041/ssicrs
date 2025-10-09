@@ -103,28 +103,27 @@ const App = () => {
                     backgroundColor: '#FBFAF2' // The required background color
                 }}
             >
-                {/* Custom Heading Section: STICKY */}
-                <div 
-                    ref={headerRef}
-                    // Sticky top-0 locks the header in place
-                    className={`sticky top-0 z-30 bg-[#FBFAF2] pt-16 pb-6 ${headingLeftPaddingClass}`} 
-                >
-                    <h2
-                        className="text-3xl sm:text-4xl lg:text-4xl text-center lg:text-left leading-snug"
-                        style={{
-                            fontFamily: "'DM Serif Display', serif",
-                            fontWeight: 400,
-                            fontStyle: "normal",
-                            color: "#A67950",
-                            whiteSpace: "pre-line",
-                            marginTop:"100px",
-                            marginLeft:"-170px",
-                           
-                        }}
-                    >
-                        Why Choose SSICRS
-                    </h2>
-                </div>
+{/* Custom Heading Section: NON-STICKY */}
+<div 
+    ref={headerRef}
+    className={`z-30 pt-16 pb-6 ${headingLeftPaddingClass}`} 
+>
+    <h2
+        className="text-3xl sm:text-4xl lg:text-4xl text-center lg:text-left leading-snug"
+        style={{
+            fontFamily: "'DM Serif Display', serif",
+            fontWeight: 400,
+            fontStyle: "normal",
+            color: "#A67950",
+            whiteSpace: "pre-line",
+            marginTop: "50px",
+            marginLeft: "-170px",
+        }}
+    >
+        Why Choose SSICRS
+    </h2>
+</div>
+
 
                 {/* 2. Sticky Content Container (Image Card): Locks lower on the screen */}
                 <div 

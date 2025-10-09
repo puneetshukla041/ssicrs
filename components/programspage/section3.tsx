@@ -40,7 +40,7 @@ export default function Section3() {
 
         {/* Sub-Text */}
         <p
-          className="mt-4 md:mt-6 text-[#401323] font-['Lato',_sans-serif] text-base font-normal leading-relaxed md:leading-[44px]"
+          className="mt-4 md:mt-0 text-[#401323] font-['Lato',_sans-serif] text-base font-normal leading-relaxed md:leading-[44px]"
         >
           Limited seats per cohort. Reserve early to maximize hands-on time.
         </p>
@@ -48,7 +48,7 @@ export default function Section3() {
         {/* Main Content Card (Flex Container) */}
         <div
           className="flex flex-col lg:flex-row justify-between items-center lg:items-start 
-                      p-6 md:p-10 lg:p-12 mt-8 md:mt-12 lg:mt-16 
+                      p-6 md:p-10 lg:p-12 mt-8 md:mt-12 lg:mt-10 
                       rounded-lg border border-[#A67950] bg-white w-full 
                       min-h-[auto] shadow-lg"
         >
