@@ -1,170 +1,167 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from "react";
 
-// --- Configuration ---
-const IMAGE_URLS = [
-    '/Images/aboutpage/section4/image1.png',
-    '/Images/aboutpage/section4/image2.png',
-    '/Images/aboutpage/section4/image3.png',
-    '/Images/aboutpage/section4/image4.png',
-    '/Images/aboutpage/section4/image5.png',
+// --- Image Paths ---
+const IMAGE_PATHS = [
+  "/Images/aboutpage/section4/image1.png",
+  "/Images/aboutpage/section4/image2.png",
+  "/Images/aboutpage/section4/image3.png",
+  "/Images/aboutpage/section4/image4.png",
+  "/Images/aboutpage/section4/image5.png",
 ];
 
-// The total scroll duration for the image sequence, measured in viewport heights (VH).
-const ANIMATION_HEIGHT_VH = 400;
-// --- End Configuration ---
+// Constants for effect control
+const SCROLL_DURATION_STEPS = IMAGE_PATHS.length; // 5 steps for 5 images
+// The wrapper height is set to 500vh (5x the viewport height) to provide a large, smooth scroll range for the animation.
+const WRAPPER_HEIGHT_VH = SCROLL_DURATION_STEPS * 100;
+const IMAGE_CONTAINER_HEIGHT_PX = 502; // Requested height for the image container
 
-const NUM_IMAGES = IMAGE_URLS.length;
+export default function BlankPage() {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const wrapperRef = useRef<HTMLDivElement>(null);
+  const [isReady, setIsReady] = useState(false);
 
-// --- Image Size Configuration ---
-const MAX_IMAGE_WIDTH_PX = '1500px';
-const MAX_IMAGE_HEIGHT_PX = '550px';
-// --------------------------------
+  // Function to handle the scroll logic and determine the current image index
+  const handleScroll = useCallback(() => {
+    if (!wrapperRef.current) return;
 
-const App = () => {
-    const [imageIndex, setImageIndex] = useState(0);
-    // Use HTMLDivElement type for better safety if this were a .tsx file
-    const sectionRef = useRef<HTMLDivElement>(null);
-    const headerRef = useRef<HTMLDivElement>(null); 
+    const wrapperRect = wrapperRef.current.getBoundingClientRect();
+    const viewportHeight = window.innerHeight;
+    const wrapperHeight = wrapperRef.current.offsetHeight;
 
-    // Debounced scroll handler to prevent excessive re-renders
-    useEffect(() => {
-        let animationFrameId: number | null = null;
-        let lastScrollY = window.scrollY;
+    // 1. Calculate how far the user has scrolled since the wrapper became "sticky" (top hits 0)
+    // The total scroll distance for the animation is (wrapperHeight - viewportHeight)
+    const scrollDistance = -wrapperRect.top;
 
-        const handleScroll = () => {
-            // Check for ref
-            if (!sectionRef.current) return;
+    // 2. Normalize the scroll distance to a progress value between 0 and 1
+    const totalScrollRange = wrapperHeight - viewportHeight;
+    
+    // Safety check to prevent division by zero or errors before layout fully settles
+    if (totalScrollRange <= 0) return;
 
-            const currentScrollY = window.scrollY;
-            
-            // Optimization
-            if (currentScrollY === lastScrollY && animationFrameId) {
-                cancelAnimationFrame(animationFrameId);
-                animationFrameId = null;
-                return;
-            }
-            lastScrollY = currentScrollY;
+    let progress = Math.min(1, Math.max(0, scrollDistance / totalScrollRange));
 
-            // Start of the section relative to the document
-            const sectionTop = sectionRef.current.offsetTop;
-            
-            // Total pixel height of the scrollable "spacer" that drives the animation
-            const totalScrollHeight = (ANIMATION_HEIGHT_VH / 100) * window.innerHeight;
-
-            // Current scroll position within the sticky phase
-            let scrollProgress = currentScrollY - sectionTop;
-
-            // Ensure the scroll progress is clamped
-            scrollProgress = Math.max(0, Math.min(scrollProgress, totalScrollHeight));
-
-            // Calculate image index
-            const newIndex = Math.floor((scrollProgress / totalScrollHeight) * (NUM_IMAGES - 0.001)); 
-
-            // Clamp index
-            const clampedIndex = Math.max(0, Math.min(NUM_IMAGES - 1, newIndex));
-
-            // Update state
-            if (clampedIndex !== imageIndex) {
-                setImageIndex(clampedIndex);
-            }
-        };
-
-        const onScroll = () => {
-            if (animationFrameId) {
-                cancelAnimationFrame(animationFrameId);
-            }
-            animationFrameId = requestAnimationFrame(handleScroll);
-        };
-
-        window.addEventListener('scroll', onScroll);
-        // Clean up
-        return () => {
-            window.removeEventListener('scroll', onScroll);
-            if (animationFrameId) {
-                cancelAnimationFrame(animationFrameId);
-            }
-        };
-    }, [imageIndex]); 
-
-    // Calculate responsive padding: 
-    const paddingClasses = 'px-4 sm:px-12 lg:px-24 xl:px-24'; 
-    // Custom left padding for the heading at xl breakpoint.
-    const headingLeftPaddingClass = 'xl:pl-[210px]'; 
-
-    return (
-        <div className="min-h-screen">
-            
-            {/* 1. Outer Container: The Scroll Spacer (Ref and Height for Animation) */}
-            <div 
-                ref={sectionRef} 
-                className={`relative w-full ${paddingClasses}`} 
-                style={{ 
-                    minHeight: `${ANIMATION_HEIGHT_VH}vh`, // Provides the scroll "duration"
-                    backgroundColor: '#FBFAF2' // The required background color
-                }}
-            >
-{/* Custom Heading Section: NON-STICKY */}
-<div 
-    ref={headerRef}
-    className={`z-30 pt-16 pb-6 ${headingLeftPaddingClass}`} 
->
-    <h2
-        className="text-3xl sm:text-4xl lg:text-4xl text-center lg:text-left leading-snug"
-        style={{
-            fontFamily: "'DM Serif Display', serif",
-            fontWeight: 400,
-            fontStyle: "normal",
-            color: "#A67950",
-            whiteSpace: "pre-line",
-            marginTop: "50px",
-            marginLeft: "-170px",
-        }}
-    >
-        Why Choose SSICRS
-    </h2>
-</div>
-
-
-                {/* 2. Sticky Content Container (Image Card): Locks lower on the screen */}
-                <div 
-                    // 🚀 FIX: Increased top-20 to top-32 to push the image container further down.
-                    className="sticky top-32 h-screen flex items-center justify-center"
-                >
-                    <div className="w-full flex justify-center items-center">
-                        <div className="relative overflow-hidden rounded-xl shadow-2xl transition-all duration-300">
-                            {IMAGE_URLS.map((url, index) => (
-                                <img
-                                    key={index}
-                                    src={url}
-                                    alt={`Sequence Image ${index + 1}`}
-                                    className={`
-                                        object-cover object-center 
-                                        transition-opacity duration-700 ease-in-out
-                                        max-w-[1500px] w-full 
-                                        aspect-[2.75/1] 
-                                    `}
-                                    style={{
-                                        maxHeight: MAX_IMAGE_HEIGHT_PX,
-                                        opacity: index === imageIndex ? 1 : 0,
-                                        position: index === imageIndex ? 'relative' : 'absolute',
-                                        top: 0,
-                                        left: 0,
-                                        zIndex: index === imageIndex ? 10 : 1, 
-                                    }}
-                                    onError={(e) => {
-                                        e.currentTarget.onerror = null; 
-                                        e.currentTarget.src = `https://placehold.co/${MAX_IMAGE_WIDTH_PX.replace('px', '')}x${MAX_IMAGE_HEIGHT_PX.replace('px', '')}/ccc/000?text=Error:+Check+Path`;
-                                    }}
-                                />
-                            ))}
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-            {/* The concluding "Sequence Finished" section was removed as requested. */}
-        </div>
+    // 3. Map the progress (0 to 1) to the image index (0 to 4)
+    // This creates discrete steps for each image
+    const newIndex = Math.min(
+      SCROLL_DURATION_STEPS - 1, // Cap at index 4
+      Math.floor(progress * SCROLL_DURATION_STEPS)
     );
-}
 
-export default App;
+    // 4. Update the state only if the index has changed
+    if (newIndex !== currentIndex) {
+      setCurrentIndex(newIndex);
+    }
+  }, [currentIndex]);
+
+  // Set up the scroll listener
+  useEffect(() => {
+    // We use a small timeout to ensure all DOM calculations are stable before starting
+    const timeoutId = setTimeout(() => {
+        setIsReady(true);
+        // Execute initial scroll calculation
+        handleScroll();
+    }, 100);
+
+    if (isReady) {
+        window.addEventListener('scroll', handleScroll);
+    }
+
+    return () => {
+        clearTimeout(timeoutId);
+        window.removeEventListener('scroll', handleScroll);
+    };
+  }, [handleScroll, isReady]);
+
+
+  return (
+    <div
+      className="w-full min-h-screen"
+      style={{ backgroundColor: "#FBFAF2" }}
+    >
+      
+      {/* ---------------------------------------------------
+        0. Introductory/Buffer Content (Pushes the animation down the page)
+        The 150vh height ensures the user must scroll to reach the main effect.
+        ---------------------------------------------------
+      */}
+      <div className="w-full h-[150vh] flex items-center justify-center border-b-4 border-dashed border-gray-300">
+        <h2 className="text-3xl font-extrabold text-gray-800 p-8 rounded-xl shadow-lg bg-white/70 backdrop-blur-sm">
+            Scroll Down to View the Image Sequence Section
+        </h2>
+      </div>
+
+      {/* ---------------------------------------------------
+        1. Scroll Trigger Area (The 'Freeze' Container)
+        This large container defines the scroll distance (500vh) needed to cycle through all 5 images.
+        ---------------------------------------------------
+      */}
+      <div 
+        ref={wrapperRef} 
+        className="relative" 
+        style={{ height: `${WRAPPER_HEIGHT_VH}vh` }}
+      >
+        {/* ---------------------------------------------------
+          2. Sticky Content (The container that freezes on screen)
+          It uses sticky and top-0 to pin itself to the viewport for the duration of the scroll area.
+          It is centered both horizontally and vertically (flex justify-center items-center)
+          ---------------------------------------------------
+        */}
+        <div className="sticky top-0 h-screen flex justify-center items-center p-4">
+          
+          {/* ---------------------------------------------------
+            3. Image Display Container
+            This is the requested 1380px width, 502px height container with curved corners.
+            It is fully responsive, using max-w-[...] and mx-auto.
+            ---------------------------------------------------
+          */}
+          <div 
+            className="relative w-full mx-auto max-w-[1380px] flex-shrink-0 bg-gray-500 shadow-2xl overflow-hidden" 
+            style={{ 
+              height: `${IMAGE_CONTAINER_HEIGHT_PX}px`, 
+              borderRadius: '30px',
+              // Use backdrop-filter for a cool glass effect on modern browsers if content is partially visible
+              backdropFilter: 'blur(10px)', 
+              WebkitBackdropFilter: 'blur(10px)'
+            }}
+          >
+            <div className="absolute inset-0 bg-black/10 z-10 pointer-events-none"></div>
+
+            {/* ---------------------------------------------------
+              4. Image Cross-Fade Implementation
+              All images are rendered absolutely positioned. Opacity is controlled by the currentIndex state.
+              The 'transition' property ensures the smoothest cross-fade between images.
+              ---------------------------------------------------
+            */}
+            {isReady && IMAGE_PATHS.map((path, index) => (
+              <img
+                key={index} // Key is based on index, not current state, which keeps the element stable
+                src={path}
+                alt={`Scroll-based section image ${index + 1}`}
+                // Use object-cover to ensure images fill the container without distortion
+                className={`absolute w-full h-full object-cover`}
+                onError={(e) => {
+                    const target = e.target as HTMLImageElement;
+                    // Placeholder fallback in case the image path is broken
+                    target.src = `https://placehold.co/1380x502/3c3c3c/ffffff?text=Image+${index + 1}+Placeholder`;
+                }}
+                style={{
+                  opacity: currentIndex === index ? 1 : 0,
+                  transition: 'opacity 0.75s ease-in-out', // Smooth 0.75s transition
+                  transform: currentIndex === index ? 'scale(1.0)' : 'scale(1.02)', // Subtle scale for depth
+                }}
+              />
+            ))}
+            
+            {/* Display current progress for debugging/confirmation */}
+            <div className="absolute bottom-4 right-6 text-white text-lg font-bold p-2 bg-black/40 rounded-lg z-20">
+                Image {currentIndex + 1} of {SCROLL_DURATION_STEPS}
+            </div>
+
+          </div>
+        </div>
+      </div>
+      
+
+    </div>
+  );
+}
