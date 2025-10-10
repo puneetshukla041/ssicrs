@@ -103,7 +103,7 @@ export default function Section4() {
         lineHeight: "100%", 
         width: "100%",
         maxWidth: isMobile ? "calc(100% - 40px)" : "1380px", // Padded on mobile
-        paddingLeft: isMobile ? "0px" : "0px", 
+        paddingLeft: isMobile ? "0px" : "15px", 
         marginBottom: isMobile ? "40px" : "104px",
         textAlign: isMobile ? "center" : "left", // Centered on mobile
       }}
@@ -155,7 +155,7 @@ export default function Section4() {
 
           {/* Image container */}
           <div
-            className="relative w-full mx-auto max-w-[1380px] flex-shrink-0 overflow-hidden rounded-xl"
+            className="relative w-full mx-auto max-w-[1350px] flex-shrink-0 overflow-hidden rounded-xl"
             style={{ height: `${IMAGE_CONTAINER_HEIGHT_PX}px` }}
           >
             <div className="absolute inset-0 bg-black/10 z-10 pointer-events-none"></div>
