@@ -13,16 +13,32 @@ const IMAGE_PATHS = [
   "/Images/aboutpage/section4/image5.png",
 ];
 
+const MOBILE_IMAGE_PATHS = [
+  "/Images/aboutpage/section4/mobile/image1.png",
+  "/Images/aboutpage/section4/mobile/image2.png",
+  "/Images/aboutpage/section4/mobile/image3.png",
+  "/Images/aboutpage/section4/mobile/image4.png",
+  "/Images/aboutpage/section4/mobile/image5.png",
+];
+
 // Constants
 const SCROLL_DURATION_STEPS = IMAGE_PATHS.length;
-// MODIFICATION: Reduced multiplier from 70 to 50 to further cut height from the bottom.
 const WRAPPER_HEIGHT_VH = SCROLL_DURATION_STEPS * 50; 
 const IMAGE_CONTAINER_HEIGHT_PX = 502;
+// Mobile breakpoint for simplified check. Adjust as needed (e.g., to 768px for md)
+const MOBILE_BREAKPOINT = 640; 
 
 export default function Section4() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const wrapperRef = useRef<HTMLDivElement>(null);
   const [isReady, setIsReady] = useState(false);
+  // New state to manage mobile view
+  const [isMobile, setIsMobile] = useState(false); 
+
+  const handleResize = useCallback(() => {
+    // Basic check for mobile using window.innerWidth
+    setIsMobile(window.innerWidth < MOBILE_BREAKPOINT);
+  }, []);
 
   const handleScroll = useCallback(() => {
     if (!wrapperRef.current) return;
@@ -46,46 +62,96 @@ export default function Section4() {
   }, [currentIndex]);
 
   useEffect(() => {
-    const timeoutId = setTimeout(() => {
-      setIsReady(true);
-      handleScroll();
-    }, 100);
+    handleResize(); // Initial check
 
-    if (isReady) window.addEventListener("scroll", handleScroll);
+    // Add resize listener for dynamic mobile/desktop switching
+    window.addEventListener("resize", handleResize);
 
+    // Desktop Scroll Logic
+    if (!isMobile) {
+      const timeoutId = setTimeout(() => {
+        setIsReady(true);
+        handleScroll();
+      }, 100);
+
+      if (isReady) window.addEventListener("scroll", handleScroll);
+
+      return () => {
+        clearTimeout(timeoutId);
+        window.removeEventListener("scroll", handleScroll);
+        window.removeEventListener("resize", handleResize);
+      };
+    }
+    
+    // Cleanup for mobile
     return () => {
-      clearTimeout(timeoutId);
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, [handleScroll, isReady]);
+      window.removeEventListener("resize", handleResize);
+    }
 
+  }, [handleScroll, isReady, isMobile, handleResize]); // Depend on isMobile and handleResize
+
+  // Common Heading Component
+  const Heading = () => (
+    <h1
+      style={{
+        fontFamily: "'DM Serif Display', serif",
+        fontWeight: 400,
+        fontStyle: "normal",
+        color: "#A67950",
+        whiteSpace: isMobile ? "normal" : "pre-line", // Allow wrapping on mobile
+        fontSize: isMobile ? "32px" : "40px",
+        lineHeight: "100%", 
+        width: "100%",
+        maxWidth: isMobile ? "calc(100% - 40px)" : "1380px", // Padded on mobile
+        paddingLeft: isMobile ? "0px" : "0px", 
+        marginBottom: isMobile ? "40px" : "104px",
+        textAlign: isMobile ? "center" : "left", // Centered on mobile
+      }}
+      className={isMobile ? "mx-auto" : ""}
+    >
+      Why Choose SSICRS
+    </h1>
+  );
+
+  // --- Mobile View Component ---
+  if (isMobile) {
+    return (
+      <div className="w-full py-16 px-5" style={{ backgroundColor: "#FBFAF2" }}>
+        <Heading />
+        
+        <div className="flex flex-col space-y-8">
+          {MOBILE_IMAGE_PATHS.map((path, idx) => (
+            <div 
+              key={idx} 
+              className="relative w-full overflow-hidden rounded-xl shadow-lg"
+              // MODIFICATION: Set the exact aspect ratio for the mobile images (358 / 247 = 1.449)
+              style={{ paddingBottom: `${(247 / 358) * 100}%` }} // Custom aspect ratio for 358x247
+            >
+              <Image
+                src={path}
+                alt={`Mobile reason image ${idx + 1}`}
+                fill
+                className="object-cover"
+                sizes="(max-width: 640px) 100vw, 0px"
+                priority={idx < 2} // Prioritize first couple of images
+              />
+            </div>
+          ))}
+        </div>
+      </div>
+    );
+  }
+
+  // --- Desktop/Scroll View Component ---
   return (
     <div className="w-full min-h-screen" style={{ backgroundColor: "#FBFAF2" }}>
       
       {/* Scroll-controlled Image Section */}
       <div ref={wrapperRef} className="relative" style={{ height: `${WRAPPER_HEIGHT_VH}vh` }}>
 
-        {/* Scroll-controlled Image Section */}
-        <div className="sticky top-0 h-screen flex flex-col justify-start items-center pt-[20vh]">
-          {/* Heading aligned to left of image container */}
-          <h1
-            style={{
-              fontFamily: "'DM Serif Display', serif",
-              fontWeight: 400,
-              fontStyle: "normal",
-              color: "#A67950",
-              whiteSpace: "pre-line",
-              fontSize: "40px",
-              lineHeight: "100%", // 60px
-              width: "100%",
-              maxWidth: "1380px",
-              paddingLeft: "0px", // align with container padding
-              marginBottom: "104px",
-              textAlign: "left",
-            }}
-          >
-            Why Choose SSICRS
-          </h1>
+        {/* Sticky Container for Heading and Image */}
+        <div className="sticky top-0 h-screen flex flex-col justify-start items-center pt-[20vh] px-5">
+          <Heading />
 
           {/* Image container */}
           <div
@@ -104,26 +170,14 @@ export default function Section4() {
                   className="absolute object-cover transition-opacity duration-700 ease-in-out"
                   style={{
                     opacity: currentIndex === idx ? 1 : 0,
-                    // MODIFICATION: Removed the transform property to disable zooming
-                    // transform: currentIndex === idx ? "scale(1)" : "scale(1.02)", 
                   }}
                   sizes="(max-width: 1536px) 100vw, 1380px"
                   priority
                 />
               ))}
-
-            {/* Note: The image counter element was removed in the previous prompt. 
-                If you want it back, you'll need to add it here.
-            <div className="absolute bottom-4 right-6 text-white text-lg font-bold p-2 bg-black/40 rounded-lg z-20">
-              Image {currentIndex + 1} of {SCROLL_DURATION_STEPS}
-            </div>
-            */}
           </div>
         </div>
-
       </div>
-
-
     </div>
   );
 }
