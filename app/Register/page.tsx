@@ -164,17 +164,21 @@ export default function RegisterPage() {
           Advancing Your Robotic Surgery Skills
         </motion.h1>
 
-        {/* Description */}
-        <motion.p
-          className="text-base md:text-xl text-center text-[#401323] leading-relaxed mt-6 md:mt-8"
-          variants={textVariants}
-        >
-          Please complete the form below to enroll into our comprehensive robotic
-          surgery training programs.
-          <br className="hidden md:block" />
-          Upon successful registration, our team will reach out with program
-          details, schedules, and next steps.
-        </motion.p>
+{/* Description */}
+<motion.p
+  className="text-base md:text-xl text-center text-[#401323] leading-relaxed mt-6 md:mt-8"
+  style={{
+    fontFamily: "'Lato', sans-serif",
+  }}
+  variants={textVariants}
+>
+  Please complete the form below to enroll into our comprehensive robotic
+  surgery training programs.
+  <br className="hidden md:block" />
+  Upon successful registration, our team will reach out with program
+  details, schedules, and next steps.
+</motion.p>
+
 
         {/* Main Registration Card */}
         <motion.div
