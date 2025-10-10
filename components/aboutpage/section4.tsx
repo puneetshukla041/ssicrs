@@ -112,9 +112,7 @@ export default function Section4() {
         />
       ))}
 
-    <div className="absolute bottom-4 right-6 text-white text-lg font-bold p-2 bg-black/40 rounded-lg z-20">
-      Image {currentIndex + 1} of {SCROLL_DURATION_STEPS}
-    </div>
+
   </div>
 </div>
 
