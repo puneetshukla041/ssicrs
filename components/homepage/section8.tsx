@@ -122,7 +122,7 @@ export default function SeventhSection() {
             background: "linear-gradient(90deg, #FBFAF2, #FFEAD2)",
             fontFamily: "Lato, sans-serif",
             fontWeight: "400",
-            fontSize: "16px",
+            fontSize: "22px",
             color: "#000",
           }}
         >
