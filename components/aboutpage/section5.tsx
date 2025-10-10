@@ -2,6 +2,8 @@
 
 import Image from "next/image";
 import React from "react";
+// 1. Import useInView from react-intersection-observer
+import { useInView } from "react-intersection-observer";
 
 interface Section2Props {
   children?: React.ReactNode;
@@ -68,35 +70,48 @@ export default function Section2({ children }: Section2Props) {
     marginBottom: "8px",
   };
 
+  // 2. Setup observer for the main heading/text block
+  const { ref: headerRef, inView: headerInView } = useInView({
+    // Trigger once the element is 10% visible
+    threshold: 0.1,
+    // Setting triggerOnce to false ensures it animates every time it comes into view
+    triggerOnce: false, 
+  });
+  
+  // 3. Setup observer for the entire logos grid
+  // We'll use one observer for the whole grid to animate the whole block together
+  const { ref: logosRef, inView: logosInView } = useInView({
+    threshold: 0.01,
+    triggerOnce: false, 
+  });
+  
   return (
-    // Updated: Added lg:px-12 xl:px-20 for more padding on large/xl screens (laptops/desktops)
     <section
-  className="w-full relative bg-[#FBFAF2] px-4 sm:px-6 md:px-8 lg:px-12 xl:px-20 pt-16 md:pt-8 lg:pt-6 xl:pt-6 pb-8 md:pb-16 min-h-[60vh] md:min-h-[50vh] lg:min-h-[45vh]"
->
-
-      
-      {/* Centered Content Container for Desktop */}
+      className="w-full relative bg-[#FBFAF2] px-4 sm:px-6 md:px-8 lg:px-12 xl:px-20 pt-16 md:pt-8 lg:pt-6 xl:pt-6 pb-8 md:pb-16 min-h-[60vh] md:min-h-[50vh] lg:min-h-[45vh]"
+    >
       <div className="max-w-7xl mx-auto">
-        
-        {/* Optional children */}
         {children && <div className="w-full h-full">{children}</div>}
 
-        {/* Main Heading Block */}
-        <div className="pb-8 md:pb-10 lg:pb-12">
-          
+        {/* Main Heading Block - Uses headerRef */}
+        <div 
+          ref={headerRef} 
+          className={`pb-8 md:pb-10 lg:pb-12 transition-all duration-700 ease-out ${
+            headerInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+          }`}
+        >
           {/* Main Heading */}
-<h2
-  className="text-3xl sm:text-4xl lg:text-4xl text-center lg:text-left leading-snug mb-6"
-  style={{
-    fontFamily: "'DM Serif Display', serif",
-    fontWeight: 400,
-    fontStyle: "normal",
-    color: "#A67950",
-    whiteSpace: "pre-line",
-  }}
->
-  Our Approach
-</h2>
+          <h2
+            className="text-3xl sm:text-4xl lg:text-4xl text-center lg:text-left leading-snug mb-6"
+            style={{
+              fontFamily: "'DM Serif Display', serif",
+              fontWeight: 400,
+              fontStyle: "normal",
+              color: "#A67950",
+              whiteSpace: "pre-line",
+            }}
+          >
+            Our Approach
+          </h2>
 
           {/* Subtext */}
           <div
@@ -112,48 +127,58 @@ export default function Section2({ children }: Section2Props) {
           </div>
         </div>
 
-{/* Logos Section */}
-<div className="w-full flex justify-center md:justify-start mt-16 md:mt-20 relative">
-  <div className="grid grid-cols-2 gap-y-10 gap-x-6 sm:grid-cols-4 sm:gap-x-10 md:gap-x-16 lg:gap-x-20 w-full">
-    {logos.map((logo, index) => (
-      <div
-        key={index}
-        className="relative flex flex-col items-center text-center p-2 sm:p-4"
-      >
-        <Image
-          src={logo.src}
-          alt={`Logo ${index + 1}`}
-          width={48}
-          height={50}
-          className="mt-4 mb-2 relative z-10"
-        />
-
-        <div
-          dangerouslySetInnerHTML={{ __html: logo.heading }}
-          style={headingStyle}
-        />
-
-        <p
-          className="font-lato font-normal text-xs sm:text-sm md:text-base leading-snug mt-2"
-          style={{ color: logo.textColor }}
+        {/* Logos Section - Uses logosRef */}
+        <div 
+          ref={logosRef} 
+          className={`w-full flex justify-center md:justify-start mt-16 md:mt-20 relative transition-all duration-700 delay-200 ease-out ${
+            logosInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+          }`}
         >
-          {logo.text}
-        </p>
+          <div className="grid grid-cols-2 gap-y-10 gap-x-6 sm:grid-cols-4 sm:gap-x-10 md:gap-x-16 lg:gap-x-20 w-full">
+            {logos.map((logo, index) => (
+              // Individual items don't need their own observer since the parent grid has one.
+              // We can add a slight delay based on the index for a staggered effect.
+              <div
+                key={index}
+                className={`relative flex flex-col items-center text-center p-2 sm:p-4 transition-transform duration-700 ease-out`}
+                // Inline style for staggered delay
+                style={{
+                    transitionDelay: logosInView ? `${index * 50}ms` : "0ms", 
+                }}
+              >
+                <Image
+                  src={logo.src}
+                  alt={`Logo ${index + 1}`}
+                  width={48}
+                  height={50}
+                  className="mt-4 mb-2 relative z-10"
+                />
 
-        {/* Permanent Decorative Brackets */}
-        <div className="absolute inset-0 pointer-events-none">
-          <span className="absolute left-0 top-5 bottom-6 w-[2px] border-l-2 border-[#6A4336] rounded-tl-lg rounded-bl-lg opacity-60"></span>
-          <span className="absolute right-0 top-5 bottom-6 w-[2px] border-r-2 border-[#6A4336] rounded-tr-lg rounded-br-lg opacity-60"></span>
-          <span className="absolute top-0 left-0 w-10 h-6 border-t-2 border-l-2 border-[#6A4336] rounded-tl-lg opacity-60"></span>
-          <span className="absolute top-0 right-0 w-10 h-6 border-t-2 border-r-2 border-[#6A4336] rounded-tr-lg opacity-60"></span>
-          <span className="absolute bottom-0 left-0 w-10 h-6 border-b-2 border-l-2 border-[#6A4336] rounded-bl-lg opacity-60"></span>
-          <span className="absolute bottom-0 right-0 w-10 h-6 border-b-2 border-r-2 border-[#6A4336] rounded-br-lg opacity-60"></span>
+                <div
+                  dangerouslySetInnerHTML={{ __html: logo.heading }}
+                  style={headingStyle}
+                />
+
+                <p
+                  className="font-lato font-normal text-xs sm:text-sm md:text-base leading-snug mt-2"
+                  style={{ color: logo.textColor }}
+                >
+                  {logo.text}
+                </p>
+
+                {/* Permanent Decorative Brackets */}
+                <div className="absolute inset-0 pointer-events-none">
+                  <span className="absolute left-0 top-5 bottom-6 w-[2px] border-l-2 border-[#6A4336] rounded-tl-lg rounded-bl-lg opacity-60"></span>
+                  <span className="absolute right-0 top-5 bottom-6 w-[2px] border-r-2 border-[#6A4336] rounded-tr-lg rounded-br-lg opacity-60"></span>
+                  <span className="absolute top-0 left-0 w-10 h-6 border-t-2 border-l-2 border-[#6A4336] rounded-tl-lg opacity-60"></span>
+                  <span className="absolute top-0 right-0 w-10 h-6 border-t-2 border-r-2 border-[#6A4336] rounded-tr-lg opacity-60"></span>
+                  <span className="absolute bottom-0 left-0 w-10 h-6 border-b-2 border-l-2 border-[#6A4336] rounded-bl-lg opacity-60"></span>
+                  <span className="absolute bottom-0 right-0 w-10 h-6 border-b-2 border-r-2 border-[#6A4336] rounded-br-lg opacity-60"></span>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
-      </div>
-    ))}
-  </div>
-</div>
-
       </div>
     </section>
   );
