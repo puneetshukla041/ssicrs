@@ -1,6 +1,9 @@
 "use client";
 
 import Image from "next/image";
+import React from "react";
+// 1. Import the hook from the library
+import { useInView } from "react-intersection-observer";
 
 // Common data structure for card content
 const cardsData = [
@@ -37,16 +40,34 @@ const cardsData = [
   },
 ];
 
+// Define the base animation class once
+const animationClass = "transition-all duration-1000 ease-out";
+
 export default function FourthSection() {
+  // 2. Setup Intersection Observer for the section
+  const { ref, inView } = useInView({
+    // FIX: Set to false to re-animate every time the user scrolls back into the view
+    triggerOnce: false, 
+    threshold: 0.001,    // Start animation when 10% of the component is visible
+  });
+
   return (
-    <section className="w-full bg-[#FBFAF2] pt-16 md:pt-24 lg:pt-28 pb-16 md:pb-20 lg:pb-5 flex flex-col items-start justify-start relative">
+    // 3. Attach the observer ref to the main section container
+    <section 
+      ref={ref} 
+      className="w-full bg-[#FBFAF2] pt-16 md:pt-24 lg:pt-28 pb-16 md:pb-20 lg:pb-5 flex flex-col items-start justify-start relative"
+    >
 
       {/* =====================================================================================
         RESPONSIVE MOBILE/TABLET/SMALL LAPTOP LAYOUT (Visible on screens LESS THAN md)
-        This block is fully responsive using flexbox and grid.
+        Apply animation classes
         =====================================================================================
       */}
-      <div className="md:hidden w-full flex flex-col items-center justify-center text-center px-6 py-12 gap-12 sm:px-12 sm:py-16">
+      <div 
+        className={`md:hidden w-full flex flex-col items-center justify-center text-center px-6 py-10 gap-12 sm:px-12 sm:py-16 ${animationClass} ${
+          inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+        }`}
+      >
         <h2
           style={{
                 fontFamily: "'DM Serif Display', serif",
@@ -63,7 +84,16 @@ export default function FourthSection() {
         {/* Cards Container: Flexible Grid Layout */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 items-start justify-center gap-12 sm:gap-10 w-full max-w-6xl">
           {cardsData.map((card, index) => (
-            <div key={index} className="flex flex-col items-center w-full">
+            // Apply staggered animation to cards
+            <div 
+              key={index} 
+              className={`flex flex-col items-center w-full transition-all duration-1000 ease-out ${
+                inView 
+                  ? `opacity-100 translate-y-0 delay-[${400 + index * 100}ms]` 
+                  : "opacity-0 translate-y-10"
+              }`}
+              style={{ transitionDelay: inView ? `${400 + index * 100}ms` : '0ms' }}
+            >
               {/* Image Container */}
               <div className="w-full max-w-sm rounded-xl overflow-hidden">
                 <Image
@@ -76,15 +106,15 @@ export default function FourthSection() {
                 />
               </div>
 
-              {/* Card Content Overlay - Adjusted for left alignment */}
+              {/* Card Content Overlay */}
               <div
-                className="mt-[-25px] rounded-lg flex flex-col items-start p-4 w-full max-w-[300px] z-10 shadow-xl mx-auto" // Changed items-center to items-start, removed text-center, added mx-auto
+                className="mt-[-25px] rounded-lg flex flex-col items-start p-4 w-full max-w-[300px] z-10 shadow-xl mx-auto"
                 style={{
                   backgroundColor: "#70493B",
                 }}
               >
                 <h3
-                  className="mt-4 text-white text-lg w-full text-left" // Added w-full text-left
+                  className="mt-4 text-white text-lg w-full text-left" 
                   style={{
                     fontFamily: "DM Serif Text, serif",
                     fontWeight: "200",
@@ -93,7 +123,7 @@ export default function FourthSection() {
                   {card.title}
                 </h3>
                 <p
-                  className="mt-2 text-sm text-white leading-tight mb-2 w-full text-left" // Added w-full text-left
+                  className="mt-2 text-sm text-white leading-tight mb-2 w-full text-left" 
                   style={{
                     fontFamily: "Lato, sans-serif",
                     fontWeight: "400",
@@ -109,42 +139,44 @@ export default function FourthSection() {
 
       {/* =====================================================================================
         RESPONSIVE DESKTOP/LAPTOP LAYOUT (Visible on screens md and up)
-        Uses CSS Grid for responsive positioning.
+        Apply animation classes
         =====================================================================================
       */}
-      <div className="hidden md:flex flex-col items-center justify-start w-full px-6 py-16 md:px-12 lg:px-24 xl:px-32">
+      <div 
+        className={`hidden md:flex flex-col items-center justify-start w-full px-6 py-16 md:px-12 lg:px-24 xl:px-32 ${animationClass} ${
+          inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+        }`}
+      >
         {/* Heading */}
         <div className="max-w-7xl mx-auto w-full">
-{/* Main Heading */}
-<h2
-  className="text-3xl sm:text-4xl lg:text-4xl text-center lg:text-left leading-snug mb-6"
-  style={{
-    fontFamily: "'DM Serif Display', serif",
-    fontWeight: 400,
-    fontStyle: "normal",
-    color: "#A67950",
-    whiteSpace: "pre-line",
-  }}
->
-  For Whom
-</h2>
-
+          <h2
+            className="text-3xl sm:text-4xl lg:text-4xl text-center lg:text-left leading-snug mb-6"
+            style={{
+              fontFamily: "'DM Serif Display', serif",
+              fontWeight: 400,
+              fontStyle: "normal",
+              color: "#A67950",
+              whiteSpace: "pre-line",
+            }}
+          >
+            For Whom
+          </h2>
         </div>
 
         {/* --- First Row (Surgeons, Residents & Fellows, Anesthesiologists) --- */}
-        {/* Note: I'm keeping the original order of the cardsData array as it maps to the images,
-            but slicing index 0, 1, 2 for the first row, and 3, 4 for the second row.
-            Surgeons, Residents, Anesthesiologists are indices 0, 1, 2.
-            Medical Institutions, Surgical Staff are indices 3, 4.
-            The original image-to-card mapping seems to be preserved.
-        */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-x-8 xl:gap-x-12 2xl:gap-x-16 w-full max-w-7xl">
           {cardsData.slice(0, 3).map((card, index) => (
+            // Apply staggered animation to cards
             <div
               key={`desktop-row1-${index}`}
-              className="relative flex flex-col items-center"
+              className={`relative flex flex-col items-center transition-all duration-1000 ease-out ${
+                inView 
+                  ? `opacity-100 translate-y-0 delay-[${400 + index * 150}ms]` 
+                  : "opacity-0 translate-y-10"
+              }`}
+              style={{ transitionDelay: inView ? `${400 + index * 150}ms` : '0ms' }}
             >
-              {/* Image */}
+              {/* Image and Content... (rest of the card structure) */}
               <div className="w-full max-w-xs xl:max-w-sm rounded-xl overflow-hidden">
                 <Image
                   src={card.imageSrc}
@@ -156,22 +188,22 @@ export default function FourthSection() {
                 />
               </div>
 
-              {/* Card Content Overlay - Adjusted for left alignment */}
+              {/* Card Content Overlay */}
               <div
-                className="absolute bottom-[-15%] md:bottom-[-20%] lg:bottom-[-10%] rounded-lg flex flex-col items-start p-4 w-11/12 max-w-[300px] z-10 shadow-xl mx-auto" // Changed items-center to items-start, removed text-center, added mx-auto
+                className="absolute bottom-[-15%] md:bottom-[-20%] lg:bottom-[-10%] rounded-lg flex flex-col items-start p-4 w-11/12 max-w-[300px] z-10 shadow-xl mx-auto"
                 style={{
                   backgroundColor: "#70493B",
                   height: "111px",
                 }}
               >
                 <h3
-                  className="text-lg text-white mb-1 w-full text-left" // Added w-full text-left
+                  className="text-lg text-white mb-1 w-full text-left"
                   style={{ fontFamily: "DM Serif Text, serif", fontWeight: 200 }}
                 >
                   {card.title}
                 </h3>
                 <p
-                  className="text-xs text-white leading-tight w-full text-left" // Added w-full text-left
+                  className="text-xs text-white leading-tight w-full text-left"
                   style={{ fontFamily: "Lato, sans-serif", fontWeight: 400 }}
                 >
                   {card.subtitle}
@@ -184,11 +216,17 @@ export default function FourthSection() {
         {/* --- Second Row (Medical Institutions, Surgical Staff) --- */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-8 xl:gap-x-12 2xl:gap-x-16 w-full max-w-4xl mt-[160px] md:mt-[180px] lg:mt-[120px] 2xl:mt-[160px]">
           {cardsData.slice(3, 5).map((card, index) => (
+            // Apply staggered animation to cards, continuing the delay
             <div
               key={`desktop-row2-${index}`}
-              className="relative flex flex-col items-center"
+              className={`relative flex flex-col items-center transition-all duration-1000 ease-out ${
+                inView 
+                  ? `opacity-100 translate-y-0 delay-[${850 + index * 150}ms]` 
+                  : "opacity-0 translate-y-10"
+              }`}
+              style={{ transitionDelay: inView ? `${850 + index * 150}ms` : '0ms' }}
             >
-              {/* Image */}
+              {/* Image and Content... (rest of the card structure) */}
               <div className="w-full max-w-xs xl:max-w-sm rounded-xl overflow-hidden">
                 <Image
                   src={card.imageSrc}
@@ -200,22 +238,22 @@ export default function FourthSection() {
                 />
               </div>
 
-              {/* Card Content Overlay - Adjusted for left alignment */}
+              {/* Card Content Overlay */}
               <div
-                className="absolute bottom-[-15%] md:bottom-[-20%] lg:bottom-[-10%] rounded-lg flex flex-col items-start p-4 w-11/12 max-w-[300px] z-10 shadow-xl mx-auto" // Changed items-center to items-start, removed text-center, added mx-auto
+                className="absolute bottom-[-15%] md:bottom-[-20%] lg:bottom-[-10%] rounded-lg flex flex-col items-start p-4 w-11/12 max-w-[300px] z-10 shadow-xl mx-auto"
                 style={{
                   backgroundColor: "#70493B",
                   height: "111px",
                 }}
               >
                 <h3
-                  className="text-lg text-white mb-1 w-full text-left" // Added w-full text-left
+                  className="text-lg text-white mb-1 w-full text-left"
                   style={{ fontFamily: "DM Serif Text, serif", fontWeight: 200 }}
                 >
                   {card.title}
                 </h3>
                 <p
-                  className="text-xs text-white leading-tight w-full text-left" // Added w-full text-left
+                  className="text-xs text-white leading-tight w-full text-left"
                   style={{ fontFamily: "Lato, sans-serif", fontWeight: 400 }}
                 >
                   {card.subtitle}
