@@ -2,12 +2,24 @@
 
 import React from "react";
 import Image from "next/image";
+// 1. Import the hook from the library
+import { useInView } from "react-intersection-observer";
+
+// Define the base animation class
+const animationClass = "transition-all duration-1000 ease-out";
 
 export default function Section1() {
+  // 2. Setup Intersection Observer for the section
+  const { ref, inView } = useInView({
+    // FIX: Set to false so the animation runs every time the component enters the viewport
+    triggerOnce: false, 
+    // FIX: Set threshold to 0.01 (1%) as requested
+    threshold: 0.01,    
+  });
+
   return (
-    // Section wrapper: Takes full width (w-full) and full viewport height (h-screen).
-    // overflow-hidden prevents scrollbars if content slightly exceeds viewport.
-    <section className="w-full h-screen relative overflow-hidden">
+    // 3. Attach the observer ref to the main section container
+    <section ref={ref} className="w-full h-screen relative overflow-hidden">
       {/* Background Image: Uses Next.js Image component with fill and object-cover for full responsiveness. */}
       <Image
         src="/Images/aboutpage/section1/section1.png"
@@ -17,13 +29,15 @@ export default function Section1() {
         priority
       />
 
-      {/* Dark Overlay for Readability (New addition for better text contrast on complex backgrounds) */}
+      {/* Dark Overlay for Readability */}
       <div className="absolute inset-0 bg-black/10"></div>
 
-      {/* Centered Content Container */}
-      {/* absolute inset-0 and flex utilities ensure content is perfectly centered on all devices. 
-          The padding (px-4 to px-12) keeps content away from the edges. */}
-      <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-4 sm:px-8 md:px-12 z-10">
+      {/* Centered Content Container - Apply animation classes */}
+      <div 
+        className={`absolute inset-0 flex flex-col items-center justify-center text-center px-4 sm:px-8 md:px-12 z-10 ${animationClass} ${
+          inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+        }`}
+      >
         <h1
           className="
             text-white 
