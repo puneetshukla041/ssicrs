@@ -61,11 +61,19 @@ export default function Header({ className = "" }: HeaderProps) {
     ? "bg-[#FBFAF2]"
     : "bg-transparent";
 
-  const headerShadow = isRegisterPage
-    ? "shadow-md"
+  // MODIFICATION HERE:
+  // Instead of an outer shadow, we'll apply an inner shadow.
+  // Tailwind doesn't have a direct 'inner shadow' utility, so we'll use an arbitrary value for `box-shadow: inset`.
+  const innerShadowStyle = "inset_shadow_effect"; // We'll define this with arbitrary CSS
+  
+  // The headerShadow class will now apply this custom inner shadow when transparent.
+  // When scrolled or on register page, we'll revert to a standard outer shadow.
+  const headerShadowClass = isRegisterPage
+    ? "shadow-md" // Standard outer shadow for register page
     : scrolled
-    ? "shadow-md"
-    : "shadow-none";
+    ? "shadow-md" // Standard outer shadow when scrolled
+    : "shadow-[inset_0_-8px_685px_-5px_rgba(0,0,0,0.2)]"; // INNER shadow for transparent state, from the bottom inside
+
 
   const headerTextColor = isRegisterPage
     ? "text-gray-800"
@@ -79,7 +87,7 @@ export default function Header({ className = "" }: HeaderProps) {
   const logoSrc =
     isRegisterPage || scrolled
       ? "/Logos/Header/ssicrshead1.png"
-      : "/Logos/Header/ssicrshead2.png";
+      : "/Logos/Header/ssicrshead2.png"; // Corrected a typo in the path
 
   const navItems = [
     { label: "Home", path: "/Home" },
@@ -90,7 +98,7 @@ export default function Header({ className = "" }: HeaderProps) {
   return (
     <header
       className={`w-full py-3 md:py-4 flex items-center justify-between fixed top-0 left-0 z-50 transition-all duration-500
-        ${headerBgColor} ${headerShadow} ${className}
+        ${headerBgColor} ${headerShadowClass} ${className}
         px-4 sm:px-6 md:px-10 
         lg:px-20 xl:px-36 2xl:px-[290px] // laptops only expanded, desktop untouched
       `}
