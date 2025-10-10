@@ -48,7 +48,12 @@ const Section5: React.FC = () => {
         {/* Heading */}
         <div className="group relative inline-block pt-0 mb-5 text-center lg:text-left cursor-pointer">
 <h2
-  className="text-3xl sm:text-4xl lg:text-4xl text-center lg:text-left leading-snug mb-6"
+  className="
+    text-3xl sm:text-4xl lg:text-4xl 
+    text-center lg:text-left 
+    leading-snug mb-6
+    lg:ml-12 xl:ml-0
+  "
   style={{
     fontFamily: "'DM Serif Display', serif",
     fontWeight: 400,
@@ -59,55 +64,75 @@ const Section5: React.FC = () => {
 >
   Training Facilities
 </h2>
+
          
         </div>
-
-        {/* Paragraph */}
-        <p
-          style={{
-            color: Colors.paragraphColor,
-            fontFamily: "Lato, sans-serif",
-          }}
-          className="text-base md:text-lg font-normal leading-7 mb-8 md:mb-10 lg:mb-14 mt-1 max-w-full mx-auto lg:mx-0 text-center lg:text-left"
-        >
+{/* Paragraph */}
+<p
+  style={{
+    color: Colors.paragraphColor,
+    fontFamily: "Lato, sans-serif",
+  }}
+  className="
+    text-base md:text-lg font-normal leading-7 
+    mb-8 md:mb-10 lg:mb-14 mt-1 
+    max-w-full mx-auto 
+    text-center lg:text-left 
+    lg:ml-12 xl:ml-0
+  "
+>
           Our institute mirrors the environment of a modern robotic operating room. Trainees gain confidence
           by practicing in facilities that replicate real-world surgical conditions.
         </p>
 
-        {/* Facilities + Image */}
-        <div className="flex flex-col lg:flex-row lg:gap-8 xl:gap-12">
-          {/* Facility List */}
-          <div className="flex flex-col flex-shrink-0 w-full lg:w-1/2 order-2 lg:order-1">
-            <FacilityBlock
-              title="Simulated ORs"
-              description="Fully equipped with SSI Mantra systems for mock procedures."
-            />
-            <FacilityBlock
-              title="Dry Labs"
-              description="Practice instrument handling, suturing, and dissection on synthetic models."
-            />
-            <FacilityBlock
-              title="Wet Labs"
-              description="Advanced practice on tissue models for realistic feedback and precision training."
-            />
-            <FacilityBlock
-              title="Classrooms"
-              description="Modern lecture halls for interactive sessions, case discussions, and expert talks."
-            />
-          </div>
 
-          {/* Image */}
-          <div className="flex justify-center lg:justify-start mb-6 lg:mb-0 order-1 lg:order-2 w-full lg:w-7/12 -mt-2 lg:-mt-14">
-            <div
-              style={{
-                background: `url("/Images/programs/section5/image1.png") lightgray center / cover no-repeat`,
-                boxShadow:
-                  "0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 5px 6px -2px rgba(0, 0, 0, 0.05)",
-              }}
-              className="w-full h-72 sm:h-80 md:h-96 lg:h-[450px] rounded-lg overflow-hidden"
-            />
-          </div>
-        </div>
+{/* Facilities + Image */}
+<div className="flex flex-col lg:flex-row lg:gap-8 xl:gap-12">
+  {/* Facility List */}
+  <div
+    className="
+      flex flex-col flex-shrink-0 
+      w-full lg:w-1/2 
+      order-2 lg:order-1 
+      lg:ml-12 xl:ml-0
+    "
+  >
+    <FacilityBlock
+      title="Simulated ORs"
+      description="Fully equipped with SSI Mantra systems for mock procedures."
+    />
+    <FacilityBlock
+      title="Dry Labs"
+      description="Practice instrument handling, suturing, and dissection on synthetic models."
+    />
+    <FacilityBlock
+      title="Wet Labs"
+      description="Advanced practice on tissue models for realistic feedback and precision training."
+    />
+    <FacilityBlock
+      title="Classrooms"
+      description="Modern lecture halls for interactive sessions, case discussions, and expert talks."
+    />
+  </div>
+
+
+{/* Image */}
+<div className="flex justify-center lg:justify-start mb-6 lg:mb-0 order-1 lg:order-2 w-full lg:w-7/12 -mt-2 lg:-mt-10">
+  <div
+    style={{
+      background: `url("/Images/programs/section5/image1.png") lightgray center / cover no-repeat`,
+      boxShadow:
+        "0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 5px 6px -2px rgba(0, 0, 0, 0.05)",
+    }}
+    className="
+      w-full 
+      h-72 sm:h-80 md:h-96 lg:h-[450px] 
+      rounded-lg overflow-hidden 
+      lg:-ml-10 xl:ml-0
+    "
+  />
+</div>
+</div>
       </div>
     </section>
   );

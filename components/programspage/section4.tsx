@@ -26,7 +26,12 @@ export default function Section4() {
           style={{ paddingTop: "0px" }}
         >
 <h2
-  className="text-3xl sm:text-4xl lg:text-4xl text-center lg:text-left leading-snug mb-6"
+  className="
+    text-3xl sm:text-4xl lg:text-4xl 
+    text-center lg:text-left 
+    leading-snug mb-6
+    lg:ml-12 xl:ml-0
+  "
   style={{
     fontFamily: "'DM Serif Display', serif",
     fontWeight: 400,
@@ -43,7 +48,13 @@ export default function Section4() {
 
         {/* Subheading */}
         <p
-          className="text-base" // Ensure font size is controlled
+            className="
+    text-base md:text-lg font-normal leading-7 
+    mb-8 md:mb-10 lg:mb-14 mt-1 
+    max-w-full mx-auto 
+    text-center lg:text-left 
+    lg:ml-12 xl:ml-0
+  " // Ensure font size is controlled
           style={{
             marginTop: "0px",
             color: "#401323",

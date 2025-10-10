@@ -48,7 +48,12 @@ export default function Section2() {
         {/* Heading */}
         <div className="group relative cursor-pointer inline-block mx-auto lg:mx-0 text-center lg:text-left">
 <h2
-  className="text-3xl sm:text-4xl lg:text-4xl text-center lg:text-left leading-snug mb-0"
+  className="
+    text-3xl sm:text-4xl lg:text-4xl 
+    text-center lg:text-left 
+    leading-snug mb-6
+    lg:ml-12 xl:ml-0
+  "
   style={{
     fontFamily: "'DM Serif Display', serif",
     fontWeight: 400,
@@ -63,8 +68,23 @@ export default function Section2() {
         </div>
 
         {/* Subheading */}
-        <p className="mt-3 lg:mt-[12px] text-[#401323] font-sans text-[16px] leading-8 sm:leading-[44px] text-center lg:text-left">
-          Programs Designed for Every Healthcare Professional
+        <p
+            className="
+    text-base md:text-lg font-normal leading-7 
+    mb-8 md:mb-10 lg:mb-14 mt-1 
+    max-w-full mx-auto 
+    text-center lg:text-left 
+    lg:ml-12 xl:ml-0
+  " // Ensure font size is controlled
+          style={{
+            marginTop: "0px",
+            color: "#401323",
+            fontFamily: "Lato, sans-serif",
+            fontWeight: 400,
+            lineHeight: "44px",
+          }}
+        >
+          A Balanced Approach: Theory, Practice, and Innovation.
         </p>
 
         {/* Image + Cards Container */}
