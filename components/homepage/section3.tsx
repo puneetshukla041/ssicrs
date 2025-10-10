@@ -1,21 +1,41 @@
 "use client";
 
 import Image from "next/image";
+import React from "react";
+// 1. Import the hook from the library
+import { useInView } from "react-intersection-observer";
 
 export default function ThirdSection() {
+  // 2. Setup Intersection Observer for the section
+  const { ref, inView } = useInView({
+    // FIX: Changed to 'false' so the animation runs every time the component enters the viewport
+    triggerOnce: false, 
+    threshold: 0.5,    // Start animation when 50% of the component is visible
+  });
+
+  // 3. Define the base animation class
+  const animationClass = "transition-all duration-1000 ease-out";
+
   return (
-    <section className="relative w-full min-h-screen">
+    // 4. Attach the observer ref to the main section container
+    <section ref={ref} className="relative w-full min-h-screen">
       {/* Fullscreen Background Image */}
       <Image
         src="/Images/homepage/section3/section3image.png"
         alt="Section 3 Background"
         fill
         priority
-        className="object-cover object-center"
+        // FIX: Added 'md:object-center object-right' to adjust image position on mobile.
+        // On desktop (md and up), it's centered. On mobile, it shifts to the right.
+        className="object-cover md:object-center object-right" 
       />
 
-      {/* Desktop Layout (min-width: 768px) */}
-      <div className="hidden md:flex absolute inset-0 z-10 items-center justify-end px-8 lg:px-16 xl:px-24">
+      {/* 5. Desktop Layout (min-width: 768px) - Animates on every entry */}
+      <div 
+        className={`hidden md:flex absolute inset-0 z-10 items-center justify-end px-8 lg:px-16 xl:px-24 ${animationClass} ${
+          inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+        }`}
+      >
         <div className="w-full max-w-lg xl:max-w-xl 2xl:max-w-2xl">
           {/* Heading */}
           <h2
@@ -41,10 +61,15 @@ export default function ThirdSection() {
         </div>
       </div>
 
-      {/* Mobile Layout (max-width: 767px) */}
-      <div className="md:hidden absolute inset-0 z-10 flex flex-col items-center justify-center text-center px-6 py-16">
+      {/* 6. Mobile Layout (max-width: 767px) - Animates on every entry */}
+      <div 
+        // Removed the inline style for transform as the Tailwind classes already handle the animation
+        className={`md:hidden absolute inset-0 z-10 flex flex-col justify-end items-center text-center px-6 pb-12 ${animationClass} ${
+          inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+        }`}
+      >
         <h2
-          className="mb-6 text-[#F2F0E4] text-2xl sm:text-3xl leading-snug"
+          className="mb-4 text-[#F2F0E4] text-2xl sm:text-3xl leading-snug"
           style={{
             fontFamily: "DM Serif Text, serif",
             fontWeight: 400,
@@ -54,7 +79,7 @@ export default function ThirdSection() {
         </h2>
 
         <p
-          className="text-[#F2F0E4] text-base sm:text-lg leading-relaxed"
+          className="text-[#F2F0E4] text-base sm:text-lg leading-relaxed max-w-xs sm:max-w-md"
           style={{
             fontFamily: "Lato, sans-serif",
             fontWeight: 500,

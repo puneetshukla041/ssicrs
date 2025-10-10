@@ -1,13 +1,22 @@
 "use client";
 
 import Image from "next/image";
-import React from "react";
+import React, { useEffect } from "react";
+// 1. Import the hook from the library
+import { useInView } from "react-intersection-observer";
 
 interface Section2Props {
   children?: React.ReactNode;
 }
 
 export default function Section2({ children }: Section2Props) {
+  // 2. Setup Intersection Observer for the entire section
+  // FIX: triggerOnce is set to false to re-animate every time the element enters the viewport.
+  const { ref, inView } = useInView({
+    triggerOnce: false, // Animation plays every time the component enters the viewport
+    threshold: 0.1,    // Start animation when 10% of the component is visible
+  });
+
   const logos = [
     {
       src: "/Images/homepage/section2/bottomlogo1.png",
@@ -44,18 +53,25 @@ export default function Section2({ children }: Section2Props) {
     },
   ];
 
+  // 3. Define the base animation class
+  const animationClass = "transition-all duration-1000 ease-out";
+
   return (
-<section
-  className="w-full relative pt-10 md:pt-20 lg:pt-28 pb-2 md:pb-3 lg:pb-4"
-  style={{ backgroundColor: "#FBFAF2" }}
->
-
-
+    // 4. Attach the observer ref to the main section container
+    <section
+      ref={ref} 
+      className="w-full relative pt-10 md:pt-20 lg:pt-28 pb-2 md:pb-3 lg:pb-4"
+      style={{ backgroundColor: "#FBFAF2" }}
+    >
       <div className="w-full h-full">{children}</div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Main Content Area */}
-        <div className="flex flex-col lg:flex-row lg:justify-between lg:gap-12 xl:gap-24 mb-16 lg:mb-24">
+        {/* Main Content Area - Animates on every entry */}
+        <div 
+          className={`flex flex-col lg:flex-row lg:justify-between lg:gap-12 xl:gap-24 mb-16 lg:mb-24 ${animationClass} ${
+            inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+          }`}
+        >
           {/* Text Content (Heading and Subtext) */}
           <div className="lg:w-1/2 xl:w-2/5 mb-10 lg:mb-0">
             {/* Main Heading */}
@@ -85,6 +101,7 @@ export default function Section2({ children }: Section2Props) {
                 whiteSpace: "pre-line",
               }}
             >
+              {/* NOTE: You'll likely need to review the desktop positioning for 'lg:transform lg:translate-x-[310px] lg:translate-y-[-127px]' */}
               <div className="lg:transform lg:translate-x-[310px] lg:translate-y-[-127px] text-left">
                 SSICRS is a pioneering center committed to<br className="lg:block hidden" /> transforming surgical education and innovation. Our<br className="lg:block hidden" /> mission is to empower healthcare professionals across <br className="lg:block hidden" />the globe with access to advanced knowledge, expert<br className="lg:block hidden" /> mentorship, and multi-specialty training on the SSI<br className="lg:block hidden" /> Mantra platform.<br/><br/>
 
@@ -108,28 +125,35 @@ export default function Section2({ children }: Section2Props) {
             </div>
           </div>
         </div>
-
         {/* --- "At SSICRS, you will:" Section --- */}
         <div 
           className="w-full pt-10 lg:transform lg:translate-y-[-160px]" 
         >
           <h3
-            className="font-serif text-xl md:text-2xl font-semibold leading-tight mb-8 text-center text-[#A67950]"
+            className={`font-serif text-xl md:text-2xl font-semibold leading-tight mb-8 text-center text-[#A67950] ${animationClass} ${
+              inView ? "opacity-100 translate-y-0 delay-[200ms]" : "opacity-0 translate-y-10"
+            }`}
           >
             <span className="text-left block lg:ml-[-20px]">
               At SSICRS, you will:
             </span>
           </h3>
 
-          {/* Logo Grid */}
+          {/* Logo Grid - Animates on every entry */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-y-12 gap-x-6 sm:gap-x-8 md:gap-x-12 justify-items-center">
             {logos.map((logo, index) => (
-              // Card Wrapper: White Background, Shadow, Pointer active
+              // Card Wrapper: Apply staggered animation
               <div
                 key={index}
-                className="relative flex flex-col items-center group cursor-pointer 
-                           p-4 max-w-[200px] w-full 
-                           bg-white rounded-lg shadow-xl transition-shadow duration-300" // Hover shadow removed
+                className={`relative flex flex-col items-center group cursor-pointer 
+                          p-4 max-w-[200px] w-full 
+                          bg-white rounded-lg shadow-xl transition-all duration-1000 ease-out ${
+                            inView 
+                              ? `opacity-100 translate-y-0 delay-[${400 + index * 150}ms]` 
+                              : "opacity-0 translate-y-10"
+                          }`}
+                // Dynamic delay for staggered effect
+                style={{ transitionDelay: inView ? `${400 + index * 150}ms` : '0ms' }} 
               >
                 <Image
                   src={logo.src}
