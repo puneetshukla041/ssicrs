@@ -62,14 +62,12 @@ export default function Section4() {
   return (
     <div className="w-full min-h-screen" style={{ backgroundColor: "#FBFAF2" }}>
       
-
       {/* Scroll-controlled Image Section */}
       <div ref={wrapperRef} className="relative" style={{ height: `${WRAPPER_HEIGHT_VH}vh` }}>
 
-
         {/* Scroll-controlled Image Section */}
-        {/* We keep items-center to shift the image container upwards, reducing the initial gap. */}
-<div className="sticky top-0 h-screen flex flex-col justify-center items-center">
+        {/* MODIFICATION: Increased top padding from pt-[20vh] to pt-[30vh] to push the content down more. */}
+<div className="sticky top-0 h-screen flex flex-col justify-start items-center pt-[20vh]">
   {/* Heading aligned to left of image container */}
   <h1
     style={{
@@ -79,11 +77,11 @@ export default function Section4() {
       color: "#A67950",
       whiteSpace: "pre-line",
       fontSize: "40px",
-      lineHeight: "150%", // 60px
+      lineHeight: "200%", // 60px
       width: "100%",
       maxWidth: "1380px",
       paddingLeft: "0px", // align with container padding
-      marginBottom: "54px",
+      marginBottom: "74px",
       textAlign: "left",
     }}
   >
