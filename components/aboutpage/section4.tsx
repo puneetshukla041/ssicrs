@@ -249,8 +249,7 @@ export default function Section4() {
         </div>
       </div>
 
-      {/* ✅ Guidance card (no shadow, no border, bg #FBFAF2) */}
-      <ScrollGuide isVisible={showGuide} />
+
     </div>
   );
 }
