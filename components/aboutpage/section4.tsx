@@ -1,4 +1,3 @@
-// components/aboutpage/section4.tsx
 "use client";
 
 import React, { useState, useEffect, useRef, useCallback } from "react";
@@ -27,6 +26,9 @@ const IMAGE_CONTAINER_HEIGHT_PX = 502;
 const MOBILE_BREAKPOINT = 640;
 const GUIDANCE_TIMEOUT_MS = 3000;
 
+// --------------------------------------------------
+// 🔸 Scroll Guide Component
+// --------------------------------------------------
 const ScrollGuide: React.FC<{ isVisible: boolean }> = ({ isVisible }) => {
   const [shouldRender, setShouldRender] = useState(isVisible);
 
@@ -42,11 +44,13 @@ const ScrollGuide: React.FC<{ isVisible: boolean }> = ({ isVisible }) => {
 
   return (
     <div
-      className={`absolute bottom-10 left-1/2 -translate-x-1/2 z-50 flex flex-col items-center p-3 rounded-xl bg-white shadow-xl border border-gray-100 transition-opacity duration-500 ease-in-out ${
+      className={`fixed top-1/2 right-[60px] -translate-y-1/2 z-[9999] flex flex-col items-center p-4 rounded-2xl transition-opacity duration-500 ease-in-out ${
         isVisible ? "opacity-100" : "opacity-0"
       }`}
       style={{
         fontFamily: "'DM Sans', sans-serif",
+        pointerEvents: "none",
+        backgroundColor: "#FBFAF2",
       }}
     >
       <div className="text-sm font-medium text-gray-700 mb-2">
@@ -82,6 +86,9 @@ const ScrollGuide: React.FC<{ isVisible: boolean }> = ({ isVisible }) => {
   );
 };
 
+// --------------------------------------------------
+// 🔸 Main Section 4 Component
+// --------------------------------------------------
 export default function Section4() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [sectionVisible, setSectionVisible] = useState(false);
@@ -102,12 +109,10 @@ export default function Section4() {
     const sectionTop = rect.top;
     const sectionBottom = rect.bottom;
 
-    // --- Detect visibility for fade-in/fade-out
     const inView = sectionTop < vh * 0.8 && sectionBottom > vh * 0.2;
     setSectionVisible(inView);
 
     if (!inView) return;
-
     if (showGuide) setShowGuide(false);
 
     const wrapperHeight = wrapperRef.current.offsetHeight;
@@ -176,7 +181,9 @@ export default function Section4() {
     </h1>
   );
 
-  // --- Mobile view ---
+  // -----------------------
+  // 🔸 Mobile View
+  // -----------------------
   if (isMobile) {
     return (
       <div className="w-full py-16 px-5" style={{ backgroundColor: "#FBFAF2" }}>
@@ -185,7 +192,7 @@ export default function Section4() {
           {MOBILE_IMAGE_PATHS.map((path, idx) => (
             <div
               key={idx}
-              className="relative w-full overflow-hidden rounded-xl shadow-lg"
+              className="relative w-full overflow-hidden rounded-xl"
               style={{ paddingBottom: `${(247 / 358) * 100}%` }}
             >
               <Image
@@ -203,7 +210,9 @@ export default function Section4() {
     );
   }
 
-  // --- Desktop View ---
+  // -----------------------
+  // 🔸 Desktop View
+  // -----------------------
   return (
     <div
       ref={wrapperRef}
@@ -222,8 +231,6 @@ export default function Section4() {
           className="relative w-full mx-auto max-w-[1350px] flex-shrink-0 overflow-hidden rounded-xl"
           style={{ height: `${IMAGE_CONTAINER_HEIGHT_PX}px` }}
         >
-          <div className="absolute inset-0 bg-black/10 z-10 pointer-events-none"></div>
-
           {isReady &&
             IMAGE_PATHS.map((path, idx) => (
               <Image
@@ -239,10 +246,11 @@ export default function Section4() {
                 priority
               />
             ))}
-
-          <ScrollGuide isVisible={showGuide} />
         </div>
       </div>
+
+      {/* ✅ Guidance card (no shadow, no border, bg #FBFAF2) */}
+      <ScrollGuide isVisible={showGuide} />
     </div>
   );
 }
