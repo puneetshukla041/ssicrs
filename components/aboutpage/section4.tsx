@@ -66,55 +66,60 @@ export default function Section4() {
       <div ref={wrapperRef} className="relative" style={{ height: `${WRAPPER_HEIGHT_VH}vh` }}>
 
         {/* Scroll-controlled Image Section */}
-        {/* MODIFICATION: Increased top padding from pt-[20vh] to pt-[30vh] to push the content down more. */}
-<div className="sticky top-0 h-screen flex flex-col justify-start items-center pt-[20vh]">
-  {/* Heading aligned to left of image container */}
-  <h1
-    style={{
-      fontFamily: "'DM Serif Display', serif",
-      fontWeight: 400,
-      fontStyle: "normal",
-      color: "#A67950",
-      whiteSpace: "pre-line",
-      fontSize: "40px",
-      lineHeight: "200%", // 60px
-      width: "100%",
-      maxWidth: "1380px",
-      paddingLeft: "0px", // align with container padding
-      marginBottom: "74px",
-      textAlign: "left",
-    }}
-  >
-    Why Choose SSICRS
-  </h1>
+        <div className="sticky top-0 h-screen flex flex-col justify-start items-center pt-[20vh]">
+          {/* Heading aligned to left of image container */}
+          <h1
+            style={{
+              fontFamily: "'DM Serif Display', serif",
+              fontWeight: 400,
+              fontStyle: "normal",
+              color: "#A67950",
+              whiteSpace: "pre-line",
+              fontSize: "40px",
+              lineHeight: "100%", // 60px
+              width: "100%",
+              maxWidth: "1380px",
+              paddingLeft: "0px", // align with container padding
+              marginBottom: "104px",
+              textAlign: "left",
+            }}
+          >
+            Why Choose SSICRS
+          </h1>
 
-  {/* Image container */}
-  <div
-    className="relative w-full mx-auto max-w-[1380px] flex-shrink-0 overflow-hidden rounded-xl"
-    style={{ height: `${IMAGE_CONTAINER_HEIGHT_PX}px` }}
-  >
-    <div className="absolute inset-0 bg-black/10 z-10 pointer-events-none"></div>
+          {/* Image container */}
+          <div
+            className="relative w-full mx-auto max-w-[1380px] flex-shrink-0 overflow-hidden rounded-xl"
+            style={{ height: `${IMAGE_CONTAINER_HEIGHT_PX}px` }}
+          >
+            <div className="absolute inset-0 bg-black/10 z-10 pointer-events-none"></div>
 
-    {isReady &&
-      IMAGE_PATHS.map((path, idx) => (
-        <Image
-          key={idx}
-          src={path}
-          alt={`Scroll image ${idx + 1}`}
-          fill
-          className="absolute object-cover transition-opacity duration-700 ease-in-out"
-          style={{
-            opacity: currentIndex === idx ? 1 : 0,
-            transform: currentIndex === idx ? "scale(1)" : "scale(1.02)",
-          }}
-          sizes="(max-width: 1536px) 100vw, 1380px"
-          priority
-        />
-      ))}
+            {isReady &&
+              IMAGE_PATHS.map((path, idx) => (
+                <Image
+                  key={idx}
+                  src={path}
+                  alt={`Scroll image ${idx + 1}`}
+                  fill
+                  className="absolute object-cover transition-opacity duration-700 ease-in-out"
+                  style={{
+                    opacity: currentIndex === idx ? 1 : 0,
+                    // MODIFICATION: Removed the transform property to disable zooming
+                    // transform: currentIndex === idx ? "scale(1)" : "scale(1.02)", 
+                  }}
+                  sizes="(max-width: 1536px) 100vw, 1380px"
+                  priority
+                />
+              ))}
 
-
-  </div>
-</div>
+            {/* Note: The image counter element was removed in the previous prompt. 
+                If you want it back, you'll need to add it here.
+            <div className="absolute bottom-4 right-6 text-white text-lg font-bold p-2 bg-black/40 rounded-lg z-20">
+              Image {currentIndex + 1} of {SCROLL_DURATION_STEPS}
+            </div>
+            */}
+          </div>
+        </div>
 
       </div>
 
