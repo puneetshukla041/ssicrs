@@ -5,7 +5,9 @@
 import React from "react";
 import { FiArrowRight } from "react-icons/fi";
 import { useRouter } from "next/navigation";
-import Image from "next/image"; // Added the correct Image import
+import Image from "next/image";
+// 1. Import useInView
+import { useInView } from "react-intersection-observer";
 
 export default function Section3() {
   const router = useRouter();
@@ -14,43 +16,70 @@ export default function Section3() {
     router.push("/Register");
   };
 
+  // 2. Setup observer for the Header/Subtext block
+  const { ref: headerRef, inView: headerInView } = useInView({
+    threshold: 0.1,
+    triggerOnce: false, // Ensures re-animation on scroll up/down
+  });
+
+  // 3. Setup observer for the main Content Card
+  const { ref: cardRef, inView: cardInView } = useInView({
+    threshold: 0.1,
+    triggerOnce: false, // Ensures re-animation on scroll up/down
+  });
+
+  // 4. Animation classes for fade-up effect
+  const fadeUpClasses = (isInView: boolean) => 
+    `transition-all duration-700 ease-out ${
+      isInView 
+        ? "opacity-100 translate-y-0" 
+        : "opacity-0 translate-y-10"
+    }`;
+
   return (
     <section 
-      // Adjusted padding for better responsiveness on laptops
       className="w-full min-h-[90vh] flex flex-col items-center p-4 md:p-8 lg:px-16 xl:px-32 2xl:px-48 pt-10 md:pt-0 bg-[#FBFAF2]"
     >
       <div className="w-full max-w-7xl">
         
-        {/* Main Heading */}
-        <div className="group relative cursor-pointer inline-block pt-10 md:pt-24 lg:pt-32">
-<h2
-  className="text-3xl sm:text-4xl lg:text-4xl text-center lg:text-left leading-snug mb-6"
-  style={{
-    fontFamily: "'DM Serif Display', serif",
-    fontWeight: 400,
-    fontStyle: "normal",
-    color: "#A67950",
-    whiteSpace: "pre-line",
-  }}
->
-  Upcoming Training Batches
-</h2>
-         
+        {/* Main Heading and Subtext Block - Attached headerRef */}
+        <div ref={headerRef} className={fadeUpClasses(headerInView)}>
+            {/* Main Heading */}
+            <div className="group relative cursor-pointer inline-block pt-10 md:pt-24 lg:pt-32">
+                <h2
+                    className="text-3xl sm:text-4xl lg:text-4xl text-center lg:text-left leading-snug mb-6"
+                    style={{
+                        fontFamily: "'DM Serif Display', serif",
+                        fontWeight: 400,
+                        fontStyle: "normal",
+                        color: "#A67950",
+                        whiteSpace: "pre-line",
+                    }}
+                >
+                    Upcoming Training Batches
+                </h2>
+            </div>
+
+            {/* Sub-Text */}
+            <p
+                className="mt-4 md:mt-0 text-[#401323] font-['Lato',_sans-serif] text-base font-normal leading-relaxed md:leading-[44px]"
+            >
+                Limited seats per cohort. Reserve early to maximize hands-on time.
+            </p>
         </div>
 
-        {/* Sub-Text */}
-        <p
-          className="mt-4 md:mt-0 text-[#401323] font-['Lato',_sans-serif] text-base font-normal leading-relaxed md:leading-[44px]"
-        >
-          Limited seats per cohort. Reserve early to maximize hands-on time.
-        </p>
-
-        {/* Main Content Card (Flex Container) */}
+        {/* Main Content Card (Flex Container) - Attached cardRef */}
         <div
-          className="flex flex-col lg:flex-row justify-between items-center lg:items-start 
-                      p-6 md:p-10 lg:p-12 mt-8 md:mt-12 lg:mt-10 
-                      rounded-lg border border-[#A67950] bg-white w-full 
-                      min-h-[auto] shadow-lg"
+          ref={cardRef}
+          className={`
+            flex flex-col lg:flex-row justify-between items-center lg:items-start 
+            p-6 md:p-10 lg:p-12 mt-8 md:mt-12 lg:mt-10 
+            rounded-lg border border-[#A67950] bg-white w-full 
+            min-h-[auto] shadow-lg
+            // 5. Apply animation classes with a slight delay
+            transition-all duration-700 ease-out delay-150
+            ${cardInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}
+          `}
         >
           {/* Left Side: Text and Details */}
           <div className="flex flex-col gap-4 w-full lg:w-1/2 lg:pr-8">
@@ -140,8 +169,8 @@ export default function Section3() {
                     src="/Images/programs/section3/image1.png" 
                     alt="Model of a human heart representing cardiac surgery"
                     fill
-                    className="object-cover" // Ensure it covers the area
-                    sizes="(max-width: 1024px) 100vw, 50vw" // Responsive sizes for optimization
+                    className="object-cover"
+                    sizes="(max-width: 1024px) 100vw, 50vw"
                 />
             </div>
           </div>
