@@ -3,8 +3,21 @@
 import Image from "next/image";
 import { FiArrowRight } from "react-icons/fi";
 import { useRouter } from "next/navigation";
+import React from "react";
+// 1. Import the hook from the library
+import { useInView } from "react-intersection-observer";
+
+// Define the base animation class
+const animationClass = "transition-all duration-1000 ease-out";
 
 export default function SeventhSection() {
+  // 2. Setup Intersection Observer for the section
+  const { ref, inView } = useInView({
+    // FIX: Set to false so the animation runs every time the component enters the viewport
+    triggerOnce: false, 
+    threshold: 0.1,    // Start animation when 10% of the component is visible
+  });
+
   const router = useRouter();
   const mobileImageSrc = "/Images/homepage/section8/image1.png";
 
@@ -13,7 +26,11 @@ export default function SeventhSection() {
   };
 
   return (
-    <section className="w-full bg-[#FBFAF2] relative flex justify-center items-center pt-12 sm:pt-0 pb-20 md:pb-24 min-h-[500px] md:min-h-0 overflow-hidden">
+    // 3. Attach the observer ref to the main section container
+    <section 
+      ref={ref}
+      className="w-full bg-[#FBFAF2] relative flex justify-center items-center pt-12 sm:pt-0 pb-20 md:pb-24 min-h-[500px] md:min-h-0 overflow-hidden"
+    >
 
       {/* ---------------- Mobile & Tablet View ---------------- */}
       <div className="md:hidden w-11/12 max-w-xl mx-auto relative rounded-lg overflow-hidden min-h-[300px] sm:min-h-[400px] flex flex-col items-center justify-center">
@@ -32,8 +49,12 @@ export default function SeventhSection() {
         {/* Overlay */}
         <div className="absolute inset-0 bg-black/30 z-10"></div>
 
-        {/* Content */}
-        <div className="relative z-20 text-center flex flex-col items-center max-w-lg px-4">
+        {/* Content - Apply animation classes */}
+        <div 
+          className={`relative z-20 text-center flex flex-col items-center max-w-lg px-4 ${animationClass} ${
+            inView ? "opacity-100 translate-y-0 delay-300" : "opacity-0 translate-y-10"
+          }`}
+        >
           <h2
             className="text-2xl sm:text-3xl font-normal bg-clip-text text-transparent bg-gradient-to-r from-[#D9A05B] via-[#EFE8D6] to-[#F2F0E4] mb-3 sm:mb-4 leading-snug"
             style={{ fontFamily: "DM Serif Text, serif" }}
@@ -77,7 +98,12 @@ export default function SeventhSection() {
           />
         </div>
 
-        <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-8">
+        {/* Content - Apply animation classes */}
+        <div 
+          className={`absolute inset-0 flex flex-col items-center justify-center text-center px-8 ${animationClass} ${
+            inView ? "opacity-100 translate-y-0 delay-300" : "opacity-0 translate-y-10"
+          }`}
+        >
           <h2
             className="text-4xl font-normal bg-clip-text text-transparent bg-gradient-to-r from-[#D9A05B] via-[#EFE8D6] to-[#F2F0E4] whitespace-nowrap mb-4 md:mb-6"
             style={{ fontFamily: "DM Serif Text, serif" }}
@@ -104,7 +130,7 @@ export default function SeventhSection() {
               background: "linear-gradient(90deg, #FBFAF2, #FFEAD2)",
               fontFamily: "Lato, sans-serif",
               fontWeight: "400",
-              fontSize: "22px",
+              fontSize: "16px",
               color: "#000",
             }}
           >
