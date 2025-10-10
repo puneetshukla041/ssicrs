@@ -11,6 +11,9 @@ interface HeaderProps {
   className?: string;
 }
 
+// Define the common text classes (excluding font-weight) for reusability
+const commonTextClasses = "text-[14px] leading-[32px]";
+
 export default function Header({ className = "" }: HeaderProps) {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -55,11 +58,17 @@ export default function Header({ className = "" }: HeaderProps) {
     setMobileOpen(false);
   };
 
+  // Helper function to determine if a path is active, including checking for root path for 'Home'
+  const checkIsActive = (path: string) => {
+    if (path === "/Home" && pathname === "/") return true;
+    return pathname === path;
+  };
+
   const headerBgColor = isRegisterPage
     ? "bg-white"
     : scrolled
     ? "bg-[#FBFAF2]"
-    : "bg-transparent";
+    : "bg-gradient-to-b from-black/50 to-transparent";
 
   const headerShadow = isRegisterPage
     ? "shadow-md"
@@ -91,7 +100,7 @@ export default function Header({ className = "" }: HeaderProps) {
     <header
       className={`w-full py-3 md:py-4 flex items-center justify-between fixed top-0 left-0 z-50 transition-all duration-500
         ${headerBgColor} ${headerShadow} ${className}
-        px-4 sm:px-6 md:px-10 
+        px-4 sm:px-6 md:px-10
         lg:px-20 xl:px-36 2xl:px-[290px] // laptops only expanded, desktop untouched
       `}
     >
@@ -114,17 +123,20 @@ export default function Header({ className = "" }: HeaderProps) {
       {/* Desktop Navigation */}
       <nav
         className="hidden md:flex items-center space-x-8 lg:space-x-14 xl:space-x-16 2xl:space-x-10 ml-8"
-        style={{ fontFamily: "Lato, sans-serif" }}
+        style={{ fontFamily: "Lato, sans-serif" }} // Maintain Lato font family
       >
         {navItems.map((item) => {
-          const isActive = pathname === item.path;
+          const isActive = checkIsActive(item.path); // Use the helper function
           return (
             <button
               key={item.label}
               onClick={() => handleNavClick(item.path)}
-              className={`transition-colors duration-300 text-base lg:text-[1rem]
-                ${isActive ? "text-[#C59D73]" : headerTextColor}
-                font-normal
+              className={`transition-colors duration-300
+                ${commonTextClasses} // Apply common font properties
+                ${isActive
+                  ? "text-[#C59D73] font-extrabold" // 👈 Changed from font-bold to font-extrabold (800)
+                  : `font-normal ${headerTextColor}` // NORMAL (400) when inactive
+                }
                 hover:text-[#C59D73]`}
             >
               {item.label}
@@ -135,7 +147,8 @@ export default function Header({ className = "" }: HeaderProps) {
         {/* Log In Button */}
         <button
           onClick={goToLogin}
-          className={`px-6 py-2 rounded-[5px] font-normal transition-colors duration-300 border text-base
+          className={`px-6 py-2 rounded-[5px] transition-colors duration-300 border
+            ${commonTextClasses} font-normal // Apply font-normal explicitly for buttons
             ${isRegisterPage || scrolled
               ? "bg-transparent text-[#A67950] border-[#A67950] hover:border-[#A67950]"
               : "bg-transparent text-[#A67950] border-[#A67950] hover:border-[#A67950]"
@@ -150,7 +163,7 @@ export default function Header({ className = "" }: HeaderProps) {
           <div
             className="absolute top-[-20] left-0 w-full"
             style={{
-              height: "170%",
+              height: "140%",
               backgroundColor: "#A67950",
               borderBottomLeftRadius: "10px",
               borderBottomRightRadius: "10px",
@@ -159,7 +172,9 @@ export default function Header({ className = "" }: HeaderProps) {
           ></div>
           <button
             onClick={goToRegister}
-            className="relative z-10 px-3 py-2 rounded-full cursor-pointer text-white font-medium transition-colors duration-500"
+            className={`relative z-10 px-3 py-2 rounded-full cursor-pointer text-white transition-colors duration-500
+              ${commonTextClasses} font-normal // Apply font-normal explicitly for buttons
+            `}
             style={{ backgroundColor: "transparent" }}
           >
             Register Now
@@ -167,7 +182,7 @@ export default function Header({ className = "" }: HeaderProps) {
         </div>
       </nav>
 
-      {/* Mobile Button */}
+      {/* Mobile Button - Icon color is handled by mobileMenuIconColor, no text classes needed here */}
       <button
         className={`md:hidden z-50 transition-colors duration-300 ${mobileMenuIconColor}`}
         onClick={() => setMobileOpen(!mobileOpen)}
@@ -184,13 +199,17 @@ export default function Header({ className = "" }: HeaderProps) {
         style={{ fontFamily: "Lato, sans-serif" }}
       >
         {navItems.map((item) => {
-          const isActive = pathname === item.path;
+          const isActive = checkIsActive(item.path); // Use the helper function
           return (
             <button
               key={item.label}
               onClick={() => handleNavClick(item.path)}
-              className={`text-xl font-medium transition-colors duration-300 w-full text-center py-2
-                ${isActive ? "text-[#C59D73]" : "text-gray-800"}
+              className={`transition-colors duration-300 w-full text-center py-2
+                ${commonTextClasses} // Apply common font properties
+                ${isActive
+                  ? "text-[#C59D73] font-extrabold" // 👈 Changed from font-bold to font-extrabold (800)
+                  : "text-gray-800 font-normal" // NORMAL (400) when inactive
+                }
                 hover:text-[#C59D73]`}
             >
               {item.label}
@@ -203,7 +222,9 @@ export default function Header({ className = "" }: HeaderProps) {
         {/* Log In Button (Mobile) */}
         <button
           onClick={goToLogin}
-          className="w-full max-w-xs px-6 py-3 rounded-[5px] font-normal transition-colors duration-300 border text-lg bg-transparent text-[#A67950] border-[#A67950] hover:bg-[#F2F2F2]"
+          className={`w-full max-w-xs px-6 py-3 rounded-[5px] transition-colors duration-300 border bg-transparent text-[#A67950] border-[#A67950] hover:bg-[#F2F2F2]
+            ${commonTextClasses} font-normal
+          `}
         >
           Log In
         </button>
@@ -211,7 +232,9 @@ export default function Header({ className = "" }: HeaderProps) {
         {/* Register Now Button (Mobile) */}
         <button
           onClick={goToRegister}
-          className="w-full max-w-xs px-6 py-3 rounded-[5px] cursor-pointer text-white font-medium transition-colors duration-300 text-lg bg-[#A67950] hover:bg-[#8e613f]"
+          className={`w-full max-w-xs px-6 py-3 rounded-[5px] cursor-pointer text-white transition-colors duration-300 bg-[#A67950] hover:bg-[#8e613f]
+            ${commonTextClasses} font-normal
+          `}
         >
           Register Now
         </button>

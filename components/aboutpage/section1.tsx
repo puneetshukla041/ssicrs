@@ -41,18 +41,17 @@ export default function Section1() {
         </h1>
 
         <p
-          className="
-            text-white 
-            text-[16px] sm:text-[18px] md:text-[20px] lg:text-[24px] 
-            max-w-md sm:max-w-2xl md:max-w-3xl lg:max-w-4xl 
-            px-2 sm:px-4 leading-relaxed
-          "
-          // Font style, weight, and line-height preserved as requested
           style={{
             fontFamily: "Lato, sans-serif",
             fontWeight: 400,
-            lineHeight: 1.6,
+            lineHeight: "1.5",
           }}
+          className="
+            text-white
+            mt-5
+            text-[14px] sm:text-[16px] md:text-[18px] lg:text-[20px]
+            px-2 sm:px-8 md:px-16
+          "
         >
           Expanding access to cutting-edge education, from established centers to underserved regions.
         </p>
