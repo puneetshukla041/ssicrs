@@ -3,6 +3,9 @@
 import Image from "next/image";
 import { FiArrowRight } from "react-icons/fi";
 import { useRouter } from "next/navigation";
+// 1. Import useInView
+import { useInView } from "react-intersection-observer";
+import React from "react"; // Explicitly imported React
 
 export default function Section8() {
   const router = useRouter();
@@ -11,11 +14,28 @@ export default function Section8() {
     router.push("/Register");
   };
 
+  // 2. Setup observer for the section content
+  const { ref, inView } = useInView({
+    // Trigger once the element is 10% visible
+    threshold: 0.1,
+    // Setting triggerOnce to false ensures it animates every time it comes into view
+    triggerOnce: false, 
+  });
+
+  // Animation classes for when the content is in view/out of view
+  const animationClasses = `transition-all duration-700 ease-out ${
+    inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+  }`;
+
   return (
-    // FIX: Changed md:py-0 to md:py-20 to increase top and bottom padding on desktop
+    // We attach the observer ref to the wrapper div inside the section
     <section className="w-full bg-[#FBFAF2] relative flex justify-center items-center pt-4 pb-12 md:py-20">
+      
       {/* ---------------- Mobile view - small card ---------------- */}
-      <div className="md:hidden w-11/12 max-w-sm mx-auto relative rounded-lg overflow-hidden bg-black">
+      <div 
+        ref={ref} // 3. Attach the ref to the mobile card
+        className={`md:hidden w-11/12 max-w-sm mx-auto relative rounded-lg overflow-hidden bg-black ${animationClasses}`}
+      >
         {/* Background Image (Zoomed 50%) */}
         <div className="absolute inset-0 overflow-hidden">
           <Image
@@ -74,7 +94,11 @@ export default function Section8() {
       </div>
 
       {/* ---------------- Desktop view ---------------- */}
-      <div className="hidden md:block relative w-full max-w-[1306px] px-4">
+      {/* 3. Attach the ref to the desktop image container */}
+      <div 
+        ref={ref} 
+        className={`hidden md:block relative w-full max-w-[1306px] px-4 ${animationClasses}`}
+      >
         {/* The Image is the background container */}
         <div className="relative flex flex-col justify-center items-center">
           {/* The Image */}
