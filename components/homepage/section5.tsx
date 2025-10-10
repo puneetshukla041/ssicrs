@@ -3,6 +3,8 @@
 import React, { useState, useRef, useEffect, useCallback } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
+// 1. Import the hook from the library
+import { useInView } from "react-intersection-observer";
 
 // Helper component to safely render text with <br/> tags
 const SafeTextRenderer: React.FC<{ text: string }> = ({ text }) => {
@@ -41,7 +43,15 @@ const slides = [
   },
 ];
 
+const animationClass = "transition-all duration-1000 ease-out";
+
 const Slider: React.FC = () => {
+  // 2. Setup Intersection Observer for the section
+  const { ref, inView } = useInView({
+    triggerOnce: false, // Animation plays every time the component enters the viewport
+    threshold: 0,    // Start animation when 10% of the component is visible
+  });
+
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
   const touchStartX = useRef<number | null>(null);
@@ -90,36 +100,45 @@ const Slider: React.FC = () => {
 
   // --- Transform Value for Carousel Movement ---
   const getTransformValue = () => {
-    // Each slide is w-full (100%) of its container's width, so we translate by 100% per index.
     return `translateX(-${currentIndex * 100}%)`;
   };
 
   return (
-    <div className="w-full bg-[#FBFAF2] pt-28 sm:pt-30 pb-20 sm:pb-40 px-4 sm:px-8 lg:px-12 xl:px-20">
+    // 3. Attach the observer ref to the main wrapper div
+    <div 
+      ref={ref} 
+      className="w-full bg-[#FBFAF2] pt-28 sm:pt-30 pb-20 sm:pb-40 px-4 sm:px-8 lg:px-12 xl:px-20"
+    >
 
-      {/* Heading */}
-      <div className="max-w-7xl mx-auto">
-<h2
-  className="text-3xl sm:text-4xl lg:text-4xl text-center lg:text-left leading-snug mb-6"
-  style={{
-    fontFamily: "'DM Serif Display', serif",
-    fontWeight: 400,
-    fontStyle: "normal",
-    color: "#A67950",
-    whiteSpace: "pre-line",
-  }}
->
-  Our Comprehensive Training Program
-</h2>
+      {/* Heading - Apply animation classes */}
+      <div 
+        className={`max-w-7xl mx-auto ${animationClass} ${
+          inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+        }`}
+      >
+        <h2
+          className="text-3xl sm:text-4xl lg:text-4xl text-center lg:text-left leading-snug mb-6"
+          style={{
+            fontFamily: "'DM Serif Display', serif",
+            fontWeight: 400,
+            fontStyle: "normal",
+            color: "#A67950",
+            whiteSpace: "pre-line",
+          }}
+        >
+          Our Comprehensive Training Program
+        </h2>
       </div>
 
-      {/* Slider Container */}
+      {/* Slider Container - Apply animation classes */}
       <div
-        className="max-w-7xl mx-auto relative flex flex-col lg:flex-row items-center gap-8 lg:gap-16"
+        className={`max-w-7xl mx-auto relative flex flex-col lg:flex-row items-center gap-8 lg:gap-16 ${animationClass} ${
+          inView ? "opacity-100 translate-y-0 delay-300" : "opacity-0 translate-y-10"
+        }`}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
       >
-        {/* Text Content */}
+        {/* Text Content (framer-motion handles its internal slide transitions) */}
         <div className="w-full lg:w-1/3 order-2 lg:order-1 flex justify-center lg:justify-start">
           <AnimatePresence mode="wait">
             <motion.div
@@ -139,7 +158,7 @@ const Slider: React.FC = () => {
           </AnimatePresence>
         </div>
 
-        {/* Image Carousel */}
+        {/* Image Carousel (Internal transform handles the image movement) */}
         <div className="w-full lg:w-2/3 order-1 lg:order-2 overflow-hidden relative">
           <div
             className="flex transition-transform duration-700 ease-in-out relative"
@@ -161,16 +180,14 @@ const Slider: React.FC = () => {
               return (
                 <div
                   key={idx}
-                  // Set base width to w-full, which means 100% of the parent (lg:w-2/3)
                   className={`flex-shrink-0 w-full px-4 sm:px-8 lg:px-6 flex justify-center relative transition-all duration-500 ease-in-out ${zIndexClass} ${scaleClass} ${translateClass}`}
-                  // Removed inline style with window.innerWidth check and replaced with utility classes
                 >
                   <div className="relative w-full max-w-3xl h-64 sm:h-[400px] lg:h-[450px] xl:h-[500px] rounded-2xl shadow-xl overflow-hidden hover:scale-[1.02] transition-transform duration-500">
                       <Image
                         src={slide.image}
                         alt={`Slide ${idx + 1}`}
-                        fill // Use fill for better responsiveness in Next/Image
-                        className="object-cover" // Ensure the image covers the container
+                        fill
+                        className="object-cover" 
                       />
                   </div>
                 </div>
@@ -178,7 +195,7 @@ const Slider: React.FC = () => {
             })}
           </div>
 
-          {/* Navigation Arrows */}
+          {/* Navigation Arrows (z-30 is already high enough) */}
           <button
             onClick={handlePrev}
             className="absolute top-1/2 left-0 sm:left-4 lg:left-0 transform -translate-y-1/2 bg-white rounded-full w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center shadow-lg hover:bg-opacity-90 transition z-30 opacity-70 hover:opacity-100"
