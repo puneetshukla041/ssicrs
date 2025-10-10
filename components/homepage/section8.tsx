@@ -15,7 +15,7 @@ export default function SeventhSection() {
   const { ref, inView } = useInView({
     // FIX: Set to false so the animation runs every time the component enters the viewport
     triggerOnce: false, 
-    threshold: 0.1,    // Start animation when 10% of the component is visible
+    threshold: 0.01,    // Start animation when 10% of the component is visible
   });
 
   const router = useRouter();
