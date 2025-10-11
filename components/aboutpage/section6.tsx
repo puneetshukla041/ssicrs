@@ -107,14 +107,14 @@ export default function SeventhSection() {
           }`}
         >
           <h2
-            className="text-4xl font-normal bg-clip-text text-transparent bg-gradient-to-r from-[#D9A05B] via-[#EFE8D6] to-[#F2F0E4] whitespace-nowrap mb-4 md:mb-6"
+            className="text-4xl font-normal bg-clip-text text-transparent bg-gradient-to-r from-[#D9A05B] via-[#EFE8D6] to-[#F2F0E4] whitespace-nowrap mb-4 md:mb-8"
             style={{ fontFamily: "DM Serif Text, serif" }}
           >
             Join the Robotic Surgery Revolution
           </h2>
 
           <p
-            className="text-xl md:text-[24px] font-medium text-[#FBFAF2] max-w-xl mb-8 md:mb-10 lg:max-w-2xl"
+            className="text-xl md:text-[18px] font-medium text-[#FBFAF2] max-w-xl mb-16 md:mb-18 lg:max-w-2xl"
             style={{ fontFamily: "Lato, sans-serif" }}
           >
             {/* FIX: Replaced all unescaped single quotes with &apos; */}
@@ -125,7 +125,7 @@ export default function SeventhSection() {
             onClick={handleRegisterClick}
             className="absolute flex items-center justify-center rounded-full transition-shadow duration-300 hover:shadow-[0_0_15px_rgba(255,234,210,0.5)]"
             style={{
-              top: "62%",
+              top: "65%",
               left: "50%",
               transform: "translate(-50%, -50%)",
               width: "167px",
