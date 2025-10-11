@@ -10,7 +10,7 @@ export default function ThirdSection() {
   const { ref, inView } = useInView({
     // FIX: Changed to 'false' so the animation runs every time the component enters the viewport
     triggerOnce: false, 
-    threshold: 0.5,    // Start animation when 50% of the component is visible
+    threshold: 0.5,    // Start animation when 30% of the component is visible
   });
 
   // 3. Define the base animation class
@@ -20,15 +20,18 @@ export default function ThirdSection() {
     // 4. Attach the observer ref to the main section container
     <section ref={ref} className="relative w-full min-h-screen">
       {/* Fullscreen Background Image */}
-      <Image
-        src="/Images/homepage/section3/section3image.png"
-        alt="Section 3 Background"
-        fill
-        priority
-        // FIX: Added 'md:object-center object-right' to adjust image position on mobile.
-        // On desktop (md and up), it's centered. On mobile, it shifts to the right.
-        className="object-cover md:object-center object-right" 
-      />
+<Image
+  src="/Images/homepage/section3/section3image.png"
+  alt="Section 3 Background"
+  fill
+  priority
+  className="
+    object-cover 
+    md:object-center 
+    object-[30%_center]  // <-- Moves image focus right on mobile
+  "
+/>
+
 
       {/* 5. Desktop Layout (min-width: 768px) - Animates on every entry */}
       <div 
@@ -61,33 +64,34 @@ export default function ThirdSection() {
         </div>
       </div>
 
-      {/* 6. Mobile Layout (max-width: 767px) - Animates on every entry */}
-      <div 
-        // Removed the inline style for transform as the Tailwind classes already handle the animation
-        className={`md:hidden absolute inset-0 z-10 flex flex-col justify-end items-center text-center px-6 pb-12 ${animationClass} ${
-          inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
-        }`}
-      >
-        <h2
-          className="mb-4 text-[#F2F0E4] text-2xl sm:text-3xl leading-snug"
-          style={{
-            fontFamily: "DM Serif Text, serif",
-            fontWeight: 400,
-          }}
-        >
-          Empowering the next generation of surgeons to transform healthcare with innovation and compassion
-        </h2>
+{/* 6. Mobile Layout (max-width: 767px) - Animates on every entry */}
+<div 
+  className={`md:hidden absolute inset-0 z-10 flex flex-col justify-end items-center text-center px-6 pb-12 ${animationClass} ${
+    inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+  }`}
+  style={{ transform: inView ? "translateX(0)" : "translateY(2.5rem)" }}
+>
+  <h2
+    className="mb-4 text-[#F2F0E4] text-2xl sm:text-3xl leading-snug"
+    style={{
+      fontFamily: "DM Serif Text, serif",
+      fontWeight: 400,
+    }}
+  >
+    Empowering the next generation of surgeons to transform healthcare with innovation and compassion
+  </h2>
 
-        <p
-          className="text-[#F2F0E4] text-base sm:text-lg leading-relaxed max-w-xs sm:max-w-md"
-          style={{
-            fontFamily: "Lato, sans-serif",
-            fontWeight: 500,
-          }}
-        >
-          Dr. Sudhir Srivastava leads a global mission to democratize robotic surgery. His vision is shaping the future of healthcare—making advanced surgical techniques accessible worldwide and equipping surgeons to deliver precision and excellence in every procedure.
-        </p>
-      </div>
+  <p
+    className="text-[#F2F0E4] text-base sm:text-lg leading-relaxed max-w-xs sm:max-w-md"
+    style={{
+      fontFamily: "Lato, sans-serif",
+      fontWeight: 500,
+    }}
+  >
+    Dr. Sudhir Srivastava leads a global mission to democratize robotic surgery. His vision is shaping the future of healthcare—making advanced surgical techniques accessible worldwide and equipping surgeons to deliver precision and excellence in every procedure.
+  </p>
+</div>
+
     </section>
   );
 }
