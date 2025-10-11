@@ -11,32 +11,32 @@ const cardsData = [
     title: "Surgeons",
     subtitle:
       "Build advanced skills in multi-specialty robotic surgery and gain global certification.",
-    imageSrc: "/Images/homepage/section4/image1.png",
+    imageSrc: "/Images/homepage/section4/image1.webp", // CHANGED from .png to .webp
   },
   {
     title: "Residents & Fellows",
     subtitle:
       "Access mentorship, training pathways, and exposure to the SSI Mantra platform early in your careers.",
-    imageSrc: "/Images/homepage/section4/image5.png",
+    imageSrc: "/Images/homepage/section4/image5.webp", // CHANGED from .png to .webp
   },
 
   {
     title: "Anesthesiologists",
     subtitle:
       "Master the unique considerations of anesthesia in robotic surgery for safer patient outcomes.",
-    imageSrc: "/Images/homepage/section4/image3.png",
+    imageSrc: "/Images/homepage/section4/image3.webp", // CHANGED from .png to .webp
   },
   {
     title: "Medical Institutions & Hospitals",
     subtitle:
       "Partner with SSICRS to upskill teams, expand surgical capabilities, and bring world-class robotic care to communities.",
-    imageSrc: "/Images/homepage/section4/image4.png",
+    imageSrc: "/Images/homepage/section4/image4.webp", // CHANGED from .png to .webp
   },
   {
     title: "Surgical Staff",
     subtitle:
       "Learn the essential workflows, patient preparation, and teamwork required in robotic ORs.",
-    imageSrc: "/Images/homepage/section4/image2.png",
+    imageSrc: "/Images/homepage/section4/image2.webp", // CHANGED from .png to .webp
   },
 ];
 
@@ -48,7 +48,7 @@ export default function FourthSection() {
   const { ref, inView } = useInView({
     // FIX: Set to false to re-animate every time the user scrolls back into the view
     triggerOnce: false, 
-    threshold: 0.001,    // Start animation when 10% of the component is visible
+    threshold: 0.001,    // Start animation when 10% of the component is visible
   });
 
   return (
@@ -59,10 +59,10 @@ export default function FourthSection() {
     >
 
       {/* =====================================================================================
-        RESPONSIVE MOBILE/TABLET/SMALL LAPTOP LAYOUT (Visible on screens LESS THAN md)
-        Apply animation classes
-        =====================================================================================
-      */}
+        RESPONSIVE MOBILE/TABLET/SMALL LAPTOP LAYOUT (Visible on screens LESS THAN md)
+        Apply animation classes
+        =====================================================================================
+      */}
       <div 
         className={`md:hidden w-full flex flex-col items-center justify-center text-center px-6 py-10 gap-12 sm:px-12 sm:py-16 ${animationClass} ${
           inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
@@ -70,12 +70,12 @@ export default function FourthSection() {
       >
         <h2
           style={{
-                fontFamily: "'DM Serif Display', serif",
-                fontWeight: 400,
-                fontStyle: "normal",
-                color: "#A67950",
-                whiteSpace: "pre-line",
-          }}
+                fontFamily: "'DM Serif Display', serif",
+                fontWeight: 400,
+                fontStyle: "normal",
+                color: "#A67950",
+                whiteSpace: "pre-line",
+          }}
           className="text-3xl sm:text-4xl" // Responsive font size
         >
           For Whom
@@ -138,10 +138,10 @@ export default function FourthSection() {
       </div>
 
       {/* =====================================================================================
-        RESPONSIVE DESKTOP/LAPTOP LAYOUT (Visible on screens md and up)
-        Apply animation classes
-        =====================================================================================
-      */}
+        RESPONSIVE DESKTOP/LAPTOP LAYOUT (Visible on screens md and up)
+        Apply animation classes
+        =====================================================================================
+      */}
       <div 
         className={`hidden md:flex flex-col items-center justify-start w-full px-6 py-16 md:px-12 lg:px-24 xl:px-32 ${animationClass} ${
           inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"

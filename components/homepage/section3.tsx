@@ -10,7 +10,7 @@ export default function ThirdSection() {
   const { ref, inView } = useInView({
     // FIX: Changed to 'false' so the animation runs every time the component enters the viewport
     triggerOnce: false, 
-    threshold: 0.5,    // Start animation when 30% of the component is visible
+    threshold: 0.5,    // Start animation when 30% of the component is visible
   });
 
   // 3. Define the base animation class
@@ -21,14 +21,15 @@ export default function ThirdSection() {
     <section ref={ref} className="relative w-full min-h-screen">
       {/* Fullscreen Background Image */}
 <Image
-  src="/Images/homepage/section3/section3image.png"
+  // CHANGED FROM .png TO .webp
+  src="/Images/homepage/section3/section3image.webp" 
   alt="Section 3 Background"
   fill
   priority
   className="
     object-cover 
     md:object-center 
-    object-[30%_center]  // <-- Moves image focus right on mobile
+    object-[30%_center]  // <-- Moves image focus right on mobile
   "
 />
 

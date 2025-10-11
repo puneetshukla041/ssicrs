@@ -29,7 +29,7 @@ export default function Section7() {
 
   const experts = [
     {
-      name: "Sudhir Srivastava, MD",
+      name: "Dr. Sudhir Srivastava",
       title: "Founder, Chairman, CEO - SSICRS",
       description:
         "Robotic Cardiac Surgeon | Surgical Robotics Pioneer | Industry Leader",

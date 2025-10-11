@@ -19,7 +19,8 @@ export default function Section2({ children }: Section2Props) {
 
   const logos = [
     {
-      src: "/Images/homepage/section2/bottomlogo1.png",
+      // CHANGED FROM .png TO .webp
+      src: "/Images/homepage/section2/bottomlogo1.webp",
       text: (
         <>
           Learn from visionary surgeons and clinical <br /> leaders.
@@ -27,7 +28,8 @@ export default function Section2({ children }: Section2Props) {
       ),
     },
     {
-      src: "/Images/homepage/section2/bottomlogo2.png",
+      // CHANGED FROM .png TO .webp
+      src: "/Images/homepage/section2/bottomlogo2.webp",
       text: (
         <>
           Access world-class training,
@@ -36,7 +38,8 @@ export default function Section2({ children }: Section2Props) {
       ),
     },
     {
-      src: "/Images/homepage/section2/bottomlogo3.png",
+      // CHANGED FROM .png TO .webp
+      src: "/Images/homepage/section2/bottomlogo3.webp",
       text: (
         <>
           Join a global initiative shaping the future of<br /> robotic surgery.
@@ -44,7 +47,8 @@ export default function Section2({ children }: Section2Props) {
       ),
     },
     {
-      src: "/Images/homepage/section2/bottomlogo4.png",
+      // CHANGED FROM .png TO .webp
+      src: "/Images/homepage/section2/bottomlogo4.webp",
       text: (
         <>
           Lead the effort to make surgical excellence accessible to all.
@@ -147,12 +151,13 @@ export default function Section2({ children }: Section2Props) {
               <div
                 key={index}
                 className={`relative flex flex-col items-center group cursor-pointer
-                              p-4 max-w-[200px] w-full
-                              bg-white rounded-lg shadow-xl transition-all duration-1000 ease-out ${
-                                inView
-                                  ? `opacity-100 translate-y-0 delay-[${400 + index * 150}ms]`
-                                  : "opacity-0 translate-y-10"
-                              }`}
+                             p-4 max-w-[200px] w-full
+                             bg-white rounded-lg shadow-xl transition-all duration-1000 ease-out ${
+                               inView
+                                 ? `opacity-100 translate-y-0 delay-[${400 + index * 150}ms]`
+                                 : "opacity-0 translate-y-10"
+                               }
+                             `}
                 // Dynamic delay for staggered effect
                 style={{ transitionDelay: inView ? `${400 + index * 150}ms` : '0ms' }}
               >
