@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import React, { useEffect } from "react";
+import React from "react";
 // 1. Import the hook from the library
 import { useInView } from "react-intersection-observer";
 
@@ -14,7 +14,7 @@ export default function Section2({ children }: Section2Props) {
   // FIX: triggerOnce is set to false to re-animate every time the element enters the viewport.
   const { ref, inView } = useInView({
     triggerOnce: false, // Animation plays every time the component enters the viewport
-    threshold: 0.1,    // Start animation when 10% of the component is visible
+    threshold: 0.1, // Start animation when 10% of the component is visible
   });
 
   const logos = [
@@ -58,17 +58,17 @@ export default function Section2({ children }: Section2Props) {
 
   return (
     // 4. Attach the observer ref to the main section container
-<section
-  ref={ref}
-  className="w-full relative pt-10 md:pt-20 lg:pt-28 pb-16 md:pb-3 lg:pb-4"
-  style={{ backgroundColor: "#FBFAF2" }}
->
+    <section
+      ref={ref}
+      className="w-full relative pt-10 md:pt-20 lg:pt-28 pb-16 md:pb-3 lg:pb-4"
+      style={{ backgroundColor: "#FBFAF2" }}
+    >
 
       <div className="w-full h-full">{children}</div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Main Content Area - Animates on every entry */}
-        <div 
+        <div
           className={`flex flex-col lg:flex-row lg:justify-between lg:gap-12 xl:gap-24 mb-16 lg:mb-24 ${animationClass} ${
             inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
           }`}
@@ -127,8 +127,8 @@ export default function Section2({ children }: Section2Props) {
           </div>
         </div>
         {/* --- "At SSICRS, you will:" Section --- */}
-        <div 
-          className="w-full pt-10 lg:transform lg:translate-y-[-160px]" 
+        <div
+          className="w-full pt-10 lg:transform lg:translate-y-[-160px]"
         >
           <h3
             className={`font-serif text-xl md:text-2xl font-semibold leading-tight mb-8 text-center text-[#A67950] ${animationClass} ${
@@ -146,15 +146,15 @@ export default function Section2({ children }: Section2Props) {
               // Card Wrapper: Apply staggered animation
               <div
                 key={index}
-                className={`relative flex flex-col items-center group cursor-pointer 
-                          p-4 max-w-[200px] w-full 
-                          bg-white rounded-lg shadow-xl transition-all duration-1000 ease-out ${
-                            inView 
-                              ? `opacity-100 translate-y-0 delay-[${400 + index * 150}ms]` 
-                              : "opacity-0 translate-y-10"
-                          }`}
+                className={`relative flex flex-col items-center group cursor-pointer
+                              p-4 max-w-[200px] w-full
+                              bg-white rounded-lg shadow-xl transition-all duration-1000 ease-out ${
+                                inView
+                                  ? `opacity-100 translate-y-0 delay-[${400 + index * 150}ms]`
+                                  : "opacity-0 translate-y-10"
+                              }`}
                 // Dynamic delay for staggered effect
-                style={{ transitionDelay: inView ? `${400 + index * 150}ms` : '0ms' }} 
+                style={{ transitionDelay: inView ? `${400 + index * 150}ms` : '0ms' }}
               >
                 <Image
                   src={logo.src}
@@ -163,7 +163,7 @@ export default function Section2({ children }: Section2Props) {
                   height={50}
                   className="w-12 h-auto mt-4 mb-4 relative z-10"
                 />
-                
+
                 {/* Decorative Brackets (ALL hover/border effects removed) */}
                 <div className="absolute inset-0 pointer-events-none">
                   <div className="absolute inset-0 pointer-events-none">
@@ -174,9 +174,9 @@ export default function Section2({ children }: Section2Props) {
                     <span className="absolute bottom-0 right-0 w-8 h-[2px] opacity-0 transition-all duration-500 ease-in-out"></span>
                   </div>
                 </div>
-                
+
                 {/* Text */}
-                <p className="font-lato font-normal text-sm md:text-base leading-snug text-[#401323] mt-4 text-left w-full"> 
+                <p className="font-lato font-normal text-sm md:text-base leading-snug text-[#401323] mt-4 text-left w-full">
                   {logo.text}
                 </p>
               </div>
