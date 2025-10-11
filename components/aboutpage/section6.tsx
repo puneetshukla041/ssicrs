@@ -15,7 +15,7 @@ export default function SeventhSection() {
   const { ref, inView } = useInView({
     // FIX: Set to false so the animation runs every time the component enters the viewport
     triggerOnce: false, 
-    threshold: 0.01,    // Start animation when 10% of the component is visible
+    threshold: 0.01,    // Start animation when 10% of the component is visible
   });
 
   const router = useRouter();
@@ -66,7 +66,8 @@ export default function SeventhSection() {
             className="text-sm sm:text-base font-medium text-[#FBFAF2] mb-8 sm:mb-10"
             style={{ fontFamily: "Lato, sans-serif" }}
           >
-            SSICRS invites you to be part of the movement that is transforming the future of surgery. Whether you're a surgeon looking to master robotic-assisted techniques, a nurse preparing to assist in robotic procedures, or an anesthesiologist ensuring robotic surgery patient safety—SSICRS is your gateway to expertise in the most advanced form of surgery today.
+            {/* FIX: Replaced all unescaped single quotes with &apos; */}
+            SSICRS invites you to be part of the movement that is transforming the future of surgery. Whether you&apos;re a surgeon looking to master robotic-assisted techniques, a nurse preparing to assist in robotic procedures, or an anesthesiologist ensuring robotic surgery patient safety—SSICRS is your gateway to expertise in the most advanced form of surgery today.
           </p>
 
           <button
@@ -95,6 +96,7 @@ export default function SeventhSection() {
             width={1306}
             height={724}
             className="object-contain w-full h-auto"
+            priority
           />
         </div>
 
@@ -115,7 +117,8 @@ export default function SeventhSection() {
             className="text-xl md:text-[24px] font-medium text-[#FBFAF2] max-w-xl mb-8 md:mb-10 lg:max-w-2xl"
             style={{ fontFamily: "Lato, sans-serif" }}
           >
-            SSICRS invites you to be part of the movement that is transforming the future of surgery. Whether you're a surgeon looking to master robotic-assisted techniques, a nurse preparing to assist in robotic procedures, or an anesthesiologist ensuring robotic surgery patient safety—SSICRS is your gateway to expertise in the most advanced form of surgery today.
+            {/* FIX: Replaced all unescaped single quotes with &apos; */}
+            SSICRS invites you to be part of the movement that is transforming the future of surgery. Whether you&apos;re a surgeon looking to master robotic-assisted techniques, a nurse preparing to assist in robotic procedures, or an anesthesiologist ensuring robotic surgery patient safety—SSICRS is your gateway to expertise in the most advanced form of surgery today.
           </p>
 
           <button
