@@ -1,13 +1,134 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, AnimatePresence, Variants } from "framer-motion";
 import { useState, ChangeEvent } from "react";
+import { CheckCircle, Loader2 } from "lucide-react"; 
 
 type FormValue = string | number | boolean | File | string[] | null;
 
+// --- 1. Animation Variants (Defined in Outer Scope for SuccessModal access) ---
+
+const modalContainerVariants: Variants = {
+  hidden: { opacity: 0 },
+  visible: { opacity: 1, transition: { duration: 0.2 } },
+};
+
+const modalCardVariants: Variants = {
+  hidden: { scale: 0.8, opacity: 0 },
+  visible: {
+    scale: 1,
+    opacity: 1,
+    transition: {
+      type: "spring",
+      stiffness: 260,
+      damping: 20,
+    },
+  },
+};
+
+const containerVariants: Variants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { staggerChildren: 0.08 },
+  },
+};
+
+const itemVariants: Variants = {
+  hidden: { y: 20, opacity: 0 },
+  visible: { y: 0, opacity: 1 },
+};
+
+const textVariants: Variants = {
+  hidden: { opacity: 0, y: 10 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
+};
+
+const buttonHover = { scale: 1.03, transition: { duration: 0.2 } };
+const buttonTap = { scale: 0.97 };
+const inputHover = { scale: 1.005, transition: { duration: 0.1 } };
+const inputFocus = {
+  scale: 1.005,
+  boxShadow: "0 0 0 2px #A67950",
+  transition: { duration: 0.2 },
+};
+
+// --- 2. Success Modal Component ---
+interface SuccessModalProps {
+  ticketNo: string | number;
+  onClose: () => void;
+}
+
+const SuccessModal: React.FC<SuccessModalProps> = ({ ticketNo, onClose }) => {
+  return (
+    <motion.div
+      variants={modalContainerVariants}
+      initial="hidden"
+      animate="visible"
+      exit="hidden"
+      className="fixed inset-0 z-[100] flex items-center justify-center bg-black/70 backdrop-blur-sm p-4"
+    >
+      <motion.div
+        variants={modalCardVariants}
+        className="bg-white rounded-3xl p-8 md:p-12 shadow-2xl max-w-lg w-full text-center flex flex-col items-center"
+      >
+        <motion.div
+          initial={{ scale: 0, rotate: -180 }}
+          animate={{ scale: 1, rotate: 0 }}
+          transition={{
+            type: "spring",
+            stiffness: 100,
+            damping: 10,
+            delay: 0.3,
+          }}
+          className="text-green-600 mb-6"
+        >
+          <CheckCircle className="w-16 h-16 md:w-20 md:h-20" strokeWidth={1.5} />
+        </motion.div>
+
+        <h2 className="text-2xl md:text-3xl font-bold text-[#401323] mb-3">
+          Registration Successful!
+        </h2>
+
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.5 }}
+          className="text-gray-600 text-base md:text-lg mb-6"
+        >
+          Thank you for enrolling. Your application has been received.
+        </motion.p>
+        
+        <motion.div 
+            className="w-full p-4 bg-green-50 rounded-xl border border-green-200 mb-8"
+            initial={{ y: 20, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ delay: 0.6 }}
+        >
+            <p className="text-sm font-semibold text-green-800">Your Ticket Number:</p>
+            <p className="text-3xl font-extrabold text-green-700 tracking-wider mt-1">{ticketNo}</p>
+        </motion.div>
+
+        <motion.button
+          onClick={onClose}
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+          className="font-semibold text-white bg-[#A67950] py-3 px-8 rounded-full shadow-md hover:bg-[#8d6241] transition-colors"
+        >
+          Close
+        </motion.button>
+      </motion.div>
+    </motion.div>
+  );
+};
+
+// --- 3. Main RegisterPage Component ---
 export default function RegisterPage() {
   const [formData, setFormData] = useState<Record<string, FormValue>>({});
   const [loading, setLoading] = useState(false);
+  const [showSuccessScreen, setShowSuccessScreen] = useState(false);
+  const [ticketNumber, setTicketNumber] = useState<string | number | null>(null); 
+  
   const [message, setMessage] = useState<{
     text: string;
     type: "success" | "error" | "";
@@ -17,8 +138,11 @@ export default function RegisterPage() {
   });
 
   const showMessage = (text: string, type: "success" | "error") => {
-    setMessage({ text, type });
-    setTimeout(() => setMessage({ text: "", type: "" }), 5000);
+    // Only used for ERROR messages now
+    if (type === "error") {
+      setMessage({ text, type });
+      setTimeout(() => setMessage({ text: "", type: "" }), 5000);
+    }
   };
 
   const handleChange = (
@@ -36,17 +160,17 @@ export default function RegisterPage() {
       }
     } else if (type === "checkbox") {
       const checkboxElement = e.target as HTMLInputElement;
+      const currentValues = (formData[id] as string[]) || [];
+
       if (checkboxElement.checked) {
         setFormData({
           ...formData,
-          [id]: [...((formData[id] as string[]) || []), value],
+          [id]: [...currentValues, value],
         });
       } else {
         setFormData({
           ...formData,
-          [id]: ((formData[id] as string[]) || []).filter(
-            (v: string) => v !== value
-          ),
+          [id]: currentValues.filter((v: string) => v !== value),
         });
       }
     } else {
@@ -54,18 +178,34 @@ export default function RegisterPage() {
     }
   };
 
+  const handleTermsChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setFormData({ ...formData, termsAgree: e.target.checked });
+  };
+
+
   const handleSubmit = async () => {
+    // Basic validation check (e.g., if terms are not agreed)
+    if (formData.termsAgree !== true) {
+        showMessage("Please agree to the Terms and Conditions.", "error");
+        return;
+    }
+    
     setLoading(true);
+    // Clear any previous message or success screen
+    setMessage({ text: "", type: "" });
+    setShowSuccessScreen(false);
+
     try {
       const formDataObj = new FormData();
       for (const key in formData) {
         const value = formData[key];
+        // Skip the termsAgree field from the final submission data
+        if (key === 'termsAgree') continue; 
+        
         if (Array.isArray(value)) {
-          value.forEach((item) => {
-            if (typeof item === "string") {
-              formDataObj.append(key, item);
-            }
-          });
+          // Join array fields (like training programs) into a single string for transport
+          // NOTE: Your backend API might need to handle this string split
+          formDataObj.append(key, value.join('|'));
         } else if (value instanceof File) {
           formDataObj.append(key, value);
         } else if (value !== null && value !== undefined) {
@@ -80,12 +220,15 @@ export default function RegisterPage() {
 
       const result = await response.json();
       if (result.success) {
-        showMessage(
-          `Registration Successful! Your ticket number is: ${result.ticketNo}`,
-          "success"
-        );
+        // NEW SUCCESS LOGIC: Show the animated success screen
+        setTicketNumber(result.ticketNo);
+        setShowSuccessScreen(true);
+        // Clear the form data and reset file input
         setFormData({});
+        (document.getElementById('uploadId') as HTMLInputElement).value = ''; 
+
       } else {
+        // ERROR LOGIC: Show a standard error message
         showMessage(
           "Registration Failed: " + (result.error || "Unknown error"),
           "error"
@@ -98,40 +241,23 @@ export default function RegisterPage() {
     }
   };
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: { staggerChildren: 0.08 },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { y: 20, opacity: 0 },
-    visible: { y: 0, opacity: 1 },
-  };
-
-  const textVariants = {
-    hidden: { opacity: 0, y: 10 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
-  };
-
-  const buttonHover = { scale: 1.03, transition: { duration: 0.2 } };
-  const buttonTap = { scale: 0.97 };
-  const inputHover = { scale: 1.005, transition: { duration: 0.1 } };
-  const inputFocus = {
-    scale: 1.005,
-    boxShadow: "0 0 0 2px #A67950",
-    transition: { duration: 0.2 },
-  };
-
   return (
     <div className="w-full min-h-screen bg-[#FBFAF2] flex flex-col pb-16 md:pb-32 font-lato relative">
-      {message.text && (
+      
+      {/* SUCCESS SCREEN OVERLAY */}
+      <AnimatePresence>
+        {showSuccessScreen && ticketNumber && (
+          <SuccessModal 
+            ticketNo={ticketNumber} 
+            onClose={() => setShowSuccessScreen(false)} 
+          />
+        )}
+      </AnimatePresence>
+      
+      {/* ERROR MESSAGE (ONLY FOR ERRORS) */}
+      {message.text && message.type === 'error' && (
         <motion.div
-          className={`absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-sm md:max-w-md p-4 mt-4 rounded-lg shadow-lg text-white font-medium z-50 text-center ${
-            message.type === "success" ? "bg-green-500" : "bg-red-500"
-          }`}
+          className={`absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-sm md:max-w-md p-4 mt-4 rounded-lg shadow-lg text-white font-medium z-50 text-center bg-red-500`}
           initial={{ y: -100, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           exit={{ y: -100, opacity: 0 }}
@@ -164,21 +290,20 @@ export default function RegisterPage() {
           Advancing Your Robotic Surgery Skills
         </motion.h1>
 
-{/* Description */}
-<motion.p
-  className="text-base md:text-xl text-center text-[#401323] leading-relaxed mt-6 md:mt-8"
-  style={{
-    fontFamily: "'Lato', sans-serif",
-  }}
-  variants={textVariants}
->
-  Please complete the form below to enroll into our comprehensive robotic
-  surgery training programs.
-  <br className="hidden md:block" />
-  Upon successful registration, our team will reach out with program
-  details, schedules, and next steps.
-</motion.p>
-
+        {/* Description */}
+        <motion.p
+          className="text-base md:text-xl text-center text-[#401323] leading-relaxed mt-6 md:mt-8"
+          style={{
+            fontFamily: "'Lato', sans-serif",
+          }}
+          variants={textVariants}
+        >
+          Please complete the form below to enroll into our comprehensive robotic
+          surgery training programs.
+          <br className="hidden md:block" />
+          Upon successful registration, our team will reach out with program
+          details, schedules, and next steps.
+        </motion.p>
 
         {/* Main Registration Card */}
         <motion.div
@@ -210,6 +335,7 @@ export default function RegisterPage() {
                 onChange={handleChange}
                 whileHover={inputHover}
                 whileFocus={inputFocus}
+                value={String(formData.fullName || '')}
               />
             </motion.div>
 
@@ -229,6 +355,7 @@ export default function RegisterPage() {
                 onChange={handleChange}
                 whileHover={inputHover}
                 whileFocus={inputFocus}
+                value={String(formData.email || '')}
               />
             </motion.div>
 
@@ -248,6 +375,7 @@ export default function RegisterPage() {
                 onChange={handleChange}
                 whileHover={inputHover}
                 whileFocus={inputFocus}
+                value={String(formData.phoneNumber || '')}
               />
             </motion.div>
 
@@ -266,6 +394,7 @@ export default function RegisterPage() {
                 onChange={handleChange}
                 whileHover={inputHover}
                 whileFocus={inputFocus}
+                value={String(formData.dob || '')}
               />
             </motion.div>
 
@@ -285,6 +414,7 @@ export default function RegisterPage() {
                 onChange={handleChange}
                 whileHover={inputHover}
                 whileFocus={inputFocus}
+                value={String(formData.experience || '')}
               />
             </motion.div>
 
@@ -304,6 +434,7 @@ export default function RegisterPage() {
                 onChange={handleChange}
                 whileHover={inputHover}
                 whileFocus={inputFocus}
+                value={String(formData.institution || '')}
               />
             </motion.div>
 
@@ -322,6 +453,7 @@ export default function RegisterPage() {
                 onChange={handleChange}
                 whileHover={inputHover}
                 whileFocus={inputFocus}
+                value={String(formData.callDateTime || '')}
               />
             </motion.div>
 
@@ -339,7 +471,7 @@ export default function RegisterPage() {
                 onChange={handleChange}
                 whileHover={inputHover}
                 whileFocus={inputFocus}
-                defaultValue=""
+                value={String(formData.hearAboutUs || '')}
               >
                 <option value="" disabled>
                   Select an option
@@ -366,7 +498,7 @@ export default function RegisterPage() {
                 onChange={handleChange}
                 whileHover={inputHover}
                 whileFocus={inputFocus}
-                defaultValue=""
+                value={String(formData.currentProfession || '')}
               >
                 <option value="" disabled>
                   Select Your Current Profession
@@ -395,7 +527,7 @@ export default function RegisterPage() {
                 onChange={handleChange}
                 whileHover={inputHover}
                 whileFocus={inputFocus}
-                defaultValue=""
+                value={String(formData.specialization || '')}
               >
                 <option value="" disabled>
                   Select Your Specialization
@@ -412,6 +544,7 @@ export default function RegisterPage() {
                 <option value="Others">Others (Please Specify)</option>
               </motion.select>
             </motion.div>
+            
             {/* Learning Goals */}
             <motion.div variants={itemVariants} className="md:col-span-2">
               <label
@@ -428,6 +561,7 @@ export default function RegisterPage() {
                 onChange={handleChange}
                 whileHover={inputHover}
                 whileFocus={inputFocus}
+                value={String(formData.learningGoals || '')}
               />
             </motion.div>
           </motion.div>
@@ -467,6 +601,7 @@ export default function RegisterPage() {
                       value="Surgeon Training"
                       className="mr-3 accent-[#A67950] w-5 h-5 cursor-pointer"
                       onChange={handleChange}
+                      checked={Array.isArray(formData.trainingPrograms) && formData.trainingPrograms.includes("Surgeon Training")}
                     />
                     <label
                       htmlFor="trainingPrograms"
@@ -486,6 +621,7 @@ export default function RegisterPage() {
                       value="Surgical Staff Training"
                       className="mr-3 accent-[#A67950] w-5 h-5 cursor-pointer"
                       onChange={handleChange}
+                      checked={Array.isArray(formData.trainingPrograms) && formData.trainingPrograms.includes("Surgical Staff Training")}
                     />
                     <label
                       htmlFor="trainingPrograms"
@@ -505,6 +641,7 @@ export default function RegisterPage() {
                       value="Anesthesia Training for Robotic Surgery"
                       className="mr-3 accent-[#A67950] w-5 h-5 cursor-pointer"
                       onChange={handleChange}
+                      checked={Array.isArray(formData.trainingPrograms) && formData.trainingPrograms.includes("Anesthesia Training for Robotic Surgery")}
                     />
                     <label
                       htmlFor="trainingPrograms"
@@ -533,9 +670,10 @@ export default function RegisterPage() {
                     <input
                       type="checkbox"
                       id="additionalPrograms"
-                      value="Advanced Surgical Techniques"
+                      value="MantraSync Tele-Surgery Program"
                       className="mr-3 accent-[#A67950] w-5 h-5 cursor-pointer"
                       onChange={handleChange}
+                      checked={Array.isArray(formData.additionalPrograms) && formData.additionalPrograms.includes("MantraSync Tele-Surgery Program")}
                     />
                     <label
                       htmlFor="additionalPrograms"
@@ -552,9 +690,10 @@ export default function RegisterPage() {
                     <input
                       type="checkbox"
                       id="additionalPrograms"
-                      value="Robotic Systems Maintenance"
+                      value="Animal Lab Training"
                       className="mr-3 accent-[#A67950] w-5 h-5 cursor-pointer"
                       onChange={handleChange}
+                      checked={Array.isArray(formData.additionalPrograms) && formData.additionalPrograms.includes("Animal Lab Training")}
                     />
                     <label
                       htmlFor="additionalPrograms"
@@ -571,9 +710,10 @@ export default function RegisterPage() {
                     <input
                       type="checkbox"
                       id="additionalPrograms"
-                      value="Post-Op Robotic Care"
+                      value="Cadaver Lab Training"
                       className="mr-3 accent-[#A67950] w-5 h-5 cursor-pointer"
                       onChange={handleChange}
+                      checked={Array.isArray(formData.additionalPrograms) && formData.additionalPrograms.includes("Cadaver Lab Training")}
                     />
                     <label
                       htmlFor="additionalPrograms"
@@ -633,7 +773,8 @@ export default function RegisterPage() {
                   type="checkbox"
                   id="termsAgree"
                   className="mr-2 md:mr-3 mt-1 cursor-pointer accent-[#A67950] shrink-0 w-5 h-5"
-                  onChange={handleChange}
+                  onChange={handleTermsChange} // Use the dedicated handler
+                  checked={!!formData.termsAgree} // Check against the boolean state
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.9 }}
                 />
@@ -658,15 +799,30 @@ export default function RegisterPage() {
                   .
                 </label>
               </div>
-              <motion.button
-                onClick={handleSubmit}
-                disabled={loading}
-                className="font-bold text-base md:text-lg text-white bg-[#A67950] py-3 md:py-4 px-6 md:px-8 border-none rounded-full w-full max-w-xs md:max-w-md cursor-pointer shadow-lg hover:shadow-xl"
-                whileHover={buttonHover}
-                whileTap={buttonTap}
-              >
-                {loading ? "Registering..." : "Register Now"}
-              </motion.button>
+<motion.button
+  onClick={handleSubmit}
+  disabled={loading || !formData.termsAgree} 
+  className="font-bold text-base md:text-lg text-white bg-[#A67950] py-3 md:py-4 px-6 md:px-8 border-none rounded-full w-full max-w-xs md:max-w-md cursor-pointer shadow-lg hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed"
+  whileHover={buttonHover}
+  whileTap={buttonTap}
+>
+  {loading ? (
+    <div className="flex items-center justify-center space-x-2">
+      <motion.div
+        animate={{ rotate: 360 }}
+        transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+        className="w-5 h-5"
+      >
+        <Loader2 className="w-5 h-5" />
+      </motion.div>
+      <span>Registering...</span>
+    </div>
+  ) : (
+    "Register Now"
+  )}
+</motion.button>
+
+
             </motion.div>
           </motion.div>
         </motion.div>
