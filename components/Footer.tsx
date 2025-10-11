@@ -8,9 +8,9 @@ export default function Footer() {
   const router = useRouter();
 
   // Navigation Handlers
-  const handleAboutClick = () => router.push("/about");
-  const handleProgramsClick = () => router.push("/programs");
-  const handleRegisterClick = () => router.push("/register");
+  const handleAboutClick = () => router.push("/AboutUs");
+  const handleProgramsClick = () => router.push("/Programs");
+  const handleRegisterClick = () => router.push("/Register");
   const handleLoginClick = () => router.push("/login");
 
   // Legal Handlers
