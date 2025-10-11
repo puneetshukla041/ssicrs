@@ -249,8 +249,7 @@ export default function Section4() {
         </div>
       </div>
 
-      {/* FIX: Render ScrollGuide component to resolve the unused variable warning */}
-      {showGuide && <ScrollGuide isVisible={showGuide} />}
+  
 
     </div>
   );
