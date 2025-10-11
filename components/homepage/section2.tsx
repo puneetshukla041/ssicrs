@@ -58,11 +58,12 @@ export default function Section2({ children }: Section2Props) {
 
   return (
     // 4. Attach the observer ref to the main section container
-    <section
-      ref={ref} 
-      className="w-full relative pt-10 md:pt-20 lg:pt-28 pb-2 md:pb-3 lg:pb-4"
-      style={{ backgroundColor: "#FBFAF2" }}
-    >
+<section
+  ref={ref}
+  className="w-full relative pt-10 md:pt-20 lg:pt-28 pb-16 md:pb-3 lg:pb-4"
+  style={{ backgroundColor: "#FBFAF2" }}
+>
+
       <div className="w-full h-full">{children}</div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
