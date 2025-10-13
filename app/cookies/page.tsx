@@ -128,20 +128,32 @@ const CookieSettingsModal: React.FC<CookieSettingsModalProps> = ({ isOpen, onClo
             />
           </div>
 
-          {/* Save & Accept Button */}
-          <div className="flex justify-end pt-4">
-            <button
-              onClick={() => {
-                // Logic to save settings would go here
-                console.log('Settings Saved:', { performance, functionality, advertising });
-                onClose(); // Close the modal after saving
-              }}
-              className="px-6 py-3 text-sm font-medium rounded-xl transition-colors duration-300"
-              style={{ backgroundColor: BUTTON_BG, color: BUTTON_TEXT, border: `1px solid ${BUTTON_TEXT}` }}
-            >
-              Save & Accept
-            </button>
-          </div>
+{/* Save & Accept Button */}
+<div className="flex justify-end pt-4">
+  <button
+    onClick={() => {
+      console.log('Settings Saved:', { performance, functionality, advertising });
+      onClose(); // Close modal after saving
+    }}
+    className="flex justify-center items-center gap-2 text-sm font-medium transition-all duration-300"
+    style={{
+      display: 'flex',
+      width: '142px',
+      padding: '12px 16px',
+      justifyContent: 'center',
+      alignItems: 'center',
+      gap: '8px',
+      borderRadius: '100px',
+      border: '2px solid rgba(0, 0, 0, 0.00)',
+      background: 'linear-gradient(117deg, #D9A05B 14.89%, #A67950 94.33%)',
+      color: '#fff',
+      boxShadow: '0 2px 6px rgba(0,0,0,0.15)',
+    }}
+  >
+    Save & Accept
+  </button>
+</div>
+
         </div>
       </div>
     </div>
