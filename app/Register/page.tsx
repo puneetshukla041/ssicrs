@@ -784,14 +784,14 @@ export default function RegisterPage() {
                 >
                   By clicking on &quot;Register Now&quot;, you agree to our{" "}
                   <a
-                    href="#"
+                    href="/terms"
                     className="text-blue-500 cursor-pointer hover:underline"
                   >
                     Terms and Conditions
                   </a>{" "}
                   and{" "}
                   <a
-                    href="#"
+                    href="/privacypolicy"
                     className="text-blue-500 cursor-pointer hover:underline"
                   >
                     Privacy Policy
