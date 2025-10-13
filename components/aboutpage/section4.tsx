@@ -5,19 +5,19 @@ import Image from "next/image";
 import { ChevronUp, ChevronDown } from "lucide-react";
 
 const IMAGE_PATHS = [
-  "/Images/aboutpage/section4/image1.png",
-  "/Images/aboutpage/section4/image2.png",
-  "/Images/aboutpage/section4/image3.png",
-  "/Images/aboutpage/section4/image4.png",
-  "/Images/aboutpage/section4/image5.png",
+  "/Images/aboutpage/section4/image1.webp",
+  "/Images/aboutpage/section4/image2.webp",
+  "/Images/aboutpage/section4/image3.webp",
+  "/Images/aboutpage/section4/image4.webp",
+  "/Images/aboutpage/section4/image5.webp",
 ];
 
 const MOBILE_IMAGE_PATHS = [
-  "/Images/aboutpage/section4/mobile/image1.png",
-  "/Images/aboutpage/section4/mobile/image2.png",
-  "/Images/aboutpage/section4/mobile/image3.png",
-  "/Images/aboutpage/section4/mobile/image4.png",
-  "/Images/aboutpage/section4/mobile/image5.png",
+  "/Images/aboutpage/section4/mobile/image1.webp",
+  "/Images/aboutpage/section4/mobile/image2.webp",
+  "/Images/aboutpage/section4/mobile/image3.webp",
+  "/Images/aboutpage/section4/mobile/image4.webp",
+  "/Images/aboutpage/section4/mobile/image5.webp",
 ];
 
 const SCROLL_DURATION_STEPS = IMAGE_PATHS.length;
