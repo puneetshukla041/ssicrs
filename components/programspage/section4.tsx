@@ -17,22 +17,22 @@ const fadeUpClasses = (isInView: boolean, delay = 0) =>
 // Card data (moved outside the component for clarity)
 const cardData = [
   {
-    src: "/Images/programs/section4/image1.png",
+    src: "/Images/programs/section4/image1.webp",
     title: "Classroom Learning",
     text: "Interactive sessions led by expert faculty build strong foundations in robotic surgery.",
   },
   {
-    src: "/Images/programs/section4/image2.png",
+    src: "/Images/programs/section4/image2.webp",
     title: "Lab-Based Practice",
     text: "From dry labs to wet labs, participants develop hands-on skills in realistic surgical conditions.",
   },
   {
-    src: "/Images/programs/section4/image3.png",
+    src: "/Images/programs/section4/image3.webp",
     title: "Online Modules",
     text: "Flexible, self-paced learning with pre-training modules, recorded lectures, quizzes, and ongoing support.",
   },
   {
-    src: "/Images/programs/section4/image4.png",
+    src: "/Images/programs/section4/image4.webp",
     title: "Certification & Mentorship",
     text: "Graduates earn globally recognized certification with CME credits, plus continued access to mentors for long-term growth.",
   },
