@@ -19,7 +19,7 @@ interface LogoItem {
 export default function Section2({ children }: Section2Props) {
   const logos: LogoItem[] = [
     {
-      src: "/Images/aboutpage/section5/bottomlogo1.png",
+      src: "/Images/aboutpage/section5/bottomlogo1.webp",
       heading: "Expert-Led Faculty &<br>Mentorship",
       text: (
         <>
@@ -29,7 +29,7 @@ export default function Section2({ children }: Section2Props) {
       textColor: "#A67950",
     },
     {
-      src: "/Images/aboutpage/section5/bottomlogo2.png",
+      src: "/Images/aboutpage/section5/bottomlogo2.webp",
       heading: "Live Surgery Observations&<br> Teleproctoring",
       text: (
         <>
@@ -39,7 +39,7 @@ export default function Section2({ children }: Section2Props) {
       textColor: "#A67950",
     },
     {
-      src: "/Images/aboutpage/section5/bottomlogo3.png",
+      src: "/Images/aboutpage/section5/bottomlogo3.webp",
       heading: "Engineering-Integrated <br>Learning",
       text: (
         <>
@@ -49,7 +49,7 @@ export default function Section2({ children }: Section2Props) {
       textColor: "#A67950",
     },
     {
-      src: "/Images/aboutpage/section5/bottomlogo4.png",
+      src: "/Images/aboutpage/section5/bottomlogo4.webp",
       heading: "Comprehensive Post-Training <br>Support",
       text: (
         <>
