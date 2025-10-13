@@ -86,9 +86,11 @@ export default function Section2({ children }: Section2Props) {
   });
   
   return (
-    <section
-      className="w-full relative bg-[#FBFAF2] px-4 sm:px-6 md:px-8 lg:px-12 xl:px-20 pt-16 md:pt-8 lg:pt-6 xl:pt-6 pb-8 md:pb-16 min-h-[60vh] md:min-h-[50vh] lg:min-h-[45vh]"
-    >
+<section
+  className="w-full relative bg-[#FBFAF2] px-4 sm:px-6 md:px-8 lg:px-12 xl:px-20 pt-10 md:pt-6 lg:pt-4 xl:pt-4 pb-16 md:pb-28 min-h-[60vh] md:min-h-[50vh] lg:min-h-[45vh]"
+>
+
+
       <div className="max-w-7xl mx-auto">
         {children && <div className="w-full h-full">{children}</div>}
 
@@ -130,7 +132,7 @@ export default function Section2({ children }: Section2Props) {
         {/* Logos Section - Uses logosRef */}
         <div 
           ref={logosRef} 
-          className={`w-full flex justify-center md:justify-start mt-16 md:mt-20 relative transition-all duration-700 delay-200 ease-out ${
+          className={`w-full flex justify-center md:justify-start mt-16 md:mt-10 relative transition-all duration-700 delay-200 ease-out ${
             logosInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
           }`}
         >
