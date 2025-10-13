@@ -251,8 +251,7 @@ export default function Section4() {
         </div>
       </div>
     
-      {/* Fix: Render the ScrollGuide component here */}
-      <ScrollGuide isVisible={showGuide} />
+ 
 
     </div>
   );
