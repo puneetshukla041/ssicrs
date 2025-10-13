@@ -40,7 +40,7 @@ export default function Section7() {
       title: "MBBS, MS, FACS, FACC",
       description:
         "The University of Chicago Medicine and Biological Sciences Chicago, IL, USA",
-      imageSrc: "/Images/homepage/section7/image6.png",
+      imageSrc: "/Images/homepage/section7/image6.webp",
     },
     {
       name: "Dr. Nitin Kumar Rajput",
@@ -48,7 +48,7 @@ export default function Section7() {
         "MCH (Cardiothoracic and Vascular Surgery), MS (General Surgery)",
       description:
         "Associate Director - Cardiac Surgery | Medanta, The Medicity - Gurugram, Haryana",
-      imageSrc: "/Images/homepage/section7/image4.png",
+      imageSrc: "/Images/homepage/section7/image4.webp",
     },
   ];
 

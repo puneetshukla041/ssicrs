@@ -12,66 +12,66 @@ interface Faculty {
 
 // 1. Separate the faculty members into two main categories: International/Cardiac and Others
 const internationalCardiacFaculty: Faculty[] = [
-  {
-    name: "Sudhir Srivastava, MD",
-    title: "Founder, Chairman, CEO - SSICRS",
-    details: "Robotic Cardiac Surgeon | Surgical Robotics Pioneer | Industry Leader",
-    image: "/Images/homepage/section7/image1.png",
-  },
-  {
-    name: "Dr. Husam Balkhy",
-    title: "MBBS, MS, FACS, FACC",
-    details: "The University of Chicago Medicine and Biological Sciences Chicago, IL, USA",
-    image: "/Images/homepage/section7/image6.png",
-  },
-  {
-    name: "Dr. T Sloane Guy",
-    title: "MBA, MS. FACC",
-    details: "Georgia Heart Institute,Gainesville, GA",
-    image: "/Images/homepage/section7/image7.png",
-  },
-  {
-    name: "Dr. Nirav Patel",
-    title: "MBBS, MS, FRCS",
-    details: "Lenox Hill Hospital, New York, NY, USA",
-    image: "/Images/homepage/section7/image8.png",
-  },
-  {
-    name: "Dr. Gianluca Torregrossa ",
-    title: "MBBS, MS",
-    details: "Lankenau Heart Institute,Philidelphia, PA, USA",
-    image: "/Images/homepage/section7/image9.png",
-  },
-  {
-    name: "Dr. Frank van Praet ",
-    title: "MS, FETCS",
-    details: "Co-Director of Cardiovascular Center AZorg, Aalst, Belgium",
-    image: "/Images/homepage/section7/image10.png",
-  },
-  {
-    name: "Dr. Wouter Oosterlinck ",
-    title: "MD, PhD",
-    details: "Cardiac Surgery Professor, University Hospitals, Leuven, Belgium",
-    image: "/Images/homepage/section7/image11.png",
-  },
-  {
-    name: "Dr. Bob Kiaii ",
-    title: "BSc, MD, FRCSC, FACS",
-    details: "Chief of Section of Cardiac Surgery, Department of Cardiac Sciences, Foothills Medical Centre, Libin Cardiovascular Institute, University of Calgary",
-    image: "/Images/homepage/section7/image12.png",
-  },
-  {
-    name: "Dr. Johannes Oliver Bonatti",
-    title: "MBBS, MS",
-    details: "University of Pittsburgh Medical Center, Pittsburg, PA, USA",
-    image: "/Images/homepage/section7/image13.png",
-  },
-  {
-    name: "Dr. Danny Ramsey",
-    title: "MD, Phd",
-    details: "Professor and Chief of Cardiac Surgery, UTHealth McGovern School of Medicine",
-    image: "/Images/homepage/section7/image14.png",
-  },
+{
+  name: "Sudhir Srivastava, MD",
+  title: "Founder, Chairman, CEO - SSICRS",
+  details: "Robotic Cardiac Surgeon | Surgical Robotics Pioneer | Industry Leader",
+  image: "/Images/homepage/section7/image1.webp",
+},
+{
+  name: "Dr. Husam Balkhy",
+  title: "MBBS, MS, FACS, FACC",
+  details: "The University of Chicago Medicine and Biological Sciences Chicago, IL, USA",
+  image: "/Images/homepage/section7/image6.webp",
+},
+{
+  name: "Dr. T Sloane Guy",
+  title: "MBA, MS. FACC",
+  details: "Georgia Heart Institute,Gainesville, GA",
+  image: "/Images/homepage/section7/image7.webp",
+},
+{
+  name: "Dr. Nirav Patel",
+  title: "MBBS, MS, FRCS",
+  details: "Lenox Hill Hospital, New York, NY, USA",
+  image: "/Images/homepage/section7/image8.webp",
+},
+{
+  name: "Dr. Gianluca Torregrossa ",
+  title: "MBBS, MS",
+  details: "Lankenau Heart Institute,Philidelphia, PA, USA",
+  image: "/Images/homepage/section7/image9.webp",
+},
+{
+  name: "Dr. Frank van Praet ",
+  title: "MS, FETCS",
+  details: "Co-Director of Cardiovascular Center AZorg, Aalst, Belgium",
+  image: "/Images/homepage/section7/image10.webp",
+},
+{
+  name: "Dr. Wouter Oosterlinck ",
+  title: "MD, PhD",
+  details: "Cardiac Surgery Professor, University Hospitals, Leuven, Belgium",
+  image: "/Images/homepage/section7/image11.webp",
+},
+{
+  name: "Dr. Bob Kiaii ",
+  title: "BSc, MD, FRCSC, FACS",
+  details: "Chief of Section of Cardiac Surgery, Department of Cardiac Sciences, Foothills Medical Centre, Libin Cardiovascular Institute, University of Calgary",
+  image: "/Images/homepage/section7/image12.webp",
+},
+{
+  name: "Dr. Johannes Oliver Bonatti",
+  title: "MBBS, MS",
+  details: "University of Pittsburgh Medical Center, Pittsburg, PA, USA",
+  image: "/Images/homepage/section7/image13.webp",
+},
+{
+  name: "Dr. Danny Ramsey",
+  title: "MD, Phd",
+  details: "Professor and Chief of Cardiac Surgery, UTHealth McGovern School of Medicine",
+  image: "/Images/homepage/section7/image14.webp",
+},
 ];
 
 const otherFaculty: Faculty[] = [
@@ -79,45 +79,46 @@ const otherFaculty: Faculty[] = [
     name: "Dr. Nitin Kumar Rajput",
     title: "MCH (Cardiothoracic and Vascular Surgery), MS (General Surgery)",
     details: "Associate Director - Cardiac Surgery | Medanta, The Medicity - Gurugram, Haryana",
-    image: "/Images/homepage/section7/image4.png",
+    image: "/Images/homepage/section7/image4.webp",
   },
-    {
+  {
     name: "Dr. Sathyaki Nambala",
     title: "MBBS, MS, DNB, MCh",
     details: "Chief Surgeon, Robotic & Minimally Invasive Cardiac Surgery, Apollo Hospitals Bannerghatta",
-    image: "/Images/homepage/section7/image15.png",
+    image: "/Images/homepage/section7/image15.webp",
   },
-    {
+  {
     name: "Dr. M M Yusuf ",
     title: "FRCS (Edin), FRCS (Glasgow), FRCS (CardioTh)",
     details: "Apollo Hospital,Chennai, TN",
-    image: "/Images/homepage/section7/image16.png",
+    image: "/Images/homepage/section7/image16.webp",
   },
-      {
+  {
     name: "Dr. Yugal Kishore Mishra ",
     title: "MBBS, MS, Ph.D (Cardiovascular Surgery)",
     details: "Chairman - Manipal Institute of Medical Sciences",
-    image: "/Images/homepage/section7/image17.png",
+    image: "/Images/homepage/section7/image17.webp",
   },
-      {
+  {
     name: "Dr. Lalitaditya Malik",
     title: "MBBS | MS | MCh (C.T.V.S)",
     details: "HOD, Chief Cardiac Surgeon, Manipal Hospital, Jaipur, India",
-    image: "/Images/homepage/section7/image18.png",
+    image: "/Images/homepage/section7/image18.webp",
   },
-        {
+  {
     name: "Dr. Ritwick Raj Bhuyan",
     title: "MBBS, MS, MCh",
     details: "DIRECTOR CARDIO THORACIC VASCULAR SURGERY | Fortis Okhla",
-    image: "/Images/homepage/section7/image19.png",
+    image: "/Images/homepage/section7/image19.webp",
   },
-          {
+  {
     name: "Dr. Harish Badami",
     title: "MBBS | MS | MCh (C.T.V.S)",
     details: "Consultant Cardiac Thoracic Surgeon, Parthima Hospital, Kachiguda, Hyderabad",
-    image: "/Images/homepage/section7/image20.png",
+    image: "/Images/homepage/section7/image20.webp",
   },
 ];
+
 
 // Interface for FacultyCard props
 interface FacultyCardProps {
