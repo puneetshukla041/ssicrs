@@ -26,6 +26,7 @@ const FacilityBlock: React.FC<FacilityBlockProps> = ({ title, description }) => 
     >
       {title}:
     </h3>
+    
     <p
       style={{
         color: Colors.mainHeading,
