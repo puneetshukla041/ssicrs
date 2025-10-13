@@ -19,7 +19,7 @@ export default function SeventhSection() {
   });
 
   const router = useRouter();
-  const mobileImageSrc = "/Images/homepage/section8/image1.png";
+  const mobileImageSrc = "/Images/homepage/section8/image1.webp";
 
   const handleRegisterClick = () => {
     router.push("/Register");
@@ -90,7 +90,7 @@ export default function SeventhSection() {
       <div className="hidden md:block relative flex flex-col justify-center items-center w-full max-w-[1306px]">
         <div className="relative w-full h-auto">
           <Image
-            src="/Images/homepage/section8/image1.png"
+            src="/Images/homepage/section8/image1.webp"
             alt="Seventh Section Image"
             width={1306}
             height={724}

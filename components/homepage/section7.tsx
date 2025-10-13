@@ -33,7 +33,7 @@ export default function Section7() {
       title: "Founder, Chairman, CEO - SSICRS",
       description:
         "Robotic Cardiac Surgeon | Surgical Robotics Pioneer | Industry Leader",
-      imageSrc: "/Images/homepage/section7/image1.png",
+      imageSrc: "/Images/homepage/section7/image1.webp",
     },
     {
       name: "Dr. Husam Balkhy",

@@ -24,22 +24,22 @@ const slides = [
   {
     heading: "Multi Specialty Focus",
     text: "Gain exposure across cardiac, thoracic, <br/> urology gynecology, and general surgery, all on the SSI Mantra platform.",
-    image: "/Images/homepage/section5/slider1.png",
+    image: "/Images/homepage/section5/slider1.webp",
   },
   {
     heading: "Hands-On Experience",
     text: "Train directly on simulators and live systems, <br/> building confidence through immersive <br/> practice.",
-    image: "/Images/homepage/section5/slider3.png",
+    image: "/Images/homepage/section5/slider3.webp",
   },
   {
     heading: "Expert Mentorship",
     text: "Learn from pioneering robotic surgeons and <br/> clinical leaders who guide every step <br/> of your journey.",
-    image: "/Images/homepage/section5/slider2.png",
+    image: "/Images/homepage/section5/slider2.webp",
   },
   {
     heading: "Global Certification Pathways",
     text: "Gain exposure across cardiac, thoracic, <br/> urology, gynecology, and general surgery, <br/> all on the SSI Mantra platform.",
-    image: "/Images/homepage/section5/slider4.png",
+    image: "/Images/homepage/section5/slider4.webp",
   },
 ];
 

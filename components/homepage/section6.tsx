@@ -9,7 +9,7 @@ import { useInView } from "react-intersection-observer";
 const animationClass = "transition-all duration-1000 ease-out";
 
 export default function Section6() {
-  const imageSrc = "/Images/homepage/section6/image1.png";
+  const imageSrc = "/Images/homepage/section6/image1.webp";
 
   // 2. Setup Intersection Observer for the section
   const { ref, inView } = useInView({
