@@ -87,6 +87,7 @@ export default function Section2({ children }: Section2Props) {
   
   return (
 <section
+
   className="w-full relative bg-[#FBFAF2] px-4 sm:px-6 md:px-8 lg:px-12 xl:px-20 pt-10 md:pt-6 lg:pt-4 xl:pt-4 pb-16 md:pb-28 min-h-[60vh] md:min-h-[50vh] lg:min-h-[45vh]"
 >
 
