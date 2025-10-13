@@ -20,7 +20,7 @@ export default function SeventhSection() {
   {/* Image with zoom */}
   <div className="absolute inset-0 scale-[1.5]">
     <Image
-      src="/Images/homepage/section8/image1.png"
+      src="/Images/homepage/section8/image1.webp"
       alt="Mobile Background"
       fill
       className="object-cover object-center"
@@ -69,7 +69,7 @@ export default function SeventhSection() {
       {/* ---------------- Desktop view ---------------- */}
       <div className="hidden md:block relative flex flex-col justify-center items-center min-h-screen">
         <Image
-          src="/Images/homepage/section8/image1.png"
+          src="/Images/homepage/section8/image1.webp"
           alt="Seventh Section Image"
           width={1306}
           height={724}

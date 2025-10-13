@@ -120,7 +120,7 @@ const Section5: React.FC = () => {
 <div className="flex justify-center lg:justify-start mb-6 lg:mb-0 order-1 lg:order-2 w-full lg:w-7/12 -mt-2 lg:-mt-10">
   <div
     style={{
-      background: `url("/Images/programs/section5/image1.png") lightgray center / cover no-repeat`,
+      background: `url("/Images/programs/section5/image1.webp") lightgray center / cover no-repeat`,
       boxShadow:
         "0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 5px 6px -2px rgba(0, 0, 0, 0.05)",
     }}
