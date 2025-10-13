@@ -22,7 +22,7 @@ export default function Section1() {
     <section ref={ref} className="w-full h-screen relative overflow-hidden">
       {/* Background Image: Uses Next.js Image component with fill and object-cover for full responsiveness. */}
       <Image
-        src="/Images/aboutpage/section1/section1.png"
+        src="/Images/aboutpage/section1/section1.webp"
         alt="SSI CRS"
         fill
         className="object-cover"
