@@ -166,7 +166,7 @@ export default function Section3() {
           <div className="mt-8 lg:mt-0 w-full lg:w-1/2 flex justify-center lg:justify-end">
             <div className="relative w-full max-w-sm md:max-w-md lg:max-w-[456px] h-[280px] md:h-[350px] lg:h-[400px] rounded-lg overflow-hidden">
                 <Image 
-                    src="/Images/programs/section3/image1.png" 
+                    src="/Images/programs/section3/image1.webp" 
                     alt="Model of a human heart representing cardiac surgery"
                     fill
                     className="object-cover"

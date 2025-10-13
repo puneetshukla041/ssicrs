@@ -183,7 +183,7 @@ export default function Section2() {
                         ${fadeUpClasses(imageInView)}`} // Animation applied here
           >
             <Image
-              src="/Images/programs/section2/image1.png"
+              src="/Images/programs/section2/image1.webp"
               alt="Surgeon operating with robotic-assisted surgery tools."
               fill
               priority
