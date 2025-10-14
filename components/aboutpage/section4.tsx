@@ -161,27 +161,29 @@ export default function Section4() {
     };
   }, [handleScroll, isReady, isMobile, handleResize]);
 
-  const Heading = () => (
-    <h1
-      style={{
-        fontFamily: "'DM Serif Display', serif",
-        fontWeight: 400,
-        fontStyle: "normal",
-        color: "#A67950",
-        whiteSpace: isMobile ? "normal" : "pre-line",
-        fontSize: isMobile ? "32px" : "40px",
-        lineHeight: "100%",
-        width: "100%",
-        maxWidth: isMobile ? "calc(100% - 40px)" : "1380px",
-        paddingLeft: isMobile ? "0px" : "15px",
-        marginBottom: isMobile ? "40px" : "104px",
-        textAlign: isMobile ? "center" : "left",
-      }}
-      className={isMobile ? "mx-auto" : ""}
-    >
-      Why Choose SSICRS
-    </h1>
-  );
+const Heading = () => (
+  <h1
+    style={{
+      fontFamily: "'DM Serif Display', serif",
+      fontWeight: 400,
+      fontStyle: "normal",
+      color: "#A67950",
+      whiteSpace: isMobile ? "normal" : "pre-line",
+      fontSize: isMobile ? "32px" : "40px",
+      lineHeight: "100%",
+      width: "100%",
+      maxWidth: isMobile ? "calc(100% - 40px)" : "1380px",
+      paddingLeft: isMobile ? "0px" : "0px", // 👈 slightly reduced left padding
+      marginLeft: isMobile ? "0px" : "80px", // 👈 shifted heading more left on desktop
+      marginBottom: isMobile ? "40px" : "104px",
+      textAlign: isMobile ? "center" : "left",
+    }}
+    className={isMobile ? "mx-auto" : ""}
+  >
+    Why Choose SSICRS
+  </h1>
+);
+
 
   // -----------------------
   // 🔸 Mobile View
@@ -230,7 +232,7 @@ export default function Section4() {
         <Heading />
 
         <div
-          className="relative w-full mx-auto max-w-[1350px] flex-shrink-0 overflow-hidden rounded-xl"
+          className="relative w-full mx-auto max-w-[1300px] flex-shrink-0 overflow-hidden rounded-xl"
           style={{ height: `${IMAGE_CONTAINER_HEIGHT_PX}px` }}
         >
           {isReady &&
