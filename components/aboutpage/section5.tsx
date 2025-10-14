@@ -121,7 +121,7 @@ export default function Section9({ children }: Section2Props) {
 
           {/* Subtext */}
           <div
-            className="text-center md:text-left text-[#401323] font-sans pt-4" // Align left on medium screens and up
+            className="text-center md:text-left text-[#401323] font-sans pt-14" // Align left on medium screens and up
             style={{
               fontSize: "clamp(14px, 1.5vw, 16px)",
               lineHeight: 1.6,
