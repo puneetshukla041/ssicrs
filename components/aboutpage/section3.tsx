@@ -49,7 +49,7 @@ export default function Section8() {
 
   return (
     <section 
-      className="w-full h-[70vh] bg-[#FBFAF2] flex flex-col justify-center" // ADDED: flex, flex-col, and justify-center for vertical centering
+      className="w-full  bg-[#FBFAF2] flex flex-col justify-center pb-[10vh]" // ADDED: flex, flex-col, and justify-center for vertical centering
       ref={ref} // Moved ref up to the section for entire component visibility check
     >
       {/* Container with consistent horizontal padding */}

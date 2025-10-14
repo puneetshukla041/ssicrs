@@ -114,6 +114,7 @@ export default function Section9({ children }: Section2Props) {
               fontStyle: "normal",
               color: "#A67950",
               whiteSpace: "pre-line",
+              marginLeft:"-30px"
             }}
           >
             Our Approach
@@ -121,10 +122,11 @@ export default function Section9({ children }: Section2Props) {
 
           {/* Subtext */}
           <div
-            className="text-center md:text-left text-[#401323] font-sans pt-14" // Align left on medium screens and up
+            className="text-center md:text-left text-[#401323] font-sans pt-12" // Align left on medium screens and up
             style={{
               fontSize: "clamp(14px, 1.5vw, 16px)",
               lineHeight: 1.6,
+              marginLeft:"-30px"
             }}
           >
             SSICRS is equipped with world-class infrastructure, combining theoretical education with practical,
