@@ -1,3 +1,4 @@
+// components/aboutus/Section9.tsx
 "use client";
 
 import Image from "next/image";
@@ -16,7 +17,7 @@ interface LogoItem {
   textColor?: string;
 }
 
-export default function Section2({ children }: Section2Props) {
+export default function Section9({ children }: Section2Props) {
   const logos: LogoItem[] = [
     {
       src: "/Images/aboutpage/section5/bottomlogo1.webp",
@@ -79,20 +80,22 @@ export default function Section2({ children }: Section2Props) {
   });
   
   // 3. Setup observer for the entire logos grid
-  // We'll use one observer for the whole grid to animate the whole block together
   const { ref: logosRef, inView: logosInView } = useInView({
     threshold: 0.01,
     triggerOnce: false, 
   });
   
   return (
-<section
-
-  className="w-full relative bg-[#FBFAF2] px-4 sm:px-6 md:px-8 lg:px-12 xl:px-20 pt-10 md:pt-6 lg:pt-4 xl:pt-4 pb-16 md:pb-28 min-h-[60vh] md:min-h-[50vh] lg:min-h-[45vh]"
->
-
-
-      <div className="max-w-7xl mx-auto">
+    <section 
+      // 1. Applied flex, flex-col, and justify-center to vertically center the content block.
+      // 2. Kept h-screen to give the centering a large vertical space to work within.
+      className="w-full h-[70vh] bg-[#FBFAF2] flex flex-col justify-center" 
+    >
+        
+      {/* The inner container now dictates the vertical padding (py-16 md:py-24).
+        Horizontal centering (mx-auto) and horizontal padding (implicit via max-w-7xl + mx-auto) are preserved.
+      */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24 w-full"> 
         {children && <div className="w-full h-full">{children}</div>}
 
         {/* Main Heading Block - Uses headerRef */}
@@ -104,7 +107,7 @@ export default function Section2({ children }: Section2Props) {
         >
           {/* Main Heading */}
           <h2
-            className="text-3xl sm:text-4xl lg:text-4xl text-center lg:text-left leading-snug mb-6"
+            className="text-3xl sm:text-4xl lg:text-4xl text-center lg:text-left leading-snug mb-20"
             style={{
               fontFamily: "'DM Serif Display', serif",
               fontWeight: 400,
@@ -118,7 +121,7 @@ export default function Section2({ children }: Section2Props) {
 
           {/* Subtext */}
           <div
-            className="text-center md:text-left text-[#401323] font-sans pt-6" // Align left on medium screens and up
+            className="text-center md:text-left text-[#401323] font-sans pt-4" // Align left on medium screens and up
             style={{
               fontSize: "clamp(14px, 1.5vw, 16px)",
               lineHeight: 1.6,
@@ -139,8 +142,6 @@ export default function Section2({ children }: Section2Props) {
         >
           <div className="grid grid-cols-2 gap-y-10 gap-x-6 sm:grid-cols-4 sm:gap-x-10 md:gap-x-16 lg:gap-x-20 w-full">
             {logos.map((logo, index) => (
-              // Individual items don't need their own observer since the parent grid has one.
-              // We can add a slight delay based on the index for a staggered effect.
               <div
                 key={index}
                 className={`relative flex flex-col items-center text-center p-2 sm:p-4 transition-transform duration-700 ease-out`}

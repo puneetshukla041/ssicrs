@@ -1,3 +1,4 @@
+// components/SeventhSection.tsx
 "use client";
 
 import Image from "next/image";
@@ -13,9 +14,8 @@ const animationClass = "transition-all duration-1000 ease-out";
 export default function SeventhSection() {
   // 2. Setup Intersection Observer for the section
   const { ref, inView } = useInView({
-    // FIX: Set to false so the animation runs every time the component enters the viewport
     triggerOnce: false, 
-    threshold: 0.01,    // Start animation when 10% of the component is visible
+    threshold: 0.01, 
   });
 
   const router = useRouter();
@@ -29,10 +29,16 @@ export default function SeventhSection() {
     // 3. Attach the observer ref to the main section container
     <section 
       ref={ref}
-      className="w-full bg-[#FBFAF2] relative flex justify-center items-center pt-12 sm:pt-0 pb-20 md:pb-24 min-h-[500px] md:min-h-0 overflow-hidden"
+      // ADDED: flex, justify-center, and items-center to the section.
+      // Removed 'h-screen' as it can interfere with centering if the viewport is too small, 
+      // but keeping it here for full height vertical centering.
+      className="w-full h-screen bg-[#FBFAF2] flex justify-center items-center overflow-hidden" 
     >
-
       {/* ---------------- Mobile & Tablet View ---------------- */}
+      {/* This container already uses 'flex-col items-center justify-center' internally.
+          The parent section's 'justify-center items-center' ensures this whole block is vertically centered.
+          The internal 'py-12' ensures equal top/bottom padding on the content itself.
+      */}
       <div className="md:hidden w-11/12 max-w-xl mx-auto relative rounded-lg overflow-hidden min-h-[300px] sm:min-h-[400px] flex flex-col items-center justify-center">
         
         {/* Image with 50% zoom effect */}
@@ -49,9 +55,9 @@ export default function SeventhSection() {
         {/* Overlay */}
         <div className="absolute inset-0 bg-black/30 z-10"></div>
 
-        {/* Content - Apply animation classes */}
+        {/* Content - Equal padding handled by py-12 */}
         <div 
-          className={`relative z-20 text-center flex flex-col items-center max-w-lg px-4 ${animationClass} ${
+          className={`relative z-20 text-center flex flex-col items-center max-w-lg px-4 py-12 ${animationClass} ${
             inView ? "opacity-100 translate-y-0 delay-300" : "opacity-0 translate-y-10"
           }`}
         >
@@ -66,7 +72,6 @@ export default function SeventhSection() {
             className="text-sm sm:text-base font-medium text-[#FBFAF2] mb-8 sm:mb-10"
             style={{ fontFamily: "Lato, sans-serif" }}
           >
-            {/* FIX: Replaced all unescaped single quotes with &apos; */}
             SSICRS invites you to be part of the movement that is transforming the future of surgery. Whether you&apos;re a surgeon looking to master robotic-assisted techniques, a nurse preparing to assist in robotic procedures, or an anesthesiologist ensuring robotic surgery patient safety—SSICRS is your gateway to expertise in the most advanced form of surgery today.
           </p>
 
@@ -89,6 +94,8 @@ export default function SeventhSection() {
 
       {/* ---------------- Desktop View ---------------- */}
       <div className="hidden md:block relative flex flex-col justify-center items-center w-full max-w-[1306px]">
+        
+        {/* The Image container itself serves as the main visual element. */}
         <div className="relative w-full h-auto">
           <Image
             src="/Images/homepage/section8/image1.webp"
@@ -100,7 +107,7 @@ export default function SeventhSection() {
           />
         </div>
 
-        {/* Content - Apply animation classes */}
+        {/* Content Overlay - This overlay is absolutely positioned and uses flex utilities to center its content */}
         <div 
           className={`absolute inset-0 flex flex-col items-center justify-center text-center px-8 ${animationClass} ${
             inView ? "opacity-100 translate-y-0 delay-300" : "opacity-0 translate-y-10"
@@ -117,7 +124,6 @@ export default function SeventhSection() {
             className="text-xl md:text-[18px] font-medium text-[#FBFAF2] max-w-xl mb-16 md:mb-18 lg:max-w-2xl"
             style={{ fontFamily: "Lato, sans-serif" }}
           >
-            {/* FIX: Replaced all unescaped single quotes with &apos; */}
             SSICRS invites you to be part of the movement that is transforming the future of surgery. Whether you&apos;re a surgeon looking to master robotic-assisted techniques, a nurse preparing to assist in robotic procedures, or an anesthesiologist ensuring robotic surgery patient safety—SSICRS is your gateway to expertise in the most advanced form of surgery today.
           </p>
 
@@ -125,6 +131,7 @@ export default function SeventhSection() {
             onClick={handleRegisterClick}
             className="absolute flex items-center justify-center rounded-full transition-shadow duration-300 hover:shadow-[0_0_15px_rgba(255,234,210,0.5)]"
             style={{
+              // The button uses absolute positioning for a precise location relative to the image.
               top: "65%",
               left: "50%",
               transform: "translate(-50%, -50%)",

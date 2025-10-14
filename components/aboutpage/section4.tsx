@@ -250,8 +250,6 @@ export default function Section4() {
             ))}
         </div>
       </div>
-    
- 
 
     </div>
   );

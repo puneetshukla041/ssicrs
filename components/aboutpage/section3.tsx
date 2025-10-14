@@ -1,3 +1,4 @@
+// components/aboutus/Section8.tsx
 "use client";
 
 import React, { useRef } from "react";
@@ -29,7 +30,7 @@ const containerVariants: Variants = {
   },
 };
 
-export default function Section3() {
+export default function Section8() {
   const ref = useRef(null);
   // Trigger when 20% of the component is visible
   const isInView = useInView(ref, { once: false, amount: 0.2 });
@@ -45,13 +46,16 @@ export default function Section3() {
   // Set the animation state based on visibility
   const animationState = isInView ? "visible" : "hidden";
 
+
   return (
-    <section className="w-full relative bg-[#FBFAF2] pt-0 pb-24 md:h-auto md:pt-0 md:pb-0 min-h-[0vh]">
-      
+    <section 
+      className="w-full h-[70vh] bg-[#FBFAF2] flex flex-col justify-center" // ADDED: flex, flex-col, and justify-center for vertical centering
+      ref={ref} // Moved ref up to the section for entire component visibility check
+    >
       {/* Container with consistent horizontal padding */}
+      {/* ADDED: Vertical padding (py-10 and lg:py-24) to the inner container to ensure equal top/bottom spacing is included in the centered block. */}
       <div
-        className="w-full max-w-[1440px] mx-auto px-4 sm:px-6 md:px-8 lg:px-16 xl:px-20"
-        ref={ref}
+        className="w-full max-w-[1440px] mx-auto px-4 sm:px-6 md:px-8 lg:px-16 xl:px-20 py-10 lg:py-24" 
       >
         {/* --- Mobile View --- */}
         <div className="md:hidden flex flex-col items-center">
@@ -110,7 +114,7 @@ export default function Section3() {
           variants={containerVariants} // Apply container variants to the main desktop wrapper
           initial="hidden"
           animate={animationState} // Use the state to control animation
-          className="hidden md:flex flex-col md:flex-row items-start pt-16 md:pt-24 lg:pt-26 w-full"
+          className="hidden md:flex flex-col md:flex-row items-start w-full" // REMOVED: pt-16 md:pt-24 lg:pt-26 as padding is now on the parent div
         >
           {/* Left side: Image + overlay (Animate the entire block) */}
           <motion.div

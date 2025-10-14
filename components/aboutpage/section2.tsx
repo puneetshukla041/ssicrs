@@ -7,19 +7,22 @@ import Image from "next/image";
 export default function Section2() {
   return (
     <section
-      className="w-full py-10 lg:py-24" // Added vertical padding for spacing on all devices
+      // 1. Removed vertical padding (py-10 lg:py-24) to let the content center perfectly.
+      // 2. Added Flex utilities: 'flex', 'flex-col', and 'justify-center' for vertical centering.
+      // 3. Added padding-y directly to the content div for spacing, which achieves the 'equal padding' request while allowing centering.
+      className="w-full flex flex-col justify-center" 
       style={{ backgroundColor: "#FBFAF2" }}
     >
-      {/* The main container is centered and sets a max-width for large screens 
-        to prevent the content from stretching too wide on massive monitors.
+      {/* The main container is now given the vertical padding (py-10 lg:py-24) 
+        and is vertically centered by the parent <section>'s 'justify-center' class.
       */}
-      <div className="max-w-[1440px] mx-auto px-8 lg:px-16 xl:px-20">
+      <div className="max-w-[1440px] mx-auto px-8 lg:px-16 xl:px-20 py-10 lg:py-24">
         
         {/*
-          DESKTOP/TABLET VIEW (lg: prefix): Uses a flex/grid layout
-          Visible on screens >= 1024px.
-          The content is split into three main areas (Heading, Text, Image) 
-          and arranged using a modern flex-based grid.
+          DESKTOP/TABLET VIEW (lg: prefix):
+          The content inside the grid is already vertically aligned via 'self-center' 
+          on the child columns, and the grid itself is now vertically centered 
+          within the section's viewport.
         */}
         <div className="hidden lg:grid lg:grid-cols-12 lg:gap-10 xl:gap-20">
           
@@ -38,7 +41,7 @@ export default function Section2() {
               Educating the future of
               
               Accessible Robotic
-             
+              
               Surgery
             </h2>
           </div>
@@ -81,24 +84,22 @@ export default function Section2() {
           </div>
 
           {/* Section 3: Image (Spans 3 columns) */}
-<div className="col-span-3 self-center">
-  <div className="relative w-full aspect-square max-w-[404px] mx-auto">
-    <Image
-      src="/Images/aboutpage/section2/sudhir.png"
-      alt="Dr. Sudhir Srivastava"
-      fill
-      className="object-cover" // removed 'rounded-full'
-      priority
-    />
-  </div>
-</div>
+          <div className="col-span-3 self-center">
+            <div className="relative w-full aspect-square max-w-[404px] mx-auto">
+              <Image
+                src="/Images/aboutpage/section2/sudhir.png"
+                alt="Dr. Sudhir Srivastava"
+                fill
+                className="object-cover"
+                priority
+              />
+            </div>
+          </div>
 
         </div>
         
 
-        {/* MOBILE VIEW (No prefix): Uses fluid layout and specified mobile styles
-          Visible on screens < 1024px.
-        */}
+        {/* MOBILE VIEW (No prefix): Uses fluid layout and specified mobile styles */}
         <div className="lg:hidden flex flex-col items-center">
           
           {/* Mobile Heading */}
