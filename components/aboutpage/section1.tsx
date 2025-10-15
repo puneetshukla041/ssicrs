@@ -23,7 +23,7 @@ export default function Section1() {
       {/* Background Image: Uses Next.js Image component with fill and object-cover for full responsiveness. */}
       <Image
         src="/Images/aboutpage/section1/section1.webp"
-        alt="SSI CRS"
+        alt="puneet shukla"
         fill
         className="object-cover"
         priority

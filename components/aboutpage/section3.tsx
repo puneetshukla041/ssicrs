@@ -48,15 +48,16 @@ export default function Section8() {
 
 
   return (
-    <section 
-      className="w-full  bg-[#FBFAF2] flex flex-col justify-center pb-[10vh]" // ADDED: flex, flex-col, and justify-center for vertical centering
-      ref={ref} // Moved ref up to the section for entire component visibility check
-    >
-      {/* Container with consistent horizontal padding */}
-      {/* ADDED: Vertical padding (py-10 and lg:py-24) to the inner container to ensure equal top/bottom spacing is included in the centered block. */}
-      <div
-        className="w-full max-w-[1440px] mx-auto px-4 sm:px-6 md:px-8 lg:px-16 xl:px-20 py-10 lg:py-24" 
-      >
+<section 
+  ref={ref}
+  className="w-full min-h-[70vh] bg-[#FBFAF2] flex flex-col justify-center" // reduced further to 70vh
+>
+  <div
+    className="w-full max-w-[1440px] mx-auto px-4 sm:px-6 md:px-8 lg:px-16 xl:px-20 py-4 lg:py-12" 
+    // reduced padding more: py-4 lg:py-12
+  >
+
+
         {/* --- Mobile View --- */}
         <div className="md:hidden flex flex-col items-center">
           

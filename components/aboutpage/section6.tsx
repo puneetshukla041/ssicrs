@@ -14,8 +14,8 @@ const animationClass = "transition-all duration-1000 ease-out";
 export default function SeventhSection() {
   // 2. Setup Intersection Observer for the section
   const { ref, inView } = useInView({
-    triggerOnce: false, 
-    threshold: 0.01, 
+    triggerOnce: false,
+    threshold: 0.01,
   });
 
   const router = useRouter();
@@ -29,10 +29,9 @@ export default function SeventhSection() {
     // 3. Attach the observer ref to the main section container
     <section 
       ref={ref}
-      // ADDED: flex, justify-center, and items-center to the section.
-      // Removed 'h-screen' as it can interfere with centering if the viewport is too small, 
-      // but keeping it here for full height vertical centering.
-      className="w-full h-screen bg-[#FBFAF2] flex justify-center items-center overflow-hidden" 
+      // MODIFIED: Changed 'h-screen' to 'h-[90vh]' to slightly reduce the section height, 
+      // cutting space from the top and bottom.
+      className="w-full h-[90vh] bg-[#FBFAF2] flex justify-center items-center overflow-hidden" 
     >
       {/* ---------------- Mobile & Tablet View ---------------- */}
       {/* This container already uses 'flex-col items-center justify-center' internally.
@@ -131,8 +130,8 @@ export default function SeventhSection() {
             onClick={handleRegisterClick}
             className="absolute flex items-center justify-center rounded-full transition-shadow duration-300 hover:shadow-[0_0_15px_rgba(255,234,210,0.5)]"
             style={{
-              // The button uses absolute positioning for a precise location relative to the image.
-              top: "65%",
+              // MODIFIED: Adjusted 'top' from 65% to 70% to lower the button slightly on the desktop image.
+              top: "70%",
               left: "50%",
               transform: "translate(-50%, -50%)",
               width: "167px",

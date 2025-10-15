@@ -10,13 +10,13 @@ export default function Section2() {
       // 1. Removed vertical padding (py-10 lg:py-24) to let the content center perfectly.
       // 2. Added Flex utilities: 'flex', 'flex-col', and 'justify-center' for vertical centering.
       // 3. Added padding-y directly to the content div for spacing, which achieves the 'equal padding' request while allowing centering.
-      className="w-full  flex-col justify-center" 
+      className="w-full flex flex-col justify-center" 
       style={{ backgroundColor: "#FBFAF2" }}
     >
       {/* The main container is now given the vertical padding (py-10 lg:py-24) 
         and is vertically centered by the parent <section>'s 'justify-center' class.
       */}
-      <div className="max-w-[1440px] mx-auto px-8 lg:px-16 xl:px-20 py-10 lg:py-50">
+      <div className="max-w-[1440px] mx-auto px-8 lg:px-16 xl:px-20 py-10 lg:py-24">
         
         {/*
           DESKTOP/TABLET VIEW (lg: prefix):
@@ -36,6 +36,7 @@ export default function Section2() {
                 fontWeight: 500,
                 color: "#A67950",
                 lineHeight: "1.2", // Adjust line height for better typography
+                marginTop:"10px"
               }}
             >
               Educating the future of
