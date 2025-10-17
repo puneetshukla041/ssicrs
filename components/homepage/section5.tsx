@@ -111,11 +111,12 @@ const Slider: React.FC = () => {
     >
 
       {/* Heading - Apply animation classes */}
-      <div 
-        className={`max-w-7xl mx-auto ${animationClass} ${
-          inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
-        }`}
-      >
+<div 
+  className={`max-w-7xl mx-auto ${animationClass} ${
+    inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+  } lg:pl-10 xl:pl-0`}  // 👈 Add this
+>
+
         <h2
           className="text-3xl sm:text-4xl lg:text-4xl text-center lg:text-left leading-snug mb-6"
           style={{
@@ -139,7 +140,8 @@ const Slider: React.FC = () => {
         onMouseLeave={() => setIsHovered(false)}
       >
         {/* Text Content (framer-motion handles its internal slide transitions) */}
-        <div className="w-full lg:w-1/3 order-2 lg:order-1 flex justify-center lg:justify-start">
+       <div className="w-full lg:w-1/3 order-2 lg:order-1 flex justify-center lg:justify-start lg:pl-10 xl:pl-0">
+
           <AnimatePresence mode="wait">
             <motion.div
               key={currentIndex}
@@ -159,7 +161,8 @@ const Slider: React.FC = () => {
         </div>
 
         {/* Image Carousel (Internal transform handles the image movement) */}
-        <div className="w-full lg:w-2/3 order-1 lg:order-2 overflow-hidden relative">
+        <div className="w-full lg:w-2/3 order-1 lg:order-2 overflow-hidden relative lg:translate-x-[-30px] xl:translate-x-0 transition-transform duration-500">
+
           <div
             className="flex transition-transform duration-700 ease-in-out relative"
             style={{ transform: getTransformValue() }}

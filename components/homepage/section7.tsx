@@ -59,7 +59,8 @@ export default function Section7() {
       className="w-full bg-[#FBFAF2] py-20 md:py-32 flex flex-col items-center"
     >
       {/* Content Container */}
-      <div className="w-full max-w-7xl px-6 md:px-10 lg:px-16 flex flex-col items-start">
+     <div className="w-full max-w-7xl px-6 md:px-10 lg:px-24 xl:px-16 flex flex-col items-start">
+
 
         {/* Section Heading - Apply animation classes */}
         <div 

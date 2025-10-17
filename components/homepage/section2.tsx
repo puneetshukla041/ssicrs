@@ -115,24 +115,25 @@ export default function Section2({ children }: Section2Props) {
             </div>
           </div>
 
-          {/* Image on the right */}
-          <div className="lg:w-1/2 xl:w-3/5 flex justify-center lg:justify-end">
-            <div
-              className="relative rounded-[8px] overflow-hidden w-full max-w-[513px] h-[280px] sm:h-[300px] md:h-[350px] lg:h-[280px] lg:transform lg:translate-x-12"
-            >
-              <Image
-                src="/Images/homepage/section2/image1.webp"
-                alt="Section 2 Image"
-                fill
-                className="object-cover"
-                sizes="(max-width: 1024px) 100vw, 513px"
-              />
-            </div>
-          </div>
+         {/* Image on the right */}
+          <div className="lg:w-1/2 xl:w-3/5 flex justify-center lg:justify-end">
+            <div
+              className="relative rounded-[8px] overflow-hidden w-full max-w-[500px] **lg:max-w-[460px]** h-[280px] sm:h-[300px] md:h-[350px] lg:h-[280px] lg:transform lg:translate-x-12"
+            >
+              <Image
+                src="/Images/homepage/section2/image1.webp"
+                alt="Section 2 Image"
+                fill
+                className="object-cover"
+                sizes="(max-width: 1024px) 100vw, 513px"
+              />
+            </div>
+          </div>
+
         </div>
         {/* --- "At SSICRS, you will:" Section --- */}
         <div
-          className="w-full pt-10 lg:transform lg:translate-y-[-160px]"
+          className="w-full pt-10 lg:transform lg:translate-y-[-160px] **lg:px-12 xl:px-8**" // **ADDED lg:px-12 xl:px-8 for finer control on horizontal space**
         >
           <h3
             className={`font-serif text-xl md:text-2xl font-semibold leading-tight mb-8 text-center text-[#A67950] ${animationClass} ${
@@ -145,19 +146,21 @@ export default function Section2({ children }: Section2Props) {
           </h3>
 
           {/* Logo Grid - Animates on every entry */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-y-12 gap-x-6 sm:gap-x-8 md:gap-x-12 justify-items-center">
+          <div 
+            className="grid grid-cols-2 md:grid-cols-4 **lg:gap-x-6** gap-y-12 gap-x-6 sm:gap-x-8 md:gap-x-12 justify-items-center" // **MODIFIED: Added lg:gap-x-6 (reduced from md:gap-x-12)**
+          >
             {logos.map((logo, index) => (
               // Card Wrapper: Apply staggered animation
               <div
                 key={index}
                 className={`relative flex flex-col items-center group cursor-pointer
-                             p-4 max-w-[200px] w-full
-                             bg-white rounded-lg shadow-xl transition-all duration-1000 ease-out ${
-                               inView
-                                 ? `opacity-100 translate-y-0 delay-[${400 + index * 150}ms]`
-                                 : "opacity-0 translate-y-10"
-                               }
-                             `}
+                                p-4 max-w-[200px] w-full
+                                bg-white rounded-lg shadow-xl transition-all duration-1000 ease-out ${
+                                  inView
+                                    ? `opacity-100 translate-y-0 delay-[${400 + index * 150}ms]`
+                                    : "opacity-0 translate-y-10"
+                                }
+                              `}
                 // Dynamic delay for staggered effect
                 style={{ transitionDelay: inView ? `${400 + index * 150}ms` : '0ms' }}
               >
@@ -181,7 +184,7 @@ export default function Section2({ children }: Section2Props) {
                 </div>
 
                 {/* Text */}
-                <p className="font-lato font-normal text-sm md:text-base leading-snug text-[#401323] mt-4 text-left w-full">
+                <p className="font-lato font-normal text-sm **lg:text-xs** md:text-base leading-snug text-[#401323] mt-4 text-left w-full"> {/* **MODIFIED: Added lg:text-xs to reduce font size on laptop** */}
                   {logo.text}
                 </p>
               </div>
